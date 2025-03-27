@@ -1,0 +1,5 @@
+org\itson\disenosoftware\farmaciagi_subsistema_proveedores\excepciones\GestorProveedoresException.class
+org\itson\disenosoftware\farmaciagi_subsistema_proveedores\GestorProveedores.class
+org\itson\disenosoftware\farmaciagi_subsistema_proveedores\ControlGestorProveedores.class
+org\itson\disenosoftware\farmaciagi_subsistema_proveedores\excepciones\ControlProveedoresException.class
+org\itson\disenosoftware\farmaciagi_subsistema_proveedores\IGestorProveedores.class

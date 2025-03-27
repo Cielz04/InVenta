@@ -1,0 +1,12 @@
+org\itson\diseñosoftware\farmaciagi_objetosNegocio\excepciones\ObjetosNegocioException.class
+org\itson\diseñosoftware\farmaciagi_objetosNegocio\IVentaBO.class
+pruebasBO\pruebaBO.class
+org\itson\diseñosoftware\farmaciagi_objetosNegocio\ICompraBO.class
+org\itson\diseñosoftware\farmaciagi_objetosNegocio\IProveedorBO.class
+org\itson\diseñosoftware\farmaciagi_objetosNegocio\ProductoBO.class
+org\itson\diseñosoftware\farmaciagi_objetosNegocio\VentaBO.class
+org\itson\diseñosoftware\farmaciagi_objetosNegocio\PromocionBO.class
+org\itson\diseñosoftware\farmaciagi_objetosNegocio\CompraBO.class
+org\itson\diseñosoftware\farmaciagi_objetosNegocio\IPromocionBO.class
+org\itson\diseñosoftware\farmaciagi_objetosNegocio\ProveedorBO.class
+org\itson\diseñosoftware\farmaciagi_objetosNegocio\IProductoBO.class

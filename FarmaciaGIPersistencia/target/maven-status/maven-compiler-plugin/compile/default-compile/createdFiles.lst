@@ -1,0 +1,10 @@
+org\itson\diseñosoftware\farmaciagipersistencia\excepciones\PersistenciaException.class
+org\itson\diseñosoftware\farmaciagipersistencia\gestores\GestorVentas.class
+org\itson\diseñosoftware\farmaciagipersistencia\gestores\IGestorVentas.class
+org\itson\diseñosoftware\farmaciagipersistencia\dtos\VentaDTO.class
+org\itson\diseñosoftware\farmaciagipersistencia\Productos.class
+org\itson\diseñosoftware\farmaciagipersistencia\dtos\ProductoDTO.class
+org\itson\diseñosoftware\farmaciagipersistencia\gestores\GestorProductos.class
+org\itson\diseñosoftware\farmaciagipersistencia\Inventario.class
+org\itson\diseñosoftware\farmaciagipersistencia\RegistroVentas.class
+org\itson\diseñosoftware\farmaciagipersistencia\gestores\IGestorProductos.class

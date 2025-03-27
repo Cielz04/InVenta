@@ -1,0 +1,6 @@
+org\itson\disenosoftware\farmaciagi_subsistema_productos\ControlGestorProductos.class
+org\itson\disenosoftware\farmaciagi_subsistema_productos\IGestorProductos.class
+org\itson\disenosoftware\farmaciagi_subsistema_productos\excepciones\ControlProductosException.class
+org\itson\disenosoftware\farmaciagi_subsistema_productos\GestorProductos.class
+org\itson\disenosoftware\farmaciagi_subsistema_productos\Validaciones\ExpresionesRegulares.class
+org\itson\disenosoftware\farmaciagi_subsistema_productos\excepciones\GestorProductosException.class

@@ -1,0 +1,5 @@
+org\itson\disenosoftware\farmaciagi_subsistema_ventas\GestorVentas.class
+org\itson\disenosoftware\farmaciagi_subsistema_ventas\IGestorVentas.class
+org\itson\disenosoftware\farmaciagi_subsistema_ventas\excepciones\ControlVentasException.class
+org\itson\disenosoftware\farmaciagi_subsistema_ventas\ControlGestorVentas.class
+org\itson\disenosoftware\farmaciagi_subsistema_ventas\excepciones\GestorVentasException.class

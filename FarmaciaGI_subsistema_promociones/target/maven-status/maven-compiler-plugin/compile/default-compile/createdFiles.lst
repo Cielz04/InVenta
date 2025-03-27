@@ -1,0 +1,4 @@
+org\itson\disenosoftware\farmaciagi_subsistema_promociones\GestorPromociones.class
+org\itson\disenosoftware\farmaciagi_subsistema_promociones\ControlGestorPromociones.class
+org\itson\disenosoftware\farmaciagi_subsistema_promociones\IGestorPromociones.class
+org\itson\disenosoftware\farmaciagi_subsistema_promociones\excepciones\SubsistemaPromocionesException.class
