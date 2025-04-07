@@ -8,9 +8,8 @@ public class ProductoDTO {
 
     private String codigo;
     private String nombre;
-    private Float costo;
+    private Float precio;
     private String marca;
-    private Integer cantidad;
     private LinkedList<String> id_proveedores;
 
     /**
@@ -20,34 +19,16 @@ public class ProductoDTO {
     }
 
     /**
-     * Constructor que recibe el código, nombre y costo del producto.
+     * Constructor que recibe el código, nombre y precio del producto.
      *
      * @param codigo El código del producto
      * @param nombre El nombre del producto
-     * @param costo El costo del producto
+     * @param precio El precio del producto
      */
-    public ProductoDTO(String codigo, String nombre, Float costo) {
+    public ProductoDTO(String codigo, String nombre, Float precio) {
         this.codigo = codigo;
         this.nombre = nombre;
-        this.costo = costo;
-    }
-
-    /**
-     * Constructor que recibe el código, nombre, costro, marca y cantidad del
-     * producto.
-     *
-     * @param codigo El código del producto
-     * @param nombre El nombre del producto
-     * @param costo El costo del producto
-     * @param marca La marca del producto
-     * @param cantidad La cantidad del producto
-     */
-    public ProductoDTO(String codigo, String nombre, Float costo, String marca, Integer cantidad) {
-        this.codigo = codigo;
-        this.nombre = nombre;
-        this.costo = costo;
-        this.marca = marca;
-        this.cantidad = cantidad;
+        this.precio = precio;
     }
 
     /**
@@ -55,13 +36,13 @@ public class ProductoDTO {
      *
      * @param codigo El código del producto
      * @param nombre El nombre del producto
-     * @param costo El costo del producto
+     * @param precio El precio del producto
      * @param marca La marca del producto
      */
-    public ProductoDTO(String codigo, String nombre, Float costo, String marca) {
+    public ProductoDTO(String codigo, String nombre, Float precio, String marca) {
         this.codigo = codigo;
         this.nombre = nombre;
-        this.costo = costo;
+        this.precio = precio;
         this.marca = marca;
     }
 
@@ -102,21 +83,21 @@ public class ProductoDTO {
     }
 
     /**
-     * Permite obtener el costo del producto.
+     * Permite obtener el precio del producto.
      *
-     * @return El costo del producto
+     * @return El precio del producto
      */
-    public Float getCosto() {
-        return costo;
+    public Float getprecio() {
+        return precio;
     }
 
     /**
-     * Permite establecer el costo del producto.
+     * Permite establecer el precio del producto.
      *
-     * @param costo El costo del producto
+     * @param precio El precio del producto
      */
-    public void setCosto(Float costo) {
-        this.costo = costo;
+    public void setprecio(Float precio) {
+        this.precio = precio;
     }
 
     /**
@@ -137,22 +118,12 @@ public class ProductoDTO {
         this.marca = marca;
     }
 
-    /**
-     * Permite obtener la cantidad del producto.
-     *
-     * @return La cantidad del producto
-     */
-    public Integer getCantidad() {
-        return cantidad;
+    public Float getPrecio() {
+        return precio;
     }
 
-    /**
-     * Permite establecer la cantidad del producto.
-     *
-     * @param cantidad La cantidad del producto
-     */
-    public void setCantidad(Integer cantidad) {
-        this.cantidad = cantidad;
+    public void setPrecio(Float precio) {
+        this.precio = precio;
     }
 
     public LinkedList<String> getId_proveedores() {
@@ -161,21 +132,6 @@ public class ProductoDTO {
 
     public void setId_proveedores(LinkedList<String> id_proveedores) {
         this.id_proveedores = id_proveedores;
-    }
-
-    /**
-     * Permite sabe si el producto es válido o no.
-     *
-     * @return true si el producto es válido, false en caso contrario
-     */
-    public boolean isValid() {
-        if (cantidad < 0) {
-            return false;
-        }
-        if (costo < 0.0) {
-            return false;
-        }
-        return true;
     }
 
     /**
@@ -214,7 +170,7 @@ public class ProductoDTO {
 
     @Override
     public String toString() {
-        return nombre + ", " + marca + ", " + NumberFormat.getCurrencyInstance().format(costo);
+        return nombre + ", " + marca + ", " + NumberFormat.getCurrencyInstance().format(precio);
     }
 
 }
