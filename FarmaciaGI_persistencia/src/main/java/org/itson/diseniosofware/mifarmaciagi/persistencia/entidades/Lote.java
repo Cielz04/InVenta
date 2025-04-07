@@ -1,19 +1,29 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package org.itson.diseniosofware.mifarmaciagi.persistencia.entidades;
 
+import jakarta.persistence.*;
 import java.time.Instant;
 
-/**
- *
- * @author Enrique Rodriguez
- */
+@Entity
+@Table(name = "lotes")
 public class Lote {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
+
+    @Column(nullable = false)
     private Instant caducidad;
+
+    @Column(nullable = false)
     private Integer cantidad;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "producto_id", nullable = false)
+    private Producto producto;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "entrada_id", nullable = false)
+    private Entrada entrada;
 
     public Lote() {
     }
@@ -51,6 +61,20 @@ public class Lote {
     public void setCantidad(Integer cantidad) {
         this.cantidad = cantidad;
     }
-    
-    
+
+    public Producto getProducto() {
+        return producto;
+    }
+
+    public void setProducto(Producto producto) {
+        this.producto = producto;
+    }
+
+    public Entrada getEntrada() {
+        return entrada;
+    }
+
+    public void setEntrada(Entrada entrada) {
+        this.entrada = entrada;
+    }
 }

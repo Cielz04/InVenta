@@ -1,64 +1,65 @@
 package org.itson.diseniosofware.mifarmaciagi.persistencia.entidades;
 
+import jakarta.persistence.*;
 import java.util.LinkedList;
-import org.bson.types.ObjectId;
+import java.util.List;
 
-/**
- *
- * @author Hector Espinoza
- */
+@Entity
+@Table(name = "productos")
 public class Producto {
 
-    private Integer id; //id del producto
-    private String nombre; //nombre del producto
-    private String marca; //marca del producto
-    private Float precio; //precio del producto
-    private String codigo; //codigo del producto
-    private String tipo; //Tipo del producto 
-    private LinkedList <ObjectId> id_proveedores; //proveedores que suministtran el producto
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Integer id;
 
-    
-    
-    /**
-     * Constructor default de un objeto tipo producto
-     */
+    @Column(nullable = false)
+    private String nombre;
+
+    @Column(nullable = false)
+    private String marca;
+
+    @Column(nullable = false)
+    private Float precio;
+
+    @Column(unique = true)
+    private String codigo;
+
+    @Column(nullable = false)
+    private String tipo;
+
+    // Relación con Lote
+    @OneToMany(mappedBy = "producto", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<Lote> lotes = new LinkedList<>();
+
+    // Relación con DetalleVenta
+    @OneToMany(mappedBy = "producto", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<DetalleVenta> detallesVenta = new LinkedList<>();
+
+    // No mapeado como relación por ahora, solo si decides implementar Proveedor como entidad
+    @Transient
+    private LinkedList<Integer> id_proveedores;
+
     public Producto() {
     }
 
     public Producto(Integer id) {
         this.id = id;
     }
-    
-    /**
-     * Constructor que recibe el nombre, el precio y el código del producto.
-     *
-     * @param nombre El nombre del producto
-     * @param precio El precio del producto
-     * @param codigo El código del producto
-     */
+
     public Producto(String nombre, Float precio, String codigo) {
         this.nombre = nombre;
         this.precio = precio;
         this.codigo = codigo;
     }
 
-    /**
-     * Constructor que recibe el nombre, la marca, el precio, el código y la
-     * cantidad del producto.
-     *
-     * @param nombre El nombre del producto
-     * @param marca La marca del producto
-     * @param precio El precio del producto
-     * @param codigo El código del producto
-     * @param cantidad La cantidad del producto
-     */
     public Producto(String nombre, String marca, Float precio, String codigo, Integer cantidad) {
         this.nombre = nombre;
         this.marca = marca;
         this.precio = precio;
         this.codigo = codigo;
-
     }
+
+    // Getters y Setters...
 
     public Integer getId() {
         return id;
@@ -108,14 +109,27 @@ public class Producto {
         this.tipo = tipo;
     }
 
-    public LinkedList<ObjectId> getId_proveedores() {
+    public List<Lote> getLotes() {
+        return lotes;
+    }
+
+    public void setLotes(List<Lote> lotes) {
+        this.lotes = lotes;
+    }
+
+    public List<DetalleVenta> getDetallesVenta() {
+        return detallesVenta;
+    }
+
+    public void setDetallesVenta(List<DetalleVenta> detallesVenta) {
+        this.detallesVenta = detallesVenta;
+    }
+
+    public LinkedList<Integer> getId_proveedores() {
         return id_proveedores;
     }
 
-    public void setId_proveedores(LinkedList<ObjectId> id_proveedores) {
+    public void setId_proveedores(LinkedList<Integer> id_proveedores) {
         this.id_proveedores = id_proveedores;
     }
-
-    
- 
 }
