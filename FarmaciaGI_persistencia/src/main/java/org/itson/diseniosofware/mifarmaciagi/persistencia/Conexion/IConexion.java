@@ -1,6 +1,9 @@
 package org.itson.diseniosofware.mifarmaciagi.persistencia.Conexion;
 
-import com.mongodb.client.MongoDatabase;
+//import com.mongodb.client.MongoDatabase;
+
+import jakarta.persistence.EntityManager;
+
 
 public interface IConexion {
 
@@ -9,5 +12,5 @@ public interface IConexion {
      * 
      * @return Una conexión al mecanismo de persistencia
      */
-    public MongoDatabase crearConexion();
+public EntityManager crearConexion();
 }
