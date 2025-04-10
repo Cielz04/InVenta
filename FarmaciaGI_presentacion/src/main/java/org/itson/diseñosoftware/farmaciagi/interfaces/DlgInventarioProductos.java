@@ -66,16 +66,17 @@ public class DlgInventarioProductos extends javax.swing.JDialog {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
-        jPanel1.setBackground(new java.awt.Color(216, 215, 255));
+        jPanel1.setBackground(new java.awt.Color(226, 228, 241));
 
         jPanel2.setBackground(new java.awt.Color(166, 164, 255));
         jPanel2.setPreferredSize(new java.awt.Dimension(145, 145));
         jPanel2.setRequestFocusEnabled(false);
 
-        btnProductos.setBackground(new java.awt.Color(216, 215, 255));
+        btnProductos.setBackground(new java.awt.Color(226, 228, 241));
         btnProductos.setForeground(new java.awt.Color(166, 164, 255));
         btnProductos.setIcon(new javax.swing.ImageIcon(getClass().getResource("/prouctos1.png"))); // NOI18N
         btnProductos.setBorderPainted(false);
+        btnProductos.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnProductos.setFocusPainted(false);
         btnProductos.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -98,9 +99,10 @@ public class DlgInventarioProductos extends javax.swing.JDialog {
         jPanel3.setPreferredSize(new java.awt.Dimension(145, 145));
         jPanel3.setRequestFocusEnabled(false);
 
-        btnCompras.setBackground(new java.awt.Color(166, 164, 255));
+        btnCompras.setBackground(new java.awt.Color(58, 55, 142));
         btnCompras.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icono_carrito.png"))); // NOI18N
         btnCompras.setBorderPainted(false);
+        btnCompras.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnCompras.setFocusPainted(false);
         btnCompras.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -123,9 +125,10 @@ public class DlgInventarioProductos extends javax.swing.JDialog {
         jPanel5.setPreferredSize(new java.awt.Dimension(145, 145));
         jPanel5.setRequestFocusEnabled(false);
 
-        btnProveedores.setBackground(new java.awt.Color(166, 164, 255));
+        btnProveedores.setBackground(new java.awt.Color(58, 55, 142));
         btnProveedores.setIcon(new javax.swing.ImageIcon(getClass().getResource("/proveedor.png"))); // NOI18N
         btnProveedores.setBorder(null);
+        btnProveedores.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnProveedores.setFocusPainted(false);
         btnProveedores.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -148,9 +151,10 @@ public class DlgInventarioProductos extends javax.swing.JDialog {
         jPanel6.setPreferredSize(new java.awt.Dimension(145, 145));
         jPanel6.setRequestFocusEnabled(false);
 
-        btnVenta.setBackground(new java.awt.Color(166, 164, 255));
+        btnVenta.setBackground(new java.awt.Color(58, 55, 142));
         btnVenta.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ImagenVenta.png"))); // NOI18N
         btnVenta.setBorder(null);
+        btnVenta.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnVenta.setFocusPainted(false);
         btnVenta.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -183,8 +187,9 @@ public class DlgInventarioProductos extends javax.swing.JDialog {
         ));
         jScrollPane1.setViewportView(tblProductosInventario);
 
-        btnVolver.setFont(new java.awt.Font("Arial", 1, 24)); // NOI18N
+        btnVolver.setFont(new java.awt.Font("Arial Rounded MT Bold", 1, 24)); // NOI18N
         btnVolver.setText("VOLVER");
+        btnVolver.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnVolver.setFocusPainted(false);
         btnVolver.setPreferredSize(new java.awt.Dimension(173, 48));
         btnVolver.addActionListener(new java.awt.event.ActionListener() {
@@ -193,8 +198,9 @@ public class DlgInventarioProductos extends javax.swing.JDialog {
             }
         });
 
-        btnActualizar.setFont(new java.awt.Font("Arial", 1, 24)); // NOI18N
+        btnActualizar.setFont(new java.awt.Font("Arial Rounded MT Bold", 1, 24)); // NOI18N
         btnActualizar.setText("CONTINUAR");
+        btnActualizar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnActualizar.setFocusPainted(false);
         btnActualizar.setPreferredSize(new java.awt.Dimension(173, 48));
         btnActualizar.addActionListener(new java.awt.event.ActionListener() {
@@ -207,10 +213,11 @@ public class DlgInventarioProductos extends javax.swing.JDialog {
         jPanel4.setPreferredSize(new java.awt.Dimension(145, 145));
         jPanel4.setRequestFocusEnabled(false);
 
-        jButton1.setBackground(new java.awt.Color(166, 164, 255));
+        jButton1.setBackground(new java.awt.Color(58, 55, 142));
         jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/tagIcon.png"))); // NOI18N
         jButton1.setActionCommand("btnPromociones");
         jButton1.setBorderPainted(false);
+        jButton1.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jButton1.setFocusPainted(false);
 
         javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
@@ -241,8 +248,9 @@ public class DlgInventarioProductos extends javax.swing.JDialog {
                         .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 895, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(0, 6, Short.MAX_VALUE))
                     .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(0, 0, Short.MAX_VALUE)
                         .addComponent(btnVolver, javax.swing.GroupLayout.PREFERRED_SIZE, 190, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGap(18, 18, 18)
                         .addComponent(btnActualizar, javax.swing.GroupLayout.PREFERRED_SIZE, 190, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(49, 49, 49))))
         );

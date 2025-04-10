@@ -35,6 +35,7 @@ public class DlgBuscarProducto extends javax.swing.JDialog {
         btnCerrar.setBackground(Color.WHITE);
         btnBuscarProducto.setBackground(Color.WHITE);
         centraCuadroDialogo(parent);
+        btnBuscarProducto.setBackground(new Color(93, 82, 193));
     }
 
     /**
@@ -63,38 +64,25 @@ public class DlgBuscarProducto extends javax.swing.JDialog {
     private void initComponents() {
 
         fondo = new javax.swing.JPanel();
-        btnBuscarProducto = new javax.swing.JButton();
-        jLabel1 = new javax.swing.JLabel();
         btnCerrar = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         tblBusqueda = new javax.swing.JTable();
+        jPanel1 = new javax.swing.JPanel();
+        jLabel1 = new javax.swing.JLabel();
         txtBuscar = new javax.swing.JTextField();
+        btnBuscarProducto = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setResizable(false);
 
-        fondo.setBackground(new java.awt.Color(216, 215, 255));
+        fondo.setBackground(new java.awt.Color(226, 228, 241));
         fondo.setMaximumSize(new java.awt.Dimension(812, 600));
         fondo.setMinimumSize(new java.awt.Dimension(800, 600));
         fondo.setPreferredSize(new java.awt.Dimension(800, 600));
 
-        btnBuscarProducto.setFont(new java.awt.Font("Arial", 1, 20)); // NOI18N
-        btnBuscarProducto.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Lupa_pequeña.png"))); // NOI18N
-        btnBuscarProducto.setText("| BUSCAR");
-        btnBuscarProducto.setFocusPainted(false);
-        btnBuscarProducto.setPreferredSize(new java.awt.Dimension(36, 36));
-        btnBuscarProducto.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnBuscarProductoActionPerformed(evt);
-            }
-        });
-
-        jLabel1.setFont(new java.awt.Font("Arial", 1, 36)); // NOI18N
-        jLabel1.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel1.setText("BUSCAR PRODUCTO");
-
-        btnCerrar.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
+        btnCerrar.setFont(new java.awt.Font("Arial Rounded MT Bold", 1, 18)); // NOI18N
         btnCerrar.setText("CERRAR");
+        btnCerrar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnCerrar.setFocusPainted(false);
         btnCerrar.setMaximumSize(new java.awt.Dimension(100, 30));
         btnCerrar.setPreferredSize(new java.awt.Dimension(173, 48));
@@ -124,47 +112,78 @@ public class DlgBuscarProducto extends javax.swing.JDialog {
         tblBusqueda.setName("Busqueda Producto"); // NOI18N
         jScrollPane1.setViewportView(tblBusqueda);
 
-        txtBuscar.setFont(new java.awt.Font("Arial", 1, 24)); // NOI18N
+        jPanel1.setBackground(new java.awt.Color(58, 55, 142));
+
+        jLabel1.setFont(new java.awt.Font("Arial Rounded MT Bold", 1, 34)); // NOI18N
+        jLabel1.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel1.setText("BUSCAR PRODUCTO");
+
+        txtBuscar.setFont(new java.awt.Font("Arial Rounded MT Bold", 0, 20)); // NOI18N
+        txtBuscar.setCursor(new java.awt.Cursor(java.awt.Cursor.TEXT_CURSOR));
         txtBuscar.setPreferredSize(new java.awt.Dimension(36, 37));
+
+        btnBuscarProducto.setBackground(new java.awt.Color(93, 82, 193));
+        btnBuscarProducto.setFont(new java.awt.Font("Arial Rounded MT Bold", 0, 20)); // NOI18N
+        btnBuscarProducto.setForeground(new java.awt.Color(255, 255, 255));
+        btnBuscarProducto.setIcon(new javax.swing.ImageIcon(getClass().getResource("/lupita2.png"))); // NOI18N
+        btnBuscarProducto.setText("| Buscar");
+        btnBuscarProducto.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnBuscarProducto.setFocusPainted(false);
+        btnBuscarProducto.setPreferredSize(new java.awt.Dimension(36, 36));
+        btnBuscarProducto.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnBuscarProductoActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
+        jPanel1.setLayout(jPanel1Layout);
+        jPanel1Layout.setHorizontalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(20, 20, 20)
+                .addComponent(txtBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, 567, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(btnBuscarProducto, javax.swing.GroupLayout.PREFERRED_SIZE, 163, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(22, 22, 22))
+        );
+        jPanel1Layout.setVerticalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel1)
+                .addGap(18, 18, 18)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(btnBuscarProducto, javax.swing.GroupLayout.PREFERRED_SIZE, 38, Short.MAX_VALUE)
+                        .addGap(2, 2, 2))
+                    .addComponent(txtBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(35, 35, 35))
+        );
 
         javax.swing.GroupLayout fondoLayout = new javax.swing.GroupLayout(fondo);
         fondo.setLayout(fondoLayout);
         fondoLayout.setHorizontalGroup(
             fondoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(fondoLayout.createSequentialGroup()
-                .addGroup(fondoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addGroup(fondoLayout.createSequentialGroup()
-                        .addGap(210, 210, 210)
-                        .addComponent(jLabel1))
-                    .addGroup(fondoLayout.createSequentialGroup()
-                        .addGap(50, 50, 50)
-                        .addComponent(btnBuscarProducto, javax.swing.GroupLayout.PREFERRED_SIZE, 163, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(txtBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, 534, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(fondoLayout.createSequentialGroup()
-                        .addGap(20, 20, 20)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 760, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, fondoLayout.createSequentialGroup()
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(btnCerrar, javax.swing.GroupLayout.PREFERRED_SIZE, 142, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(20, 20, 20)
+                .addGroup(fondoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(btnCerrar, javax.swing.GroupLayout.PREFERRED_SIZE, 142, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 760, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(20, Short.MAX_VALUE))
         );
         fondoLayout.setVerticalGroup(
             fondoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(fondoLayout.createSequentialGroup()
-                .addGap(12, 12, 12)
-                .addComponent(jLabel1)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(fondoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(btnBuscarProducto, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(fondoLayout.createSequentialGroup()
-                        .addComponent(txtBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(1, 1, 1)))
-                .addGap(13, 13, 13)
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(19, 19, 19)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 353, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(btnCerrar, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap())
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -175,7 +194,7 @@ public class DlgBuscarProducto extends javax.swing.JDialog {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(fondo, javax.swing.GroupLayout.PREFERRED_SIZE, 550, Short.MAX_VALUE)
+            .addComponent(fondo, javax.swing.GroupLayout.PREFERRED_SIZE, 576, Short.MAX_VALUE)
         );
 
         pack();
@@ -306,6 +325,7 @@ public class DlgBuscarProducto extends javax.swing.JDialog {
     private javax.swing.JButton btnCerrar;
     private javax.swing.JPanel fondo;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable tblBusqueda;
     private javax.swing.JTextField txtBuscar;

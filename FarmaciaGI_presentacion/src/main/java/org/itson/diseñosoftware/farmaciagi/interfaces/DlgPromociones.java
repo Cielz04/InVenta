@@ -31,6 +31,7 @@ public class DlgPromociones extends javax.swing.JDialog {
         gestorPromociones = new GestorPromociones();
         this.parent = parent;
         llenarTabla();
+        btnPromociones.setBackground(new Color(226,228,241));
     }
 
     /**
@@ -60,16 +61,17 @@ public class DlgPromociones extends javax.swing.JDialog {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
-        jPanel1.setBackground(new java.awt.Color(216, 215, 255));
+        jPanel1.setBackground(new java.awt.Color(226, 228, 241));
 
         jPanel2.setBackground(new java.awt.Color(166, 164, 255));
         jPanel2.setPreferredSize(new java.awt.Dimension(145, 145));
         jPanel2.setRequestFocusEnabled(false);
 
-        btnProductos.setBackground(new java.awt.Color(166, 164, 255));
+        btnProductos.setBackground(new java.awt.Color(58, 55, 142));
         btnProductos.setForeground(new java.awt.Color(166, 164, 255));
         btnProductos.setIcon(new javax.swing.ImageIcon(getClass().getResource("/prouctos1.png"))); // NOI18N
         btnProductos.setBorderPainted(false);
+        btnProductos.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnProductos.setFocusPainted(false);
         btnProductos.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -92,9 +94,10 @@ public class DlgPromociones extends javax.swing.JDialog {
         jPanel3.setPreferredSize(new java.awt.Dimension(145, 145));
         jPanel3.setRequestFocusEnabled(false);
 
-        btnComprarProductos.setBackground(new java.awt.Color(166, 164, 255));
+        btnComprarProductos.setBackground(new java.awt.Color(58, 55, 142));
         btnComprarProductos.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icono_carrito.png"))); // NOI18N
         btnComprarProductos.setBorderPainted(false);
+        btnComprarProductos.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnComprarProductos.setFocusPainted(false);
         btnComprarProductos.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -117,9 +120,10 @@ public class DlgPromociones extends javax.swing.JDialog {
         jPanel5.setPreferredSize(new java.awt.Dimension(145, 145));
         jPanel5.setRequestFocusEnabled(false);
 
-        btnProveedores.setBackground(new java.awt.Color(166, 164, 255));
+        btnProveedores.setBackground(new java.awt.Color(58, 55, 142));
         btnProveedores.setIcon(new javax.swing.ImageIcon(getClass().getResource("/proveedor.png"))); // NOI18N
         btnProveedores.setBorder(null);
+        btnProveedores.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnProveedores.setFocusPainted(false);
         btnProveedores.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -142,9 +146,10 @@ public class DlgPromociones extends javax.swing.JDialog {
         jPanel6.setPreferredSize(new java.awt.Dimension(145, 145));
         jPanel6.setRequestFocusEnabled(false);
 
-        btnVenta.setBackground(new java.awt.Color(166, 164, 255));
+        btnVenta.setBackground(new java.awt.Color(58, 55, 142));
         btnVenta.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ImagenVenta.png"))); // NOI18N
         btnVenta.setBorder(null);
+        btnVenta.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnVenta.setFocusPainted(false);
         btnVenta.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -163,8 +168,9 @@ public class DlgPromociones extends javax.swing.JDialog {
             .addComponent(btnVenta, javax.swing.GroupLayout.DEFAULT_SIZE, 115, Short.MAX_VALUE)
         );
 
-        btnModificar.setFont(new java.awt.Font("Arial", 1, 24)); // NOI18N
+        btnModificar.setFont(new java.awt.Font("Arial Rounded MT Bold", 1, 24)); // NOI18N
         btnModificar.setText("MODIFICAR");
+        btnModificar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnModificar.setFocusPainted(false);
         btnModificar.setPreferredSize(new java.awt.Dimension(173, 48));
         btnModificar.addActionListener(new java.awt.event.ActionListener() {
@@ -191,8 +197,9 @@ public class DlgPromociones extends javax.swing.JDialog {
         });
         jScrollPane2.setViewportView(tblPromociones);
 
-        btnAgregar.setFont(new java.awt.Font("Arial", 1, 24)); // NOI18N
+        btnAgregar.setFont(new java.awt.Font("Arial Rounded MT Bold", 1, 24)); // NOI18N
         btnAgregar.setText("AGREGAR");
+        btnAgregar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnAgregar.setFocusPainted(false);
         btnAgregar.setPreferredSize(new java.awt.Dimension(173, 48));
         btnAgregar.addActionListener(new java.awt.event.ActionListener() {
@@ -205,9 +212,10 @@ public class DlgPromociones extends javax.swing.JDialog {
         jPanel4.setPreferredSize(new java.awt.Dimension(145, 145));
         jPanel4.setRequestFocusEnabled(false);
 
-        btnPromociones.setBackground(new java.awt.Color(216, 215, 255));
+        btnPromociones.setBackground(new java.awt.Color(226, 228, 241));
         btnPromociones.setIcon(new javax.swing.ImageIcon(getClass().getResource("/tagIcon.png"))); // NOI18N
         btnPromociones.setBorder(null);
+        btnPromociones.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnPromociones.setFocusPainted(false);
 
         javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);

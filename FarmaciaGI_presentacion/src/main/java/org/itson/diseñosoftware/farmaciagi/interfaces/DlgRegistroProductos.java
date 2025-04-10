@@ -90,16 +90,17 @@ public class DlgRegistroProductos extends javax.swing.JDialog {
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Registro");
 
-        jPanel1.setBackground(new java.awt.Color(216, 215, 255));
+        jPanel1.setBackground(new java.awt.Color(226, 228, 241));
 
         jPanel2.setBackground(new java.awt.Color(166, 164, 255));
         jPanel2.setPreferredSize(new java.awt.Dimension(145, 145));
         jPanel2.setRequestFocusEnabled(false);
 
-        btnProductos.setBackground(new java.awt.Color(216, 215, 255));
+        btnProductos.setBackground(new java.awt.Color(226, 228, 241));
         btnProductos.setForeground(new java.awt.Color(166, 164, 255));
         btnProductos.setIcon(new javax.swing.ImageIcon(getClass().getResource("/prouctos1.png"))); // NOI18N
         btnProductos.setBorderPainted(false);
+        btnProductos.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnProductos.setFocusPainted(false);
         btnProductos.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -122,9 +123,10 @@ public class DlgRegistroProductos extends javax.swing.JDialog {
         jPanel3.setPreferredSize(new java.awt.Dimension(145, 145));
         jPanel3.setRequestFocusEnabled(false);
 
-        btnComprarProductos.setBackground(new java.awt.Color(166, 164, 255));
+        btnComprarProductos.setBackground(new java.awt.Color(58, 55, 142));
         btnComprarProductos.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icono_carrito.png"))); // NOI18N
         btnComprarProductos.setBorderPainted(false);
+        btnComprarProductos.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnComprarProductos.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnComprarProductosActionPerformed(evt);
@@ -146,9 +148,10 @@ public class DlgRegistroProductos extends javax.swing.JDialog {
         jPanel5.setPreferredSize(new java.awt.Dimension(145, 145));
         jPanel5.setRequestFocusEnabled(false);
 
-        btnProveedores.setBackground(new java.awt.Color(166, 164, 255));
+        btnProveedores.setBackground(new java.awt.Color(58, 55, 142));
         btnProveedores.setIcon(new javax.swing.ImageIcon(getClass().getResource("/proveedor.png"))); // NOI18N
         btnProveedores.setBorder(null);
+        btnProveedores.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnProveedores.setFocusPainted(false);
         btnProveedores.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -171,9 +174,10 @@ public class DlgRegistroProductos extends javax.swing.JDialog {
         jPanel6.setPreferredSize(new java.awt.Dimension(145, 145));
         jPanel6.setRequestFocusEnabled(false);
 
-        btnVenta.setBackground(new java.awt.Color(166, 164, 255));
+        btnVenta.setBackground(new java.awt.Color(58, 55, 142));
         btnVenta.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ImagenVenta.png"))); // NOI18N
         btnVenta.setBorder(null);
+        btnVenta.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnVenta.setFocusPainted(false);
         btnVenta.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -192,8 +196,9 @@ public class DlgRegistroProductos extends javax.swing.JDialog {
             .addComponent(btnVenta, javax.swing.GroupLayout.DEFAULT_SIZE, 114, Short.MAX_VALUE)
         );
 
-        btnVolver.setFont(new java.awt.Font("Arial", 1, 24)); // NOI18N
+        btnVolver.setFont(new java.awt.Font("Arial Rounded MT Bold", 1, 22)); // NOI18N
         btnVolver.setText("VOLVER");
+        btnVolver.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnVolver.setFocusPainted(false);
         btnVolver.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -201,8 +206,9 @@ public class DlgRegistroProductos extends javax.swing.JDialog {
             }
         });
 
-        btnRegistrar.setFont(new java.awt.Font("Arial", 1, 24)); // NOI18N
+        btnRegistrar.setFont(new java.awt.Font("Arial Rounded MT Bold", 1, 22)); // NOI18N
         btnRegistrar.setText("REGISTRAR");
+        btnRegistrar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnRegistrar.setFocusPainted(false);
         btnRegistrar.setPreferredSize(new java.awt.Dimension(173, 48));
         btnRegistrar.addActionListener(new java.awt.event.ActionListener() {
@@ -211,28 +217,29 @@ public class DlgRegistroProductos extends javax.swing.JDialog {
             }
         });
 
-        jLabel2.setFont(new java.awt.Font("Arial", 1, 24)); // NOI18N
+        jLabel2.setFont(new java.awt.Font("Arial Rounded MT Bold", 1, 24)); // NOI18N
         jLabel2.setText("Código del producto:");
 
-        jLabel4.setFont(new java.awt.Font("Arial", 1, 24)); // NOI18N
+        jLabel4.setFont(new java.awt.Font("Arial Rounded MT Bold", 1, 24)); // NOI18N
         jLabel4.setText("Nombre del producto:");
 
-        jLabel6.setFont(new java.awt.Font("Arial", 1, 24)); // NOI18N
+        jLabel6.setFont(new java.awt.Font("Arial Rounded MT Bold", 1, 24)); // NOI18N
         jLabel6.setText("Marca del producto:");
 
-        jLabel7.setFont(new java.awt.Font("Arial", 1, 24)); // NOI18N
+        jLabel7.setFont(new java.awt.Font("Arial Rounded MT Bold", 1, 24)); // NOI18N
         jLabel7.setText("Costo del producto:");
 
-        txtCodigo.setFont(new java.awt.Font("Arial", 3, 18)); // NOI18N
+        txtCodigo.setFont(new java.awt.Font("Arial Rounded MT Bold", 0, 22)); // NOI18N
 
-        txtMarca.setFont(new java.awt.Font("Arial", 3, 18)); // NOI18N
+        txtMarca.setFont(new java.awt.Font("Arial Rounded MT Bold", 0, 22)); // NOI18N
 
-        txtCosto.setFont(new java.awt.Font("Arial", 3, 18)); // NOI18N
+        txtCosto.setFont(new java.awt.Font("Arial Rounded MT Bold", 0, 22)); // NOI18N
 
-        txtNombre.setFont(new java.awt.Font("Arial", 3, 18)); // NOI18N
+        txtNombre.setFont(new java.awt.Font("Arial Rounded MT Bold", 0, 22)); // NOI18N
 
-        btnRestaurar.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
+        btnRestaurar.setFont(new java.awt.Font("Arial Rounded MT Bold", 1, 18)); // NOI18N
         btnRestaurar.setText("Restaurar");
+        btnRestaurar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnRestaurar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnRestaurarActionPerformed(evt);
@@ -243,10 +250,11 @@ public class DlgRegistroProductos extends javax.swing.JDialog {
         jPanel8.setPreferredSize(new java.awt.Dimension(145, 145));
         jPanel8.setRequestFocusEnabled(false);
 
-        btnPromociones.setBackground(new java.awt.Color(166, 164, 255));
+        btnPromociones.setBackground(new java.awt.Color(58, 55, 142));
         btnPromociones.setIcon(new javax.swing.ImageIcon(getClass().getResource("/tagIcon.png"))); // NOI18N
         btnPromociones.setActionCommand("btnPromociones");
         btnPromociones.setBorderPainted(false);
+        btnPromociones.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnPromociones.setFocusPainted(false);
         btnPromociones.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -276,30 +284,31 @@ public class DlgRegistroProductos extends javax.swing.JDialog {
                     .addComponent(jPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jPanel8, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 92, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 112, Short.MAX_VALUE)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addComponent(btnVolver, javax.swing.GroupLayout.PREFERRED_SIZE, 139, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(33, 33, 33)
-                                .addComponent(btnRegistrar, javax.swing.GroupLayout.PREFERRED_SIZE, 190, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addGap(20, 20, 20)
-                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(txtCodigo, javax.swing.GroupLayout.PREFERRED_SIZE, 245, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jLabel4)
-                                    .addComponent(jLabel2)
-                                    .addComponent(jLabel6)
-                                    .addComponent(jLabel7)
-                                    .addComponent(txtMarca, javax.swing.GroupLayout.PREFERRED_SIZE, 245, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(txtCosto, javax.swing.GroupLayout.PREFERRED_SIZE, 245, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(txtNombre, javax.swing.GroupLayout.PREFERRED_SIZE, 245, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                        .addGap(0, 39, Short.MAX_VALUE))
+                            .addComponent(jLabel4)
+                            .addComponent(jLabel6)
+                            .addComponent(jLabel7)
+                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                .addComponent(txtCodigo, javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(jLabel2, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                .addComponent(txtCosto, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 261, Short.MAX_VALUE)
+                                .addComponent(txtMarca, javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(txtNombre, javax.swing.GroupLayout.Alignment.LEADING)))
+                        .addGap(0, 110, Short.MAX_VALUE))
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(94, 94, 94)
+                        .addGap(184, 184, 184)
                         .addComponent(btnRestaurar)
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addComponent(btnVolver, javax.swing.GroupLayout.PREFERRED_SIZE, 165, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(32, 32, 32)
+                        .addComponent(btnRegistrar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(56, 56, 56))))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -330,7 +339,7 @@ public class DlgRegistroProductos extends javax.swing.JDialog {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(txtCosto, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(30, 30, 30)
-                        .addComponent(btnRestaurar)))
+                        .addComponent(btnRestaurar, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
@@ -492,8 +501,6 @@ public class DlgRegistroProductos extends javax.swing.JDialog {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnComprarProductos;
-    private javax.swing.JButton btnComprarProductos1;
-    private javax.swing.JButton btnComprarProductos2;
     private javax.swing.JButton btnProductos;
     private javax.swing.JButton btnPromociones;
     private javax.swing.JButton btnProveedores;
@@ -508,10 +515,8 @@ public class DlgRegistroProductos extends javax.swing.JDialog {
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
-    private javax.swing.JPanel jPanel4;
     private javax.swing.JPanel jPanel5;
     private javax.swing.JPanel jPanel6;
-    private javax.swing.JPanel jPanel7;
     private javax.swing.JPanel jPanel8;
     private javax.swing.JTextField txtCodigo;
     private javax.swing.JTextField txtCosto;

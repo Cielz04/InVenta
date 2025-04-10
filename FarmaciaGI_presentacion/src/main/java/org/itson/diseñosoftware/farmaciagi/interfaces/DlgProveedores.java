@@ -62,15 +62,16 @@ public class DlgProveedores extends javax.swing.JDialog {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
-        jPanel1.setBackground(new java.awt.Color(216, 215, 255));
+        jPanel1.setBackground(new java.awt.Color(226, 228, 241));
 
         jPanel3.setBackground(new java.awt.Color(166, 164, 255));
         jPanel3.setPreferredSize(new java.awt.Dimension(145, 145));
         jPanel3.setRequestFocusEnabled(false);
 
-        btnComprarProductos.setBackground(new java.awt.Color(166, 164, 255));
+        btnComprarProductos.setBackground(new java.awt.Color(58, 55, 142));
         btnComprarProductos.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icono_carrito.png"))); // NOI18N
         btnComprarProductos.setBorderPainted(false);
+        btnComprarProductos.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnComprarProductos.setFocusPainted(false);
         btnComprarProductos.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -93,9 +94,10 @@ public class DlgProveedores extends javax.swing.JDialog {
         jPanel5.setPreferredSize(new java.awt.Dimension(145, 145));
         jPanel5.setRequestFocusEnabled(false);
 
-        btnProveedores.setBackground(new java.awt.Color(216, 215, 255));
+        btnProveedores.setBackground(new java.awt.Color(226, 228, 241));
         btnProveedores.setIcon(new javax.swing.ImageIcon(getClass().getResource("/proveedor.png"))); // NOI18N
         btnProveedores.setBorder(null);
+        btnProveedores.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnProveedores.setFocusPainted(false);
         btnProveedores.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -118,9 +120,10 @@ public class DlgProveedores extends javax.swing.JDialog {
         jPanel6.setPreferredSize(new java.awt.Dimension(145, 145));
         jPanel6.setRequestFocusEnabled(false);
 
-        btnVenta.setBackground(new java.awt.Color(166, 164, 255));
+        btnVenta.setBackground(new java.awt.Color(58, 55, 142));
         btnVenta.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ImagenVenta.png"))); // NOI18N
         btnVenta.setBorder(null);
+        btnVenta.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnVenta.setFocusPainted(false);
         btnVenta.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -161,8 +164,10 @@ public class DlgProveedores extends javax.swing.JDialog {
         });
         jScrollPane1.setViewportView(tblProveedores);
 
-        btnActualizar.setFont(new java.awt.Font("Arial", 1, 24)); // NOI18N
+        btnActualizar.setBackground(new java.awt.Color(226, 228, 241));
+        btnActualizar.setFont(new java.awt.Font("Arial Rounded MT Bold", 1, 22)); // NOI18N
         btnActualizar.setText("ACTUALIZAR");
+        btnActualizar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnActualizar.setFocusPainted(false);
         btnActualizar.setPreferredSize(new java.awt.Dimension(173, 48));
         btnActualizar.addActionListener(new java.awt.event.ActionListener() {
@@ -171,8 +176,10 @@ public class DlgProveedores extends javax.swing.JDialog {
             }
         });
 
-        btnEliminar.setFont(new java.awt.Font("Arial", 1, 24)); // NOI18N
+        btnEliminar.setBackground(new java.awt.Color(226, 228, 241));
+        btnEliminar.setFont(new java.awt.Font("Arial Rounded MT Bold", 1, 22)); // NOI18N
         btnEliminar.setText("ELIMINAR");
+        btnEliminar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnEliminar.setFocusPainted(false);
         btnEliminar.setPreferredSize(new java.awt.Dimension(173, 48));
         btnEliminar.addActionListener(new java.awt.event.ActionListener() {
@@ -181,8 +188,10 @@ public class DlgProveedores extends javax.swing.JDialog {
             }
         });
 
-        btnRegistrar.setFont(new java.awt.Font("Arial", 1, 24)); // NOI18N
+        btnRegistrar.setBackground(new java.awt.Color(226, 228, 241));
+        btnRegistrar.setFont(new java.awt.Font("Arial Rounded MT Bold", 1, 22)); // NOI18N
         btnRegistrar.setText("REGISTRAR");
+        btnRegistrar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnRegistrar.setFocusPainted(false);
         btnRegistrar.setPreferredSize(new java.awt.Dimension(173, 48));
         btnRegistrar.addActionListener(new java.awt.event.ActionListener() {
@@ -195,10 +204,11 @@ public class DlgProveedores extends javax.swing.JDialog {
         jPanel2.setPreferredSize(new java.awt.Dimension(145, 145));
         jPanel2.setRequestFocusEnabled(false);
 
-        btnProductos.setBackground(new java.awt.Color(166, 164, 255));
+        btnProductos.setBackground(new java.awt.Color(58, 55, 142));
         btnProductos.setForeground(new java.awt.Color(166, 164, 255));
         btnProductos.setIcon(new javax.swing.ImageIcon(getClass().getResource("/prouctos1.png"))); // NOI18N
         btnProductos.setBorderPainted(false);
+        btnProductos.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnProductos.setFocusPainted(false);
         btnProductos.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -221,8 +231,9 @@ public class DlgProveedores extends javax.swing.JDialog {
         jPanel4.setPreferredSize(new java.awt.Dimension(145, 145));
         jPanel4.setRequestFocusEnabled(false);
 
-        btnPromociones.setBackground(new java.awt.Color(166, 164, 255));
+        btnPromociones.setBackground(new java.awt.Color(58, 55, 142));
         btnPromociones.setIcon(new javax.swing.ImageIcon(getClass().getResource("/tagIcon.png"))); // NOI18N
+        btnPromociones.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnPromociones.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnPromocionesActionPerformed(evt);
@@ -251,16 +262,19 @@ public class DlgProveedores extends javax.swing.JDialog {
                     .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(30, 30, 30)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(30, 30, 30)
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 895, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 30, Short.MAX_VALUE))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(125, 125, 125)
                         .addComponent(btnRegistrar, javax.swing.GroupLayout.PREFERRED_SIZE, 190, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGap(66, 66, 66)
                         .addComponent(btnActualizar, javax.swing.GroupLayout.PREFERRED_SIZE, 190, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(149, 149, 149)
-                        .addComponent(btnEliminar, javax.swing.GroupLayout.PREFERRED_SIZE, 190, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 895, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(0, 30, Short.MAX_VALUE))
+                        .addGap(66, 66, 66)
+                        .addComponent(btnEliminar, javax.swing.GroupLayout.PREFERRED_SIZE, 190, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -269,9 +283,9 @@ public class DlgProveedores extends javax.swing.JDialog {
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 510, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnActualizar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnEliminar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnRegistrar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(btnRegistrar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnActualizar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                 .addGap(0, 0, Short.MAX_VALUE)

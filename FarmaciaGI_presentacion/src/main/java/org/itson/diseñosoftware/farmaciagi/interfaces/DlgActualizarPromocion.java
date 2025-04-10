@@ -58,7 +58,7 @@ public class DlgActualizarPromocion extends javax.swing.JDialog {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
-        fondo.setBackground(new java.awt.Color(216, 215, 255));
+        fondo.setBackground(new java.awt.Color(58, 55, 142));
         fondo.setMaximumSize(new java.awt.Dimension(812, 600));
         fondo.setMinimumSize(new java.awt.Dimension(800, 600));
 
@@ -80,22 +80,26 @@ public class DlgActualizarPromocion extends javax.swing.JDialog {
         txtDescripcion.setFont(new java.awt.Font("Arial", 1, 24)); // NOI18N
         txtDescripcion.setPreferredSize(new java.awt.Dimension(36, 37));
 
-        lblDescripcion.setFont(new java.awt.Font("Arial", 1, 24)); // NOI18N
+        lblDescripcion.setFont(new java.awt.Font("Arial Rounded MT Bold", 1, 24)); // NOI18N
+        lblDescripcion.setForeground(new java.awt.Color(255, 255, 255));
         lblDescripcion.setText("DESCRIPCIÓN");
 
-        lblProductos.setFont(new java.awt.Font("Arial", 1, 24)); // NOI18N
+        lblProductos.setFont(new java.awt.Font("Arial Rounded MT Bold", 1, 24)); // NOI18N
+        lblProductos.setForeground(new java.awt.Color(255, 255, 255));
         lblProductos.setText("PRODUCTO");
 
         txtCantidad.setFont(new java.awt.Font("Arial", 1, 24)); // NOI18N
         txtCantidad.setPreferredSize(new java.awt.Dimension(36, 37));
 
-        lblCantidad.setFont(new java.awt.Font("Arial", 1, 24)); // NOI18N
+        lblCantidad.setFont(new java.awt.Font("Arial Rounded MT Bold", 1, 24)); // NOI18N
+        lblCantidad.setForeground(new java.awt.Color(255, 255, 255));
         lblCantidad.setText("CANTIDAD");
 
         txtPrecioUnitario.setFont(new java.awt.Font("Arial", 1, 24)); // NOI18N
         txtPrecioUnitario.setPreferredSize(new java.awt.Dimension(36, 37));
 
-        lblPrecioUnitario.setFont(new java.awt.Font("Arial", 1, 24)); // NOI18N
+        lblPrecioUnitario.setFont(new java.awt.Font("Arial Rounded MT Bold", 1, 24)); // NOI18N
+        lblPrecioUnitario.setForeground(new java.awt.Color(255, 255, 255));
         lblPrecioUnitario.setText("PRECIO UNITARIO");
 
         btnCancelar.setFont(new java.awt.Font("Arial", 1, 24)); // NOI18N

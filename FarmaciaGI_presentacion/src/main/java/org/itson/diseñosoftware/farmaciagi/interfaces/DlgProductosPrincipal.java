@@ -65,16 +65,17 @@ public class DlgProductosPrincipal extends javax.swing.JDialog {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
-        jPanel1.setBackground(new java.awt.Color(216, 215, 255));
+        jPanel1.setBackground(new java.awt.Color(226, 228, 241));
         jPanel1.setPreferredSize(new java.awt.Dimension(600, 598));
 
         jPanel6.setBackground(new java.awt.Color(166, 164, 255));
         jPanel6.setPreferredSize(new java.awt.Dimension(145, 145));
         jPanel6.setRequestFocusEnabled(false);
 
-        btnVenta.setBackground(new java.awt.Color(166, 164, 255));
+        btnVenta.setBackground(new java.awt.Color(58, 55, 142));
         btnVenta.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ImagenVenta.png"))); // NOI18N
         btnVenta.setBorder(null);
+        btnVenta.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnVenta.setFocusPainted(false);
         btnVenta.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -97,9 +98,10 @@ public class DlgProductosPrincipal extends javax.swing.JDialog {
         jPanel5.setPreferredSize(new java.awt.Dimension(145, 145));
         jPanel5.setRequestFocusEnabled(false);
 
-        btnProveedores.setBackground(new java.awt.Color(166, 164, 255));
+        btnProveedores.setBackground(new java.awt.Color(58, 55, 142));
         btnProveedores.setIcon(new javax.swing.ImageIcon(getClass().getResource("/proveedor.png"))); // NOI18N
         btnProveedores.setBorder(null);
+        btnProveedores.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnProveedores.setFocusPainted(false);
         btnProveedores.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -122,10 +124,11 @@ public class DlgProductosPrincipal extends javax.swing.JDialog {
         jPanel2.setPreferredSize(new java.awt.Dimension(145, 145));
         jPanel2.setRequestFocusEnabled(false);
 
-        btnProductos.setBackground(new java.awt.Color(216, 215, 255));
+        btnProductos.setBackground(new java.awt.Color(226, 228, 241));
         btnProductos.setForeground(new java.awt.Color(166, 164, 255));
         btnProductos.setIcon(new javax.swing.ImageIcon(getClass().getResource("/prouctos1.png"))); // NOI18N
         btnProductos.setBorderPainted(false);
+        btnProductos.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnProductos.setFocusPainted(false);
         btnProductos.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -148,9 +151,10 @@ public class DlgProductosPrincipal extends javax.swing.JDialog {
         jPanel3.setPreferredSize(new java.awt.Dimension(145, 145));
         jPanel3.setRequestFocusEnabled(false);
 
-        btnComprarProductos.setBackground(new java.awt.Color(166, 164, 255));
+        btnComprarProductos.setBackground(new java.awt.Color(58, 55, 142));
         btnComprarProductos.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icono_carrito.png"))); // NOI18N
         btnComprarProductos.setBorderPainted(false);
+        btnComprarProductos.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnComprarProductos.setFocusPainted(false);
         btnComprarProductos.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -169,8 +173,9 @@ public class DlgProductosPrincipal extends javax.swing.JDialog {
             .addComponent(btnComprarProductos, javax.swing.GroupLayout.DEFAULT_SIZE, 115, Short.MAX_VALUE)
         );
 
-        btnRegistrarProducto.setBackground(new java.awt.Color(216, 215, 255));
+        btnRegistrarProducto.setBackground(new java.awt.Color(226, 228, 241));
         btnRegistrarProducto.setIcon(new javax.swing.ImageIcon(getClass().getResource("/añadir producto.png"))); // NOI18N
+        btnRegistrarProducto.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnRegistrarProducto.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnRegistrarProductoActionPerformed(evt);
@@ -181,8 +186,9 @@ public class DlgProductosPrincipal extends javax.swing.JDialog {
         jLabel2.setForeground(new java.awt.Color(255, 255, 255));
         jLabel2.setText("Registrar nuevo producto");
 
-        btnEditar.setBackground(new java.awt.Color(216, 215, 255));
+        btnEditar.setBackground(new java.awt.Color(226, 228, 241));
         btnEditar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/editar producto.png"))); // NOI18N
+        btnEditar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnEditar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnEditarActionPerformed(evt);
@@ -193,8 +199,9 @@ public class DlgProductosPrincipal extends javax.swing.JDialog {
         jLabel4.setForeground(new java.awt.Color(255, 255, 255));
         jLabel4.setText("Editar producto");
 
-        btnAsignar.setBackground(new java.awt.Color(216, 215, 255));
+        btnAsignar.setBackground(new java.awt.Color(226, 228, 241));
         btnAsignar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/asignar proveedor.png"))); // NOI18N
+        btnAsignar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnAsignar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnAsignarActionPerformed(evt);
@@ -209,10 +216,11 @@ public class DlgProductosPrincipal extends javax.swing.JDialog {
         jPanel4.setPreferredSize(new java.awt.Dimension(145, 145));
         jPanel4.setRequestFocusEnabled(false);
 
-        btnPromociones.setBackground(new java.awt.Color(166, 164, 255));
+        btnPromociones.setBackground(new java.awt.Color(58, 55, 142));
         btnPromociones.setIcon(new javax.swing.ImageIcon(getClass().getResource("/tagIcon.png"))); // NOI18N
         btnPromociones.setActionCommand("btnPromociones");
         btnPromociones.setBorderPainted(false);
+        btnPromociones.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnPromociones.setFocusPainted(false);
         btnPromociones.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {

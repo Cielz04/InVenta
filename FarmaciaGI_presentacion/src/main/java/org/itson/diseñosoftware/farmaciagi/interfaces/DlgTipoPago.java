@@ -42,16 +42,17 @@ public class DlgTipoPago extends javax.swing.JDialog {
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setResizable(false);
 
-        fondo.setBackground(new java.awt.Color(216, 215, 255));
+        fondo.setBackground(new java.awt.Color(226, 228, 241));
         fondo.setPreferredSize(new java.awt.Dimension(300, 250));
 
         jLabel1.setBackground(new java.awt.Color(255, 255, 255));
-        jLabel1.setFont(new java.awt.Font("Arial", 1, 36)); // NOI18N
-        jLabel1.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel1.setFont(new java.awt.Font("Arial Rounded MT Bold", 1, 36)); // NOI18N
+        jLabel1.setForeground(new java.awt.Color(58, 55, 142));
         jLabel1.setText("TIPO DE PAGO");
 
         btnTarjeta.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
         btnTarjeta.setText("TARJETA");
+        btnTarjeta.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnTarjeta.setFocusPainted(false);
         btnTarjeta.setMaximumSize(new java.awt.Dimension(100, 30));
         btnTarjeta.setPreferredSize(new java.awt.Dimension(173, 48));
@@ -63,6 +64,7 @@ public class DlgTipoPago extends javax.swing.JDialog {
 
         btnEfectivo.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
         btnEfectivo.setText("EFECTIVO");
+        btnEfectivo.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnEfectivo.setFocusPainted(false);
         btnEfectivo.setMaximumSize(new java.awt.Dimension(100, 30));
         btnEfectivo.setPreferredSize(new java.awt.Dimension(173, 48));
@@ -79,7 +81,7 @@ public class DlgTipoPago extends javax.swing.JDialog {
             .addGroup(fondoLayout.createSequentialGroup()
                 .addGap(21, 21, 21)
                 .addComponent(jLabel1)
-                .addContainerGap(21, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, fondoLayout.createSequentialGroup()
                 .addGap(0, 0, Short.MAX_VALUE)
                 .addGroup(fondoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -96,14 +98,14 @@ public class DlgTipoPago extends javax.swing.JDialog {
                 .addComponent(btnEfectivo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(26, 26, 26)
                 .addComponent(btnTarjeta, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(35, Short.MAX_VALUE))
+                .addContainerGap(34, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(fondo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(fondo, javax.swing.GroupLayout.DEFAULT_SIZE, 302, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
