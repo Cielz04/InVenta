@@ -1,36 +1,32 @@
 package org.itson.diseniosofware.mifarmaciagi.persistencia.Conexion;
 
-import com.mongodb.ConnectionString;
-import com.mongodb.MongoClientSettings;
-import com.mongodb.client.MongoClient;
-import com.mongodb.client.MongoClients;
-import com.mongodb.client.MongoDatabase;
-import static org.bson.codecs.configuration.CodecRegistries.fromProviders;
-import static org.bson.codecs.configuration.CodecRegistries.fromRegistries;
-import org.bson.codecs.configuration.CodecRegistry;
-import org.bson.codecs.pojo.PojoCodecProvider;
+//import com.mongodb.ConnectionString;
 
-public class Conexion implements IConexion {
+import jakarta.persistence.EntityManager;
+import jakarta.persistence.EntityManagerFactory;
+import jakarta.persistence.Persistence;
 
-    private static final String cadenaConexion = "mongodb://127.0.0.1:27017";
-    private static final String baseDatosS = "MiFarmaciaGI";
+//import com.mongodb.MongoClientSettings;
+//import com.mongodb.client.MongoClient;
+//import com.mongodb.client.MongoClients;
+//import com.mongodb.client.MongoDatabase;
+//import static org.bson.codecs.configuration.CodecRegistries.fromProviders;
+//import static org.bson.codecs.configuration.CodecRegistries.fromRegistries;
+//import org.bson.codecs.configuration.CodecRegistry;
+//import org.bson.codecs.pojo.PojoCodecProvider;
 
-    /**
-     * {@inheritDoc}
-     */
-    @Override
-    public MongoDatabase crearConexion() {
-        CodecRegistry pojoCodecRegistry = fromRegistries(MongoClientSettings.getDefaultCodecRegistry(),
-                fromProviders(PojoCodecProvider.builder().automatic(true).build()));
+public class Conexion  implements IConexion{
 
-        MongoClientSettings settings = MongoClientSettings.builder()
-                .applyConnectionString(new ConnectionString(cadenaConexion))
-                .codecRegistry(pojoCodecRegistry)
-                .build();
+     @Override
+    public EntityManager crearConexion() {
+        // Creamos el EntityManagerFactory.
+        EntityManagerFactory emf = Persistence.createEntityManagerFactory("DbAstro");
+        
+        // Creamos el EntityManager.
+        EntityManager em = emf.createEntityManager();
 
-        MongoClient mongoClient = MongoClients.create(settings);
-        MongoDatabase baseDatos = mongoClient.getDatabase(baseDatosS);
-        return baseDatos;
+        // Retornamos el EntityManager.
+        return em;
     }
 
 }

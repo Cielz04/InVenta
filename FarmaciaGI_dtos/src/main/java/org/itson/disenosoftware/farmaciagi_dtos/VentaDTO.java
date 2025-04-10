@@ -8,12 +8,17 @@ import java.util.Objects;
 
 public class VentaDTO {
 
+    private Float total;
     private String codigo;
+    private Float subtotal;
+    private Calendar fecha;
+    private UsuarioDTO usuarioEnTurno;
     private List<ProductoDTO> productos;
     private List<PromocionDTO> promociones;
-    private Float total;
-    private Calendar fecha;
 
+    public VentaDTO() {
+    }
+    
     /**
      * Constructor que recibe el código de la venta.
      *
@@ -112,6 +117,22 @@ public class VentaDTO {
      */
     public Calendar getFecha() {
         return fecha;
+    }
+
+    public Float getSubtotal() {
+        return subtotal;
+    }
+
+    public void setSubtotal(Float subtotal) {
+        this.subtotal = subtotal;
+    }
+
+    public UsuarioDTO getUsuarioEnTurno() {
+        return usuarioEnTurno;
+    }
+
+    public void setUsuarioEnTurno(UsuarioDTO usuarioEnTurno) {
+        this.usuarioEnTurno = usuarioEnTurno;
     }
 
     /**

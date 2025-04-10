@@ -1,6 +1,5 @@
 org\itson\diseñosoftware\farmaciagi_objetosNegocio\excepciones\ObjetosNegocioException.class
 org\itson\diseñosoftware\farmaciagi_objetosNegocio\IVentaBO.class
-pruebasBO\pruebaBO.class
 org\itson\diseñosoftware\farmaciagi_objetosNegocio\ICompraBO.class
 org\itson\diseñosoftware\farmaciagi_objetosNegocio\IProveedorBO.class
 org\itson\diseñosoftware\farmaciagi_objetosNegocio\ProductoBO.class

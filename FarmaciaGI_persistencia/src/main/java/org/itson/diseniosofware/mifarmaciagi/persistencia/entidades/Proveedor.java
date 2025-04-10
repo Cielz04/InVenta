@@ -2,12 +2,11 @@ package org.itson.diseniosofware.mifarmaciagi.persistencia.entidades;
 
 import java.util.List;
 import java.util.Objects;
-import org.bson.types.ObjectId;
 
 public class Proveedor {
-    private ObjectId _id;
+    private Integer id;
     private String nombre;
-    private Direccion direccion;
+    private String direccion;
     private List<String> telefonos;
     private String rfc;
 
@@ -24,7 +23,7 @@ public class Proveedor {
      * @param telefonos Lista de teléfonos del proveedor.
      * @param rfc Registro Federal de Contribuyentes del proveedor.
      */
-    public Proveedor(String nombre, Direccion direccion, List<String> telefonos, String rfc) {
+    public Proveedor(String nombre, String direccion, List<String> telefonos, String rfc) {
         this.nombre = nombre;
         this.direccion = direccion;
         this.telefonos = telefonos;
@@ -35,16 +34,16 @@ public class Proveedor {
      * Obtiene el identificador único del proveedor.
      * @return El identificador único del proveedor.
      */
-    public ObjectId getId() {
-        return _id;
+    public Integer getId() {
+        return id;
     }
 
     /**
      * Establece el identificador único del proveedor.
      * @param _id El identificador único del proveedor a establecer.
      */
-    public void setId(ObjectId _id) {
-        this._id = _id;
+    public void setId(Integer id) {
+        this.id = id;
     }
 
     /**
@@ -67,7 +66,7 @@ public class Proveedor {
      * Obtiene la dirección del proveedor.
      * @return La dirección del proveedor.
      */
-    public Direccion getDireccion() {
+    public String getDireccion() {
         return direccion;
     }
 
@@ -75,7 +74,7 @@ public class Proveedor {
      * Establece la dirección del proveedor.
      * @param direccion La dirección del proveedor a establecer.
      */
-    public void setDireccion(Direccion direccion) {
+    public void setDireccion(String direccion) {
         this.direccion = direccion;
     }
 
@@ -119,7 +118,7 @@ public class Proveedor {
     public String toString() {
         StringBuilder sb = new StringBuilder();
         sb.append("Proveedor{");
-        sb.append("_id=").append(_id);
+        sb.append("id=").append(id);
         sb.append(", nombre=").append(nombre);
         sb.append(", direccion=").append(direccion);
         sb.append(", telefonos=").append(telefonos);
@@ -131,7 +130,11 @@ public class Proveedor {
     @Override
     public int hashCode() {
         int hash = 7;
-        hash = 11 * hash + Objects.hashCode(this._id);
+        hash = 97 * hash + Objects.hashCode(this.id);
+        hash = 97 * hash + Objects.hashCode(this.nombre);
+        hash = 97 * hash + Objects.hashCode(this.direccion);
+        hash = 97 * hash + Objects.hashCode(this.telefonos);
+        hash = 97 * hash + Objects.hashCode(this.rfc);
         return hash;
     }
 
@@ -147,8 +150,22 @@ public class Proveedor {
             return false;
         }
         final Proveedor other = (Proveedor) obj;
-        return Objects.equals(this._id, other._id);
+        if (!Objects.equals(this.nombre, other.nombre)) {
+            return false;
+        }
+        if (!Objects.equals(this.rfc, other.rfc)) {
+            return false;
+        }
+        if (!Objects.equals(this.id, other.id)) {
+            return false;
+        }
+        if (!Objects.equals(this.direccion, other.direccion)) {
+            return false;
+        }
+        return Objects.equals(this.telefonos, other.telefonos);
     }
+
+
     
     
 

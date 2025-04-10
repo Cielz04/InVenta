@@ -1,110 +1,114 @@
 package org.itson.diseniosofware.mifarmaciagi.persistencia.entidades;
 
+import jakarta.persistence.*;
 import java.time.Instant;
 import java.util.List;
 
+@Entity
+@Table(name = "ventas")
 public class Venta {
 
-    private String codigo; // codigo de la venta
-    private List<Producto> productos; //Lista de productos de la venta
-    private List<Promocion> promociones; //Lista de promociones de la venta
-    private Float costo_total; //Costo total de la venta
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Integer id;
+
+    private Float total;
+
+    private Float subtotal;
+
     private Instant fecha;
 
-    /**
-     * Constructor vacio
-     */
+    // Relación con Usuario
+    @ManyToOne
+    @JoinColumn(name = "usuario_id", nullable = false)
+    private Usuario usuarioEnTurno;
+
+    // Relación con DetalleVenta (cada producto vendido)
+    @OneToMany(mappedBy = "venta", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<DetalleVenta> detallesVenta;
+
+    // Relación con Promociones (muchas a muchas)
+    @ManyToMany
+    @JoinTable(
+        name = "venta_promocion",
+        joinColumns = @JoinColumn(name = "venta_id"),
+        inverseJoinColumns = @JoinColumn(name = "promocion_id")
+    )
+    private List<Promocion> promociones;
+
     public Venta() {
     }
 
-    /**
-     * Obtiene el código d la venta
-     *
-     * @return código de la venta
-     */
-    public String getCodigoVenta() {
-        return codigo;
+    public Venta(Integer id) {
+        this.id = id;
     }
 
-    /**
-     * Establece el código de la venta
-     *
-     * @param codigo_venta
-     */
-    public void setCodigoVenta(String codigo_venta) {
-        this.codigo = codigo_venta;
+    public Venta(Integer id, Float total, Float subtotal, Instant fecha, Usuario usuarioEnTurno,
+                 List<DetalleVenta> detallesVenta, List<Promocion> promociones) {
+        this.id = id;
+        this.total = total;
+        this.subtotal = subtotal;
+        this.fecha = fecha;
+        this.usuarioEnTurno = usuarioEnTurno;
+        this.detallesVenta = detallesVenta;
+        this.promociones = promociones;
     }
 
-    /**
-     * Obtiene la lista de productos de la venta
-     *
-     * @return productos de la venta
-     */
-    public List<Producto> getProductos() {
-        return productos;
+    // Getters y Setters...
+
+    public Integer getId() {
+        return id;
     }
 
-    /**
-     * Establece la lista de productos de la venta
-     *
-     * @param productos productos de la venta
-     */
-    public void setProductos(List<Producto> productos) {
-        this.productos = productos;
+    public void setId(Integer id) {
+        this.id = id;
     }
 
-    /**
-     * Obtiene las promociones de la venta
-     *
-     * @return lsita de promociones de la venta
-     */
+    public Float getTotal() {
+        return total;
+    }
+
+    public void setTotal(Float total) {
+        this.total = total;
+    }
+
+    public Float getSubtotal() {
+        return subtotal;
+    }
+
+    public void setSubtotal(Float subtotal) {
+        this.subtotal = subtotal;
+    }
+
+    public Instant getFecha() {
+        return fecha;
+    }
+
+    public void setFecha(Instant fecha) {
+        this.fecha = fecha;
+    }
+
+    public Usuario getUsuarioEnTurno() {
+        return usuarioEnTurno;
+    }
+
+    public void setUsuarioEnTurno(Usuario usuarioEnTurno) {
+        this.usuarioEnTurno = usuarioEnTurno;
+    }
+
+    public List<DetalleVenta> getDetallesVenta() {
+        return detallesVenta;
+    }
+
+    public void setDetallesVenta(List<DetalleVenta> detallesVenta) {
+        this.detallesVenta = detallesVenta;
+    }
+
     public List<Promocion> getPromociones() {
         return promociones;
     }
 
-    /**
-     * Establece la lista de promociones de la venta
-     *
-     * @param promociones promociones de la venta
-     */
     public void setPromociones(List<Promocion> promociones) {
         this.promociones = promociones;
     }
-
-    /**
-     * Obtiene el costo total de la venta
-     *
-     * @return costo total de venta
-     */
-    public Float getCostoTotal() {
-        return costo_total;
-    }
-
-    /**
-     * Modifica el costo total de la venta
-     *
-     * @param costo_total costo total de la venta
-     */
-    public void setCostoTotal(Float costo_total) {
-        this.costo_total = costo_total;
-    }
-
-    /**
-     * Obtiene la fecha de la venta
-     *
-     * @return fecha de venta
-     */
-    public Instant getFechaVenta() {
-        return fecha;
-    }
-
-    /**
-     * Establece la fecha de la venta
-     *
-     * @param fecha_venta fecha de la venta
-     */
-    public void setFechaVenta(Instant fecha_venta) {
-        this.fecha = fecha_venta;
-    }
-
 }
