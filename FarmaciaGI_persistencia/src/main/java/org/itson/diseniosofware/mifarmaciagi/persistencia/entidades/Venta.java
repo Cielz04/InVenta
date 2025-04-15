@@ -2,6 +2,7 @@ package org.itson.diseniosofware.mifarmaciagi.persistencia.entidades;
 
 import jakarta.persistence.*;
 import java.time.Instant;
+import java.util.ArrayList;
 import java.util.List;
 
 @Entity
@@ -25,7 +26,7 @@ public class Venta {
 
     // Relación con DetalleVenta (cada producto vendido)
     @OneToMany(mappedBy = "venta", cascade = CascadeType.ALL, orphanRemoval = true)
-    private List<DetalleVenta> detallesVenta;
+    private List<DetalleVenta> detallesVenta = new ArrayList<>(); // Inicializado
 
     // Relación con Promociones (muchas a muchas)
     @ManyToMany
@@ -34,7 +35,7 @@ public class Venta {
         joinColumns = @JoinColumn(name = "venta_id"),
         inverseJoinColumns = @JoinColumn(name = "promocion_id")
     )
-    private List<Promocion> promociones;
+    private List<Promocion> promociones = new ArrayList<>(); // Inicializado
 
     public Venta() {
     }

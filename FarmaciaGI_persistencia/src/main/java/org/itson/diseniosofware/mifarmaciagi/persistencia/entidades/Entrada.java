@@ -6,6 +6,7 @@ import java.util.Objects;
 
 @Entity
 @Table(name = "entradas")
+@Access(AccessType.FIELD)
 public class Entrada {
 
     @Id
@@ -55,18 +56,15 @@ public class Entrada {
         this.total = total;
     }
 
-    // Opcionales: equals y hashCode si planeas comparar objetos o usarlos en colecciones
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(id, fecha, total);
-    }
-
     @Override
     public boolean equals(Object obj) {
         if (this == obj) return true;
-        if (!(obj instanceof Entrada)) return false;
-        Entrada other = (Entrada) obj;
+        if (!(obj instanceof Entrada other)) return false;
         return Objects.equals(id, other.id);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id);
     }
 }

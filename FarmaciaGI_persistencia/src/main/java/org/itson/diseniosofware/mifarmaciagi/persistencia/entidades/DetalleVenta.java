@@ -5,6 +5,7 @@ import java.util.Objects;
 
 @Entity
 @Table(name = "detalle_venta")
+@Access(AccessType.FIELD)
 public class DetalleVenta {
 
     @Id
@@ -20,13 +21,11 @@ public class DetalleVenta {
     @Column(name = "cantidad", nullable = false)
     private Integer cantidad;
 
-    // Relación con Venta (muchos a uno)
-    @ManyToOne(optional = false)
+    @ManyToOne(optional = false, fetch = FetchType.LAZY)
     @JoinColumn(name = "id_venta")
     private Venta venta;
 
-    // Relación con Producto (muchos a uno)
-    @ManyToOne(optional = false)
+    @ManyToOne(optional = false, fetch = FetchType.LAZY)
     @JoinColumn(name = "id_producto")
     private Producto producto;
 
@@ -44,7 +43,7 @@ public class DetalleVenta {
         this.cantidad = cantidad;
     }
 
-    // Getters y setters
+    // Getters y Setters
 
     public Integer getId() {
         return id;
@@ -94,18 +93,17 @@ public class DetalleVenta {
         this.producto = producto;
     }
 
-    // Equals y hashCode
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(id, precioUnitario, importe, cantidad);
-    }
+    // Equals y hashCode (basado en ID)
 
     @Override
     public boolean equals(Object obj) {
         if (this == obj) return true;
-        if (!(obj instanceof DetalleVenta)) return false;
-        DetalleVenta other = (DetalleVenta) obj;
+        if (!(obj instanceof DetalleVenta other)) return false;
         return Objects.equals(id, other.id);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id);
     }
 }

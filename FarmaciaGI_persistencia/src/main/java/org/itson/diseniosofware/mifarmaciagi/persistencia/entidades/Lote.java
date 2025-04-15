@@ -2,9 +2,11 @@ package org.itson.diseniosofware.mifarmaciagi.persistencia.entidades;
 
 import jakarta.persistence.*;
 import java.time.Instant;
+import java.util.Objects;
 
 @Entity
 @Table(name = "lotes")
+@Access(AccessType.FIELD)
 public class Lote {
 
     @Id
@@ -17,12 +19,12 @@ public class Lote {
     @Column(nullable = false)
     private Integer cantidad;
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "producto_id", nullable = false)
+    @ManyToOne(fetch = FetchType.LAZY, optional = false)
+    @JoinColumn(name = "producto_id")
     private Producto producto;
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "entrada_id", nullable = false)
+    @ManyToOne(fetch = FetchType.LAZY, optional = false)
+    @JoinColumn(name = "entrada_id")
     private Entrada entrada;
 
     public Lote() {
@@ -76,5 +78,17 @@ public class Lote {
 
     public void setEntrada(Entrada entrada) {
         this.entrada = entrada;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) return true;
+        if (!(obj instanceof Lote other)) return false;
+        return Objects.equals(id, other.id);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id);
     }
 }

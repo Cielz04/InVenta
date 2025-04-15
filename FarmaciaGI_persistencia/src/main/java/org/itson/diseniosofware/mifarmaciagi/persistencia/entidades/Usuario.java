@@ -1,6 +1,7 @@
 package org.itson.diseniosofware.mifarmaciagi.persistencia.entidades;
 
 import jakarta.persistence.*;
+import java.util.ArrayList;
 import java.util.List;
 
 @Entity
@@ -26,8 +27,9 @@ public class Usuario {
     @Column(nullable = false)
     private String telefono;
 
+    // Relación con Venta: Un usuario puede tener muchas ventas
     @OneToMany(mappedBy = "usuarioEnTurno", cascade = CascadeType.ALL, orphanRemoval = true)
-    private List<Venta> ventas;
+    private List<Venta> ventas = new ArrayList<>(); // Inicialización de la lista
 
     public Usuario() {
     }

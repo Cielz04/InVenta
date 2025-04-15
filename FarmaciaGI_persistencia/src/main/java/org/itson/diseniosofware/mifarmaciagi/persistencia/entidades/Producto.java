@@ -3,6 +3,7 @@ package org.itson.diseniosofware.mifarmaciagi.persistencia.entidades;
 import jakarta.persistence.*;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Objects;
 
 @Entity
 @Table(name = "productos")
@@ -28,14 +29,13 @@ public class Producto {
     private String tipo;
 
     // Relación con Lote
-    @OneToMany(mappedBy = "producto", cascade = CascadeType.ALL, orphanRemoval = true)
+    @OneToMany(mappedBy = "producto", cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.LAZY)
     private List<Lote> lotes = new LinkedList<>();
 
     // Relación con DetalleVenta
-    @OneToMany(mappedBy = "producto", cascade = CascadeType.ALL, orphanRemoval = true)
+    @OneToMany(mappedBy = "producto", cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.LAZY)
     private List<DetalleVenta> detallesVenta = new LinkedList<>();
 
-    // No mapeado como relación por ahora, solo si decides implementar Proveedor como entidad
     @Transient
     private LinkedList<Integer> id_proveedores;
 
@@ -52,14 +52,15 @@ public class Producto {
         this.codigo = codigo;
     }
 
-    public Producto(String nombre, String marca, Float precio, String codigo, Integer cantidad) {
+    public Producto(String nombre, String marca, Float precio, String codigo, String tipo) {
         this.nombre = nombre;
         this.marca = marca;
         this.precio = precio;
         this.codigo = codigo;
+        this.tipo = tipo;
     }
 
-    // Getters y Setters...
+    // Getters y Setters
 
     public Integer getId() {
         return id;
@@ -131,5 +132,20 @@ public class Producto {
 
     public void setId_proveedores(LinkedList<Integer> id_proveedores) {
         this.id_proveedores = id_proveedores;
+    }
+
+    // Opcionales: equals y hashCode si lo vas a usar en colecciones
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id, nombre, marca, precio, codigo, tipo);
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) return true;
+        if (!(obj instanceof Producto)) return false;
+        Producto other = (Producto) obj;
+        return Objects.equals(id, other.id);
     }
 }

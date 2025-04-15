@@ -1,13 +1,29 @@
 package org.itson.diseniosofware.mifarmaciagi.persistencia.entidades;
 
+import jakarta.persistence.*;
 import java.util.List;
 import java.util.Objects;
 
+@Entity
+@Table(name = "proveedores")
 public class Proveedor {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
+
+    @Column(nullable = false)
     private String nombre;
+
+    @Column(nullable = false)
     private String direccion;
+
+    @ElementCollection
+    @CollectionTable(name = "proveedor_telefonos", joinColumns = @JoinColumn(name = "proveedor_id"))
+    @Column(name = "telefono")
     private List<String> telefonos;
+
+    @Column(nullable = false, unique = true)
     private String rfc;
 
     /**
@@ -40,7 +56,7 @@ public class Proveedor {
 
     /**
      * Establece el identificador único del proveedor.
-     * @param _id El identificador único del proveedor a establecer.
+     * @param id El identificador único del proveedor a establecer.
      */
     public void setId(Integer id) {
         this.id = id;
@@ -116,57 +132,29 @@ public class Proveedor {
      */
     @Override
     public String toString() {
-        StringBuilder sb = new StringBuilder();
-        sb.append("Proveedor{");
-        sb.append("id=").append(id);
-        sb.append(", nombre=").append(nombre);
-        sb.append(", direccion=").append(direccion);
-        sb.append(", telefonos=").append(telefonos);
-        sb.append(", rfc=").append(rfc);
-        sb.append('}');
-        return sb.toString();
+        return "Proveedor{" +
+                "id=" + id +
+                ", nombre='" + nombre + '\'' +
+                ", direccion='" + direccion + '\'' +
+                ", telefonos=" + telefonos +
+                ", rfc='" + rfc + '\'' +
+                '}';
     }
 
     @Override
     public int hashCode() {
-        int hash = 7;
-        hash = 97 * hash + Objects.hashCode(this.id);
-        hash = 97 * hash + Objects.hashCode(this.nombre);
-        hash = 97 * hash + Objects.hashCode(this.direccion);
-        hash = 97 * hash + Objects.hashCode(this.telefonos);
-        hash = 97 * hash + Objects.hashCode(this.rfc);
-        return hash;
+        return Objects.hash(id, nombre, direccion, telefonos, rfc);
     }
 
     @Override
     public boolean equals(Object obj) {
-        if (this == obj) {
-            return true;
-        }
-        if (obj == null) {
-            return false;
-        }
-        if (getClass() != obj.getClass()) {
-            return false;
-        }
-        final Proveedor other = (Proveedor) obj;
-        if (!Objects.equals(this.nombre, other.nombre)) {
-            return false;
-        }
-        if (!Objects.equals(this.rfc, other.rfc)) {
-            return false;
-        }
-        if (!Objects.equals(this.id, other.id)) {
-            return false;
-        }
-        if (!Objects.equals(this.direccion, other.direccion)) {
-            return false;
-        }
-        return Objects.equals(this.telefonos, other.telefonos);
+        if (this == obj) return true;
+        if (obj == null || getClass() != obj.getClass()) return false;
+        Proveedor proveedor = (Proveedor) obj;
+        return Objects.equals(id, proveedor.id) &&
+               Objects.equals(nombre, proveedor.nombre) &&
+               Objects.equals(direccion, proveedor.direccion) &&
+               Objects.equals(telefonos, proveedor.telefonos) &&
+               Objects.equals(rfc, proveedor.rfc);
     }
-
-
-    
-    
-
 }
