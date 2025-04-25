@@ -70,6 +70,15 @@ import javax.persistence.Id;
         this.producto = producto;
     }
 
+    public DetalleVenta(Integer id, Float precioUnitario, Float importe, Integer cantidad, Venta venta, Producto producto) {
+        this.id = id;
+        this.precioUnitario = precioUnitario;
+        this.importe = importe;
+        this.cantidad = cantidad;
+        this.venta = venta;
+        this.producto = producto;
+    }
+
         // Getters y Setters
 
         public Integer getId() {

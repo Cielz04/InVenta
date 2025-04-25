@@ -9,6 +9,7 @@ package org.itson.disenosoftware.farmaciagi_dtos;
  * @author Enrique Rodriguez
  */
 public class UsuarioDTO {
+    private Integer id;
     private String nombre;
     private Integer codigo;
     private String tipo;
@@ -18,6 +19,11 @@ public class UsuarioDTO {
     public UsuarioDTO() {
     }
 
+    public UsuarioDTO(Integer id) {
+        this.id = id;
+    }
+
+    
     public UsuarioDTO(String nombre, Integer codigo, String tipo, String direccion, String telefono) {
         this.nombre = nombre;
         this.codigo = codigo;
@@ -26,6 +32,15 @@ public class UsuarioDTO {
         this.telefono = telefono;
     }
 
+    public Integer getId() {
+        return id;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
+    }
+
+    
     public String getNombre() {
         return nombre;
     }

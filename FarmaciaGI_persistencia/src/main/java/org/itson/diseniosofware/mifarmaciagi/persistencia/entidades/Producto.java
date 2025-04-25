@@ -4,6 +4,7 @@
  */
 package org.itson.diseniosofware.mifarmaciagi.persistencia.entidades;
 
+import Enums.TipoProducto;
 import basura.Lote2;
 import basura.DetalleVenta2;
 import jakarta.persistence.CascadeType;
@@ -46,7 +47,7 @@ public class Producto implements Serializable {
     private String codigo;
 
     @Column(nullable = false)
-    private String tipo;
+    private TipoProducto tipo;
 
     // Relación con Lote
     @OneToMany(mappedBy = "producto", cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.LAZY)
@@ -72,7 +73,7 @@ public class Producto implements Serializable {
         this.codigo = codigo;
     }
 
-    public Producto(String nombre, String marca, Float precio, String codigo, String tipo) {
+    public Producto(String nombre, String marca, Float precio, String codigo, TipoProducto tipo) {
         this.nombre = nombre;
         this.marca = marca;
         this.precio = precio;
@@ -122,11 +123,11 @@ public class Producto implements Serializable {
         this.codigo = codigo;
     }
 
-    public String getTipo() {
+    public TipoProducto getTipo() {
         return tipo;
     }
 
-    public void setTipo(String tipo) {
+    public void setTipo(TipoProducto tipo) {
         this.tipo = tipo;
     }
 
@@ -169,7 +170,7 @@ public class Producto implements Serializable {
         return Objects.equals(id, other.id);
     }
 
-    public Producto(String nombre, String marca, Float precio, String codigo, String tipo, LinkedList<Integer> id_proveedores) {
+    public Producto(String nombre, String marca, Float precio, String codigo, TipoProducto tipo, LinkedList<Integer> id_proveedores) {
         this.nombre = nombre;
         this.marca = marca;
         this.precio = precio;

@@ -1,16 +1,18 @@
 package org.itson.disenosoftware.farmaciagi_dtos;
 
+import Enums.TipoProductoDTO;
 import java.text.NumberFormat;
 import java.util.LinkedList;
 import java.util.Objects;
 
 public class ProductoDTO {
-
-    private String codigo;
+    
     private String nombre;
-    private Float precio;
     private String marca;
-    private LinkedList<String> id_proveedores;
+    private Float precio;
+    private String codigo;
+    private TipoProductoDTO tipo;
+    private LinkedList<Integer> id_proveedores;
 
     /**
      * Constructor.
@@ -44,6 +46,15 @@ public class ProductoDTO {
         this.nombre = nombre;
         this.precio = precio;
         this.marca = marca;
+    }
+
+    public ProductoDTO(String nombre, String marca, Float precio, String codigo, TipoProductoDTO tipo, LinkedList<Integer> id_proveedores) {
+        this.nombre = nombre;
+        this.marca = marca;
+        this.precio = precio;
+        this.codigo = codigo;
+        this.tipo = tipo;
+        this.id_proveedores = id_proveedores;
     }
 
     /**
@@ -126,11 +137,21 @@ public class ProductoDTO {
         this.precio = precio;
     }
 
-    public LinkedList<String> getId_proveedores() {
+    public TipoProductoDTO getTipo() {
+        return tipo;
+    }
+
+    public void setTipo(TipoProductoDTO tipo) {
+        this.tipo = tipo;
+    }
+
+    
+    
+    public LinkedList<Integer> getId_proveedores() {
         return id_proveedores;
     }
 
-    public void setId_proveedores(LinkedList<String> id_proveedores) {
+    public void setId_proveedores(LinkedList<Integer> id_proveedores) {
         this.id_proveedores = id_proveedores;
     }
 

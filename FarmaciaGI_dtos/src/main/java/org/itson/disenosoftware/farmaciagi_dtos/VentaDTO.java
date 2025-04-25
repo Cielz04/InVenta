@@ -1,5 +1,6 @@
 package org.itson.disenosoftware.farmaciagi_dtos;
 
+import java.time.Instant;
 import java.util.Calendar;
 import java.util.GregorianCalendar;
 import java.util.LinkedList;
@@ -8,12 +9,13 @@ import java.util.Objects;
 
 public class VentaDTO {
 
+    private Integer id;
     private Float total;
     private String codigo;
     private Float subtotal;
-    private Calendar fecha;
+    private Instant fecha;
     private UsuarioDTO usuarioEnTurno;
-    private List<ProductoDTO> productos;
+    private List<DetalleVentaDTO> detallesVenta;
     private List<PromocionDTO> promociones;
 
     public VentaDTO() {
@@ -26,7 +28,7 @@ public class VentaDTO {
      */
     public VentaDTO(String codigo) {
         this.codigo = codigo;
-        this.productos = new LinkedList<>();
+        this.detallesVenta = new LinkedList<>();
         this.total = 0.0F;
         this.fecha = null;
     }
@@ -40,9 +42,9 @@ public class VentaDTO {
      * @param total El total de la venta
      * @param fecha La fecha de la venta
      */
-    public VentaDTO(String codigo, List<ProductoDTO> productos, Float total, Calendar fecha) {
+    public VentaDTO(String codigo, List<DetalleVentaDTO> detallesVenta, Float total, Instant fecha) {
         this.codigo = codigo;
-        this.productos = productos;
+        this.detallesVenta = detallesVenta;
         this.total = total;
         this.fecha = fecha;
     }
@@ -57,13 +59,34 @@ public class VentaDTO {
      * @param total El total de la venta
      * @param fecha La fecha de la venta
      */
-    public VentaDTO(String codigo, List<ProductoDTO> productos, List<PromocionDTO> promociones, Float total, Calendar fecha) {
+    public VentaDTO(String codigo, List<DetalleVentaDTO> detallesVenta, List<PromocionDTO> promociones, Float total, Instant fecha) {
         this.codigo = codigo;
-        this.productos = productos;
+        this.detallesVenta = detallesVenta;
         this.promociones = promociones;
         this.total = total;
         this.fecha = fecha;
     }
+
+    public VentaDTO(Integer id, Float total, String codigo, Float subtotal, Instant fecha, UsuarioDTO usuarioEnTurno, List<DetalleVentaDTO> detallesVenta, List<PromocionDTO> promociones) {
+        this.id = id;
+        this.total = total;
+        this.codigo = codigo;
+        this.subtotal = subtotal;
+        this.fecha = fecha;
+        this.usuarioEnTurno = usuarioEnTurno;
+        this.detallesVenta = detallesVenta;
+        this.promociones = promociones;
+    }
+
+    public Integer getId() {
+        return id;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
+    }
+    
+    
 
     /**
      * Permite obtener el código de la venta.
@@ -79,8 +102,8 @@ public class VentaDTO {
      *
      * @return La lista de productos de la venta
      */
-    public List<ProductoDTO> getProductos() {
-        return productos;
+    public List<DetalleVentaDTO> getDetalleVenta() {
+        return detallesVenta;
     }
 
     /**
@@ -115,7 +138,7 @@ public class VentaDTO {
      *
      * @return La fecha de la venta
      */
-    public Calendar getFecha() {
+    public Instant getFecha() {
         return fecha;
     }
 
@@ -135,20 +158,7 @@ public class VentaDTO {
         this.usuarioEnTurno = usuarioEnTurno;
     }
 
-    /**
-     * Permite saber si la venta es válida o no.
-     *
-     * @return true si la venta es válida, false en caso contrario
-     */
-    public boolean isValid() {
-        if (total < 0) {
-            return false;
-        }
-        if (fecha.after(new GregorianCalendar())) {
-            return false;
-        }
-        return true;
-    }
+    
 
     /**
      * Permite obtener un código hash de la venta.

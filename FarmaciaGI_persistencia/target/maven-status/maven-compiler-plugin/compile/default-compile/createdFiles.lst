@@ -36,5 +36,6 @@ org\itson\diseniosofware\mifarmaciagi\persistencia\daos\IPromocionesDAO.class
 org\itson\diseniosofware\mifarmaciagi\persistencia\daos\IComprasDAO.class
 org\itson\diseniosofware\mifarmaciagi\persistencia\daos\ProductosDAO.class
 basura\Proveedor2.class
+Enums\TipoProducto.class
 org\itson\diseniosofware\mifarmaciagi\persistencia\daos\IEntradaDAO.class
 org\itson\diseniosofware\mifarmaciagi\persistencia\entidades\Entrada.class
