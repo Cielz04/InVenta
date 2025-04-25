@@ -3,6 +3,7 @@ package org.itson.diseniosofware.mifarmaciagi.persistencia.daos;
 import java.util.List;
 import org.itson.diseniosofware.mifarmaciagi.persistencia.Exception.PersistenciaException;
 import basura.Promocion2;
+import org.itson.diseniosofware.mifarmaciagi.persistencia.entidades.Promocion;
 
 public interface IPromocionesDAO {
 
@@ -45,5 +46,10 @@ public interface IPromocionesDAO {
 //     * @return Una lista con todas las promociones del registro
 //     */
 //    public List<Promocion> obtenerPromociones();
+    public List<Promocion> findAll();
+    public Promocion findByCodigo(String codigo);
+     public void save(Promocion promocion);
+     public void update(Promocion promocion);
+     public void delete(String codigo);
 
 }

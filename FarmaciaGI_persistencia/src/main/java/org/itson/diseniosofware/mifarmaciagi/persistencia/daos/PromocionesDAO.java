@@ -110,27 +110,32 @@ public class PromocionesDAO implements IPromocionesDAO {
         this.em = conexion.crearConexion();
     }
 
+     @Override
     public List<Promocion> findAll() {
         TypedQuery<Promocion> query = em.createQuery("SELECT p FROM Promocion p", Promocion.class);
         return query.getResultList();
     }
 
+     @Override
     public Promocion findByCodigo(String codigo) {
         return em.find(Promocion.class, codigo);
     }
 
+     @Override
     public void save(Promocion promocion) {
         em.getTransaction().begin();
         em.persist(promocion);
         em.getTransaction().commit();
     }
 
+     @Override
     public void update(Promocion promocion) {
         em.getTransaction().begin();
         em.merge(promocion);
         em.getTransaction().commit();
     }
 
+    @Override
     public void delete(String codigo) {
         Promocion promocion = em.find(Promocion.class, codigo);
         if (promocion != null) {

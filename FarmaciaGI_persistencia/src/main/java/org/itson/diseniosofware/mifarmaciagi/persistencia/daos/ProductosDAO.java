@@ -262,15 +262,18 @@ public class ProductosDAO implements IProductosDAO {
         this.em = conexion.crearConexion();
     }
 
+     @Override
     public List<Producto> findAll() {
         TypedQuery<Producto> query = em.createQuery("SELECT p FROM Producto p", Producto.class);
         return query.getResultList();
     }
 
+     @Override
     public Producto findById(Integer id) {
         return em.find(Producto.class, id);
     }
 
+     @Override
     public Producto findByCodigo(String codigo) {
         TypedQuery<Producto> query = em.createQuery(
             "SELECT p FROM Producto p WHERE p.codigo = :codigo", Producto.class);
@@ -279,18 +282,20 @@ public class ProductosDAO implements IProductosDAO {
         return result.isEmpty() ? null : result.get(0);
     }
 
+     @Override
     public void save(Producto producto) {
         em.getTransaction().begin();
         em.persist(producto);
         em.getTransaction().commit();
     }
 
+     @Override
     public void update(Producto producto) {
         em.getTransaction().begin();
         em.merge(producto);
         em.getTransaction().commit();
     }
-
+    @Override
     public void delete(Integer id) {
         Producto producto = em.find(Producto.class, id);
         if (producto != null) {

@@ -2,6 +2,9 @@ package org.itson.diseniosofware.mifarmaciagi.persistencia.daos;
 
 import org.itson.diseniosofware.mifarmaciagi.persistencia.Exception.PersistenciaException;
 import basura.Venta2;
+import java.util.List;
+import org.itson.diseniosofware.mifarmaciagi.persistencia.entidades.Usuario;
+import org.itson.diseniosofware.mifarmaciagi.persistencia.entidades.Venta;
 
 public interface IVentasDAO {
 
@@ -21,5 +24,12 @@ public interface IVentasDAO {
 //     * @return retorna la venta que se encontro
 //     */
 //    public Venta encontrarVenta(String codigo);
+    
+    public List<Venta> findAll();
+    public Venta findById(Integer id);
+    public List<Venta> findByUsuario(Usuario usuario);
+    public void save(Venta venta);
+     public void update(Venta venta);
+     public void delete(Integer id);
 
 }

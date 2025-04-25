@@ -22,4 +22,6 @@ public class Facade implements IFacade{
         conexion = new Conexion();
         fabrica = new DAOFactory(conexion);
     }
+    
+    
 }

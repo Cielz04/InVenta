@@ -41,4 +41,10 @@ public interface IComprasDAO {
 //     * @return lista de proveedores
 //     */
 //    public List<Proveedor>encontrarProveedores(Producto producto) throws PersistenciaException;
+    
+    public List<Compra> findAll();
+    public Compra findById(Integer id);
+     public void save(Compra compra);
+     public void update(Compra compra);
+     public void delete(Integer id);
 }

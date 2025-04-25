@@ -15,7 +15,7 @@ import jakarta.persistence.TypedQuery;
 import java.util.List;
 import org.itson.diseniosofware.mifarmaciagi.persistencia.entidades.Entrada;
 
-public class EntradaDAO {
+public class EntradaDAO implements IEntradaDAO{
 
     private final EntityManager em;
 
@@ -23,27 +23,31 @@ public class EntradaDAO {
         this.em = conexion.crearConexion();
     }
 
+    @Override
     public List<Entrada> findAll() {
         TypedQuery<Entrada> query = em.createQuery("SELECT e FROM Entrada e", Entrada.class);
         return query.getResultList();
     }
 
+    @Override
     public Entrada findById(Integer id) {
         return em.find(Entrada.class, id);
     }
 
+    @Override
     public void save(Entrada entrada) {
         em.getTransaction().begin();
         em.persist(entrada);
         em.getTransaction().commit();
     }
 
+    @Override
     public void update(Entrada entrada) {
         em.getTransaction().begin();
         em.merge(entrada);
         em.getTransaction().commit();
     }
-
+    @Override
     public void delete(Integer id) {
         Entrada entrada = em.find(Entrada.class, id);
         if (entrada != null) {

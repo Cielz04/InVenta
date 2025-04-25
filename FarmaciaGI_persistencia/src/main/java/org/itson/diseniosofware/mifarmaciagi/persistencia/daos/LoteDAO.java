@@ -15,7 +15,7 @@ import jakarta.persistence.TypedQuery;
 import java.util.List;
 import org.itson.diseniosofware.mifarmaciagi.persistencia.entidades.Lote;
 
-public class LoteDAO {
+public class LoteDAO implements ILoteDAO{
 
     private final EntityManager em;
 
@@ -23,27 +23,32 @@ public class LoteDAO {
         this.em = conexion.crearConexion();
     }
 
+    @Override
     public List<Lote> findAll() {
         TypedQuery<Lote> query = em.createQuery("SELECT l FROM Lote l", Lote.class);
         return query.getResultList();
     }
 
+    @Override
     public Lote findById(Integer id) {
         return em.find(Lote.class, id);
     }
 
+    @Override
     public void save(Lote lote) {
         em.getTransaction().begin();
         em.persist(lote);
         em.getTransaction().commit();
     }
 
+    @Override
     public void update(Lote lote) {
         em.getTransaction().begin();
         em.merge(lote);
         em.getTransaction().commit();
     }
 
+    @Override
     public void delete(Integer id) {
         Lote lote = em.find(Lote.class, id);
         if (lote != null) {
@@ -55,6 +60,7 @@ public class LoteDAO {
 
     // Opcional: Buscar lotes por producto o entrada si te interesa
 
+    @Override
     public List<Lote> findByProductoId(Integer productoId) {
         TypedQuery<Lote> query = em.createQuery(
             "SELECT l FROM Lote l WHERE l.producto.id = :productoId", Lote.class);
@@ -62,6 +68,7 @@ public class LoteDAO {
         return query.getResultList();
     }
 
+    @Override
     public List<Lote> findByEntradaId(Integer entradaId) {
         TypedQuery<Lote> query = em.createQuery(
             "SELECT l FROM Lote l WHERE l.entrada.id = :entradaId", Lote.class);

@@ -120,27 +120,32 @@ public class ComprasDAO implements IComprasDAO {
     }
     
     
+    @Override
     public List<Compra> findAll() {
         TypedQuery<Compra> query = em.createQuery("SELECT c FROM Compra c", Compra.class);
         return query.getResultList();
     }
 
+    @Override
     public Compra findById(Integer id) {
         return em.find(Compra.class, id);
     }
 
+    @Override
     public void save(Compra compra) {
         em.getTransaction().begin();
         em.persist(compra);
         em.getTransaction().commit();
     }
 
+    @Override
     public void update(Compra compra) {
         em.getTransaction().begin();
         em.merge(compra);
         em.getTransaction().commit();
     }
 
+    @Override
     public void delete(Integer id) {
         Compra compra = em.find(Compra.class, id);
         if (compra != null) {

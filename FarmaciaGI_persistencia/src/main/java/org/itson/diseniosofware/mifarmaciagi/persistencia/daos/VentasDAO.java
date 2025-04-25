@@ -73,33 +73,39 @@ public class VentasDAO implements IVentasDAO {
         this.em = conexion.crearConexion();
     }
 
+    @Override
     public List<Venta> findAll() {
         TypedQuery<Venta> query = em.createQuery("SELECT v FROM Venta v", Venta.class);
         return query.getResultList();
     }
 
+    @Override
     public Venta findById(Integer id) {
         return em.find(Venta.class, id);
     }
 
+    @Override
     public List<Venta> findByUsuario(Usuario usuario) {
         TypedQuery<Venta> query = em.createQuery("SELECT v FROM Venta v WHERE v.usuarioEnTurno = :usuario", Venta.class);
         query.setParameter("usuario", usuario);
         return query.getResultList();
     }
 
+    @Override
     public void save(Venta venta) {
         em.getTransaction().begin();
         em.persist(venta);
         em.getTransaction().commit();
     }
 
+    @Override
     public void update(Venta venta) {
         em.getTransaction().begin();
         em.merge(venta);
         em.getTransaction().commit();
     }
 
+    @Override
     public void delete(Integer id) {
         Venta venta = em.find(Venta.class, id);
         if (venta != null) {

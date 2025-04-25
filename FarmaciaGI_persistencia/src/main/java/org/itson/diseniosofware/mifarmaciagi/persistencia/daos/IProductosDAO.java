@@ -1,6 +1,10 @@
 package org.itson.diseniosofware.mifarmaciagi.persistencia.daos;
 
 //import java.util.List;
+
+import java.util.List;
+import org.itson.diseniosofware.mifarmaciagi.persistencia.entidades.Producto;
+
 //import org.bson.types.ObjectId;
 //import org.itson.diseniosofware.mifarmaciagi.persistencia.Exception.PersistenciaException;
 //import org.itson.diseniosofware.mifarmaciagi.persistencia.entidades.Producto;
@@ -89,4 +93,11 @@ public interface IProductosDAO {
 //     * @param proveedor proveedor a eiminar
 //     */
 //    public void eliminarProveedor(Proveedor proveedor);
+    
+    public List<Producto> findAll();
+     public Producto findById(Integer id);
+     public Producto findByCodigo(String codigo);
+     public void save(Producto producto);
+     public void update(Producto producto);
+     public void delete(Integer id);
 }

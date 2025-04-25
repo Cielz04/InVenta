@@ -133,15 +133,18 @@ public class ProveedoresDAO implements IProveedoresDAO {
         this.em = conexion.crearConexion();
     }
 
+     @Override
     public List<Proveedor> findAll() {
         TypedQuery<Proveedor> query = em.createQuery("SELECT p FROM Proveedor p", Proveedor.class);
         return query.getResultList();
     }
 
+     @Override
     public Proveedor findById(Integer id) {
         return em.find(Proveedor.class, id);
     }
 
+     @Override
     public Proveedor findByRfc(String rfc) {
         TypedQuery<Proveedor> query = em.createQuery("SELECT p FROM Proveedor p WHERE p.rfc = :rfc", Proveedor.class);
         query.setParameter("rfc", rfc);
@@ -149,18 +152,21 @@ public class ProveedoresDAO implements IProveedoresDAO {
         return resultados.isEmpty() ? null : resultados.get(0);
     }
 
+     @Override
     public void save(Proveedor proveedor) {
         em.getTransaction().begin();
         em.persist(proveedor);
         em.getTransaction().commit();
     }
 
+     @Override
     public void update(Proveedor proveedor) {
         em.getTransaction().begin();
         em.merge(proveedor);
         em.getTransaction().commit();
     }
 
+    @Override
     public void delete(Integer id) {
         Proveedor proveedor = em.find(Proveedor.class, id);
         if (proveedor != null) {

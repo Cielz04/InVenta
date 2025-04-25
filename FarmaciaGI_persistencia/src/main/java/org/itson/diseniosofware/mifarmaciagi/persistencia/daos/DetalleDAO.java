@@ -22,27 +22,32 @@ public class DetalleDAO implements IDetalleDAO{
         this.em = conexion.crearConexion();
     }
 
+    @Override
     public List<DetalleVenta> findAll() {
         TypedQuery<DetalleVenta> query = em.createQuery("SELECT d FROM DetalleVenta d", DetalleVenta.class);
         return query.getResultList();
     }
 
+    @Override
     public DetalleVenta findById(Integer id) {
         return em.find(DetalleVenta.class, id);
     }
 
+    @Override
     public void save(DetalleVenta detalle) {
         em.getTransaction().begin();
         em.persist(detalle);
         em.getTransaction().commit();
     }
 
+    @Override
     public void update(DetalleVenta detalle) {
         em.getTransaction().begin();
         em.merge(detalle);
         em.getTransaction().commit();
     }
 
+    @Override
     public void delete(Integer id) {
         DetalleVenta detalle = em.find(DetalleVenta.class, id);
         if (detalle != null) {

@@ -21,15 +21,18 @@ public class UsuarioDAO implements IUsuarioDAO{
         this.em = conexion.crearConexion();
     }
 
+     @Override
     public List<Usuario> findAll() {
         TypedQuery<Usuario> query = em.createQuery("SELECT u FROM Usuario u", Usuario.class);
         return query.getResultList();
     }
 
+     @Override
     public Usuario findById(Integer id) {
         return em.find(Usuario.class, id);
     }
 
+     @Override
     public Usuario findByCodigo(Integer codigo) {
         TypedQuery<Usuario> query = em.createQuery("SELECT u FROM Usuario u WHERE u.codigo = :codigo", Usuario.class);
         query.setParameter("codigo", codigo);
@@ -37,18 +40,21 @@ public class UsuarioDAO implements IUsuarioDAO{
         return resultados.isEmpty() ? null : resultados.get(0);
     }
 
+     @Override
     public void save(Usuario usuario) {
         em.getTransaction().begin();
         em.persist(usuario);
         em.getTransaction().commit();
     }
 
+     @Override
     public void update(Usuario usuario) {
         em.getTransaction().begin();
         em.merge(usuario);
         em.getTransaction().commit();
     }
 
+    @Override
     public void delete(Integer id) {
         Usuario usuario = em.find(Usuario.class, id);
         if (usuario != null) {

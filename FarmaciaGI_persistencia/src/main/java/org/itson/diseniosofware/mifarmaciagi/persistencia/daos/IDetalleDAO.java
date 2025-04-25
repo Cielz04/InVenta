@@ -4,10 +4,18 @@
  */
 package org.itson.diseniosofware.mifarmaciagi.persistencia.daos;
 
+import java.util.List;
+import org.itson.diseniosofware.mifarmaciagi.persistencia.entidades.DetalleVenta;
+
 /**
  *
  * @author jl4ma
  */
 public interface IDetalleDAO {
     
+    public List<DetalleVenta> findAll();
+    public DetalleVenta findById(Integer id);
+    public void save(DetalleVenta detalle);
+    public void update(DetalleVenta detalle);
+    public void delete(Integer id);
 }

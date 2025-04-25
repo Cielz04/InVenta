@@ -3,6 +3,7 @@ package org.itson.diseniosofware.mifarmaciagi.persistencia.daos;
 import java.util.List;
 import org.itson.diseniosofware.mifarmaciagi.persistencia.Exception.PersistenciaException;
 import basura.Proveedor2;
+import org.itson.diseniosofware.mifarmaciagi.persistencia.entidades.Proveedor;
 
 public interface IProveedoresDAO {
     
@@ -43,4 +44,11 @@ public interface IProveedoresDAO {
 //     * @throws PersistenciaException Si ocurre un error durante la operación de persistencia.
 //     */
 //    public List<Proveedor> obtenerProveedores() throws PersistenciaException;
+    
+     public List<Proveedor> findAll();
+     public Proveedor findById(Integer id);
+     public Proveedor findByRfc(String rfc);
+     public void save(Proveedor proveedor);
+     public void update(Proveedor proveedor);
+     public void delete(Integer id);
 }
