@@ -2,7 +2,11 @@ package org.itson.diseniosofware.mifarmaciagi.persistencia.daos;
 
 //import com.mongodb.client.MongoCollection;
 
+import jakarta.persistence.EntityManager;
+import jakarta.persistence.TypedQuery;
+import java.util.List;
 import org.itson.diseniosofware.mifarmaciagi.persistencia.Conexion.IConexion;
+import org.itson.diseniosofware.mifarmaciagi.persistencia.entidades.Producto;
 
 //import com.mongodb.client.MongoDatabase;
 //import static com.mongodb.client.model.Filters.eq;
@@ -20,7 +24,6 @@ import org.itson.diseniosofware.mifarmaciagi.persistencia.Conexion.IConexion;
 //import org.itson.diseniosofware.mifarmaciagi.persistencia.entidades.Proveedor;
 
 public class ProductosDAO implements IProductosDAO {
-private IConexion conexion;
 //    private MongoCollection<Producto> collection;
 //
 //    /**
@@ -253,8 +256,48 @@ private IConexion conexion;
 //        }
 //    }
 
+     private final EntityManager em;
+
     public ProductosDAO(IConexion conexion) {
-        this.conexion = conexion;
+        this.em = conexion.crearConexion();
+    }
+
+    public List<Producto> findAll() {
+        TypedQuery<Producto> query = em.createQuery("SELECT p FROM Producto p", Producto.class);
+        return query.getResultList();
+    }
+
+    public Producto findById(Integer id) {
+        return em.find(Producto.class, id);
+    }
+
+    public Producto findByCodigo(String codigo) {
+        TypedQuery<Producto> query = em.createQuery(
+            "SELECT p FROM Producto p WHERE p.codigo = :codigo", Producto.class);
+        query.setParameter("codigo", codigo);
+        List<Producto> result = query.getResultList();
+        return result.isEmpty() ? null : result.get(0);
+    }
+
+    public void save(Producto producto) {
+        em.getTransaction().begin();
+        em.persist(producto);
+        em.getTransaction().commit();
+    }
+
+    public void update(Producto producto) {
+        em.getTransaction().begin();
+        em.merge(producto);
+        em.getTransaction().commit();
+    }
+
+    public void delete(Integer id) {
+        Producto producto = em.find(Producto.class, id);
+        if (producto != null) {
+            em.getTransaction().begin();
+            em.remove(producto);
+            em.getTransaction().commit();
+        }
     }
 
 }

@@ -2,7 +2,11 @@ package org.itson.diseniosofware.mifarmaciagi.persistencia.daos;
 
 //import com.mongodb.client.MongoCollection;
 
+import jakarta.persistence.EntityManager;
+import jakarta.persistence.TypedQuery;
+import java.util.List;
 import org.itson.diseniosofware.mifarmaciagi.persistencia.Conexion.IConexion;
+import org.itson.diseniosofware.mifarmaciagi.persistencia.entidades.Proveedor;
 
 //import com.mongodb.client.MongoDatabase;
 //import static com.mongodb.client.model.Filters.eq;
@@ -17,7 +21,6 @@ import org.itson.diseniosofware.mifarmaciagi.persistencia.Conexion.IConexion;
 //import org.itson.diseniosofware.mifarmaciagi.persistencia.entidades.Proveedor;
 
 public class ProveedoresDAO implements IProveedoresDAO {
-private IConexion conexion;
 //    private static final Logger logger = Logger.getLogger(ProveedoresDAO.class.getName());
 //    private MongoCollection<Proveedor> collection;
 //
@@ -124,8 +127,47 @@ private IConexion conexion;
 //        return proveedores;
 //    }
 
+     private final EntityManager em;
+
     public ProveedoresDAO(IConexion conexion) {
-        this.conexion = conexion;
+        this.em = conexion.crearConexion();
+    }
+
+    public List<Proveedor> findAll() {
+        TypedQuery<Proveedor> query = em.createQuery("SELECT p FROM Proveedor p", Proveedor.class);
+        return query.getResultList();
+    }
+
+    public Proveedor findById(Integer id) {
+        return em.find(Proveedor.class, id);
+    }
+
+    public Proveedor findByRfc(String rfc) {
+        TypedQuery<Proveedor> query = em.createQuery("SELECT p FROM Proveedor p WHERE p.rfc = :rfc", Proveedor.class);
+        query.setParameter("rfc", rfc);
+        List<Proveedor> resultados = query.getResultList();
+        return resultados.isEmpty() ? null : resultados.get(0);
+    }
+
+    public void save(Proveedor proveedor) {
+        em.getTransaction().begin();
+        em.persist(proveedor);
+        em.getTransaction().commit();
+    }
+
+    public void update(Proveedor proveedor) {
+        em.getTransaction().begin();
+        em.merge(proveedor);
+        em.getTransaction().commit();
+    }
+
+    public void delete(Integer id) {
+        Proveedor proveedor = em.find(Proveedor.class, id);
+        if (proveedor != null) {
+            em.getTransaction().begin();
+            em.remove(proveedor);
+            em.getTransaction().commit();
+        }
     }
     
 }

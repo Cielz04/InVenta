@@ -168,5 +168,14 @@ public class Producto implements Serializable {
         Producto other = (Producto) obj;
         return Objects.equals(id, other.id);
     }
+
+    public Producto(String nombre, String marca, Float precio, String codigo, String tipo, LinkedList<Integer> id_proveedores) {
+        this.nombre = nombre;
+        this.marca = marca;
+        this.precio = precio;
+        this.codigo = codigo;
+        this.tipo = tipo;
+        this.id_proveedores = id_proveedores;
+    }
     
 }

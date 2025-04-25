@@ -42,11 +42,11 @@ public class Lote implements Serializable {
 
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
     @JoinColumn(name = "producto_id")
-    private Producto2 producto;
+    private Producto producto;
 
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
     @JoinColumn(name = "entrada_id")
-    private Entrada2 entrada;
+    private Entrada entrada;
 
     public Lote() {
     }
@@ -85,19 +85,19 @@ public class Lote implements Serializable {
         this.cantidad = cantidad;
     }
 
-    public Producto2 getProducto() {
+    public Producto getProducto() {
         return producto;
     }
 
-    public void setProducto(Producto2 producto) {
+    public void setProducto(Producto producto) {
         this.producto = producto;
     }
 
-    public Entrada2 getEntrada() {
+    public Entrada getEntrada() {
         return entrada;
     }
 
-    public void setEntrada(Entrada2 entrada) {
+    public void setEntrada(Entrada entrada) {
         this.entrada = entrada;
     }
 
@@ -111,6 +111,13 @@ public class Lote implements Serializable {
     @Override
     public int hashCode() {
         return Objects.hash(id);
+    }
+
+    public Lote(Instant caducidad, Integer cantidad, Producto producto, Entrada entrada) {
+        this.caducidad = caducidad;
+        this.cantidad = cantidad;
+        this.producto = producto;
+        this.entrada = entrada;
     }
     
 }

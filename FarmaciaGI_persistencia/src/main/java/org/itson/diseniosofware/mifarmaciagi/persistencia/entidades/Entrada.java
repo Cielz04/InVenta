@@ -83,5 +83,10 @@ public class Entrada implements Serializable {
     public int hashCode() {
         return Objects.hash(id);
     }
+
+    public Entrada(Instant fecha, Float total) {
+        this.fecha = fecha;
+        this.total = total;
+    }
     
 }

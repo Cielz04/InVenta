@@ -6,7 +6,11 @@ package org.itson.diseniosofware.mifarmaciagi.persistencia.daos;
 
 //import com.mongodb.client.MongoCollection;
 
+import jakarta.persistence.EntityManager;
+import jakarta.persistence.TypedQuery;
+import java.util.List;
 import org.itson.diseniosofware.mifarmaciagi.persistencia.Conexion.IConexion;
+import org.itson.diseniosofware.mifarmaciagi.persistencia.entidades.Compra;
 
 //import com.mongodb.client.MongoDatabase;
 //import com.mongodb.client.model.Filters;
@@ -29,7 +33,6 @@ import org.itson.diseniosofware.mifarmaciagi.persistencia.Conexion.IConexion;
  */
 public class ComprasDAO implements IComprasDAO {
 
-    private IConexion conexion;
     
 //    private final MongoCollection<Compra> collection;
 //    private final MongoCollection<Proveedor> collection2;
@@ -110,7 +113,40 @@ public class ComprasDAO implements IComprasDAO {
 //
 //    }
 
+    private final EntityManager em;
+
     public ComprasDAO(IConexion conexion) {
-        this.conexion = conexion;
+        this.em = conexion.crearConexion();
     }
+    
+    
+    public List<Compra> findAll() {
+        TypedQuery<Compra> query = em.createQuery("SELECT c FROM Compra c", Compra.class);
+        return query.getResultList();
+    }
+
+    public Compra findById(Integer id) {
+        return em.find(Compra.class, id);
+    }
+
+    public void save(Compra compra) {
+        em.getTransaction().begin();
+        em.persist(compra);
+        em.getTransaction().commit();
+    }
+
+    public void update(Compra compra) {
+        em.getTransaction().begin();
+        em.merge(compra);
+        em.getTransaction().commit();
+    }
+
+    public void delete(Integer id) {
+        Compra compra = em.find(Compra.class, id);
+        if (compra != null) {
+            em.getTransaction().begin();
+            em.remove(compra);
+            em.getTransaction().commit();
+        }
+}
 }

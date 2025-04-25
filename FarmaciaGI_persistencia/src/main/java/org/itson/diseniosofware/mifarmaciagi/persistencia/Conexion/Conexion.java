@@ -20,7 +20,7 @@ public class Conexion  implements IConexion{
      @Override
     public EntityManager crearConexion() {
         // Creamos el EntityManagerFactory.
-        EntityManagerFactory emf = Persistence.createEntityManagerFactory("DbAstro");
+        EntityManagerFactory emf = Persistence.createEntityManagerFactory("MiFarmaciaGI");
         
         // Creamos el EntityManager.
         EntityManager em = emf.createEntityManager();

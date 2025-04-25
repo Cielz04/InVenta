@@ -2,7 +2,11 @@ package org.itson.diseniosofware.mifarmaciagi.persistencia.daos;
 
 //import com.mongodb.client.MongoCollection;
 
+import jakarta.persistence.EntityManager;
+import jakarta.persistence.TypedQuery;
+import java.util.List;
 import org.itson.diseniosofware.mifarmaciagi.persistencia.Conexion.IConexion;
+import org.itson.diseniosofware.mifarmaciagi.persistencia.entidades.Promocion;
 
 //import com.mongodb.client.MongoDatabase;
 //import static com.mongodb.client.model.Filters.eq;
@@ -14,7 +18,6 @@ import org.itson.diseniosofware.mifarmaciagi.persistencia.Conexion.IConexion;
 //import org.itson.diseniosofware.mifarmaciagi.persistencia.entidades.Promocion;
 
 public class PromocionesDAO implements IPromocionesDAO {
-private IConexion conexion;
 //    private final MongoDatabase baseDatos;
 //    private String nombreColeccion;
 //
@@ -101,8 +104,40 @@ private IConexion conexion;
 //        return promociones;
 //    }
 
+     private final EntityManager em;
+
     public PromocionesDAO(IConexion conexion) {
-        this.conexion = conexion;
+        this.em = conexion.crearConexion();
+    }
+
+    public List<Promocion> findAll() {
+        TypedQuery<Promocion> query = em.createQuery("SELECT p FROM Promocion p", Promocion.class);
+        return query.getResultList();
+    }
+
+    public Promocion findByCodigo(String codigo) {
+        return em.find(Promocion.class, codigo);
+    }
+
+    public void save(Promocion promocion) {
+        em.getTransaction().begin();
+        em.persist(promocion);
+        em.getTransaction().commit();
+    }
+
+    public void update(Promocion promocion) {
+        em.getTransaction().begin();
+        em.merge(promocion);
+        em.getTransaction().commit();
+    }
+
+    public void delete(String codigo) {
+        Promocion promocion = em.find(Promocion.class, codigo);
+        if (promocion != null) {
+            em.getTransaction().begin();
+            em.remove(promocion);
+            em.getTransaction().commit();
+        }
     }
 
 }

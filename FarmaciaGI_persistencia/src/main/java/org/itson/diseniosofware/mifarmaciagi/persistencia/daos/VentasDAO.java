@@ -2,7 +2,12 @@ package org.itson.diseniosofware.mifarmaciagi.persistencia.daos;
 
 //import com.mongodb.client.MongoCollection;
 
+import jakarta.persistence.EntityManager;
+import jakarta.persistence.TypedQuery;
+import java.util.List;
 import org.itson.diseniosofware.mifarmaciagi.persistencia.Conexion.IConexion;
+import org.itson.diseniosofware.mifarmaciagi.persistencia.entidades.Usuario;
+import org.itson.diseniosofware.mifarmaciagi.persistencia.entidades.Venta;
 
 //import com.mongodb.client.MongoDatabase;
 //import static com.mongodb.client.model.Filters.eq;
@@ -11,7 +16,6 @@ import org.itson.diseniosofware.mifarmaciagi.persistencia.Conexion.IConexion;
 //import org.itson.diseniosofware.mifarmaciagi.persistencia.entidades.Venta;
 
 public class VentasDAO implements IVentasDAO {
-private IConexion conexion;
 //    private MongoCollection<Venta> collection;
 //
 //    /**
@@ -63,8 +67,46 @@ private IConexion conexion;
 //
 //    }
 
+    private final EntityManager em;
+
     public VentasDAO(IConexion conexion) {
-        this.conexion = conexion;
+        this.em = conexion.crearConexion();
+    }
+
+    public List<Venta> findAll() {
+        TypedQuery<Venta> query = em.createQuery("SELECT v FROM Venta v", Venta.class);
+        return query.getResultList();
+    }
+
+    public Venta findById(Integer id) {
+        return em.find(Venta.class, id);
+    }
+
+    public List<Venta> findByUsuario(Usuario usuario) {
+        TypedQuery<Venta> query = em.createQuery("SELECT v FROM Venta v WHERE v.usuarioEnTurno = :usuario", Venta.class);
+        query.setParameter("usuario", usuario);
+        return query.getResultList();
+    }
+
+    public void save(Venta venta) {
+        em.getTransaction().begin();
+        em.persist(venta);
+        em.getTransaction().commit();
+    }
+
+    public void update(Venta venta) {
+        em.getTransaction().begin();
+        em.merge(venta);
+        em.getTransaction().commit();
+    }
+
+    public void delete(Integer id) {
+        Venta venta = em.find(Venta.class, id);
+        if (venta != null) {
+            em.getTransaction().begin();
+            em.remove(venta);
+            em.getTransaction().commit();
+        }
     }
 
 }

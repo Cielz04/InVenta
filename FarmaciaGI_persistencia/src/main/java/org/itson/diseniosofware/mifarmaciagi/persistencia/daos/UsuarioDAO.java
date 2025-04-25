@@ -4,16 +4,57 @@
  */
 package org.itson.diseniosofware.mifarmaciagi.persistencia.daos;
 
+import jakarta.persistence.EntityManager;
+import jakarta.persistence.TypedQuery;
+import java.util.List;
 import org.itson.diseniosofware.mifarmaciagi.persistencia.Conexion.IConexion;
+import org.itson.diseniosofware.mifarmaciagi.persistencia.entidades.Usuario;
 
 /**
  *
  * @author jl4ma
  */
 public class UsuarioDAO implements IUsuarioDAO{
-    private IConexion conexion;
+     private final EntityManager em;
 
     public UsuarioDAO(IConexion conexion) {
-        this.conexion = conexion;
+        this.em = conexion.crearConexion();
+    }
+
+    public List<Usuario> findAll() {
+        TypedQuery<Usuario> query = em.createQuery("SELECT u FROM Usuario u", Usuario.class);
+        return query.getResultList();
+    }
+
+    public Usuario findById(Integer id) {
+        return em.find(Usuario.class, id);
+    }
+
+    public Usuario findByCodigo(Integer codigo) {
+        TypedQuery<Usuario> query = em.createQuery("SELECT u FROM Usuario u WHERE u.codigo = :codigo", Usuario.class);
+        query.setParameter("codigo", codigo);
+        List<Usuario> resultados = query.getResultList();
+        return resultados.isEmpty() ? null : resultados.get(0);
+    }
+
+    public void save(Usuario usuario) {
+        em.getTransaction().begin();
+        em.persist(usuario);
+        em.getTransaction().commit();
+    }
+
+    public void update(Usuario usuario) {
+        em.getTransaction().begin();
+        em.merge(usuario);
+        em.getTransaction().commit();
+    }
+
+    public void delete(Integer id) {
+        Usuario usuario = em.find(Usuario.class, id);
+        if (usuario != null) {
+            em.getTransaction().begin();
+            em.remove(usuario);
+            em.getTransaction().commit();
+        }
     }
 }
