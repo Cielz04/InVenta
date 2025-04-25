@@ -1,30 +1,14 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
-package org.itson.diseniosofware.mifarmaciagi.persistencia.entidades;
+package basura;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.FetchType;
-import jakarta.persistence.JoinColumn;
-import jakarta.persistence.ManyToOne;
-import jakarta.persistence.Table;
-import java.io.Serializable;
+import basura.Producto2;
+import jakarta.persistence.*;
 import java.util.Objects;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
 
-/**
- *
- * @author jl4ma
- */
 @Entity
 @Table(name = "promociones")
-public class Promocion implements Serializable {
+public class Promocion2 {
 
-    @jakarta.persistence.Id
+    @Id
     @Column(length = 50)
     private String codigo;
 
@@ -33,7 +17,7 @@ public class Promocion implements Serializable {
 
     @ManyToOne(optional = false, fetch = FetchType.LAZY)
     @JoinColumn(name = "producto_id")
-    private Producto producto;
+    private Producto2 producto;
 
     @Column(nullable = false)
     private Integer cantidad;
@@ -41,14 +25,14 @@ public class Promocion implements Serializable {
     @Column(name = "precio_unitario", nullable = false)
     private Float precioUnitario;
 
-    public Promocion() {
+    public Promocion2() {
     }
 
-    public Promocion(String codigo) {
+    public Promocion2(String codigo) {
         this.codigo = codigo;
     }
 
-    public Promocion(String codigo, String descripcion, Producto producto, Integer cantidad, Float precioUnitario) {
+    public Promocion2(String codigo, String descripcion, Producto2 producto, Integer cantidad, Float precioUnitario) {
         this.codigo = codigo;
         this.descripcion = descripcion;
         this.producto = producto;
@@ -72,11 +56,11 @@ public class Promocion implements Serializable {
         this.descripcion = descripcion;
     }
 
-    public Producto getProducto() {
+    public Producto2 getProducto() {
         return producto;
     }
 
-    public void setProducto(Producto producto) {
+    public void setProducto(Producto2 producto) {
         this.producto = producto;
     }
 
@@ -104,8 +88,8 @@ public class Promocion implements Serializable {
     @Override
     public boolean equals(Object obj) {
         if (this == obj) return true;
-        if (!(obj instanceof Promocion)) return false;
-        Promocion other = (Promocion) obj;
+        if (!(obj instanceof Promocion2)) return false;
+        Promocion2 other = (Promocion2) obj;
         return Objects.equals(codigo, other.codigo);
     }
 
@@ -119,5 +103,4 @@ public class Promocion implements Serializable {
                 ", precioUnitario=" + precioUnitario +
                 '}';
     }
-    
 }

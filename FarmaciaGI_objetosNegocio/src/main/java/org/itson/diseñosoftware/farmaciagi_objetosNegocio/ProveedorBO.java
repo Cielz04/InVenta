@@ -12,7 +12,7 @@ import org.itson.diseniosofware.mifarmaciagi.persistencia.daos.IProveedoresDAO;
 import org.itson.diseniosofware.mifarmaciagi.persistencia.daos.ProductosDAO;
 import org.itson.diseniosofware.mifarmaciagi.persistencia.daos.ProveedoresDAO;
 //import org.itson.diseniosofware.mifarmaciagi.persistencia.entidades.Direccion;
-import org.itson.diseniosofware.mifarmaciagi.persistencia.entidades.Proveedor;
+import basura.Proveedor2;
 import org.itson.disenosoftware.farmaciagi_dtos.DireccionDTO;
 import org.itson.disenosoftware.farmaciagi_dtos.ProveedorDTO;
 import org.itson.diseñosoftware.farmaciagi_objetosNegocio.excepciones.ObjetosNegocioException;

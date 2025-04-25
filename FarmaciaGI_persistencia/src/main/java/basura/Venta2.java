@@ -1,35 +1,19 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
-package org.itson.diseniosofware.mifarmaciagi.persistencia.entidades;
+package basura;
 
-import jakarta.persistence.CascadeType;
-import jakarta.persistence.JoinColumn;
-import jakarta.persistence.JoinTable;
-import jakarta.persistence.ManyToMany;
-import jakarta.persistence.ManyToOne;
-import jakarta.persistence.OneToMany;
-import jakarta.persistence.Table;
-import java.io.Serializable;
+import basura.Usuario2;
+import basura.Promocion2;
+import basura.DetalleVenta2;
+import jakarta.persistence.*;
 import java.time.Instant;
 import java.util.ArrayList;
 import java.util.List;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
 
-/**
- *
- * @author jl4ma
- */
 @Entity
 @Table(name = "ventas")
-public class Venta implements Serializable {
+public class Venta2 {
 
-    @jakarta.persistence.Id
-    @jakarta.persistence.GeneratedValue(strategy = jakarta.persistence.GenerationType.IDENTITY)
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
     private Float total;
@@ -41,11 +25,11 @@ public class Venta implements Serializable {
     // Relación con Usuario
     @ManyToOne
     @JoinColumn(name = "usuario_id", nullable = false)
-    private Usuario usuarioEnTurno;
+    private Usuario2 usuarioEnTurno;
 
     // Relación con DetalleVenta (cada producto vendido)
     @OneToMany(mappedBy = "venta", cascade = CascadeType.ALL, orphanRemoval = true)
-    private List<DetalleVenta> detallesVenta = new ArrayList<>(); // Inicializado
+    private List<DetalleVenta2> detallesVenta = new ArrayList<>(); // Inicializado
 
     // Relación con Promociones (muchas a muchas)
     @ManyToMany
@@ -54,17 +38,17 @@ public class Venta implements Serializable {
         joinColumns = @JoinColumn(name = "venta_id"),
         inverseJoinColumns = @JoinColumn(name = "promocion_id")
     )
-    private List<Promocion> promociones = new ArrayList<>(); // Inicializado
+    private List<Promocion2> promociones = new ArrayList<>(); // Inicializado
 
-    public Venta() {
+    public Venta2() {
     }
 
-    public Venta(Integer id) {
+    public Venta2(Integer id) {
         this.id = id;
     }
 
-    public Venta(Integer id, Float total, Float subtotal, Instant fecha, Usuario usuarioEnTurno,
-                 List<DetalleVenta> detallesVenta, List<Promocion> promociones) {
+    public Venta2(Integer id, Float total, Float subtotal, Instant fecha, Usuario2 usuarioEnTurno,
+                 List<DetalleVenta2> detallesVenta, List<Promocion2> promociones) {
         this.id = id;
         this.total = total;
         this.subtotal = subtotal;
@@ -108,28 +92,27 @@ public class Venta implements Serializable {
         this.fecha = fecha;
     }
 
-    public Usuario getUsuarioEnTurno() {
+    public Usuario2 getUsuarioEnTurno() {
         return usuarioEnTurno;
     }
 
-    public void setUsuarioEnTurno(Usuario usuarioEnTurno) {
+    public void setUsuarioEnTurno(Usuario2 usuarioEnTurno) {
         this.usuarioEnTurno = usuarioEnTurno;
     }
 
-    public List<DetalleVenta> getDetallesVenta() {
+    public List<DetalleVenta2> getDetallesVenta() {
         return detallesVenta;
     }
 
-    public void setDetallesVenta(List<DetalleVenta> detallesVenta) {
+    public void setDetallesVenta(List<DetalleVenta2> detallesVenta) {
         this.detallesVenta = detallesVenta;
     }
 
-    public List<Promocion> getPromociones() {
+    public List<Promocion2> getPromociones() {
         return promociones;
     }
 
-    public void setPromociones(List<Promocion> promociones) {
+    public void setPromociones(List<Promocion2> promociones) {
         this.promociones = promociones;
     }
-    
 }

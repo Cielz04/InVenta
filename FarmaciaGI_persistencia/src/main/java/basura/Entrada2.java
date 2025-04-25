@@ -1,32 +1,16 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
-package org.itson.diseniosofware.mifarmaciagi.persistencia.entidades;
+package basura;
 
-import jakarta.persistence.Access;
-import jakarta.persistence.AccessType;
-import jakarta.persistence.Column;
-import jakarta.persistence.Table;
-import java.io.Serializable;
+import jakarta.persistence.*;
 import java.time.Instant;
 import java.util.Objects;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
 
-/**
- *
- * @author jl4ma
- */
 @Entity
 @Table(name = "entradas")
 @Access(AccessType.FIELD)
-public class Entrada implements Serializable {
+public class Entrada2 {
 
-    @jakarta.persistence.Id
-    @jakarta.persistence.GeneratedValue(strategy = jakarta.persistence.GenerationType.IDENTITY)
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
     @Column(nullable = false)
@@ -35,14 +19,14 @@ public class Entrada implements Serializable {
     @Column(nullable = false)
     private Float total;
 
-    public Entrada() {
+    public Entrada2() {
     }
 
-    public Entrada(Integer id) {
+    public Entrada2(Integer id) {
         this.id = id;
     }
 
-    public Entrada(Integer id, Instant fecha, Float total) {
+    public Entrada2(Integer id, Instant fecha, Float total) {
         this.id = id;
         this.fecha = fecha;
         this.total = total;
@@ -75,7 +59,7 @@ public class Entrada implements Serializable {
     @Override
     public boolean equals(Object obj) {
         if (this == obj) return true;
-        if (!(obj instanceof Entrada other)) return false;
+        if (!(obj instanceof Entrada2 other)) return false;
         return Objects.equals(id, other.id);
     }
 
@@ -83,5 +67,4 @@ public class Entrada implements Serializable {
     public int hashCode() {
         return Objects.hash(id);
     }
-    
 }

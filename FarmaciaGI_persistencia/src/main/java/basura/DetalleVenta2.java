@@ -1,34 +1,15 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
-package org.itson.diseniosofware.mifarmaciagi.persistencia.entidades;
+package basura;
 
-import jakarta.persistence.Access;
-import jakarta.persistence.AccessType;
-import jakarta.persistence.Column;
-import jakarta.persistence.FetchType;
-import jakarta.persistence.JoinColumn;
-import jakarta.persistence.ManyToOne;
-import jakarta.persistence.Table;
-import java.io.Serializable;
+import jakarta.persistence.*;
 import java.util.Objects;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
 
-/**
- *
- * @author jl4ma
- */
 @Entity
-@Table(name = "detalles_ventas")
+@Table(name = "detalle_venta")
 @Access(AccessType.FIELD)
-public class DetalleVenta implements Serializable {
+public class DetalleVenta2 {
 
-   @jakarta.persistence.Id
-    @jakarta.persistence.GeneratedValue(strategy = jakarta.persistence.GenerationType.IDENTITY)
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
     @Column(name = "precio_unitario", nullable = false)
@@ -42,20 +23,20 @@ public class DetalleVenta implements Serializable {
 
     @ManyToOne(optional = false, fetch = FetchType.LAZY)
     @JoinColumn(name = "id_venta")
-    private Venta venta;
+    private Venta2 venta;
 
     @ManyToOne(optional = false, fetch = FetchType.LAZY)
     @JoinColumn(name = "id_producto")
-    private Producto producto;
+    private Producto2 producto;
 
-    public DetalleVenta() {
+    public DetalleVenta2() {
     }
 
-    public DetalleVenta(Integer id) {
+    public DetalleVenta2(Integer id) {
         this.id = id;
     }
 
-    public DetalleVenta(Integer id, Float precioUnitario, Float importe, Integer cantidad) {
+    public DetalleVenta2(Integer id, Float precioUnitario, Float importe, Integer cantidad) {
         this.id = id;
         this.precioUnitario = precioUnitario;
         this.importe = importe;
@@ -96,19 +77,19 @@ public class DetalleVenta implements Serializable {
         this.cantidad = cantidad;
     }
 
-    public Venta getVenta() {
+    public Venta2 getVenta() {
         return venta;
     }
 
-    public void setVenta(Venta venta) {
+    public void setVenta(Venta2 venta) {
         this.venta = venta;
     }
 
-    public Producto getProducto() {
+    public Producto2 getProducto() {
         return producto;
     }
 
-    public void setProducto(Producto producto) {
+    public void setProducto(Producto2 producto) {
         this.producto = producto;
     }
 
@@ -117,7 +98,7 @@ public class DetalleVenta implements Serializable {
     @Override
     public boolean equals(Object obj) {
         if (this == obj) return true;
-        if (!(obj instanceof DetalleVenta other)) return false;
+        if (!(obj instanceof DetalleVenta2 other)) return false;
         return Objects.equals(id, other.id);
     }
 
@@ -125,5 +106,4 @@ public class DetalleVenta implements Serializable {
     public int hashCode() {
         return Objects.hash(id);
     }
-    
 }

@@ -1,7 +1,7 @@
 package org.itson.diseniosofware.mifarmaciagi.persistencia.daos;
 
 import org.itson.diseniosofware.mifarmaciagi.persistencia.Exception.PersistenciaException;
-import org.itson.diseniosofware.mifarmaciagi.persistencia.entidades.Venta;
+import basura.Venta2;
 
 public interface IVentasDAO {
 

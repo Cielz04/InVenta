@@ -2,7 +2,7 @@ package org.itson.diseniosofware.mifarmaciagi.persistencia.daos;
 
 import java.util.List;
 import org.itson.diseniosofware.mifarmaciagi.persistencia.Exception.PersistenciaException;
-import org.itson.diseniosofware.mifarmaciagi.persistencia.entidades.Proveedor;
+import basura.Proveedor2;
 
 public interface IProveedoresDAO {
     

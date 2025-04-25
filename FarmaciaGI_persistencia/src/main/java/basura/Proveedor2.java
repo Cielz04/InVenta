@@ -1,32 +1,15 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
-package org.itson.diseniosofware.mifarmaciagi.persistencia.entidades;
+package basura;
 
-import jakarta.persistence.CollectionTable;
-import jakarta.persistence.Column;
-import jakarta.persistence.ElementCollection;
-import jakarta.persistence.JoinColumn;
-import jakarta.persistence.Table;
-import java.io.Serializable;
+import jakarta.persistence.*;
 import java.util.List;
 import java.util.Objects;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
 
-/**
- *
- * @author jl4ma
- */
 @Entity
 @Table(name = "proveedores")
-public class Proveedor implements Serializable {
+public class Proveedor2 {
 
-     @jakarta.persistence.Id
-    @jakarta.persistence.GeneratedValue(strategy = jakarta.persistence.GenerationType.IDENTITY)
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
     @Column(nullable = false)
@@ -46,7 +29,7 @@ public class Proveedor implements Serializable {
     /**
      * Constructor por defecto de la clase Proveedor.
      */
-    public Proveedor() {
+    public Proveedor2() {
     }
 
     /**
@@ -56,7 +39,7 @@ public class Proveedor implements Serializable {
      * @param telefonos Lista de teléfonos del proveedor.
      * @param rfc Registro Federal de Contribuyentes del proveedor.
      */
-    public Proveedor(String nombre, String direccion, List<String> telefonos, String rfc) {
+    public Proveedor2(String nombre, String direccion, List<String> telefonos, String rfc) {
         this.nombre = nombre;
         this.direccion = direccion;
         this.telefonos = telefonos;
@@ -167,12 +150,11 @@ public class Proveedor implements Serializable {
     public boolean equals(Object obj) {
         if (this == obj) return true;
         if (obj == null || getClass() != obj.getClass()) return false;
-        Proveedor proveedor = (Proveedor) obj;
+        Proveedor2 proveedor = (Proveedor2) obj;
         return Objects.equals(id, proveedor.id) &&
                Objects.equals(nombre, proveedor.nombre) &&
                Objects.equals(direccion, proveedor.direccion) &&
                Objects.equals(telefonos, proveedor.telefonos) &&
                Objects.equals(rfc, proveedor.rfc);
     }
-    
 }

@@ -1,37 +1,17 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
-package org.itson.diseniosofware.mifarmaciagi.persistencia.entidades;
+package basura;
 
-import basura.Producto2;
 import basura.Entrada2;
-import jakarta.persistence.Access;
-import jakarta.persistence.AccessType;
-import jakarta.persistence.Column;
-import jakarta.persistence.FetchType;
-import jakarta.persistence.JoinColumn;
-import jakarta.persistence.ManyToOne;
-import jakarta.persistence.Table;
-import java.io.Serializable;
+import jakarta.persistence.*;
 import java.time.Instant;
 import java.util.Objects;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
 
-/**
- *
- * @author jl4ma
- */
 @Entity
 @Table(name = "lotes")
 @Access(AccessType.FIELD)
-public class Lote implements Serializable {
+public class Lote2 {
 
-    @jakarta.persistence.Id
-    @jakarta.persistence.GeneratedValue(strategy = jakarta.persistence.GenerationType.IDENTITY)
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
     @Column(nullable = false)
@@ -48,14 +28,14 @@ public class Lote implements Serializable {
     @JoinColumn(name = "entrada_id")
     private Entrada2 entrada;
 
-    public Lote() {
+    public Lote2() {
     }
 
-    public Lote(Integer id) {
+    public Lote2(Integer id) {
         this.id = id;
     }
 
-    public Lote(Integer id, Instant caducidad, Integer cantidad) {
+    public Lote2(Integer id, Instant caducidad, Integer cantidad) {
         this.id = id;
         this.caducidad = caducidad;
         this.cantidad = cantidad;
@@ -104,7 +84,7 @@ public class Lote implements Serializable {
     @Override
     public boolean equals(Object obj) {
         if (this == obj) return true;
-        if (!(obj instanceof Lote other)) return false;
+        if (!(obj instanceof Lote2 other)) return false;
         return Objects.equals(id, other.id);
     }
 
@@ -112,5 +92,4 @@ public class Lote implements Serializable {
     public int hashCode() {
         return Objects.hash(id);
     }
-    
 }

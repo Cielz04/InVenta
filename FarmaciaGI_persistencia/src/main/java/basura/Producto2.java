@@ -1,36 +1,18 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
-package org.itson.diseniosofware.mifarmaciagi.persistencia.entidades;
+package basura;
 
 import basura.Lote2;
 import basura.DetalleVenta2;
-import jakarta.persistence.CascadeType;
-import jakarta.persistence.Column;
-import jakarta.persistence.FetchType;
-import jakarta.persistence.OneToMany;
-import jakarta.persistence.Table;
-import jakarta.persistence.Transient;
-import java.io.Serializable;
+import jakarta.persistence.*;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Objects;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
 
-/**
- *
- * @author jl4ma
- */
 @Entity
 @Table(name = "productos")
-public class Producto implements Serializable {
+public class Producto2 {
 
-    @jakarta.persistence.Id
-    @jakarta.persistence.GeneratedValue(strategy = jakarta.persistence.GenerationType.IDENTITY)
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
     @Column(nullable = false)
@@ -59,20 +41,20 @@ public class Producto implements Serializable {
     @Transient
     private LinkedList<Integer> id_proveedores;
 
-    public Producto() {
+    public Producto2() {
     }
 
-    public Producto(Integer id) {
+    public Producto2(Integer id) {
         this.id = id;
     }
 
-    public Producto(String nombre, Float precio, String codigo) {
+    public Producto2(String nombre, Float precio, String codigo) {
         this.nombre = nombre;
         this.precio = precio;
         this.codigo = codigo;
     }
 
-    public Producto(String nombre, String marca, Float precio, String codigo, String tipo) {
+    public Producto2(String nombre, String marca, Float precio, String codigo, String tipo) {
         this.nombre = nombre;
         this.marca = marca;
         this.precio = precio;
@@ -164,9 +146,8 @@ public class Producto implements Serializable {
     @Override
     public boolean equals(Object obj) {
         if (this == obj) return true;
-        if (!(obj instanceof Producto)) return false;
-        Producto other = (Producto) obj;
+        if (!(obj instanceof Producto2)) return false;
+        Producto2 other = (Producto2) obj;
         return Objects.equals(id, other.id);
     }
-    
 }
