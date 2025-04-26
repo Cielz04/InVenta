@@ -43,13 +43,15 @@ public class Lote implements Serializable {
     @Column(nullable = false)
     private Integer cantidad;
 
-    @OneToMany(mappedBy = "lote", cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.LAZY)
-    private List<Producto> productos;
+    @ManyToOne(fetch = FetchType.LAZY, optional = false)
+    @JoinColumn(name = "producto_id", nullable = false)
+    private Producto producto;
 
     @OneToMany(mappedBy = "lote", cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.LAZY)
     private List<Entrada> entradas;
 
-    public Lote() {}
+    public Lote() {
+    }
 
     public Lote(Integer id) {
         this.id = id;
@@ -61,20 +63,19 @@ public class Lote implements Serializable {
         this.cantidad = cantidad;
     }
 
-    public Lote(Instant caducidad, Integer cantidad, List<Producto> productos, List<Entrada> entradas) {
+    public Lote(Instant caducidad, Integer cantidad, Producto producto, List<Entrada> entradas) {
         this.caducidad = caducidad;
         this.cantidad = cantidad;
-        this.productos = productos;
+        this.producto = producto;
         this.entradas = entradas;
     }
 
-    public Lote(Integer id, Instant caducidad, Integer cantidad, List<Producto> productos) {
+    public Lote(Integer id, Instant caducidad, Integer cantidad, Producto producto) {
         this.id = id;
         this.caducidad = caducidad;
         this.cantidad = cantidad;
-        this.productos = productos;
+        this.producto = producto;
     }
-    
 
     public Integer getId() {
         return id;
@@ -100,13 +101,12 @@ public class Lote implements Serializable {
         this.cantidad = cantidad;
     }
 
-
-    public List<Producto> getProductos() {
-        return productos;
+    public Producto getProductos() {
+        return producto;
     }
 
-    public void setProductos(List<Producto> productos) {
-        this.productos = productos;
+    public void setProductos(Producto producto) {
+        this.producto = producto;
     }
 
     public List<Entrada> getEntradas() {
@@ -119,8 +119,12 @@ public class Lote implements Serializable {
 
     @Override
     public boolean equals(Object obj) {
-        if (this == obj) return true;
-        if (!(obj instanceof Lote other)) return false;
+        if (this == obj) {
+            return true;
+        }
+        if (!(obj instanceof Lote other)) {
+            return false;
+        }
         return Objects.equals(id, other.id);
     }
 
@@ -129,6 +133,4 @@ public class Lote implements Serializable {
         return Objects.hash(id);
     }
 
-    
-    
 }

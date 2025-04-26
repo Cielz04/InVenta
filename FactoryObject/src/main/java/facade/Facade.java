@@ -6,6 +6,7 @@ package facade;
 
 import factory.AbstractDAOFactory;
 import factory.DAOFactory;
+import java.util.ArrayList;
 import java.util.List;
 import org.itson.diseniosofware.mifarmaciagi.persistencia.Conexion.Conexion;
 import org.itson.diseniosofware.mifarmaciagi.persistencia.Conexion.IConexion;
@@ -31,7 +32,7 @@ public class Facade implements IFacade {
 
         try {
             List<Producto> lista = fabrica.getProductosDAO().findAll();
-            if(lista.isEmpty()){
+            if (lista.isEmpty()) {
                 throw new Exception("La lista esta vacia");
             }
             return lista;
@@ -40,10 +41,20 @@ public class Facade implements IFacade {
             throw new Exception(e);
         }
     }
+
+    public List<Lote> agregarLote(Lote lote) {
+        List<Lote> lote1 = new ArrayList<>();
+        fabrica.getLoteAO().save(lote);
+        lote1 = fabrica.getLoteAO().findByProductoId(lote.getProductos().getId());
+
+        return lote1;
+    }
     
     public Producto agregarProducto(Producto producto){
-        Lote lote1 = new Lote();
         fabrica.getProductosDAO().save(producto);
-        return fabrica.getProductosDAO().findByCodigo(producto.getCodigo());
+        Producto productoBuscado = fabrica.getProductosDAO().findByCodigo(producto.getCodigo());
+        
+        return productoBuscado;
     }
+
 }
