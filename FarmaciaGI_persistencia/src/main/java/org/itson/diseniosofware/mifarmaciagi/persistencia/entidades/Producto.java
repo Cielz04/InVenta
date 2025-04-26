@@ -9,7 +9,11 @@ import basura.Lote2;
 import basura.DetalleVenta2;
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
+import jakarta.persistence.EnumType;
+import jakarta.persistence.Enumerated;
 import jakarta.persistence.FetchType;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 import jakarta.persistence.Transient;
@@ -30,8 +34,8 @@ import javax.persistence.Id;
 @Table(name = "productos")
 public class Producto implements Serializable {
 
-    @jakarta.persistence.Id
-    @jakarta.persistence.GeneratedValue(strategy = jakarta.persistence.GenerationType.IDENTITY)
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
     @Column(nullable = false)
@@ -46,22 +50,23 @@ public class Producto implements Serializable {
     @Column(unique = true)
     private String codigo;
 
+    @Enumerated(EnumType.STRING)
     @Column(nullable = false)
     private TipoProducto tipo;
 
-    // Relación con Lote
-    @OneToMany(mappedBy = "producto", cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.LAZY)
-    private List<Lote2> lotes = new LinkedList<>();
-
-    // Relación con DetalleVenta
-    @OneToMany(mappedBy = "producto", cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.LAZY)
-    private List<DetalleVenta2> detallesVenta = new LinkedList<>();
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "lote_id", nullable = false)
+    private Lote lote;
+    
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "detalle_id", nullable = false)
+    private DetalleVenta detalleVenta;
 
     @Transient
     private LinkedList<Integer> id_proveedores;
 
-    public Producto() {
-    }
+    public Producto() {}
+
 
     public Producto(Integer id) {
         this.id = id;
@@ -133,21 +138,15 @@ public class Producto implements Serializable {
         this.tipo = tipo;
     }
 
-    public List<Lote2> getLotes() {
-        return lotes;
+    public Lote getLote() {
+        return lote;
     }
 
-    public void setLotes(List<Lote2> lotes) {
-        this.lotes = lotes;
+    public void setLote(Lote lote) {
+        this.lote = lote;
     }
 
-    public List<DetalleVenta2> getDetallesVenta() {
-        return detallesVenta;
-    }
-
-    public void setDetallesVenta(List<DetalleVenta2> detallesVenta) {
-        this.detallesVenta = detallesVenta;
-    }
+    
 
     public LinkedList<Integer> getId_proveedores() {
         return id_proveedores;

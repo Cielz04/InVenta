@@ -6,12 +6,16 @@ package org.itson.diseniosofware.mifarmaciagi.persistencia.entidades;
 
 import jakarta.persistence.Access;
 import jakarta.persistence.AccessType;
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.FetchType;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
+import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Objects;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -44,9 +48,8 @@ import javax.persistence.Id;
         @JoinColumn(name = "id_venta")
         private Venta venta;
 
-        @ManyToOne(optional = false, fetch = FetchType.LAZY)
-        @JoinColumn(name = "id_producto")
-        private Producto producto;
+        @OneToMany(mappedBy = "detalleVenta", cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.LAZY)
+        private List<Producto> productos;
 
         public DetalleVenta() {
         }
@@ -62,22 +65,23 @@ import javax.persistence.Id;
             this.cantidad = cantidad;
         }
 
-    public DetalleVenta(Float precioUnitario, Float importe, Integer cantidad, Venta venta, Producto producto) {
+    public DetalleVenta(Float precioUnitario, Float importe, Integer cantidad, Venta venta) {
         this.precioUnitario = precioUnitario;
         this.importe = importe;
         this.cantidad = cantidad;
         this.venta = venta;
-        this.producto = producto;
     }
 
-    public DetalleVenta(Integer id, Float precioUnitario, Float importe, Integer cantidad, Venta venta, Producto producto) {
-        this.id = id;
+    public DetalleVenta(Float precioUnitario, Float importe, Integer cantidad, Venta venta, List<Producto> productos) {
         this.precioUnitario = precioUnitario;
         this.importe = importe;
         this.cantidad = cantidad;
         this.venta = venta;
-        this.producto = producto;
+        this.productos = productos;
     }
+    
+
+    
 
         // Getters y Setters
 
@@ -121,13 +125,15 @@ import javax.persistence.Id;
             this.venta = venta;
         }
 
-        public Producto getProducto() {
-            return producto;
-        }
+    public List<Producto> getProductos() {
+        return productos;
+    }
 
-        public void setProducto(Producto producto) {
-            this.producto = producto;
-        }
+    public void setProductos(List<Producto> productos) {
+        this.productos = productos;
+    }
+
+        
 
         // Equals y hashCode (basado en ID)
 

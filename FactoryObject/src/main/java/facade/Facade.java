@@ -10,6 +10,7 @@ import java.util.List;
 import org.itson.diseniosofware.mifarmaciagi.persistencia.Conexion.Conexion;
 import org.itson.diseniosofware.mifarmaciagi.persistencia.Conexion.IConexion;
 import org.itson.diseniosofware.mifarmaciagi.persistencia.daos.ProductosDAO;
+import org.itson.diseniosofware.mifarmaciagi.persistencia.entidades.Lote;
 import org.itson.diseniosofware.mifarmaciagi.persistencia.entidades.Producto;
 
 /**
@@ -41,6 +42,7 @@ public class Facade implements IFacade {
     }
     
     public Producto agregarProducto(Producto producto){
+        Lote lote1 = new Lote();
         fabrica.getProductosDAO().save(producto);
         return fabrica.getProductosDAO().findByCodigo(producto.getCodigo());
     }

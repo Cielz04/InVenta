@@ -7,6 +7,9 @@ package org.itson.diseniosofware.mifarmaciagi.persistencia.entidades;
 import jakarta.persistence.Access;
 import jakarta.persistence.AccessType;
 import jakarta.persistence.Column;
+import jakarta.persistence.FetchType;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 import java.io.Serializable;
 import java.time.Instant;
@@ -22,11 +25,10 @@ import javax.persistence.Id;
  */
 @Entity
 @Table(name = "entradas")
-@Access(AccessType.FIELD)
 public class Entrada implements Serializable {
 
-    @jakarta.persistence.Id
-    @jakarta.persistence.GeneratedValue(strategy = jakarta.persistence.GenerationType.IDENTITY)
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
     @Column(nullable = false)
@@ -35,8 +37,12 @@ public class Entrada implements Serializable {
     @Column(nullable = false)
     private Float total;
 
-    public Entrada() {
-    }
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "lote_id", nullable = false)
+    private Lote lote;
+
+    public Entrada() {}
+
 
     public Entrada(Integer id) {
         this.id = id;

@@ -37,85 +37,85 @@ public class pruebas {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        IConexion conexion = new Conexion();
-
-// Crear los DAOs
-        PromocionesDAO promocionesDAO = new PromocionesDAO(conexion);
-        ProductosDAO productosDAO = new ProductosDAO(conexion);
-        LoteDAO loteDAO = new LoteDAO(conexion);
-        EntradaDAO entradaDAO = new EntradaDAO(conexion);
-        DetalleDAO detalleDAO = new DetalleDAO(conexion);
-        ComprasDAO comprasDAO = new ComprasDAO(conexion);
-        UsuarioDAO usuarioDAO = new UsuarioDAO(conexion);
-        ProveedoresDAO proveedorDAO = new ProveedoresDAO(conexion);
-        VentasDAO ventaDAO = new VentasDAO(conexion);
-        
-Producto producto = new Producto("Producto A", 100.0f, "P001");
-// --- 1. Crear y probar Promoción ---
-        Promocion promocion = new Promocion("PROMO001", "Descuento 10%", producto, 100,10.0f  );
-        promocionesDAO.save(promocion);
-
-// --- 2. Crear y probar Usuario ---
-        Usuario usuarioVenta = new Usuario("Maria Gómez", 5678, "Vendedor", "Calle Vendedores 789", "555-2345");
-        usuarioDAO.save(usuarioVenta);
-
-// --- 3. Crear y probar Producto ---
-        
-        productosDAO.save(producto);
-
-// --- 4. Crear y probar Proveedor ---
-        List<String> telefonosProveedor = new ArrayList<>();
-        telefonosProveedor.add("555-6789");
-        Proveedor proveedor = new Proveedor("Proveedor A", "Calle Proveedores 10", telefonosProveedor, "RFC123456");
-        proveedorDAO.save(proveedor);
-
-// --- 5. Crear y probar Lote (requiere producto) ---
-    Entrada entrada = new Entrada(java.time.Instant.now(), 200.0f);
-        Lote lote = new Lote(java.time.Instant.now(),100, producto, entrada);
-        loteDAO.save(lote);
-
-// --- 6. Crear y probar Entrada (simple, sin relaciones complejas) ---
-        
-        entradaDAO.save(entrada);
-
-// --- 7. Crear y probar Compra ---
-        Compra compra = new Compra("Compra001",producto, proveedor,500.0f,java.time.Instant.now());
-        comprasDAO.save(compra);
-
-// --- 8. Crear y probar Detalle de Venta (requiere producto) ---
-        Venta venta = new Venta(200.0f, 200.0f, java.time.Instant.now(), usuarioVenta);
-        DetalleVenta detalle = new DetalleVenta(200.0f,200.0f,2,venta,producto );
-        detalleDAO.save(detalle);
-
-// --- 9. Crear y probar Venta (requiere usuario, promociones y detalles) ---
-        
-        venta.setUsuarioEnTurno(usuarioVenta);
-        venta.setSubtotal(900.0f);
-        venta.setTotal(1000.0f);
-        venta.setFecha(java.time.Instant.now());
-
-        List<DetalleVenta> detallesVenta = new ArrayList<>();
-        detallesVenta.add(detalle);
-        venta.setDetallesVenta(detallesVenta);
-
-        List<Promocion> promociones = new ArrayList<>();
-        promociones.add(promocion);
-        venta.setPromociones(promociones);
-
-        ventaDAO.save(venta);
-
-// --- Pruebas de recuperación, actualización y eliminación opcionales ---
-        System.out.println("Venta guardada con ID: " + venta.getId());
-        Venta ventaEncontrada = ventaDAO.findById(venta.getId());
-        System.out.println("Venta encontrada: Total = " + ventaEncontrada.getTotal());
-
-// Actualizar total
-        ventaEncontrada.setTotal(1100.0f);
-        ventaDAO.update(ventaEncontrada);
-
-// Eliminar
-        ventaDAO.delete(ventaEncontrada.getId());
-        System.out.println("Venta eliminada.");
+//        IConexion conexion = new Conexion();
+//
+//// Crear los DAOs
+//        PromocionesDAO promocionesDAO = new PromocionesDAO(conexion);
+//        ProductosDAO productosDAO = new ProductosDAO(conexion);
+//        LoteDAO loteDAO = new LoteDAO(conexion);
+//        EntradaDAO entradaDAO = new EntradaDAO(conexion);
+//        DetalleDAO detalleDAO = new DetalleDAO(conexion);
+//        ComprasDAO comprasDAO = new ComprasDAO(conexion);
+//        UsuarioDAO usuarioDAO = new UsuarioDAO(conexion);
+//        ProveedoresDAO proveedorDAO = new ProveedoresDAO(conexion);
+//        VentasDAO ventaDAO = new VentasDAO(conexion);
+//        
+//Producto producto = new Producto("Producto A", 100.0f, "P001");
+//// --- 1. Crear y probar Promoción ---
+//        Promocion promocion = new Promocion("PROMO001", "Descuento 10%", producto, 100,10.0f  );
+//        promocionesDAO.save(promocion);
+//
+//// --- 2. Crear y probar Usuario ---
+//        Usuario usuarioVenta = new Usuario("Maria Gómez", 5678, "Vendedor", "Calle Vendedores 789", "555-2345");
+//        usuarioDAO.save(usuarioVenta);
+//
+//// --- 3. Crear y probar Producto ---
+//        
+//        productosDAO.save(producto);
+//
+//// --- 4. Crear y probar Proveedor ---
+//        List<String> telefonosProveedor = new ArrayList<>();
+//        telefonosProveedor.add("555-6789");
+//        Proveedor proveedor = new Proveedor("Proveedor A", "Calle Proveedores 10", telefonosProveedor, "RFC123456");
+//        proveedorDAO.save(proveedor);
+//
+//// --- 5. Crear y probar Lote (requiere producto) ---
+//    Entrada entrada = new Entrada(java.time.Instant.now(), 200.0f);
+//        Lote lote = new Lote(java.time.Instant.now(),100, producto, entrada);
+//        loteDAO.save(lote);
+//
+//// --- 6. Crear y probar Entrada (simple, sin relaciones complejas) ---
+//        
+//        entradaDAO.save(entrada);
+//
+//// --- 7. Crear y probar Compra ---
+//        Compra compra = new Compra("Compra001",producto, proveedor,500.0f,java.time.Instant.now());
+//        comprasDAO.save(compra);
+//
+//// --- 8. Crear y probar Detalle de Venta (requiere producto) ---
+//        Venta venta = new Venta(200.0f, 200.0f, java.time.Instant.now(), usuarioVenta);
+//        DetalleVenta detalle = new DetalleVenta(200.0f,200.0f,2,venta,producto );
+//        detalleDAO.save(detalle);
+//
+//// --- 9. Crear y probar Venta (requiere usuario, promociones y detalles) ---
+//        
+//        venta.setUsuarioEnTurno(usuarioVenta);
+//        venta.setSubtotal(900.0f);
+//        venta.setTotal(1000.0f);
+//        venta.setFecha(java.time.Instant.now());
+//
+//        List<DetalleVenta> detallesVenta = new ArrayList<>();
+//        detallesVenta.add(detalle);
+//        venta.setDetallesVenta(detallesVenta);
+//
+//        List<Promocion> promociones = new ArrayList<>();
+//        promociones.add(promocion);
+//        venta.setPromociones(promociones);
+//
+//        ventaDAO.save(venta);
+//
+//// --- Pruebas de recuperación, actualización y eliminación opcionales ---
+//        System.out.println("Venta guardada con ID: " + venta.getId());
+//        Venta ventaEncontrada = ventaDAO.findById(venta.getId());
+//        System.out.println("Venta encontrada: Total = " + ventaEncontrada.getTotal());
+//
+//// Actualizar total
+//        ventaEncontrada.setTotal(1100.0f);
+//        ventaDAO.update(ventaEncontrada);
+//
+//// Eliminar
+//        ventaDAO.delete(ventaEncontrada.getId());
+//        System.out.println("Venta eliminada.");
 
 //        // Crear conexión a la base de datos
 //        IConexion conexion = new Conexion();

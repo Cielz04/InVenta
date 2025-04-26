@@ -8,13 +8,17 @@ import basura.Producto2;
 import basura.Entrada2;
 import jakarta.persistence.Access;
 import jakarta.persistence.AccessType;
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.FetchType;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
+import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 import java.io.Serializable;
 import java.time.Instant;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Objects;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -27,11 +31,10 @@ import javax.persistence.Id;
  */
 @Entity
 @Table(name = "lotes")
-@Access(AccessType.FIELD)
 public class Lote implements Serializable {
 
-    @jakarta.persistence.Id
-    @jakarta.persistence.GeneratedValue(strategy = jakarta.persistence.GenerationType.IDENTITY)
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
     @Column(nullable = false)
@@ -40,16 +43,13 @@ public class Lote implements Serializable {
     @Column(nullable = false)
     private Integer cantidad;
 
-    @ManyToOne(fetch = FetchType.LAZY, optional = false)
-    @JoinColumn(name = "producto_id")
-    private Producto producto;
+    @OneToMany(mappedBy = "lote", cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.LAZY)
+    private List<Producto> productos;
 
-    @ManyToOne(fetch = FetchType.LAZY, optional = false)
-    @JoinColumn(name = "entrada_id")
-    private Entrada entrada;
+    @OneToMany(mappedBy = "lote", cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.LAZY)
+    private List<Entrada> entradas;
 
-    public Lote() {
-    }
+    public Lote() {}
 
     public Lote(Integer id) {
         this.id = id;
@@ -60,6 +60,21 @@ public class Lote implements Serializable {
         this.caducidad = caducidad;
         this.cantidad = cantidad;
     }
+
+    public Lote(Instant caducidad, Integer cantidad, List<Producto> productos, List<Entrada> entradas) {
+        this.caducidad = caducidad;
+        this.cantidad = cantidad;
+        this.productos = productos;
+        this.entradas = entradas;
+    }
+
+    public Lote(Integer id, Instant caducidad, Integer cantidad, List<Producto> productos) {
+        this.id = id;
+        this.caducidad = caducidad;
+        this.cantidad = cantidad;
+        this.productos = productos;
+    }
+    
 
     public Integer getId() {
         return id;
@@ -85,20 +100,21 @@ public class Lote implements Serializable {
         this.cantidad = cantidad;
     }
 
-    public Producto getProducto() {
-        return producto;
+
+    public List<Producto> getProductos() {
+        return productos;
     }
 
-    public void setProducto(Producto producto) {
-        this.producto = producto;
+    public void setProductos(List<Producto> productos) {
+        this.productos = productos;
     }
 
-    public Entrada getEntrada() {
-        return entrada;
+    public List<Entrada> getEntradas() {
+        return entradas;
     }
 
-    public void setEntrada(Entrada entrada) {
-        this.entrada = entrada;
+    public void setEntradas(List<Entrada> entradas) {
+        this.entradas = entradas;
     }
 
     @Override
@@ -113,11 +129,6 @@ public class Lote implements Serializable {
         return Objects.hash(id);
     }
 
-    public Lote(Instant caducidad, Integer cantidad, Producto producto, Entrada entrada) {
-        this.caducidad = caducidad;
-        this.cantidad = cantidad;
-        this.producto = producto;
-        this.entrada = entrada;
-    }
+    
     
 }
