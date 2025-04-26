@@ -21,7 +21,7 @@ public class ConversorProducto {
             return null;
         }
         
-        TipoProducto tipo = this.identificador_TipoProducto(productoDTO.getTipo().toString());
+        TipoProducto tipo = this.identificador_TipoProducto(productoDTO.getTipo());
         
         Producto producto = new Producto(
                 productoDTO.getNombre(), 
@@ -41,7 +41,7 @@ public class ConversorProducto {
             return null;
         }
         
-        TipoProductoDTO tipo = this.identificador_TipoProductoDTO(producto.getTipo().toString());
+        TipoProductoDTO tipo = this.identificador_TipoProductoDTO(producto.getTipo());
         
         ProductoDTO productoDTO = new ProductoDTO(producto.getNombre(), 
                 producto.getMarca(), 
@@ -53,24 +53,24 @@ public class ConversorProducto {
         return productoDTO;
     }
     
-    public TipoProductoDTO identificador_TipoProductoDTO(String tipo){
+    public TipoProductoDTO identificador_TipoProductoDTO(TipoProducto tipo){
         switch (tipo) {
-            case "Medicamento":
+            case tipo.Medicamento:
                 return TipoProductoDTO.Medicamento;
                 
-            case "Varidado":
+            case tipo.Variado:
                 return TipoProductoDTO.Variado;
             default:
                 throw new AssertionError();
         }
     }
     
-    public TipoProducto identificador_TipoProducto(String tipo){
+    public TipoProducto identificador_TipoProducto(TipoProductoDTO tipo){
         switch (tipo) {
-            case "Medicamento":
+            case tipo.Medicamento:
                 return TipoProducto.Medicamento;
                 
-            case "Varidado":
+            case tipo.Variado:
                 return TipoProducto.Variado;
             default:
                 throw new AssertionError();

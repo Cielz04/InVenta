@@ -7,6 +7,7 @@ import java.util.Objects;
 
 public class ProductoDTO {
     
+    private Integer id;
     private String nombre;
     private String marca;
     private Float precio;
@@ -18,6 +19,10 @@ public class ProductoDTO {
      * Constructor.
      */
     public ProductoDTO() {
+    }
+
+    public ProductoDTO(Integer id) {
+        this.id = id;
     }
 
     /**
@@ -56,6 +61,16 @@ public class ProductoDTO {
         this.tipo = tipo;
         this.id_proveedores = id_proveedores;
     }
+
+    public Integer getId() {
+        return id;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
+    }
+    
+    
 
     /**
      * Permite obtener el código del producto.

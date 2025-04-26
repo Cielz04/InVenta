@@ -80,6 +80,8 @@ public class Producto implements Serializable {
         this.codigo = codigo;
         this.tipo = tipo;
     }
+    
+    
 
     // Getters y Setters
 

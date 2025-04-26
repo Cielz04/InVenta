@@ -74,12 +74,26 @@ public class Venta implements Serializable {
         this.promociones = promociones;
     }
 
+    public Venta(Integer id, Float total, Float subtotal, Instant fecha, Usuario usuarioEnTurno) {
+        this.id = id;
+        this.total = total;
+        this.subtotal = subtotal;
+        this.fecha = fecha;
+        this.usuarioEnTurno = usuarioEnTurno;
+    }
+    
+    
+
     public Venta(Float total, Float subtotal, Instant fecha, Usuario usuarioEnTurno) {
         this.total = total;
         this.subtotal = subtotal;
         this.fecha = fecha;
         this.usuarioEnTurno = usuarioEnTurno;
     }
+    
+    
+    
+    
 
     // Getters y Setters...
 
