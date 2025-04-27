@@ -37,18 +37,18 @@ public class pruebas {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-//        IConexion conexion = new Conexion();
-//
-//// Crear los DAOs
-//        PromocionesDAO promocionesDAO = new PromocionesDAO(conexion);
-//        ProductosDAO productosDAO = new ProductosDAO(conexion);
-//        LoteDAO loteDAO = new LoteDAO(conexion);
-//        EntradaDAO entradaDAO = new EntradaDAO(conexion);
-//        DetalleDAO detalleDAO = new DetalleDAO(conexion);
-//        ComprasDAO comprasDAO = new ComprasDAO(conexion);
-//        UsuarioDAO usuarioDAO = new UsuarioDAO(conexion);
-//        ProveedoresDAO proveedorDAO = new ProveedoresDAO(conexion);
-//        VentasDAO ventaDAO = new VentasDAO(conexion);
+        IConexion conexion = new Conexion();
+
+// Crear los DAOs
+        PromocionesDAO promocionesDAO = new PromocionesDAO(conexion);
+        ProductosDAO productosDAO = new ProductosDAO(conexion);
+        LoteDAO loteDAO = new LoteDAO(conexion);
+        EntradaDAO entradaDAO = new EntradaDAO(conexion);
+        DetalleDAO detalleDAO = new DetalleDAO(conexion);
+        ComprasDAO comprasDAO = new ComprasDAO(conexion);
+        UsuarioDAO usuarioDAO = new UsuarioDAO(conexion);
+        ProveedoresDAO proveedorDAO = new ProveedoresDAO(conexion);
+        VentasDAO ventaDAO = new VentasDAO(conexion);
 //        
 //Producto producto = new Producto("Producto A", 100.0f, "P001");
 //// --- 1. Crear y probar Promoción ---
@@ -283,44 +283,38 @@ public class pruebas {
 //        proveedorDAO.delete(proveedorEncontrado.getId());
 //        System.out.println("Proveedor eliminado.");
 //
-//        // --- Prueba de VentaDAO ---
-//
-//        // Crear una nueva venta
-//        Venta venta = new Venta();
-//        venta.setTotal(1000.0f);
-//        venta.setSubtotal(900.0f);
-//        venta.setFecha(java.time.Instant.now());
-//
-//        // Suponiendo que ya tienes un usuario y detalles de venta creados
-//        List<DetalleVenta> detallesVenta = new ArrayList<>(); // Crear detalles de venta
-//        List<Promocion> promociones = new ArrayList<>(); // Asignar promociones
-//        Usuario usuarioVenta = new Usuario("Maria Gómez", 5678, "Vendedor", "Calle Vendedores 789", "555-2345"); // Crear un usuario de venta
-//        venta.setUsuarioEnTurno(usuarioVenta);
-//        venta.setDetallesVenta(detallesVenta);
-//        venta.setPromociones(promociones);
-//
-//        // Guardar la venta
-//        ventaDAO.save(venta);
-//        System.out.println("Venta guardada con ID: " + venta.getId());
-//
-//        // Buscar venta por ID
-//        Venta ventaEncontrada = ventaDAO.findById(venta.getId());
-//        System.out.println("Venta encontrada: Total = " + ventaEncontrada.getTotal());
-//
-//        // Actualizar venta
-//        ventaEncontrada.setTotal(1100.0f);
-//        ventaDAO.update(ventaEncontrada);
-//        System.out.println("Venta actualizada: Total = " + ventaEncontrada.getTotal());
-//
-//        // Eliminar venta
-//        ventaDAO.delete(ventaEncontrada.getId());
-//        System.out.println("Venta eliminada.");
+        // --- Prueba de VentaDAO ---
 
+        // Crear una nueva venta
+        Venta venta = new Venta();
+        venta.setTotal(1000.0f);
+        venta.setSubtotal(900.0f);
+        venta.setFecha(java.time.Instant.now());
 
+        // Suponiendo que ya tienes un usuario y detalles de venta creados
+        List<DetalleVenta> detallesVenta = new ArrayList<>(); // Crear detalles de venta
+        List<Promocion> promociones = new ArrayList<>(); // Asignar promociones
+        Usuario usuarioVenta = new Usuario("Maria Gómez", 5678, "Vendedor", "Calle Vendedores 789", "555-2345"); // Crear un usuario de venta
+        venta.setUsuarioEnTurno(usuarioVenta);
+        venta.setDetallesVenta(detallesVenta);
+        venta.setPromociones(promociones);
 
+        // Guardar la venta
+        ventaDAO.save(venta);
+        System.out.println("Venta guardada con ID: " + venta.getId());
 
+        // Buscar venta por ID
+        Venta ventaEncontrada = ventaDAO.findById(venta.getId());
+        System.out.println("Venta encontrada: Total = " + ventaEncontrada.getTotal());
 
-        
+        // Actualizar venta
+        ventaEncontrada.setTotal(1100.0f);
+        ventaDAO.update(ventaEncontrada);
+        System.out.println("Venta actualizada: Total = " + ventaEncontrada.getTotal());
+
+        // Eliminar venta
+        ventaDAO.delete(ventaEncontrada.getId());
+        System.out.println("Venta eliminada.");
     }
 
 }
