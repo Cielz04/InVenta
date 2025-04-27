@@ -7,7 +7,9 @@ package facade;
 import factory.AbstractDAOFactory;
 import factory.DAOFactory;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import org.itson.diseniosofware.mifarmaciagi.persistencia.Conexion.Conexion;
 import org.itson.diseniosofware.mifarmaciagi.persistencia.Conexion.IConexion;
 import org.itson.diseniosofware.mifarmaciagi.persistencia.daos.ProductosDAO;
@@ -41,6 +43,14 @@ public class Facade implements IFacade {
             throw new Exception(e);
         }
     }
+    
+    public List<Lote> buscar_Lotes_de_Producto(Producto producto){
+        Producto productoBuscado = fabrica.getProductosDAO().findByCodigo(producto.getCodigo());
+        
+        List<Lote> lotes = fabrica.getLoteAO().findByProductoId(productoBuscado.getId());
+        
+        return lotes;
+    }
 
     public List<Lote> agregarLote(Lote lote) {
         List<Lote> lote1 = new ArrayList<>();
@@ -55,6 +65,18 @@ public class Facade implements IFacade {
         Producto productoBuscado = fabrica.getProductosDAO().findByCodigo(producto.getCodigo());
         
         return productoBuscado;
+    }
+    
+    public Map<Producto, List<Lote>> buscar_Productos_Y_Lotes() throws Exception{
+        List<Producto> productos = this.buscarProductos();
+        
+        Map<Producto, List<Lote>> resultado = new HashMap<>();
+        
+        for (Producto producto : productos) {
+            List<Lote> lotesDelProducto = fabrica.getLoteAO().findByProductoId(producto.getId());
+            resultado.put(producto, lotesDelProducto);
+        }
+        return resultado;
     }
 
 }

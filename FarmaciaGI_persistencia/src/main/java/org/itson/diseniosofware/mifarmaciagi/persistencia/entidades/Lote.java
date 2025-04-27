@@ -77,6 +77,14 @@ public class Lote implements Serializable {
         this.producto = producto;
     }
 
+    public Lote(Instant caducidad, Integer cantidad, Producto producto) {
+        this.caducidad = caducidad;
+        this.cantidad = cantidad;
+        this.producto = producto;
+    }
+    
+    
+
     public Integer getId() {
         return id;
     }
