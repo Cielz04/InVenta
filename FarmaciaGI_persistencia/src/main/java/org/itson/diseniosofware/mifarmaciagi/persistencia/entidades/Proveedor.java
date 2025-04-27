@@ -4,18 +4,19 @@
  */
 package org.itson.diseniosofware.mifarmaciagi.persistencia.entidades;
 
-import jakarta.persistence.CollectionTable;
+import jakarta.persistence.Entity;
+import jakarta.persistence.Table;
+import jakarta.persistence.Id;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
 import jakarta.persistence.Column;
 import jakarta.persistence.ElementCollection;
+import jakarta.persistence.CollectionTable;
 import jakarta.persistence.JoinColumn;
-import jakarta.persistence.Table;
 import java.io.Serializable;
 import java.util.List;
 import java.util.Objects;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+
 
 /**
  *
@@ -25,12 +26,14 @@ import javax.persistence.Id;
 @Table(name = "proveedores")
 public class Proveedor implements Serializable {
 
-     @jakarta.persistence.Id
-    @jakarta.persistence.GeneratedValue(strategy = jakarta.persistence.GenerationType.IDENTITY)
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
     @Column(nullable = false)
     private String nombre;
+
+    
 
     @Column(nullable = false)
     private String direccion;
@@ -51,6 +54,7 @@ public class Proveedor implements Serializable {
 
     /**
      * Constructor con parámetros de la clase Proveedor.
+     *
      * @param nombre Nombre del proveedor.
      * @param direccion Dirección del proveedor.
      * @param telefonos Lista de teléfonos del proveedor.
@@ -65,6 +69,7 @@ public class Proveedor implements Serializable {
 
     /**
      * Obtiene el identificador único del proveedor.
+     *
      * @return El identificador único del proveedor.
      */
     public Integer getId() {
@@ -73,6 +78,7 @@ public class Proveedor implements Serializable {
 
     /**
      * Establece el identificador único del proveedor.
+     *
      * @param id El identificador único del proveedor a establecer.
      */
     public void setId(Integer id) {
@@ -81,6 +87,7 @@ public class Proveedor implements Serializable {
 
     /**
      * Obtiene el nombre del proveedor.
+     *
      * @return El nombre del proveedor.
      */
     public String getNombre() {
@@ -89,6 +96,7 @@ public class Proveedor implements Serializable {
 
     /**
      * Establece el nombre del proveedor.
+     *
      * @param nombre El nombre del proveedor a establecer.
      */
     public void setNombre(String nombre) {
@@ -97,6 +105,7 @@ public class Proveedor implements Serializable {
 
     /**
      * Obtiene la dirección del proveedor.
+     *
      * @return La dirección del proveedor.
      */
     public String getDireccion() {
@@ -105,6 +114,7 @@ public class Proveedor implements Serializable {
 
     /**
      * Establece la dirección del proveedor.
+     *
      * @param direccion La dirección del proveedor a establecer.
      */
     public void setDireccion(String direccion) {
@@ -113,6 +123,7 @@ public class Proveedor implements Serializable {
 
     /**
      * Obtiene la lista de teléfonos del proveedor.
+     *
      * @return La lista de teléfonos del proveedor.
      */
     public List<String> getTelefonos() {
@@ -121,6 +132,7 @@ public class Proveedor implements Serializable {
 
     /**
      * Establece la lista de teléfonos del proveedor.
+     *
      * @param telefonos La lista de teléfonos del proveedor a establecer.
      */
     public void setTelefonos(List<String> telefonos) {
@@ -129,6 +141,7 @@ public class Proveedor implements Serializable {
 
     /**
      * Obtiene el Registro Federal de Contribuyentes (RFC) del proveedor.
+     *
      * @return El RFC del proveedor.
      */
     public String getRfc() {
@@ -137,6 +150,7 @@ public class Proveedor implements Serializable {
 
     /**
      * Establece el Registro Federal de Contribuyentes (RFC) del proveedor.
+     *
      * @param rfc El RFC del proveedor a establecer.
      */
     public void setRfc(String rfc) {
@@ -144,18 +158,20 @@ public class Proveedor implements Serializable {
     }
 
     /**
-     * Devuelve una representación en forma de cadena de caracteres de la instancia Proveedor.
+     * Devuelve una representación en forma de cadena de caracteres de la
+     * instancia Proveedor.
+     *
      * @return Una cadena que representa la instancia Proveedor.
      */
     @Override
     public String toString() {
-        return "Proveedor{" +
-                "id=" + id +
-                ", nombre='" + nombre + '\'' +
-                ", direccion='" + direccion + '\'' +
-                ", telefonos=" + telefonos +
-                ", rfc='" + rfc + '\'' +
-                '}';
+        return "Proveedor{"
+                + "id=" + id
+                + ", nombre='" + nombre + '\''
+                + ", direccion='" + direccion + '\''
+                + ", telefonos=" + telefonos
+                + ", rfc='" + rfc + '\''
+                + '}';
     }
 
     @Override
@@ -165,14 +181,18 @@ public class Proveedor implements Serializable {
 
     @Override
     public boolean equals(Object obj) {
-        if (this == obj) return true;
-        if (obj == null || getClass() != obj.getClass()) return false;
+        if (this == obj) {
+            return true;
+        }
+        if (obj == null || getClass() != obj.getClass()) {
+            return false;
+        }
         Proveedor proveedor = (Proveedor) obj;
-        return Objects.equals(id, proveedor.id) &&
-               Objects.equals(nombre, proveedor.nombre) &&
-               Objects.equals(direccion, proveedor.direccion) &&
-               Objects.equals(telefonos, proveedor.telefonos) &&
-               Objects.equals(rfc, proveedor.rfc);
+        return Objects.equals(id, proveedor.id)
+                && Objects.equals(nombre, proveedor.nombre)
+                && Objects.equals(direccion, proveedor.direccion)
+                && Objects.equals(telefonos, proveedor.telefonos)
+                && Objects.equals(rfc, proveedor.rfc);
     }
-    
+
 }

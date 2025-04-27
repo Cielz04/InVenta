@@ -28,7 +28,7 @@ import java.util.Objects;
 @Access(AccessType.FIELD)
 public class Compra implements Serializable {
 
-     @Id
+    @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
@@ -38,8 +38,8 @@ public class Compra implements Serializable {
     @JoinColumn(name = "producto_id", nullable = false)
     private Producto producto;
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "proveedor_id", nullable = false)
+    @ManyToOne
+    @JoinColumn(name = "proveedor_id") // Opcionalmente, puedes indicar el nombre de la columna
     private Proveedor proveedor;
 
     @Column(name = "costo_total")
@@ -109,14 +109,14 @@ public class Compra implements Serializable {
 
     @Override
     public String toString() {
-        return "Compra{" +
-                "id=" + id +
-                ", codigo='" + codigo + '\'' +
-                ", producto=" + producto +
-                ", proveedor=" + proveedor +
-                ", costoTotal=" + costoTotal +
-                ", fecha=" + fecha +
-                '}';
+        return "Compra{"
+                + "id=" + id
+                + ", codigo='" + codigo + '\''
+                + ", producto=" + producto
+                + ", proveedor=" + proveedor
+                + ", costoTotal=" + costoTotal
+                + ", fecha=" + fecha
+                + '}';
     }
 
     @Override
@@ -126,13 +126,17 @@ public class Compra implements Serializable {
 
     @Override
     public boolean equals(Object obj) {
-        if (this == obj) return true;
-        if (obj == null || getClass() != obj.getClass()) return false;
+        if (this == obj) {
+            return true;
+        }
+        if (obj == null || getClass() != obj.getClass()) {
+            return false;
+        }
         Compra other = (Compra) obj;
-        return Objects.equals(producto, other.producto) &&
-               Objects.equals(proveedor, other.proveedor) &&
-               Objects.equals(costoTotal, other.costoTotal) &&
-               Objects.equals(fecha, other.fecha);
+        return Objects.equals(producto, other.producto)
+                && Objects.equals(proveedor, other.proveedor)
+                && Objects.equals(costoTotal, other.costoTotal)
+                && Objects.equals(fecha, other.fecha);
     }
-    
+
 }

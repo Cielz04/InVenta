@@ -4,18 +4,19 @@
  */
 package org.itson.diseniosofware.mifarmaciagi.persistencia.entidades;
 
-import basura.Venta2;
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+
+
 
 /**
  *
@@ -25,8 +26,9 @@ import javax.persistence.Id;
 @Table(name = "usuarios")
 public class Usuario implements Serializable {
 
-    @jakarta.persistence.Id
-    @jakarta.persistence.GeneratedValue(strategy = jakarta.persistence.GenerationType.IDENTITY)
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
     @Column(nullable = false)
@@ -46,7 +48,7 @@ public class Usuario implements Serializable {
 
     // Relación con Venta: Un usuario puede tener muchas ventas
     @OneToMany(mappedBy = "usuarioEnTurno", cascade = CascadeType.ALL, orphanRemoval = true)
-    private List<Venta2> ventas = new ArrayList<>(); // Inicialización de la lista
+    private List<Venta> ventas = new ArrayList<>(); // Inicialización de la lista
 
     public Usuario() {
     }
@@ -113,11 +115,11 @@ public class Usuario implements Serializable {
         this.telefono = telefono;
     }
 
-    public List<Venta2> getVentas() {
+    public List<Venta> getVentas() {
         return ventas;
     }
 
-    public void setVentas(List<Venta2> ventas) {
+    public void setVentas(List<Venta> ventas) {
         this.ventas = ventas;
     }
     

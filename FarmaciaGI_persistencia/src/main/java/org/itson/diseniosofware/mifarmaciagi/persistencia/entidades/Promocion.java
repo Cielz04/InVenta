@@ -5,16 +5,18 @@
 package org.itson.diseniosofware.mifarmaciagi.persistencia.entidades;
 
 import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
 import jakarta.persistence.FetchType;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 import java.io.Serializable;
 import java.util.Objects;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+
+
 
 /**
  *
@@ -24,9 +26,9 @@ import javax.persistence.Id;
 @Table(name = "promociones")
 public class Promocion implements Serializable {
 
-    @jakarta.persistence.Id
-    @Column(length = 50)
-    private String codigo;
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Integer id;
 
     @Column(nullable = false)
     private String descripcion;
@@ -44,24 +46,24 @@ public class Promocion implements Serializable {
     public Promocion() {
     }
 
-    public Promocion(String codigo) {
-        this.codigo = codigo;
+    public Promocion(Integer id) {
+        this.id = id;
     }
 
-    public Promocion(String codigo, String descripcion, Producto producto, Integer cantidad, Float precioUnitario) {
-        this.codigo = codigo;
+    public Promocion(Integer id, String descripcion, Producto producto, Integer cantidad, Float precioUnitario) {
+        this.id = id;
         this.descripcion = descripcion;
         this.producto = producto;
         this.cantidad = cantidad;
         this.precioUnitario = precioUnitario;
     }
 
-    public String getCodigo() {
-        return codigo;
+    public Integer getCodigo() {
+        return id;
     }
 
-    public void setCodigo(String codigo) {
-        this.codigo = codigo;
+    public void setCodigo(Integer id) {
+        this.id = id;
     }
 
     public String getDescripcion() {
@@ -98,7 +100,7 @@ public class Promocion implements Serializable {
 
     @Override
     public int hashCode() {
-        return Objects.hash(codigo);
+        return Objects.hash(id);
     }
 
     @Override
@@ -106,13 +108,13 @@ public class Promocion implements Serializable {
         if (this == obj) return true;
         if (!(obj instanceof Promocion)) return false;
         Promocion other = (Promocion) obj;
-        return Objects.equals(codigo, other.codigo);
+        return Objects.equals(id, other.id);
     }
 
     @Override
     public String toString() {
         return "Promocion{" +
-                "codigo='" + codigo + '\'' +
+                "codigo='" + id + '\'' +
                 ", descripcion='" + descripcion + '\'' +
                 ", producto=" + (producto != null ? producto.getId() : null) +
                 ", cantidad=" + cantidad +

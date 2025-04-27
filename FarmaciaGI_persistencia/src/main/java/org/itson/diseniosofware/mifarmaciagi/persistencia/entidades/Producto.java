@@ -5,13 +5,15 @@
 package org.itson.diseniosofware.mifarmaciagi.persistencia.entidades;
 
 import Enums.TipoProducto;
-import basura.Lote2;
-import basura.DetalleVenta2;
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
 import jakarta.persistence.EnumType;
 import jakarta.persistence.Enumerated;
 import jakarta.persistence.FetchType;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToMany;
@@ -21,10 +23,8 @@ import java.io.Serializable;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Objects;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+
+
 
 /**
  *
@@ -57,16 +57,15 @@ public class Producto implements Serializable {
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "lote_id", nullable = false)
     private Lote lote;
-    
-    @OneToMany(fetch = FetchType.LAZY)
-    @JoinColumn(name = "detalle_id", nullable = false)
-    private DetalleVenta detalleVenta;
+
+    @OneToMany(mappedBy = "producto", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    private List<DetalleVenta> detalleVenta = new LinkedList<>();
 
     @Transient
     private LinkedList<Integer> id_proveedores;
 
-    public Producto() {}
-
+    public Producto() {
+    }
 
     public Producto(Integer id) {
         this.id = id;
@@ -85,11 +84,8 @@ public class Producto implements Serializable {
         this.codigo = codigo;
         this.tipo = tipo;
     }
-    
-    
 
     // Getters y Setters
-
     public Integer getId() {
         return id;
     }
@@ -146,8 +142,6 @@ public class Producto implements Serializable {
         this.lote = lote;
     }
 
-    
-
     public LinkedList<Integer> getId_proveedores() {
         return id_proveedores;
     }
@@ -157,7 +151,6 @@ public class Producto implements Serializable {
     }
 
     // Opcionales: equals y hashCode si lo vas a usar en colecciones
-
     @Override
     public int hashCode() {
         return Objects.hash(id, nombre, marca, precio, codigo, tipo);
@@ -165,8 +158,12 @@ public class Producto implements Serializable {
 
     @Override
     public boolean equals(Object obj) {
-        if (this == obj) return true;
-        if (!(obj instanceof Producto)) return false;
+        if (this == obj) {
+            return true;
+        }
+        if (!(obj instanceof Producto)) {
+            return false;
+        }
         Producto other = (Producto) obj;
         return Objects.equals(id, other.id);
     }
@@ -179,5 +176,5 @@ public class Producto implements Serializable {
         this.tipo = tipo;
         this.id_proveedores = id_proveedores;
     }
-    
+
 }

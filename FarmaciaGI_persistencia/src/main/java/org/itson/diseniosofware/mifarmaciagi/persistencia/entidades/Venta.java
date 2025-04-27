@@ -5,6 +5,11 @@
 package org.itson.diseniosofware.mifarmaciagi.persistencia.entidades;
 
 import jakarta.persistence.CascadeType;
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.JoinTable;
 import jakarta.persistence.ManyToMany;
@@ -15,10 +20,8 @@ import java.io.Serializable;
 import java.time.Instant;
 import java.util.ArrayList;
 import java.util.List;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+
+
 
 /**
  *
@@ -28,14 +31,15 @@ import javax.persistence.Id;
 @Table(name = "ventas")
 public class Venta implements Serializable {
 
-    @jakarta.persistence.Id
-    @jakarta.persistence.GeneratedValue(strategy = jakarta.persistence.GenerationType.IDENTITY)
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
+    @Column(nullable = false)
     private Float total;
-
+    @Column(nullable = false)
     private Float subtotal;
-
+    @Column(nullable = false)
     private Instant fecha;
 
     // Relación con Usuario
@@ -50,9 +54,9 @@ public class Venta implements Serializable {
     // Relación con Promociones (muchas a muchas)
     @ManyToMany
     @JoinTable(
-        name = "venta_promocion",
-        joinColumns = @JoinColumn(name = "venta_id"),
-        inverseJoinColumns = @JoinColumn(name = "promocion_id")
+            name = "venta_promocion",
+            joinColumns = @JoinColumn(name = "venta_id"),
+            inverseJoinColumns = @JoinColumn(name = "promocion_id")
     )
     private List<Promocion> promociones = new ArrayList<>(); // Inicializado
 
@@ -64,7 +68,7 @@ public class Venta implements Serializable {
     }
 
     public Venta(Integer id, Float total, Float subtotal, Instant fecha, Usuario usuarioEnTurno,
-                 List<DetalleVenta> detallesVenta, List<Promocion> promociones) {
+            List<DetalleVenta> detallesVenta, List<Promocion> promociones) {
         this.id = id;
         this.total = total;
         this.subtotal = subtotal;
@@ -81,8 +85,6 @@ public class Venta implements Serializable {
         this.fecha = fecha;
         this.usuarioEnTurno = usuarioEnTurno;
     }
-    
-    
 
     public Venta(Float total, Float subtotal, Instant fecha, Usuario usuarioEnTurno) {
         this.total = total;
@@ -90,13 +92,8 @@ public class Venta implements Serializable {
         this.fecha = fecha;
         this.usuarioEnTurno = usuarioEnTurno;
     }
-    
-    
-    
-    
 
     // Getters y Setters...
-
     public Integer getId() {
         return id;
     }
@@ -152,5 +149,5 @@ public class Venta implements Serializable {
     public void setPromociones(List<Promocion> promociones) {
         this.promociones = promociones;
     }
-    
+
 }
