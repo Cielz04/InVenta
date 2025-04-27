@@ -15,6 +15,8 @@ import org.itson.diseniosofware.mifarmaciagi.persistencia.Conexion.IConexion;
 import org.itson.diseniosofware.mifarmaciagi.persistencia.daos.ProductosDAO;
 import org.itson.diseniosofware.mifarmaciagi.persistencia.entidades.Lote;
 import org.itson.diseniosofware.mifarmaciagi.persistencia.entidades.Producto;
+import org.itson.diseniosofware.mifarmaciagi.persistencia.entidades.Usuario;
+import org.itson.diseniosofware.mifarmaciagi.persistencia.entidades.Venta;
 
 /**
  *
@@ -30,9 +32,7 @@ public class Facade implements IFacade {
         fabrica = new DAOFactory(conexion);
     }
 
-    
     //Métodos para subsistema Gestor Inventario
-    
     public List<Producto> buscarProductos() throws Exception {
 
         try {
@@ -46,12 +46,12 @@ public class Facade implements IFacade {
             throw new Exception(e);
         }
     }
-    
-    public List<Lote> buscar_Lotes_de_Producto(Producto producto){
+
+    public List<Lote> buscar_Lotes_de_Producto(Producto producto) {
         Producto productoBuscado = fabrica.getProductosDAO().findByCodigo(producto.getCodigo());
-        
+
         List<Lote> lotes = fabrica.getLoteAO().findByProductoId(productoBuscado.getId());
-        
+
         return lotes;
     }
 
@@ -63,21 +63,21 @@ public class Facade implements IFacade {
 
         return lote1;
     }
-    
+
     @Override
-    public Producto agregarProducto(Producto producto){
+    public Producto agregarProducto(Producto producto) {
         fabrica.getProductosDAO().save(producto);
         Producto productoBuscado = fabrica.getProductosDAO().findByCodigo(producto.getCodigo());
-        
+
         return productoBuscado;
     }
-    
+
     @Override
-    public Map<Producto, List<Lote>> buscar_Productos_Y_Lotes() throws Exception{
+    public Map<Producto, List<Lote>> buscar_Productos_Y_Lotes() throws Exception {
         List<Producto> productos = this.buscarProductos();
-        
+
         Map<Producto, List<Lote>> resultado = new HashMap<>();
-        
+
         for (Producto producto : productos) {
             List<Lote> lotesDelProducto = this.buscar_Lotes_de_Producto(producto);
             resultado.put(producto, lotesDelProducto);
@@ -85,7 +85,68 @@ public class Facade implements IFacade {
         return resultado;
     }
 
-    //Métodos para Subsistema Gestor Venta
-    
-    
+    // Métodos para Subsistema Gestor Venta
+    @Override
+    public Venta agregarVenta(Venta venta) {
+        try {
+            fabrica.getVentasDAO().save(venta);
+            return venta;
+        } catch (Exception e) {
+            System.out.println(e);
+            throw new RuntimeException("Error al agregar venta: " + e.getMessage());
+        }
+    }
+
+    @Override
+    public Venta buscarVentaPorId(Integer id) {
+        try {
+            Venta venta = fabrica.getVentasDAO().findById(id);
+            if (venta == null) {
+                throw new RuntimeException("Venta no encontrada con ID: " + id);
+            }
+            return venta;
+        } catch (RuntimeException e) {
+            System.out.println(e);
+            throw new RuntimeException("Error al buscar venta: " + e.getMessage());
+        }
+    }
+
+    @Override
+    public List<Venta> buscarTodasLasVentas() {
+        try {
+            List<Venta> ventas = fabrica.getVentasDAO().findAll();
+            if (ventas.isEmpty()) {
+                throw new RuntimeException("No se encontraron ventas registradas");
+            }
+            return ventas;
+        } catch (RuntimeException e) {
+            System.out.println(e);
+            throw new RuntimeException("Error al buscar ventas: " + e.getMessage());
+        }
+    }
+
+    @Override
+    public List<Venta> buscarVentasPorUsuario(Usuario usuario) {
+        try {
+            List<Venta> ventas = fabrica.getVentasDAO().findByUsuario(usuario);
+            if (ventas.isEmpty()) {
+                throw new RuntimeException("No se encontraron ventas para el usuario ID: " + usuario.getId());
+            }
+            return ventas;
+        } catch (RuntimeException e) {
+            System.out.println(e);
+            throw new RuntimeException("Error al buscar ventas por usuario: " + e.getMessage());
+        }
+    }
+
+    @Override
+    public void eliminarVenta(Integer id) {
+        try {
+            fabrica.getVentasDAO().delete(id);
+        } catch (Exception e) {
+            System.out.println(e);
+            throw new RuntimeException("Error al eliminar venta: " + e.getMessage());
+        }
+    }
+
 }

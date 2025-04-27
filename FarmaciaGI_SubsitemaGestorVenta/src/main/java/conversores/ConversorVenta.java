@@ -5,6 +5,7 @@
 package conversores;
 
 import java.time.Instant;
+import java.util.ArrayList;
 import java.util.List;
 import org.itson.diseniosofware.mifarmaciagi.persistencia.entidades.DetalleVenta;
 import org.itson.diseniosofware.mifarmaciagi.persistencia.entidades.Producto;
@@ -22,80 +23,93 @@ import org.itson.disenosoftware.farmaciagi_dtos.VentaDTO;
  * @author Dell
  */
 public class ConversorVenta {
-    
-    public Venta conversor_DTO_A_Entidad(VentaDTO ventaDTO){
-        if(ventaDTO == null){
+
+    public Venta conversor_DTO_A_Entidad(VentaDTO ventaDTO) {
+        if (ventaDTO == null) {
             System.out.println("La venta esta vacia en el ConversorVenta");
             return null;
         }
         Usuario usuario = new Usuario(ventaDTO.getId());
-        
+
         Venta venta = new Venta(
                 ventaDTO.getId(),
-                ventaDTO.getTotal(), 
-                ventaDTO.getSubtotal(), 
-                ventaDTO.getFecha(), 
+                ventaDTO.getTotal(),
+                ventaDTO.getSubtotal(),
+                ventaDTO.getFecha(),
                 usuario);
-        
+
         return venta;
     }
-    
-    public VentaDTO conversor_Entidad_A_DTO(Venta venta){
-        if(venta == null){
+
+    public VentaDTO conversor_Entidad_A_DTO(Venta venta) {
+        if (venta == null) {
             System.out.println("La venta esta vacia en el ConversorVenta");
             return null;
         }
-        
+
         UsuarioDTO usuarioDTO = new UsuarioDTO(venta.getId());
-        
+
         VentaDTO ventaDTO = new VentaDTO(
-                venta.getId(), 
-                venta.getTotal(), 
-                venta.getSubtotal(), 
-                venta.getFecha(), 
+                venta.getId(),
+                venta.getTotal(),
+                venta.getSubtotal(),
+                venta.getFecha(),
                 usuarioDTO);
-        
+
         return ventaDTO;
     }
-    
-    public Promocion convertidor_DTO_A_Entidad(PromocionDTO promocionDTO){
-        if(promocionDTO == null){
+
+    public Promocion convertidor_DTO_A_Entidad(PromocionDTO promocionDTO) {
+        if (promocionDTO == null) {
             System.out.println("La promocion esta vacia en el convertidorVenta");
             return null;
         }
-        
+
         Producto producto = new Producto(promocionDTO.getProducto().getId());
-        
+
         Promocion promocion = new Promocion(
-                promocionDTO.getCodigo(), 
-                promocionDTO.getDescripcion(), 
-                producto, 
-                promocionDTO.getCantidad(), 
+                promocionDTO.getCodigo(),
+                promocionDTO.getDescripcion(),
+                producto,
+                promocionDTO.getCantidad(),
                 promocionDTO.getPrecioUnitario());
-        
+
         return promocion;
-        
+
     }
-    
-    public PromocionDTO convertidor_DTO_A_Entidad(Promocion promocion){
-        if(promocion == null){
+
+    public PromocionDTO convertidor_DTO_A_Entidad(Promocion promocion) {
+        if (promocion == null) {
             System.out.println("La promocion esta vacia en el convertidorVenta");
             return null;
         }
-        
+
         ProductoDTO productoDTO = new ProductoDTO(promocion.getProducto().getId());
-        
+
         PromocionDTO promocionDTO = new PromocionDTO(
-                promocion.getCodigo(), 
-                promocion.getDescripcion(), 
-                productoDTO, 
-                promocion.getCantidad(), 
+                promocion.getCodigo(),
+                promocion.getDescripcion(),
+                productoDTO,
+                promocion.getCantidad(),
                 promocion.getPrecioUnitario());
-        
+
         return promocionDTO;
-        
+
     }
-    
+
+    public List<VentaDTO> convertidor_Lista_Entidad_A_DTO(List<Venta> ventas) {
+        if (ventas == null || ventas.isEmpty()) {
+            return new ArrayList<>();
+        }
+
+        List<VentaDTO> listaVentasDTO = new ArrayList<>();
+        for (Venta venta : ventas) {
+            VentaDTO ventaDTO = conversor_Entidad_A_DTO(venta);
+            listaVentasDTO.add(ventaDTO);
+        }
+        return listaVentasDTO;
+    }
+
 //    public DetalleVenta conversor_DTO_A_Entidad(DetalleVentaDTO detallesVentaDTO){
 //        if(detallesVentaDTO == null){
 //            System.out.println("El detalleVenta esta vacio en el ConversorVenta");
@@ -113,6 +127,4 @@ public class ConversorVenta {
 //        return detallesVenta;
 //        
 //    }
-    
-    
 }
