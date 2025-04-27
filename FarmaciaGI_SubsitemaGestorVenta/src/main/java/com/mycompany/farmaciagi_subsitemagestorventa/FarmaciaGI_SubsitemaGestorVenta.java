@@ -34,6 +34,7 @@ public class FarmaciaGI_SubsitemaGestorVenta {
 
             // Crear la VentaDTO
             VentaDTO ventaDTO = new VentaDTO();
+            ventaDTO.setId(1);
             ventaDTO.setFecha(Instant.now());
             ventaDTO.setSubtotal(200.0f);
             ventaDTO.setTotal(200.0f);
