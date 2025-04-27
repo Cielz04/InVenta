@@ -52,6 +52,7 @@ public class Facade implements IFacade {
         return lotes;
     }
 
+    @Override
     public List<Lote> agregarLote(Lote lote) {
         List<Lote> lote1 = new ArrayList<>();
         fabrica.getLoteAO().save(lote);
@@ -60,6 +61,7 @@ public class Facade implements IFacade {
         return lote1;
     }
     
+    @Override
     public Producto agregarProducto(Producto producto){
         fabrica.getProductosDAO().save(producto);
         Producto productoBuscado = fabrica.getProductosDAO().findByCodigo(producto.getCodigo());
@@ -67,13 +69,14 @@ public class Facade implements IFacade {
         return productoBuscado;
     }
     
+    @Override
     public Map<Producto, List<Lote>> buscar_Productos_Y_Lotes() throws Exception{
         List<Producto> productos = this.buscarProductos();
         
         Map<Producto, List<Lote>> resultado = new HashMap<>();
         
         for (Producto producto : productos) {
-            List<Lote> lotesDelProducto = fabrica.getLoteAO().findByProductoId(producto.getId());
+            List<Lote> lotesDelProducto = this.buscar_Lotes_de_Producto(producto);
             resultado.put(producto, lotesDelProducto);
         }
         return resultado;
