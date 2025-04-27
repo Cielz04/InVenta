@@ -4,7 +4,7 @@ import java.util.Objects;
 
 public class PromocionDTO {
 
-    private String codigo;
+    private Integer codigo;
     private String descripcion;
     private ProductoDTO producto;
     private Integer cantidad;
@@ -15,7 +15,7 @@ public class PromocionDTO {
      *
      * @param codigo El código de la promoción.
      */
-    public PromocionDTO(String codigo) {
+    public PromocionDTO(Integer codigo) {
         this.codigo = codigo;
     }
 
@@ -30,7 +30,7 @@ public class PromocionDTO {
      * @param cantidad La cantidad mínima de producto de la promoción
      * @param precioUnitario El precio unitario del producto de la promoción
      */
-    public PromocionDTO(String codigo, String descripcion, ProductoDTO producto, Integer cantidad, Float precioUnitario) {
+    public PromocionDTO(Integer codigo, String descripcion, ProductoDTO producto, Integer cantidad, Float precioUnitario) {
         this.codigo = codigo;
         this.descripcion = descripcion;
         this.producto = producto;
@@ -43,7 +43,7 @@ public class PromocionDTO {
      *
      * @return El código de la promoción
      */
-    public String getCodigo() {
+    public Integer getCodigo() {
         return codigo;
     }
 
