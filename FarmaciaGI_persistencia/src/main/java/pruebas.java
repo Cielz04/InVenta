@@ -315,6 +315,12 @@ public class pruebas {
 //        // Eliminar venta
 //        ventaDAO.delete(ventaEncontrada.getId());
 //        System.out.println("Venta eliminada.");
+
+
+
+
+
+        
     }
 
 }

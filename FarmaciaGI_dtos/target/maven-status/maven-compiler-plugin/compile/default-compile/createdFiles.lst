@@ -1,5 +1,8 @@
+Enums\TipoProductoDTO.class
 org\itson\disenosoftware\farmaciagi_dtos\DireccionDTO.class
+org\itson\disenosoftware\farmaciagi_dtos\LoteDTO.class
 org\itson\disenosoftware\farmaciagi_dtos\AdministradorDTO.class
+org\itson\disenosoftware\farmaciagi_dtos\DetalleVentaDTO.class
 org\itson\disenosoftware\farmaciagi_dtos\ProveedorDTO.class
 org\itson\disenosoftware\farmaciagi_dtos\VentaDTO.class
 org\itson\disenosoftware\farmaciagi_dtos\EmpleadoDTO.class
