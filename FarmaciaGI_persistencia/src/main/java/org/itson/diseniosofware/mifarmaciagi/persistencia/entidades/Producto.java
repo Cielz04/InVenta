@@ -54,9 +54,6 @@ public class Producto implements Serializable {
     @Column(nullable = false)
     private TipoProducto tipo;
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "lote_id", nullable = false)
-    private Lote lote;
 
     @OneToMany(mappedBy = "producto", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     private List<DetalleVenta> detalleVenta = new LinkedList<>();
@@ -134,13 +131,7 @@ public class Producto implements Serializable {
         this.tipo = tipo;
     }
 
-    public Lote getLote() {
-        return lote;
-    }
-
-    public void setLote(Lote lote) {
-        this.lote = lote;
-    }
+   
 
     public LinkedList<Integer> getId_proveedores() {
         return id_proveedores;
