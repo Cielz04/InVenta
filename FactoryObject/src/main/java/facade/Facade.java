@@ -30,6 +30,9 @@ public class Facade implements IFacade {
         fabrica = new DAOFactory(conexion);
     }
 
+    
+    //Métodos para subsistema Gestor Inventario
+    
     public List<Producto> buscarProductos() throws Exception {
 
         try {
@@ -82,4 +85,7 @@ public class Facade implements IFacade {
         return resultado;
     }
 
+    //Métodos para Subsistema Gestor Venta
+    
+    
 }

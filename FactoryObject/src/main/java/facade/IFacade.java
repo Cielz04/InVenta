@@ -19,4 +19,5 @@ public interface IFacade {
     public Producto agregarProducto(Producto producto);
     public List<Lote> agregarLote(Lote lote);
     
+    
 }

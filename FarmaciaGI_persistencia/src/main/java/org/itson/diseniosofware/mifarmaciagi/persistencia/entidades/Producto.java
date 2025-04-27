@@ -58,7 +58,7 @@ public class Producto implements Serializable {
     @JoinColumn(name = "lote_id", nullable = false)
     private Lote lote;
     
-    @ManyToOne(fetch = FetchType.LAZY)
+    @OneToMany(fetch = FetchType.LAZY)
     @JoinColumn(name = "detalle_id", nullable = false)
     private DetalleVenta detalleVenta;
 

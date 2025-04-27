@@ -48,8 +48,8 @@ import javax.persistence.Id;
         @JoinColumn(name = "id_venta")
         private Venta venta;
 
-        @OneToMany(mappedBy = "detalleVenta", cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.LAZY)
-        private List<Producto> productos;
+        @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+        private Producto producto;
 
         public DetalleVenta() {
         }
@@ -72,12 +72,12 @@ import javax.persistence.Id;
         this.venta = venta;
     }
 
-    public DetalleVenta(Float precioUnitario, Float importe, Integer cantidad, Venta venta, List<Producto> productos) {
+    public DetalleVenta(Float precioUnitario, Float importe, Integer cantidad, Venta venta, Producto producto) {
         this.precioUnitario = precioUnitario;
         this.importe = importe;
         this.cantidad = cantidad;
         this.venta = venta;
-        this.productos = productos;
+        this.producto = producto;
     }
     
 
@@ -125,12 +125,12 @@ import javax.persistence.Id;
             this.venta = venta;
         }
 
-    public List<Producto> getProductos() {
-        return productos;
+    public Producto getProductos() {
+        return producto;
     }
 
-    public void setProductos(List<Producto> productos) {
-        this.productos = productos;
+    public void setProductos(Producto producto) {
+        this.producto = producto;
     }
 
         
