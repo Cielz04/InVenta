@@ -122,6 +122,14 @@ public class Lote implements Serializable {
         this.entradas = entradas;
     }
 
+    public Producto getProducto() {
+        return producto;
+    }
+
+    public void setProducto(Producto producto) {
+        this.producto = producto;
+    }  
+    
     @Override
     public boolean equals(Object obj) {
         if (this == obj) {
