@@ -66,5 +66,4 @@ public class AdministradorDTO {
         this.telefono = telefono;
     }
     
-    
 }

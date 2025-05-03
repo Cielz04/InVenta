@@ -10,6 +10,5 @@ package Enums;
  */
 public enum TipoProductoDTO {
     Medicamento, 
-    Variado;
-    
+    Variado;  
 }

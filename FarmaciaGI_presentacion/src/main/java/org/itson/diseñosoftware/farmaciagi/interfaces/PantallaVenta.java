@@ -25,6 +25,7 @@ public class PantallaVenta extends javax.swing.JFrame {
     private IGestorPromociones gestorPromociones;
     private List<ProductoDTO> productosVenta;
     private List<PromocionDTO> promocionesVenta;
+    
 
     public PantallaVenta() {
         initComponents();
@@ -461,7 +462,7 @@ public class PantallaVenta extends javax.swing.JFrame {
                     "-",
                     producto.getCantidad(),
                     "+",
-                    producto.getCosto()
+                    producto.getPrecio()
                 };
                 modelo.addRow(fila);
             }
