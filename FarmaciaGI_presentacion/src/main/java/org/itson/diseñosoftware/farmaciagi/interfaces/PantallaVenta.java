@@ -17,6 +17,7 @@ import javax.swing.table.TableColumnModel;
 import org.itson.disenosoftware.farmaciagi_dtos.DetalleVentaDTO;
 import org.itson.disenosoftware.farmaciagi_dtos.ProductoDTO;
 import org.itson.disenosoftware.farmaciagi_dtos.PromocionDTO;
+import org.itson.disenosoftware.farmaciagi_dtos.UsuarioDTO;
 import org.itson.disenosoftware.farmaciagi_dtos.VentaDTO;
 
 public class PantallaVenta extends javax.swing.JFrame {
@@ -25,6 +26,7 @@ public class PantallaVenta extends javax.swing.JFrame {
     private List<DetalleVentaDTO> detallesVenta = new ArrayList<>();
     private IGestorVenta gestorVenta = new GestorVenta();
     private IGestorInventario gestorInventario = new GestorInvetario();
+    private UsuarioDTO usuarioenTurnoDTO = new UsuarioDTO(1);
 
     public PantallaVenta() {
         initComponents();
@@ -411,7 +413,7 @@ public class PantallaVenta extends javax.swing.JFrame {
         try {
             VentaDTO venta = new VentaDTO();
             venta.setFecha(Instant.now());
-            //venta.setUsuarioId(1); // Usuario logueado en el futuro
+            venta.setUsuarioEnTurno(usuarioenTurnoDTO); // Usuario logueado en el futuro
             venta.setDetallesVenta(detallesVenta);
 
             float subtotal = 0f;
