@@ -196,30 +196,30 @@ public class DlgAgregarPromocion extends javax.swing.JDialog {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnAgregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAgregarActionPerformed
-        int respuesta = JOptionPane.showConfirmDialog(this, "¿Deseas confirmar la creación de la promoción?",
-                "Confirmar", JOptionPane.YES_NO_OPTION);
-        if (respuesta == JOptionPane.YES_OPTION) {
-            try {
-                PromocionDTO promocionNueva = new PromocionDTO(generarCodigo(), txtDescripcion.getText(), (ProductoDTO) cbxProductos.getSelectedItem(),
-                        Integer.valueOf(txtCantidad.getText()), Float.valueOf(txtPrecioUnitario.getText()));
-
-                if (promocionNueva.isValid()) {
-                    try {
-                        gestorPromociones.registrarPromocion(promocionNueva);
-                        JOptionPane.showMessageDialog(this, "Se registró correctamente la promoción.",
-                                "Información", JOptionPane.INFORMATION_MESSAGE);
-                    } catch (SubsistemaPromocionesException ex) {
-                        JOptionPane.showMessageDialog(this, "No se pudo registrar la promoción.",
-                                "Error", JOptionPane.ERROR_MESSAGE);
-                    }
-                    dispose();
-                } else {
-                    JOptionPane.showMessageDialog(this, "Asegúrese de ingresar la información de la promoción correctamente.");
-                }
-            } catch (InputMismatchException | NumberFormatException e) {
-                JOptionPane.showMessageDialog(this, "Asegúrese de ingresar la información de la promoción correctamente.");
-            }
-        }
+//        int respuesta = JOptionPane.showConfirmDialog(this, "¿Deseas confirmar la creación de la promoción?",
+//                "Confirmar", JOptionPane.YES_NO_OPTION);
+//        if (respuesta == JOptionPane.YES_OPTION) {
+//            try {
+//                PromocionDTO promocionNueva = new PromocionDTO(generarCodigo(), txtDescripcion.getText(), (ProductoDTO) cbxProductos.getSelectedItem(),
+//                        Integer.valueOf(txtCantidad.getText()), Float.valueOf(txtPrecioUnitario.getText()));
+//
+//                if (promocionNueva.isValid()) {
+//                    try {
+//                        gestorPromociones.registrarPromocion(promocionNueva);
+//                        JOptionPane.showMessageDialog(this, "Se registró correctamente la promoción.",
+//                                "Información", JOptionPane.INFORMATION_MESSAGE);
+//                    } catch (SubsistemaPromocionesException ex) {
+//                        JOptionPane.showMessageDialog(this, "No se pudo registrar la promoción.",
+//                                "Error", JOptionPane.ERROR_MESSAGE);
+//                    }
+//                    dispose();
+//                } else {
+//                    JOptionPane.showMessageDialog(this, "Asegúrese de ingresar la información de la promoción correctamente.");
+//                }
+//            } catch (InputMismatchException | NumberFormatException e) {
+//                JOptionPane.showMessageDialog(this, "Asegúrese de ingresar la información de la promoción correctamente.");
+//            }
+//        }
     }//GEN-LAST:event_btnAgregarActionPerformed
 
     private void btnCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelarActionPerformed

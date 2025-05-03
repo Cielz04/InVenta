@@ -33,6 +33,12 @@ public class GestorInvetario implements IGestorInventario {
         this.facade = new Facade();
     }
 
+    /**
+     *
+     * @return
+     * @throws Exception
+     */
+    @Override
     public Map<ProductoDTO, List<LoteDTO>> buscar_Productos_Y_Lotes() throws Exception {
         Map<Producto, List<Lote>> listaEnt = facade.buscar_Productos_Y_Lotes();
         Map<ProductoDTO, List<LoteDTO>> resultado = new HashMap<>();
@@ -73,4 +79,9 @@ public class GestorInvetario implements IGestorInventario {
         return listaLotesDTO;
     }
 
+    @Override
+    public ProductoDTO buscarProductoPorId(Integer id) {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
+    
 }

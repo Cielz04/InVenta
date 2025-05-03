@@ -27,7 +27,7 @@ public class DlgTicket extends javax.swing.JDialog {
         this.venta = venta;
         this.pago = pago;
         initComponents();
-        llenarTabla();
+        //llenarTabla();
         actualizarDatos();
     }
 
@@ -198,33 +198,33 @@ public class DlgTicket extends javax.swing.JDialog {
      * 
      */
     private void actualizarCantidad() {
-        for (ProductoDTO producto : venta.getProductos()) {
-            cantidad += producto.getCantidad();
-        }
+//        for (ProductoDTO producto : venta.getProductos()) {
+//            cantidad += producto.getCantidad();
+//        }
     }
     
     /**
      * Método para llenar la tabla que contiene a todos los productos de la venta
      * 
      */
-    private void llenarTabla() {
-        DefaultTableModel modelo = new DefaultTableModel();
-
-        modelo.addColumn("ARTICULO");
-        modelo.addColumn("CANTIDAD");
-        modelo.addColumn("IMPORTE");
-
-        for (ProductoDTO producto : venta.getProductos()) {
-            Object[] fila = {
-                producto.getNombre(),
-                producto.getCantidad(),
-                producto.getCantidad() * producto.getCosto()
-            };
-            modelo.addRow(fila);
-        }
-        tblProductosVenta.setModel(modelo);
-    }
-    
+//    private void llenarTabla() {
+//        DefaultTableModel modelo = new DefaultTableModel();
+//
+//        modelo.addColumn("ARTICULO");
+//        modelo.addColumn("CANTIDAD");
+//        modelo.addColumn("IMPORTE");
+//
+//        for (ProductoDTO producto : venta.getProductos()) {
+//            Object[] fila = {
+//                producto.getNombre(),
+//                producto.getCantidad(),
+//                producto.getCantidad() * producto.getCosto()
+//            };
+//            modelo.addRow(fila);
+//        }
+//        tblProductosVenta.setModel(modelo);
+//    }
+//    
     /**
      * Método para actualizar la fecha y adémas le asigna un formato.
      * 

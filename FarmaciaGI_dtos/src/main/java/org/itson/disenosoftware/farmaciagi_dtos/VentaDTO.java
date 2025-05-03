@@ -20,28 +20,30 @@ public class VentaDTO {
     
     private UsuarioDTO usuarioEnTurno;
     
+    private List<DetalleVentaDTO> detallesVenta = new ArrayList<>();
+    
     private List<PromocionDTO> promociones; // Inicializado
 
     public VentaDTO() {
     }
 
-    public VentaDTO(Integer id, Float total, Float subtotal, Instant fecha, UsuarioDTO usuarioEnTurno) {
+    public VentaDTO(Integer id, Float total, Float subtotal, Instant fecha, UsuarioDTO usuarioEnTurno, List<DetalleVentaDTO> detallesVenta) {
         this.id = id;
         this.total = total;
         this.subtotal = subtotal;
         this.fecha = fecha;
         this.usuarioEnTurno = usuarioEnTurno;
+        this.detallesVenta = detallesVenta;
     }
 
-    public VentaDTO(Integer id, Float total, Float subtotal, Instant fecha, UsuarioDTO usuarioEnTurno, List<PromocionDTO> promociones) {
-        this.id = id;
-        this.total = total;
-        this.subtotal = subtotal;
-        this.fecha = fecha;
-        this.usuarioEnTurno = usuarioEnTurno;
-        this.promociones = promociones;
+    public List<DetalleVentaDTO> getDetallesVenta() {
+        return detallesVenta;
     }
 
+    public void setDetallesVenta(List<DetalleVentaDTO> detallesVenta) {
+        this.detallesVenta = detallesVenta;
+    }
+    
     public Integer getId() {
         return id;
     }

@@ -7,9 +7,12 @@ package BO;
 import conversores.ConversorVenta;
 import facade.Facade;
 import facade.IFacade;
+import java.util.ArrayList;
 import java.util.List;
 import org.itson.diseniosofware.mifarmaciagi.persistencia.entidades.Usuario;
 import org.itson.diseniosofware.mifarmaciagi.persistencia.entidades.Venta;
+import org.itson.disenosoftware.farmaciagi_dtos.DetalleVentaDTO;
+import org.itson.disenosoftware.farmaciagi_dtos.ProductoDTO;
 import org.itson.disenosoftware.farmaciagi_dtos.UsuarioDTO;
 import org.itson.disenosoftware.farmaciagi_dtos.VentaDTO;
 
@@ -59,5 +62,19 @@ public class GestorVenta implements IGestorVenta {
     public void eliminarVenta(Integer id) {
         facade.eliminarVenta(id);
     }
+    
+    public List<DetalleVentaDTO> convertirProductosADetalles(List<ProductoDTO> productosVenta) {
+    List<DetalleVentaDTO> detalles = new ArrayList<>();
+    for (ProductoDTO p : productosVenta) {
+        DetalleVentaDTO d = new DetalleVentaDTO();
+        d.setId(p.getId()); 
+        d.setCantidad(p.getCantidad());
+        d.setPrecioUnitario(p.getPrecio());
+        d.setImporte(p.getCantidad() * p.getPrecio());
+        detalles.add(d);
+    }
+    return detalles;
+}
+
 }
 

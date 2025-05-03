@@ -325,23 +325,23 @@ public class DlgPromociones extends javax.swing.JDialog {
     }//GEN-LAST:event_btnProductosActionPerformed
 
     private void llenarTabla() {
-        DefaultTableModel modelo = new DefaultTableModel();
-
-        modelo.addColumn("DESCRIPCIÓN");
-        modelo.addColumn("PRODUCTO");
-
-        if (!gestorPromociones.obtenerPromociones().isEmpty()) {
-            for (PromocionDTO promocion : gestorPromociones.obtenerPromociones()) {
-                Object[] fila = {
-                    promocion.getDescripcion(),
-                    promocion.getProducto().getNombre().concat(", ").concat(promocion.getProducto().getMarca()).concat(", ").concat(NumberFormat.getCurrencyInstance().format(promocion.getProducto().getCosto()))
-                };
-                modelo.addRow(fila);
-            }
-        }
-
-        tblPromociones.setModel(modelo);
-        TableColumnModel columnModel = tblPromociones.getColumnModel();
+//        DefaultTableModel modelo = new DefaultTableModel();
+//
+//        modelo.addColumn("DESCRIPCIÓN");
+//        modelo.addColumn("PRODUCTO");
+//
+//        if (!gestorPromociones.obtenerPromociones().isEmpty()) {
+//            for (PromocionDTO promocion : gestorPromociones.obtenerPromociones()) {
+//                Object[] fila = {
+//                    promocion.getDescripcion(),
+//                    promocion.getProducto().getNombre().concat(", ").concat(promocion.getProducto().getMarca()).concat(", ").concat(NumberFormat.getCurrencyInstance().format(promocion.getProducto().getCosto()))
+//                };
+//                modelo.addRow(fila);
+//            }
+//        }
+//
+//        tblPromociones.setModel(modelo);
+//        TableColumnModel columnModel = tblPromociones.getColumnModel();
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
