@@ -37,7 +37,7 @@ public class DlgComprarProductos extends javax.swing.JDialog {
         this.productos = new LinkedList<>();
 
         initComponents();
-        llenarTablaProductos();
+        //llenarTablaProductos();
     }
 
     /**
@@ -301,50 +301,50 @@ public class DlgComprarProductos extends javax.swing.JDialog {
         dlgPromociones.setVisible(true);
     }//GEN-LAST:event_jButton1ActionPerformed
 
-    /**
-     * Método para llenar la tabla de productos existentes
-     */
-    private void llenarTablaProductos() {
-        DefaultTableModel modelo = new DefaultTableModel();
-        
-        modelo.addColumn("CODIGO");
-        modelo.addColumn("NOMBRE");
-        modelo.addColumn("MARCA");
-        modelo.addColumn("COSTO");
-        modelo.addColumn("");
-        
-        productos = gestorProductos.obtnerInventario();
-        for (ProductoDTO p : productos) {
-            Object[] fila = {
-                p.getCodigo(),
-                p.getNombre(),
-                p.getMarca(),
-                p.getCosto(),
-                "Ver opciones"
-            };
-            modelo.addRow(fila);
-        }
-        
-        tblProductosInventario.setModel(modelo);
-        TableColumnModel columnModel = tblProductosInventario.getColumnModel();
-        
-        ButtonColumn modificarButtonColumn = new ButtonColumn("Ver opciones", new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                int filaSeleccionada = tblProductosInventario.getSelectedRow();
-                productos.get(filaSeleccionada);
-                
-                if (filaSeleccionada != -1) {                    
-                    ProductoDTO productoSeleccionado = productos.get(filaSeleccionada);
-                    DlgOpcionesProveedores on = new DlgOpcionesProveedores(productoSeleccionado);
-                    
-                }
-                
-            }
-        });
-        columnModel.getColumn(4).setCellRenderer(modificarButtonColumn);
-        columnModel.getColumn(4).setCellEditor(modificarButtonColumn);
-    }
+//    /**
+//     * Método para llenar la tabla de productos existentes
+//     */
+//    private void llenarTablaProductos() {
+//        DefaultTableModel modelo = new DefaultTableModel();
+//        
+//        modelo.addColumn("CODIGO");
+//        modelo.addColumn("NOMBRE");
+//        modelo.addColumn("MARCA");
+//        modelo.addColumn("COSTO");
+//        modelo.addColumn("");
+//        
+//        productos = gestorProductos.obtnerInventario();
+//        for (ProductoDTO p : productos) {
+//            Object[] fila = {
+//                p.getCodigo(),
+//                p.getNombre(),
+//                p.getMarca(),
+//                p.getCosto(),
+//                "Ver opciones"
+//            };
+//            modelo.addRow(fila);
+//        }
+//        
+//        tblProductosInventario.setModel(modelo);
+//        TableColumnModel columnModel = tblProductosInventario.getColumnModel();
+//        
+//        ButtonColumn modificarButtonColumn = new ButtonColumn("Ver opciones", new ActionListener() {
+//            @Override
+//            public void actionPerformed(ActionEvent e) {
+//                int filaSeleccionada = tblProductosInventario.getSelectedRow();
+//                productos.get(filaSeleccionada);
+//                
+//                if (filaSeleccionada != -1) {                    
+//                    ProductoDTO productoSeleccionado = productos.get(filaSeleccionada);
+//                    DlgOpcionesProveedores on = new DlgOpcionesProveedores(productoSeleccionado);
+//                    
+//                }
+//                
+//            }
+//        });
+//        columnModel.getColumn(4).setCellRenderer(modificarButtonColumn);
+//        columnModel.getColumn(4).setCellEditor(modificarButtonColumn);
+//    }
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

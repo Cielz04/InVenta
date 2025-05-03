@@ -1,11 +1,14 @@
 package org.itson.diseñosoftware.farmaciagi.interfaces;
 
+import BO.GestorInvetario;
+import interfaces.IGestorInventario;
 import java.awt.Color;
 import java.awt.Frame;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
+import org.itson.disenosoftware.farmaciagi_dtos.DetalleVentaDTO;
 import org.itson.disenosoftware.farmaciagi_dtos.ProductoDTO;
 import org.itson.disenosoftware.farmaciagi_dtos.PromocionDTO;
 import org.itson.disenosoftware.farmaciagi_dtos.VentaDTO;
@@ -21,9 +24,11 @@ public class DlgResumenVenta extends javax.swing.JDialog {
     private IGestorVentas gestorVentas;
     private int cantidad = 0;
     private Frame parent;
+    IGestorInventario gestorInventario = new GestorInvetario();
 
     /**
      * Creates new form DlgResumenVenta
+     *
      * @param parent
      * @param modal
      * @param venta
@@ -39,9 +44,8 @@ public class DlgResumenVenta extends javax.swing.JDialog {
         this.parent = parent;
         initComponents();
         llenarTablaProductos();
-        llenarTablaPromociones();
         actualizarFecha();
-        actualizarCantidad();
+        
         txtCantidad.setText(String.valueOf(cantidad));
         txtTotal.setText(Float.toString(venta.getTotal()));
         txtPago.setText(Float.toString(pago));
@@ -50,17 +54,6 @@ public class DlgResumenVenta extends javax.swing.JDialog {
         txtCambio.setText(cambioFormato.toString());
         btnCerrar.setBackground(Color.WHITE);
         btnImprimirTicket.setBackground(Color.WHITE);
-        registrarVenta();
-    }
-
-    /**
-     * Método para actualizar la cantidad de los productos de la lista
-     *
-     */
-    private void actualizarCantidad() {
-        for (ProductoDTO producto : venta.getProductos()) {
-            cantidad += producto.getCantidad();
-        }
     }
 
     /**
@@ -75,11 +68,6 @@ public class DlgResumenVenta extends javax.swing.JDialog {
         txtFecha.setText(formattedDate);
     }
 
-    /**
-     * Método para llenar la tabla que contiene a todos los productos de la
-     * venta
-     *
-     */
     private void llenarTablaProductos() {
         DefaultTableModel modelo = new DefaultTableModel();
 
@@ -87,31 +75,17 @@ public class DlgResumenVenta extends javax.swing.JDialog {
         modelo.addColumn("CANTIDAD");
         modelo.addColumn("IMPORTE");
 
-        for (ProductoDTO producto : venta.getProductos()) {
+        for (DetalleVentaDTO detalle : venta.getDetallesVenta()) {
+            ProductoDTO producto = gestorInventario.buscarProductoPorId(detalle.getId());
             Object[] fila = {
                 producto.getNombre(),
-                producto.getCantidad(),
-                producto.getCantidad() * producto.getCosto()
+                detalle.getCantidad(),
+                detalle.getImporte()
             };
             modelo.addRow(fila);
         }
+
         tablaVenta.setModel(modelo);
-    }
-    
-    private void llenarTablaPromociones() {
-        DefaultTableModel modelo = new DefaultTableModel();
-
-        modelo.addColumn("PROMOCIONES");
-        modelo.addColumn("DESCUENTO");
-
-        for (PromocionDTO promocion : venta.getPromociones()) {
-            Object[] fila = {
-                promocion.getDescripcion(),
-                promocion.getProducto().getCosto()
-            };
-            modelo.addRow(fila);
-        }
-        tblPromociones.setModel(modelo);
     }
 
     /**
@@ -122,7 +96,7 @@ public class DlgResumenVenta extends javax.swing.JDialog {
         try {
             gestorVentas.registrarVenta(venta);
         } catch (GestorVentasException ex) {
-            JOptionPane.showMessageDialog(parent, "No se pudo registrar la venta.", 
+            JOptionPane.showMessageDialog(parent, "No se pudo registrar la venta.",
                     "Error", JOptionPane.ERROR_MESSAGE);
         }
     }
@@ -368,8 +342,25 @@ public class DlgResumenVenta extends javax.swing.JDialog {
     }//GEN-LAST:event_btnImprimirTicketActionPerformed
 
     private void btnCerrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCerrarActionPerformed
-        dispose();
+
+        try {
+            gestorVentas.registrarVenta(venta);
+            JOptionPane.showMessageDialog(this, "✅ Venta registrada con éxito.");
+
+            // Limpia datos en la pantalla principal
+            if (parent instanceof PantallaVenta) {
+                ((PantallaVenta) parent).limpiarVenta();
+            }
+
+            this.dispose();
+        } catch (GestorVentasException ex) {
+            JOptionPane.showMessageDialog(this, "❌ No se pudo registrar la venta: " + ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+        }
+
+
     }//GEN-LAST:event_btnCerrarActionPerformed
+
+    //Métodos:
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnCerrar;

@@ -355,7 +355,8 @@ public class DlgInventarioProductos extends javax.swing.JDialog {
                 p.getCodigo(),
                 p.getNombre(),
                 p.getMarca(),
-                p.getCosto(),};
+                //p.getCosto(),
+            };
             modelo.addRow(fila);
         }
 
@@ -382,7 +383,7 @@ public class DlgInventarioProductos extends javax.swing.JDialog {
             productoSeleccionado.setCodigo(codigo);
             productoSeleccionado.setNombre(nombre);
             productoSeleccionado.setMarca(marca);
-            productoSeleccionado.setCosto(costo);
+            //productoSeleccionado.setCosto(costo);
 
             return productoSeleccionado;
         } else {

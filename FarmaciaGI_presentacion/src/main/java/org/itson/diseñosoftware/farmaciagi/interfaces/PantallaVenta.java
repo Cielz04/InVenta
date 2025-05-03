@@ -26,7 +26,6 @@ public class PantallaVenta extends javax.swing.JFrame {
     private IGestorVenta gestorVenta = new GestorVenta();
     private IGestorInventario gestorInventario = new GestorInvetario();
 
-
     public PantallaVenta() {
         initComponents();
         instancia = this; // ← Aquí se guarda la instancia
@@ -405,14 +404,15 @@ public class PantallaVenta extends javax.swing.JFrame {
 
     private void btnContinuarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnContinuarActionPerformed
         if (detallesVenta.isEmpty()) {
-            JOptionPane.showMessageDialog(this, "Debe agregar al menos un producto.");
+            JOptionPane.showMessageDialog(this, "Debe agregar productos a la venta.");
             return;
         }
 
         try {
             VentaDTO venta = new VentaDTO();
             venta.setFecha(Instant.now());
-            //venta.setUsuarioId(1); // usuario logueado más adelante
+            //venta.setUsuarioId(1); // Usuario logueado en el futuro
+            venta.setDetallesVenta(detallesVenta);
 
             float subtotal = 0f;
             for (DetalleVentaDTO d : detallesVenta) {
@@ -421,17 +421,17 @@ public class PantallaVenta extends javax.swing.JFrame {
 
             venta.setSubtotal(subtotal);
             venta.setTotal(subtotal);
-            venta.setDetallesVenta(detallesVenta);
 
-            VentaDTO ventaGuardada = gestorVenta.agregarVenta(venta);
+            Float pago = subtotal; // Puedes ajustar según flujo de pago real
+            Float cambio = 0f;     // Lo mismo
 
-            JOptionPane.showMessageDialog(this, "✅ Venta registrada. ID: " + ventaGuardada.getId());
+            DlgResumenVenta resumen = new DlgResumenVenta(this, true, venta, pago, cambio);
+            resumen.setLocationRelativeTo(this);
+            resumen.setVisible(true);
 
-            detallesVenta.clear();
-            llenarTablaDetallesVenta();
+            // ⚠️ Ya no limpies aquí, se limpia desde DlgResumenVenta si la venta fue exitosa
         } catch (Exception e) {
-            JOptionPane.showMessageDialog(this, "❌ Error al registrar venta: " + e.getMessage());
-
+            JOptionPane.showMessageDialog(this, "Error al continuar: " + e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
         }
 
     }//GEN-LAST:event_btnContinuarActionPerformed
@@ -486,6 +486,11 @@ public class PantallaVenta extends javax.swing.JFrame {
         llenarTablaDetallesVenta();
     }
 
+    public void limpiarVenta() {
+        detallesVenta.clear();
+        llenarTablaDetallesVenta();
+    }
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnBuscarProducto;
@@ -511,4 +516,5 @@ public class PantallaVenta extends javax.swing.JFrame {
     private javax.swing.JTable tblPromocionesVenta;
     private javax.swing.JTextField txtTotal;
     // End of variables declaration//GEN-END:variables
+
 }

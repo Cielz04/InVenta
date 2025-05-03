@@ -428,7 +428,7 @@ public class DlgInventarioProveedores extends javax.swing.JDialog {
             productoSeleccionado.setCodigo(codigo);
             productoSeleccionado.setNombre(nombre);
             productoSeleccionado.setMarca(marca);
-            productoSeleccionado.setCosto(costo);
+            //productoSeleccionado.setCosto(costo);
             
             return productoSeleccionado;
         } else {

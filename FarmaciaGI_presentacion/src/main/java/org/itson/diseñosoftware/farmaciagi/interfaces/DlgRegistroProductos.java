@@ -46,7 +46,7 @@ public class DlgRegistroProductos extends javax.swing.JDialog {
         txtCodigo.setText(producto.getCodigo());
         txtNombre.setText(producto.getNombre());
         txtMarca.setText(producto.getMarca());
-        txtCosto.setText(String.valueOf(producto.getCosto()));
+        //txtCosto.setText(String.valueOf(producto.getCosto()));
         txtCodigo.setEditable(false);
         btnRegistrar.setText("Actualizar");
         
@@ -380,7 +380,7 @@ public class DlgRegistroProductos extends javax.swing.JDialog {
                     try {
                         if (validacionCosto()) {
                             producto.setMarca(txtMarca.getText());
-                            producto.setCosto(Float.parseFloat(txtCosto.getText()));
+                            //producto.setCosto(Float.parseFloat(txtCosto.getText()));
                             producto.setNombre(txtNombre.getText());
                             gestor.actualizarProducto(producto);
                             JOptionPane.showMessageDialog(rootPane, "Producto actualizado correctamente", "Tarea realizada", JOptionPane.INFORMATION_MESSAGE);
@@ -400,9 +400,9 @@ public class DlgRegistroProductos extends javax.swing.JDialog {
                    if (validacionCosto()) {
                     producto.setCodigo(txtCodigo.getText());
                     producto.setMarca(txtMarca.getText());
-                    producto.setCosto(Float.parseFloat(txtCosto.getText()));
+                    //producto.setCosto(Float.parseFloat(txtCosto.getText()));
                     producto.setNombre(txtNombre.getText());
-                    producto.setCantidad(0);
+                    //producto.setCantidad(0);
 
                     try {
                         producto = gestor.registrarProducto(producto);
@@ -458,7 +458,7 @@ public class DlgRegistroProductos extends javax.swing.JDialog {
         if (producto.getCodigo()!=null){
             txtNombre.setText(producto.getNombre());
             txtMarca.setText(producto.getMarca());
-            txtCosto.setText(String.valueOf(producto.getCosto()));
+            //txtCosto.setText(String.valueOf(producto.getCosto()));
         }else{
             txtCodigo.setText("");
             txtNombre.setText("");
