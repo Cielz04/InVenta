@@ -192,14 +192,14 @@ public class DlgRealizarCompra extends javax.swing.JDialog {
         compra.setProducto(productoSeleccionado);
         compra.setProveedores(proveedorSeleccionado);
         compra.setFecha(new GregorianCalendar());
-        compra.setCostoTotal(Integer.parseInt(txtCantidad.getText()) * productoSeleccionado.getCosto());
+        //compra.setCostoTotal(Integer.parseInt(txtCantidad.getText()) * productoSeleccionado.getCosto());
         try {
             //realizar la compra
             gestorCompras.registrarCompra(compra);
             
             ProductoDTO productoSuma = new ProductoDTO();
             productoSuma.setCodigo(productoSeleccionado.getCodigo());
-            productoSuma.setCantidad(Integer.parseInt(txtCantidad.getText()));
+            //productoSuma.setCantidad(Integer.parseInt(txtCantidad.getText()));
             
             gestorProductos.modCantidadProducto(productoSuma);
             JOptionPane.showMessageDialog(rootPane, "¡Compra completa!");

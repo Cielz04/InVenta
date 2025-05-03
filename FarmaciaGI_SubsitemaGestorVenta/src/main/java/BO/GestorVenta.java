@@ -63,18 +63,6 @@ public class GestorVenta implements IGestorVenta {
         facade.eliminarVenta(id);
     }
     
-    public List<DetalleVentaDTO> convertirProductosADetalles(List<ProductoDTO> productosVenta) {
-    List<DetalleVentaDTO> detalles = new ArrayList<>();
-    for (ProductoDTO p : productosVenta) {
-        DetalleVentaDTO d = new DetalleVentaDTO();
-        d.setId(p.getId()); 
-        d.setCantidad(p.getCantidad());
-        d.setPrecioUnitario(p.getPrecio());
-        d.setImporte(p.getCantidad() * p.getPrecio());
-        detalles.add(d);
-    }
-    return detalles;
-}
 
 }
 

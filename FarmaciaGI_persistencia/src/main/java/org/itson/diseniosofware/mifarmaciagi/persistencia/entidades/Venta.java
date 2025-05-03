@@ -92,6 +92,8 @@ public class Venta implements Serializable {
         this.fecha = fecha;
         this.usuarioEnTurno = usuarioEnTurno;
     }
+    
+    
 
     // Getters y Setters...
     public Integer getId() {

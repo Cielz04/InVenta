@@ -49,12 +49,16 @@ public class ConversorVenta {
 
         UsuarioDTO usuarioDTO = new UsuarioDTO(venta.getId());
 
+        List<DetalleVentaDTO> detalleDTO =  new ArrayList<>(venta.getId());
+        
         VentaDTO ventaDTO = new VentaDTO(
                 venta.getId(),
                 venta.getTotal(),
                 venta.getSubtotal(),
                 venta.getFecha(),
-                usuarioDTO);
+                usuarioDTO,
+                detalleDTO)
+                ;
 
         return ventaDTO;
     }

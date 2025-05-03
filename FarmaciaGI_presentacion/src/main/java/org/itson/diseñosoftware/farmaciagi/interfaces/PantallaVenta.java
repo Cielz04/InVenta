@@ -22,7 +22,6 @@ import org.itson.disenosoftware.farmaciagi_dtos.VentaDTO;
 public class PantallaVenta extends javax.swing.JFrame {
 
     private static PantallaVenta instancia;
-    private Float total;
     private List<DetalleVentaDTO> detallesVenta = new ArrayList<>();
     private IGestorVenta gestorVenta = new GestorVenta();
     private IGestorInventario gestorInventario = new GestorInvetario();
@@ -35,8 +34,6 @@ public class PantallaVenta extends javax.swing.JFrame {
         this.gestorInventario = new GestorInvetario();
 
         this.gestorVenta = new GestorVenta();
-
-        this.total = 0.0F;
 
         llenarTablaDetallesVenta();
 
