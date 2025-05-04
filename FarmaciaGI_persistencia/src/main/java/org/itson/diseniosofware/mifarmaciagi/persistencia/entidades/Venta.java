@@ -43,7 +43,7 @@ public class Venta implements Serializable {
     private Instant fecha;
 
     // Relación con Usuario
-    @ManyToOne(cascade = CascadeType.PERSIST)
+    @ManyToOne
     @JoinColumn(name = "usuario_id", nullable = false)
     private Usuario usuarioEnTurno;
 

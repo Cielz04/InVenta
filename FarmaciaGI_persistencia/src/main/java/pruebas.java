@@ -315,6 +315,9 @@ public class pruebas {
 //        // Eliminar venta
 //        ventaDAO.delete(ventaEncontrada.getId());
 //        System.out.println("Venta eliminada.");
+        Usuario usuario = new Usuario("Pedro", 1234, "Vendedor", "Calle Estrella", "5555555555");
+
+        usuarioDAO.save(usuario);
     }
 
 }
