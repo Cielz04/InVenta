@@ -60,7 +60,16 @@ public class FacadeTest {
 
     @Test
     public void testAgregarVenta() {
-        Venta venta = new Venta(100.0f, 90.0f, Instant.now(), new Usuario("Juan", 1234, "Vendedor", "Calle Falsa 123", "1234567890"));
+        Usuario usuario = fabrica.getUsuarioDAO().findByCodigo(1234);
+        Venta venta;
+        if(usuario == null){
+            fabrica.getUsuarioDAO().save(new Usuario("Juan", 1234, "Vendedor", "Calle Falsa 123", "1234567890"));
+        }
+        
+        Usuario usuarioBuscado = fabrica.getUsuarioDAO().findByCodigo(1234);
+        venta = new Venta(100.0f, 90.0f, Instant.now(), usuarioBuscado);
+        
+        
         Venta ventaGuardada = facade.agregarVenta(venta);
         assertNotNull(ventaGuardada);
         assertEquals(venta.getTotal(), ventaGuardada.getTotal());
@@ -68,7 +77,15 @@ public class FacadeTest {
 
     @Test
     public void testBuscarVentaPorId() {
-        Venta venta = new Venta(100.0f, 90.0f, Instant.now(), new Usuario("Maria", 5678, "Vendedor", "Av Siempre Viva", "0987654321"));
+        Usuario usuario = fabrica.getUsuarioDAO().findByCodigo(5678);
+        Venta venta;
+        if(usuario == null){
+            fabrica.getUsuarioDAO().save(new Usuario("Maria", 5678, "Vendedor", "Av Siempre Viva", "0987654321"));
+        }
+        
+        Usuario usuarioBuscado = fabrica.getUsuarioDAO().findByCodigo(5678);
+        
+        venta = new Venta(100.0f, 90.0f, Instant.now(), usuarioBuscado);
         Venta ventaGuardada = facade.agregarVenta(venta);
 
         Venta ventaBuscada = facade.buscarVentaPorId(ventaGuardada.getId());
@@ -78,9 +95,21 @@ public class FacadeTest {
 
     @Test
     public void testBuscarTodasLasVentas() {
+        Usuario usuario1 = fabrica.getUsuarioDAO().findByCodigo(4321);
+        Usuario usuario2 = fabrica.getUsuarioDAO().findByCodigo(8765);
+        Venta venta1;
+        Venta venta2;
+        if(usuario1 == null && usuario2 == null){
+            fabrica.getUsuarioDAO().save(new Usuario("Ana", 4321, "Vendedor", "Calle Luna", "1231231234"));
+            fabrica.getUsuarioDAO().save(new Usuario("Luis", 8765, "Vendedor", "Calle Sol", "3213214321"));
+        }
+        
+        Usuario usuarioBuscado1 = fabrica.getUsuarioDAO().findByCodigo(4321);
+        Usuario usuarioBuscado2 = fabrica.getUsuarioDAO().findByCodigo(8765);
+        
         // Aseguramos que existan al menos 2 ventas
-        facade.agregarVenta(new Venta(200.0f, 180.0f, Instant.now(), new Usuario("Ana", 4321, "Vendedor", "Calle Luna", "1231231234")));
-        facade.agregarVenta(new Venta(300.0f, 270.0f, Instant.now(), new Usuario("Luis", 8765, "Vendedor", "Calle Sol", "3213214321")));
+        venta1 = facade.agregarVenta(new Venta(200.0f, 180.0f, Instant.now(), usuario1));
+        venta2 = facade.agregarVenta(new Venta(300.0f, 270.0f, Instant.now(), usuario2));
 
         List<Venta> ventas = facade.buscarTodasLasVentas();
         assertNotNull(ventas);
@@ -89,8 +118,7 @@ public class FacadeTest {
 
     @Test
     public void testBuscarVentasPorUsuario() {
-        Usuario usuario = new Usuario();
-         usuario.setId(1);
+        Usuario usuario = fabrica.getUsuarioDAO().findById(1);
         Venta venta1 = new Venta(150.0f, 135.0f, Instant.now(), usuario);
         Venta venta2 = new Venta(250.0f, 225.0f, Instant.now(), usuario);
 
@@ -108,8 +136,7 @@ public class FacadeTest {
 
     @Test
     public void testEliminarVenta() {
-        Usuario usuario = new Usuario();
-         usuario.setId(1);
+        Usuario usuario = fabrica.getUsuarioDAO().findById(1);
         Venta venta = new Venta(120.0f, 100.0f, Instant.now(),usuario);
         Venta ventaGuardada = facade.agregarVenta(venta);
 

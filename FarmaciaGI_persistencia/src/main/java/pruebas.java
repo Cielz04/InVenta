@@ -55,8 +55,8 @@ public class pruebas {
 //        Promocion promocion = new Promocion("PROMO001", "Descuento 10%", producto, 100,10.0f  );
 //        promocionesDAO.save(promocion);
 //
-//// --- 2. Crear y probar Usuario ---
-//        Usuario usuarioVenta = new Usuario("Maria Gómez", 5678, "Vendedor", "Calle Vendedores 789", "555-2345");
+// --- 2. Crear y probar Usuario ---
+//        Usuario usuarioVenta = new Usuario("Juan", 1234, "Vendedor", "Calle Falsa 123", "1234567890");
 //        usuarioDAO.save(usuarioVenta);
 //
 //// --- 3. Crear y probar Producto ---
@@ -315,9 +315,10 @@ public class pruebas {
 //        // Eliminar venta
 //        ventaDAO.delete(ventaEncontrada.getId());
 //        System.out.println("Venta eliminada.");
-        Usuario usuario = new Usuario("Pedro", 1234, "Vendedor", "Calle Estrella", "5555555555");
-
-        usuarioDAO.save(usuario);
-    }
+//        Usuario usuario = new Usuario("Pedro", 1234, "Vendedor", "Calle Estrella", "5555555555");
+//
+        Usuario u = usuarioDAO.findByCodigo(1234);
+        System.out.println(u.getCodigo());
+   }
 
 }

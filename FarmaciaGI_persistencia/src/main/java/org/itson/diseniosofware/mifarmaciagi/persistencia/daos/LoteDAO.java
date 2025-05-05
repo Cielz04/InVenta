@@ -67,6 +67,14 @@ public class LoteDAO implements ILoteDAO{
         query.setParameter("productoId", productoId);
         return query.getResultList();
     }
+    
+    @Override
+    public List<Lote> findByProductoId_Plus_0(Integer productoId) {
+        TypedQuery<Lote> query = em.createQuery(
+            "SELECT l FROM Lote l WHERE l.producto.id = :productoId AND l.cantidad > 0", Lote.class);
+        query.setParameter("productoId", productoId);
+        return query.getResultList();
+    }
 
     @Override
     public List<Lote> findByEntradaId(Integer entradaId) {

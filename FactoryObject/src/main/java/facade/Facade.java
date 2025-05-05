@@ -47,10 +47,32 @@ public class Facade implements IFacade {
         }
     }
 
-    public List<Lote> buscar_Lotes_de_Producto(Producto producto) {
-        Producto productoBuscado = fabrica.getProductosDAO().findByCodigo(producto.getCodigo());
+    public Producto buscarProducto_Codigo(Producto producto) throws Exception {
+
+        try {
+            Producto productoBuscado = fabrica.getProductosDAO().findByCodigo(producto.getCodigo());
+            if (productoBuscado == null) {
+                throw new Exception("El producto esta vacio");
+            }
+            return productoBuscado;
+        } catch (Exception e) {
+            System.out.println(e);
+            throw new Exception(e);
+        }
+    }
+
+    public List<Lote> buscar_Todos_Lotes_de_Producto(Producto producto) throws Exception {
+        Producto productoBuscado = this.buscarProducto_Codigo(producto);
 
         List<Lote> lotes = fabrica.getLoteAO().findByProductoId(productoBuscado.getId());
+
+        return lotes;
+    }
+
+    public List<Lote> buscar_Lotes_NoVacios_de_Producto(Producto producto) throws Exception {
+        Producto productoBuscado = this.buscarProducto_Codigo(producto);
+
+        List<Lote> lotes = fabrica.getLoteAO().findByProductoId_Plus_0(productoBuscado.getId());
 
         return lotes;
     }
@@ -79,9 +101,28 @@ public class Facade implements IFacade {
         Map<Producto, List<Lote>> resultado = new HashMap<>();
 
         for (Producto producto : productos) {
-            List<Lote> lotesDelProducto = this.buscar_Lotes_de_Producto(producto);
+            List<Lote> lotesDelProducto = this.buscar_Lotes_NoVacios_de_Producto(producto);
+
+            if (lotesDelProducto != null || !lotesDelProducto.isEmpty()) {
+                resultado.put(producto, lotesDelProducto);
+            }
+
+        }
+        return resultado;
+    }
+
+    @Override
+    public Map<Producto, List<Lote>> buscar_Un_Producto_Y_Lotes(Producto producto) throws Exception {
+        Producto productoBuscado = this.buscarProducto_Codigo(producto);
+
+        Map<Producto, List<Lote>> resultado = new HashMap<>();
+
+        List<Lote> lotesDelProducto = this.buscar_Lotes_NoVacios_de_Producto(productoBuscado);
+
+        if (lotesDelProducto != null || !lotesDelProducto.isEmpty()) {
             resultado.put(producto, lotesDelProducto);
         }
+
         return resultado;
     }
 

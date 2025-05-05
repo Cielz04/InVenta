@@ -20,6 +20,7 @@ public interface IFacade {
     
     //Métodos para el subsitema de Gestor Inventario
     public Map<Producto, List<Lote>> buscar_Productos_Y_Lotes() throws Exception;
+    public Map<Producto, List<Lote>> buscar_Un_Producto_Y_Lotes(Producto producto) throws Exception;
     public Producto agregarProducto(Producto producto);
     public List<Lote> agregarLote(Lote lote);
     
