@@ -5,6 +5,8 @@
 package org.itson.diseñosoftware.farmaciagi.interfaces;
 
 import java.awt.Frame;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import org.itson.disenosoftware.farmaciagi_dtos.UsuarioDTO;
 
@@ -354,15 +356,23 @@ public class DlgProductosPrincipal extends javax.swing.JDialog {
     }//GEN-LAST:event_btnRegistrarProductoActionPerformed
 
     private void btnEditarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditarActionPerformed
-        dispose();
-        DlgInventarioProductos inventario = new DlgInventarioProductos(parent, true, ConstantesGUI.ACTUALIZAR, usuarioEnTurno);
-        inventario.setVisible(true);
+        try {
+            dispose();
+            DlgInventarioProductos inventario = new DlgInventarioProductos(parent, true, ConstantesGUI.ACTUALIZAR, usuarioEnTurno);
+            inventario.setVisible(true);
+        } catch (Exception ex) {
+            Logger.getLogger(DlgProductosPrincipal.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }//GEN-LAST:event_btnEditarActionPerformed
 
     private void btnAsignarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAsignarActionPerformed
-        dispose();
-        DlgInventarioProductos inventario = new DlgInventarioProductos(parent, true, ConstantesGUI.ASIGNAR_PROVEEDOR, usuarioEnTurno);
-        inventario.setVisible(true);
+        try {
+            dispose();
+            DlgInventarioProductos inventario = new DlgInventarioProductos(parent, true, ConstantesGUI.ASIGNAR_PROVEEDOR, usuarioEnTurno);
+            inventario.setVisible(true);
+        } catch (Exception ex) {
+            Logger.getLogger(DlgProductosPrincipal.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }//GEN-LAST:event_btnAsignarActionPerformed
 
     private void btnComprarProductos2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnComprarProductos2ActionPerformed

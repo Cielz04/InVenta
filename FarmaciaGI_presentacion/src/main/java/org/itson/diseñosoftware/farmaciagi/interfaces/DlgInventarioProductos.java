@@ -8,9 +8,12 @@ import BO.GestorInvetario;
 import interfaces.IGestorInventario;
 import java.awt.Color;
 import java.awt.Frame;
+import java.util.List;
+import java.util.Map;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableColumnModel;
+import org.itson.disenosoftware.farmaciagi_dtos.LoteDTO;
 import org.itson.disenosoftware.farmaciagi_dtos.ProductoDTO;
 import org.itson.disenosoftware.farmaciagi_dtos.UsuarioDTO;
 
@@ -20,7 +23,7 @@ import org.itson.disenosoftware.farmaciagi_dtos.UsuarioDTO;
  */
 public class DlgInventarioProductos extends javax.swing.JDialog {
 
-    private IGestorInventario gestorProductos;
+    private IGestorInventario gestorInventario;
     private Frame parent;
     private int constante;
     private UsuarioDTO usuarioEnTurno;
@@ -28,15 +31,20 @@ public class DlgInventarioProductos extends javax.swing.JDialog {
     /**
      * Creates new form DlgInventarioProductos
      */
-    public DlgInventarioProductos(java.awt.Frame parent, boolean modal, int decision, UsuarioDTO usuario) {
+    public DlgInventarioProductos(java.awt.Frame parent, boolean modal, int decision, UsuarioDTO usuario) throws Exception {
         super(parent, modal);
-        gestorProductos = new GestorInvetario();
+        gestorInventario = new GestorInvetario();
         this.constante = decision;
         this.parent = parent;
         initComponents();
         this.usuarioEnTurno = usuario;
         btnActualizar.setBackground(Color.WHITE);
         btnVolver.setBackground(Color.WHITE);
+
+        DefaultTableModel modelo = new DefaultTableModel(new Object[]{"Cadigo", "Nombre", "Marca", "Precio", "Cantidad"}, 0) {
+        };
+
+        tblProductosInventario.setModel(modelo);
 
         llenarTablaProductos();
     }
@@ -348,25 +356,32 @@ public class DlgInventarioProductos extends javax.swing.JDialog {
 //        productosPrincipal.setVisible(true);
     }//GEN-LAST:event_btnComprasActionPerformed
 
-    private void llenarTablaProductos() {
-        DefaultTableModel modelo = new DefaultTableModel();
+    private void llenarTablaProductos() throws Exception {
+        DefaultTableModel modelo = new DefaultTableModel(new Object[]{"Cadigo", "Nombre", "Marca", "Precio", "Cantidad"}, 0) {
+        };
 
-        modelo.addColumn("CODIGO");
-        modelo.addColumn("NOMBRE");
-        modelo.addColumn("MARCA");
-        modelo.addColumn("COSTO");
+        Map<ProductoDTO, List<LoteDTO>> productos = gestorInventario.buscar_Productos_Y_Lotes();
 
-//        for (ProductoDTO p : gestorProductos.obtnerInventario()) {
-//            Object[] fila = {
-//                p.getCodigo(),
-//                p.getNombre(),
-//                p.getMarca(),
-//                //p.getCosto(),
-//            };
-//            modelo.addRow(fila);
-//        }
+        for (Map.Entry<ProductoDTO, List<LoteDTO>> entry : productos.entrySet()) {
+            ProductoDTO key = entry.getKey();
+            List<LoteDTO> value = entry.getValue();
+            Integer cantidadTotal = 0;
+            
+            for (LoteDTO loteDTO : value) {
+                cantidadTotal += loteDTO.getCantidad();
+            }
+
+            modelo.addRow(new Object[]{
+                key.getCodigo(),
+                key.getNombre(),
+                key.getMarca(),
+                key.getPrecio(),
+                cantidadTotal
+            });
+
+        }
+
         tblProductosInventario.setModel(modelo);
-        TableColumnModel columnModel = tblProductosInventario.getColumnModel();
 
     }
 

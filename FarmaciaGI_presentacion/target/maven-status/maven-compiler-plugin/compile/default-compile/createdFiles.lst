@@ -38,6 +38,7 @@ org\itson\diseñosoftware\farmaciagi\interfaces\DlgRegistroAsistencia$5.class
 org\itson\diseñosoftware\farmaciagi\interfaces\CampoPasswordR.class
 org\itson\diseñosoftware\farmaciagi\interfaces\PantallaVenta$9.class
 org\itson\diseñosoftware\farmaciagi\interfaces\DlgRegistroProductos$7.class
+org\itson\diseñosoftware\farmaciagi\interfaces\DlgInventarioProductos$8.class
 org\itson\diseñosoftware\farmaciagi\interfaces\DlgInicioSesion.class
 org\itson\diseñosoftware\farmaciagi\interfaces\ConstantesGUI.class
 org\itson\diseñosoftware\farmaciagi\interfaces\DlgInventarioProductos$2.class
@@ -57,6 +58,7 @@ org\itson\diseñosoftware\farmaciagi\interfaces\PantallaVenta.class
 org\itson\diseñosoftware\farmaciagi\interfaces\DlgGestionEmpleados$2.class
 org\itson\diseñosoftware\farmaciagi\interfaces\DlgTicket.class
 org\itson\diseñosoftware\farmaciagi\interfaces\PantallaVenta$1.class
+org\itson\diseñosoftware\farmaciagi\interfaces\DlgInventarioProductos$7.class
 org\itson\diseñosoftware\farmaciagi\interfaces\DlgPagoEfectivo$3.class
 org\itson\diseñosoftware\farmaciagi\interfaces\DlgRegistroAsistencia$3.class
 org\itson\diseñosoftware\farmaciagi\interfaces\DlgTransferenciaExitosa$1.class
