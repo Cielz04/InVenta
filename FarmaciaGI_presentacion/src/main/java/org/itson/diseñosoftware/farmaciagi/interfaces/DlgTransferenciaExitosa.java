@@ -21,7 +21,7 @@ public class DlgTransferenciaExitosa extends javax.swing.JDialog {
             @Override
             public void actionPerformed(ActionEvent e) {
                 dispose();
-                DlgResumenVenta pResumenVenta = new DlgResumenVenta(parent, true, venta, 0.0F, 0.0F);
+                DlgResumenVenta pResumenVenta = new DlgResumenVenta(parent, true, venta, null, 0.0F, 0.0F);
                 pResumenVenta.setVisible(true);
             }
         });

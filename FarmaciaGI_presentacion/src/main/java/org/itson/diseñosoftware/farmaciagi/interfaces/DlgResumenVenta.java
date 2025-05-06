@@ -8,6 +8,9 @@ import java.awt.Color;
 import java.awt.Frame;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import org.itson.disenosoftware.farmaciagi_dtos.DetalleVentaDTO;
@@ -18,6 +21,7 @@ import org.itson.disenosoftware.farmaciagi_dtos.VentaDTO;
 public class DlgResumenVenta extends javax.swing.JDialog {
 
     private VentaDTO venta;
+    private List<DetalleVentaDTO> detallesVenta;
     private Float pago;
     private Float cambio;
     private IGestorVenta gestorVentas;
@@ -34,23 +38,28 @@ public class DlgResumenVenta extends javax.swing.JDialog {
      * @param pago
      * @param cambio
      */
-    public DlgResumenVenta(java.awt.Frame parent, boolean modal, VentaDTO venta, Float pago, Float cambio) {
+    public DlgResumenVenta(java.awt.Frame parent, boolean modal, VentaDTO venta, List<DetalleVentaDTO> detallesVenta, Float pago, Float cambio) {
         super(parent, modal);
         this.cambio = cambio;
         this.pago = pago;
         this.venta = venta;
         this.gestorVentas = new GestorVenta();
         this.parent = parent;
+        this.detallesVenta = detallesVenta;
         initComponents();
         llenarTablaProductos();
         actualizarFecha();
+        
+        
+        for (DetalleVentaDTO detalleVentaDTO : detallesVenta) {
+            cantidad += detalleVentaDTO.getCantidad();
+        }
         
         txtCantidad.setText(String.valueOf(cantidad));
         txtTotal.setText(Float.toString(venta.getTotal()));
         txtPago.setText(Float.toString(pago));
         float decimal = (float) Math.pow(10, 2);
-        Float cambioFormato = Math.round(cambio * decimal) / decimal;
-        txtCambio.setText(cambioFormato.toString());
+        txtCambio.setText(cambio.toString());
         btnCerrar.setBackground(Color.WHITE);
         btnImprimirTicket.setBackground(Color.WHITE);
     }
@@ -342,6 +351,10 @@ public class DlgResumenVenta extends javax.swing.JDialog {
 
     private void btnCerrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCerrarActionPerformed
 
+        try {
+            PantallaVenta pv = new PantallaVenta();
+            pv.setVisible(true);
+            this.dispose();
 //        try {
 //            gestorVentas.registrarVenta(venta);
 //            JOptionPane.showMessageDialog(this, "✅ Venta registrada con éxito.");
@@ -355,6 +368,9 @@ public class DlgResumenVenta extends javax.swing.JDialog {
 //        } catch (GestorVentasException ex) {
 //            JOptionPane.showMessageDialog(this, "❌ No se pudo registrar la venta: " + ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
 //        }
+        } catch (Exception ex) {
+            Logger.getLogger(DlgResumenVenta.class.getName()).log(Level.SEVERE, null, ex);
+        }
 
 
     }//GEN-LAST:event_btnCerrarActionPerformed

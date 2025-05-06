@@ -6,6 +6,7 @@ package facade;
 
 import java.util.List;
 import java.util.Map;
+import org.itson.diseniosofware.mifarmaciagi.persistencia.entidades.DetalleVenta;
 import org.itson.diseniosofware.mifarmaciagi.persistencia.entidades.Lote;
 import org.itson.diseniosofware.mifarmaciagi.persistencia.entidades.Producto;
 import org.itson.diseniosofware.mifarmaciagi.persistencia.entidades.Usuario;
@@ -35,5 +36,8 @@ public interface IFacade {
     public List<Venta> buscarTodasLasVentas();
     public List<Venta> buscarVentasPorUsuario(Usuario usuario);
     public void eliminarVenta(Integer id);
+    public List<DetalleVenta> agregarDetlleVenta(DetalleVenta detalleVenta);
     
+    //Usuario
+    public Usuario buscarUsuario_ID(Usuario usuario);
 }

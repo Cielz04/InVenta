@@ -31,6 +31,29 @@ public class VentaDTO {
         this.fecha = fecha;
         this.usuarioEnTurno = usuarioEnTurno;
     }
+
+    public VentaDTO(Float total, Float subtotal, Instant fecha, UsuarioDTO usuarioEnTurno) {
+        this.total = total;
+        this.subtotal = subtotal;
+        this.fecha = fecha;
+        this.usuarioEnTurno = usuarioEnTurno;
+    }
+
+    public VentaDTO(Float total, Float subtotal, Instant fecha, UsuarioDTO usuarioEnTurno, List<PromocionDTO> promociones) {
+        this.total = total;
+        this.subtotal = subtotal;
+        this.fecha = fecha;
+        this.usuarioEnTurno = usuarioEnTurno;
+        this.promociones = promociones;
+    }
+
+    public VentaDTO(Integer id, Float total, Float subtotal, Instant fecha, UsuarioDTO usuarioEnTurno) {
+        this.id = id;
+        this.total = total;
+        this.subtotal = subtotal;
+        this.fecha = fecha;
+        this.usuarioEnTurno = usuarioEnTurno;
+    }
     
     
 

@@ -19,7 +19,9 @@ public class ConversorUsuario {
             return null;
         }
         
-        Usuario usuario = new Usuario(usuarioDTO.getNombre(), 
+        Usuario usuario = new Usuario(
+                usuarioDTO.getId(),
+                usuarioDTO.getNombre(), 
                 usuarioDTO.getCodigo(), 
                 usuarioDTO.getTipo(), 
                 usuarioDTO.getDireccion(), 
@@ -35,6 +37,7 @@ public class ConversorUsuario {
         }
         
         UsuarioDTO usuarioDTO = new UsuarioDTO(
+                usuario.getId(),
                 usuario.getNombre(), 
                 usuario.getCodigo(), 
                 usuario.getTipo(), 

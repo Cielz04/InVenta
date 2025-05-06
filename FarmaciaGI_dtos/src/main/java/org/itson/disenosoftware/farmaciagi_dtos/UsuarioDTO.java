@@ -32,6 +32,15 @@ public class UsuarioDTO {
         this.telefono = telefono;
     }
 
+    public UsuarioDTO(Integer id, String nombre, Integer codigo, String tipo, String direccion, String telefono) {
+        this.id = id;
+        this.nombre = nombre;
+        this.codigo = codigo;
+        this.tipo = tipo;
+        this.direccion = direccion;
+        this.telefono = telefono;
+    }
+
     public Integer getId() {
         return id;
     }
@@ -80,6 +89,13 @@ public class UsuarioDTO {
     public void setTelefono(String telefono) {
         this.telefono = telefono;
     }
+
+    @Override
+    public String toString() {
+        return "UsuarioDTO{" + "id=" + id + ", nombre=" + nombre + ", codigo=" + codigo + ", tipo=" + tipo + ", direccion=" + direccion + ", telefono=" + telefono + '}';
+    }
+    
+    
     
     
 }

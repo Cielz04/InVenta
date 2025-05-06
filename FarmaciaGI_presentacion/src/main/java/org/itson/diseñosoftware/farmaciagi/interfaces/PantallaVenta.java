@@ -1,7 +1,9 @@
 package org.itson.diseñosoftware.farmaciagi.interfaces;
 
 import BO.GestorInvetario;
+import BO.GestorUsuario;
 import BO.GestorVenta;
+import BO.IGestorUsuario;
 import BO.IGestorVenta;
 import interfaces.IGestorInventario;
 import java.awt.Color;
@@ -13,6 +15,7 @@ import java.util.Map;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
+import javax.swing.event.TableModelEvent;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableColumnModel;
 import org.itson.disenosoftware.farmaciagi_dtos.DetalleVentaDTO;
@@ -417,32 +420,30 @@ public class PantallaVenta extends javax.swing.JFrame {
         }
 
         try {
-
-            VentaDTO ven = new VentaDTO(Instant.now(), usuarioenTurnoDTO);
-
-            gestorVenta.agregarVenta(ven);
-
             List<ProductoDTO> listaProductos = new ArrayList<>();
+            IGestorUsuario gu = new GestorUsuario();
+            UsuarioDTO usuario = gu.buscarUsuario_id(usuarioenTurnoDTO);
 
-            VentaDTO venta = new VentaDTO();
-            venta.setFecha(Instant.now());
-            venta.setUsuarioEnTurno(usuarioenTurnoDTO); // Usuario logueado en el futuro
-            venta.setDetallesVenta(detallesVenta);
+            Float total = Float.valueOf(this.txtTotal.getText());
+            VentaDTO venta = new VentaDTO(
+                    total,
+                    total,
+                    Instant.now(),
+                    usuario);
+            
+//            String input = JOptionPane.showInputDialog(this, "Cantidad con la que pago el cliente: ");
+//            
+//            Float pago = Float.valueOf(input);
+//            Float cambio = pago-total;     // Lo mismo
+            
+            DlgTipoPago tipoPago = new DlgTipoPago(this, true, venta, detallesVenta);
+            
+            tipoPago.setVisible(true);
+            this.dispose();
 
-            float subtotal = 0f;
-            for (DetalleVentaDTO d : detallesVenta) {
-                subtotal += d.getImporte();
-            }
-
-            venta.setSubtotal(subtotal);
-            venta.setTotal(subtotal);
-
-            Float pago = subtotal; // Puedes ajustar según flujo de pago real
-            Float cambio = 0f;     // Lo mismo
-
-            DlgResumenVenta resumen = new DlgResumenVenta(this, true, venta, pago, cambio);
-            resumen.setLocationRelativeTo(this);
-            resumen.setVisible(true);
+//            DlgResumenVenta resumen = new DlgResumenVenta(this, true, venta, detallesVenta, pago, cambio);
+//            resumen.setLocationRelativeTo(this);
+//            resumen.setVisible(true);
 
             // ⚠️ Ya no limpies aquí, se limpia desde DlgResumenVenta si la venta fue exitosa
         } catch (Exception e) {
@@ -479,8 +480,12 @@ public class PantallaVenta extends javax.swing.JFrame {
 
     //Métodos 
     private void llenarTablaDetallesVenta() throws Exception {
-        DefaultTableModel modelo = (DefaultTableModel) tblProductosVenta.getModel();
-        modelo.setRowCount(0);
+        DefaultTableModel modelo = new DefaultTableModel(new Object[]{"Articulo", "Marca", "Cantidad", "Total"}, 0) {
+            @Override
+            public boolean isCellEditable(int row, int column) {
+                return column == 2; // Solo la columna de "Agregar" es editable
+            }
+        };
 
         for (DetalleVentaDTO d : detallesVenta) {
             // Buscar el producto desde gestor
@@ -489,21 +494,43 @@ public class PantallaVenta extends javax.swing.JFrame {
             for (Map.Entry<ProductoDTO, List<LoteDTO>> entry : producto.entrySet()) {
                 ProductoDTO key = entry.getKey();
                 List<LoteDTO> value = entry.getValue();
+                Float precioTotal = key.getPrecio() * d.getCantidad();
 
                 modelo.addRow(new Object[]{
                     key.getNombre(),
                     key.getMarca(),
                     d.getCantidad(),
-                    d.getPrecioUnitario(),
-                    d.getImporte()
+                    precioTotal
                 });
             }
         }
+
+        this.tblProductosVenta.setModel(modelo);
+        tblProductosVenta.getModel().addTableModelListener(e -> {
+            if (e.getType() == TableModelEvent.UPDATE && e.getColumn() == 2) { // Columna "Cantidad"
+                int row = e.getFirstRow();
+                int nuevaCantidad = Integer.parseInt(tblProductosVenta.getValueAt(row, 2).toString());
+
+                DetalleVentaDTO detalle = detallesVenta.get(row); // Asumimos que la lista y la tabla están sincronizadas
+                detalle.setCantidad(nuevaCantidad);
+
+                // Recalcular el precio total
+                float nuevoTotal = detalle.getPrecioUnitario() * nuevaCantidad;
+                tblProductosVenta.setValueAt(nuevoTotal, row, 3);
+            }
+        });
     }
 
     public void agregarDetalle(DetalleVentaDTO detalle) throws Exception {
         this.detallesVenta.add(detalle);
         llenarTablaDetallesVenta();
+        Float cantidadTotal = 0.0F;
+
+        for (DetalleVentaDTO detalleVentaDTO : detallesVenta) {
+            cantidadTotal += detalleVentaDTO.getImporte();
+        }
+
+        this.txtTotal.setText(cantidadTotal.toString());
     }
 
     public void limpiarVenta() throws Exception {

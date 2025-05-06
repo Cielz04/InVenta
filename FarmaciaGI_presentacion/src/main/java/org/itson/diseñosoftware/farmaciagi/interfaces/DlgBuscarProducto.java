@@ -283,6 +283,8 @@ public class DlgBuscarProducto extends javax.swing.JDialog {
             }
         };
         
+        
+        
         List<ProductoDTO> productosOrdenados = new ArrayList<>();
         List<Integer> cantidadesDisponibles = new ArrayList<>();
         
@@ -332,10 +334,12 @@ public class DlgBuscarProducto extends javax.swing.JDialog {
             if(cantidadDisponible < cantidad){
                 throw new Exception();
             }
-
+            
+            Float total = cantidad*producto.getPrecio();
+            
             DetalleVentaDTO dv = new DetalleVentaDTO(
                     producto.getPrecio(),
-                    producto.getPrecio(),
+                    total,
                     cantidad,
                     producto);
 

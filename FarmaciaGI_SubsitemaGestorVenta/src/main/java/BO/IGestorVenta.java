@@ -5,6 +5,7 @@
 package BO;
 
 import java.util.List;
+import org.itson.disenosoftware.farmaciagi_dtos.DetalleVentaDTO;
 import org.itson.disenosoftware.farmaciagi_dtos.UsuarioDTO;
 import org.itson.disenosoftware.farmaciagi_dtos.VentaDTO;
 
@@ -19,4 +20,5 @@ public interface IGestorVenta {
     public List<VentaDTO> buscarTodasLasVentas();
     public List<VentaDTO> buscarVentasPorUsuario(UsuarioDTO usuarioDTO);
     public void eliminarVenta(Integer id);
+    public List<DetalleVentaDTO> agregarDetalleVenta(DetalleVentaDTO detalleVentaDTO);
 }

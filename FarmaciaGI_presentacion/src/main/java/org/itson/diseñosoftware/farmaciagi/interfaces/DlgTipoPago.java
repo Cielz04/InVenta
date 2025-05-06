@@ -2,12 +2,15 @@ package org.itson.diseñosoftware.farmaciagi.interfaces;
 
 import java.awt.Color;
 import java.awt.Frame;
+import java.util.List;
+import org.itson.disenosoftware.farmaciagi_dtos.DetalleVentaDTO;
 import org.itson.disenosoftware.farmaciagi_dtos.VentaDTO;
 
 public class DlgTipoPago extends javax.swing.JDialog {
     
     private Frame parent;
     private VentaDTO venta;
+    private List<DetalleVentaDTO> detallesVenta;
 
     /**
      * Creates new form DlgTipoPago
@@ -15,7 +18,7 @@ public class DlgTipoPago extends javax.swing.JDialog {
      * @param parent
      * @param modal
      */
-    public DlgTipoPago(java.awt.Frame parent, boolean modal, VentaDTO venta) {
+    public DlgTipoPago(java.awt.Frame parent, boolean modal, VentaDTO venta, List<DetalleVentaDTO> detallesVenta) {
         super(parent, modal);
         this.parent = parent;
         initComponents();
@@ -23,6 +26,7 @@ public class DlgTipoPago extends javax.swing.JDialog {
         btnEfectivo.setBackground(Color.WHITE);
         jLabel1.setForeground(Color.WHITE);
         this.venta = venta;
+        this.detallesVenta = detallesVenta;
     }
 
     /**
@@ -124,7 +128,7 @@ public class DlgTipoPago extends javax.swing.JDialog {
 
     private void btnEfectivoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEfectivoActionPerformed
         dispose();
-        DlgPagoEfectivo pagoEfectivo = new DlgPagoEfectivo(parent, true, venta);
+        DlgPagoEfectivo pagoEfectivo = new DlgPagoEfectivo(parent, true, venta, detallesVenta);
         pagoEfectivo.setVisible(true);
     }//GEN-LAST:event_btnEfectivoActionPerformed
 

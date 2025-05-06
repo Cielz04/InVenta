@@ -49,7 +49,7 @@ public class Venta implements Serializable {
 
     // Relación con DetalleVenta (cada producto vendido)
     @OneToMany(mappedBy = "venta", cascade = CascadeType.ALL, orphanRemoval = true)
-    private List<DetalleVenta> detallesVenta = new ArrayList<>(); // Inicializado
+    private List<DetalleVenta> detallesVenta; // Inicializado
 
     // Relación con Promociones (muchas a muchas)
     @ManyToMany

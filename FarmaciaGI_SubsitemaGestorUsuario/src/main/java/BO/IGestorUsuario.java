@@ -4,10 +4,12 @@
  */
 package BO;
 
+import org.itson.disenosoftware.farmaciagi_dtos.UsuarioDTO;
+
 /**
  *
  * @author Enrique Rodriguez
  */
 public interface IGestorUsuario {
-    
+    public UsuarioDTO buscarUsuario_id(UsuarioDTO usuarioDTO);
 }

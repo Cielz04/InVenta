@@ -264,4 +264,24 @@ public class Facade implements IFacade {
             throw new RuntimeException("Error al eliminar venta: " + e.getMessage());
         }
     }
+    
+    @Override
+    public List<DetalleVenta> agregarDetlleVenta(DetalleVenta detalleVenta){
+        Venta venta =fabrica.getVentasDAO().findById(detalleVenta.getVenta().getId());
+        Producto producto = fabrica.getProductosDAO().findByCodigo(detalleVenta.getProductos().getCodigo());
+        Usuario usuario = fabrica.getUsuarioDAO().findById(venta.getUsuarioEnTurno().getId());
+        venta.setUsuarioEnTurno(usuario);
+        DetalleVenta dvN = detalleVenta;
+        dvN.setVenta(venta);
+        dvN.setProductos(producto);
+        fabrica.getDetalleDAO().save(dvN);
+        List<DetalleVenta> dv = fabrica.getDetalleDAO().findByVenta(detalleVenta.getVenta().getId());
+        return dv;
+    }
+    
+    //Usuarios
+    public Usuario buscarUsuario_ID(Usuario usuario){
+        Usuario usuarioBuscado = fabrica.getUsuarioDAO().findById(usuario.getId());
+        return usuarioBuscado;
+    }
 }

@@ -1,15 +1,28 @@
 package org.itson.diseñosoftware.farmaciagi.interfaces;
 
+import BO.GestorInvetario;
+import BO.GestorVenta;
+import BO.IGestorVenta;
+import interfaces.IGestorInventario;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Frame;
 import java.awt.Point;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JOptionPane;
+import org.itson.disenosoftware.farmaciagi_dtos.DetalleVentaDTO;
+import org.itson.disenosoftware.farmaciagi_dtos.LoteDTO;
+import org.itson.disenosoftware.farmaciagi_dtos.ProductoDTO;
 import org.itson.disenosoftware.farmaciagi_dtos.VentaDTO;
 
 public class DlgPagoEfectivo extends javax.swing.JDialog {
 
     private VentaDTO venta;
+    private List<DetalleVentaDTO> detallesVenta;
     private Frame parent;
 
     /**
@@ -19,7 +32,7 @@ public class DlgPagoEfectivo extends javax.swing.JDialog {
      * @param modal
      * @param venta
      */
-    public DlgPagoEfectivo(java.awt.Frame parent, boolean modal, VentaDTO venta) {
+    public DlgPagoEfectivo(java.awt.Frame parent, boolean modal, VentaDTO venta, List<DetalleVentaDTO> detallesVenta) {
         super(parent, modal);
         initComponents();
         centraCuadroDialogo(parent);
@@ -27,7 +40,10 @@ public class DlgPagoEfectivo extends javax.swing.JDialog {
         btnCancelar.setBackground(Color.WHITE);
         txtMontoTotal.setText(Float.toString(venta.getTotal()));
         this.venta = venta;
+        this.detallesVenta = detallesVenta;
         this.parent = parent;
+        
+        this.txtMontoTotal.setText(venta.getTotal().toString());
     }
 
     /**
@@ -81,6 +97,11 @@ public class DlgPagoEfectivo extends javax.swing.JDialog {
 
         txtPago.setFont(new java.awt.Font("Arial", 1, 24)); // NOI18N
         txtPago.setPreferredSize(new java.awt.Dimension(36, 37));
+        txtPago.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtPagoActionPerformed(evt);
+            }
+        });
 
         btnCancelar.setFont(new java.awt.Font("Arial", 1, 22)); // NOI18N
         btnCancelar.setText("CANCELAR");
@@ -178,7 +199,7 @@ public class DlgPagoEfectivo extends javax.swing.JDialog {
     }//GEN-LAST:event_btnCancelarActionPerformed
 
     private void btnAceptarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAceptarActionPerformed
-        Float pago = 0.0F;
+        Float pago = Float.valueOf(txtPago.getText());
         Float cambio = 0.0F;
         if (!txtPago.getText().isEmpty()) {
             pago = Float.valueOf(txtPago.getText());
@@ -186,7 +207,24 @@ public class DlgPagoEfectivo extends javax.swing.JDialog {
                 JOptionPane.showMessageDialog(null, "Ingresa un monto valido");
             } else {
                 cambio = pago - venta.getTotal();
-                DlgResumenVenta pResumenVenta = new DlgResumenVenta(parent, true, venta, pago, cambio);
+                IGestorInventario gi = new GestorInvetario();
+                IGestorVenta gv = new GestorVenta();
+                
+                VentaDTO ventaGuardada = gv.agregarVenta(venta);
+                
+                for (DetalleVentaDTO detalleVentaDTO : detallesVenta) {
+                    try {
+                        gi.editarLote_Para_Venta(detalleVentaDTO.getCantidad(), detalleVentaDTO.getProducto());
+                        detalleVentaDTO.setVenta(ventaGuardada);
+                        gv.agregarDetalleVenta(detalleVentaDTO);
+                        
+                    } catch (Exception ex) {
+                        Logger.getLogger(DlgPagoEfectivo.class.getName()).log(Level.SEVERE, null, ex);
+                    }
+                }
+                
+                
+                DlgResumenVenta pResumenVenta = new DlgResumenVenta(parent, true, venta, detallesVenta, pago, cambio);
                 pResumenVenta.setVisible(true);
                 dispose();
             }
@@ -194,6 +232,11 @@ public class DlgPagoEfectivo extends javax.swing.JDialog {
             JOptionPane.showMessageDialog(parent, "Ingresar Monto a pagar");
         }
     }//GEN-LAST:event_btnAceptarActionPerformed
+
+    private void txtPagoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtPagoActionPerformed
+        // TODO add your handling code here:
+        
+    }//GEN-LAST:event_txtPagoActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAceptar;

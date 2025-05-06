@@ -65,6 +65,17 @@ public class Usuario implements Serializable {
         this.telefono = telefono;
     }
 
+    public Usuario(Integer id, String nombre, Integer codigo, String tipo, String direccion, String telefono) {
+        this.id = id;
+        this.nombre = nombre;
+        this.codigo = codigo;
+        this.tipo = tipo;
+        this.direccion = direccion;
+        this.telefono = telefono;
+    }
+    
+    
+
     // Getters y Setters
 
     public Integer getId() {

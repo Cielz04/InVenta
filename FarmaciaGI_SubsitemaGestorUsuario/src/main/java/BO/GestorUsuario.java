@@ -4,10 +4,32 @@
  */
 package BO;
 
+import conversores.ConversorUsuario;
+import facade.Facade;
+import facade.IFacade;
+import org.itson.diseniosofware.mifarmaciagi.persistencia.entidades.Usuario;
+import org.itson.disenosoftware.farmaciagi_dtos.UsuarioDTO;
+
 /**
  *
  * @author Enrique Rodriguez
  */
-public class GestorUsuario {
+public class GestorUsuario implements IGestorUsuario{
+    IFacade facade;
+    ConversorUsuario cu;
+
+    public GestorUsuario() {
+        this.facade = new Facade();
+        this.cu = new ConversorUsuario();
+    }
+    
+    
+    
+    public UsuarioDTO buscarUsuario_id(UsuarioDTO usuarioDTO){
+        Usuario usuario = new Usuario(usuarioDTO.getId());
+        Usuario usuarioBuscado = facade.buscarUsuario_ID(usuario);
+        UsuarioDTO usuarioBuscadoDTO = cu.conversor_Entidad_A_DTO(usuarioBuscado);
+        return usuarioBuscadoDTO;
+    }
     
 }
