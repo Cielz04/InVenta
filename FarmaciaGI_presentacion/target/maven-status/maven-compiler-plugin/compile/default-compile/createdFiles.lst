@@ -11,16 +11,7 @@ org\itson\diseñosoftware\farmaciagi\interfaces\DlgTipoPago$2.class
 org\itson\diseñosoftware\farmaciagi\interfaces\DlgProductosPrincipal$7.class
 org\itson\diseñosoftware\farmaciagi\interfaces\DlgInventarioProductos$3.class
 org\itson\diseñosoftware\farmaciagi\interfaces\DlgTipoPago.class
-<<<<<<< Updated upstream
 org\itson\diseñosoftware\farmaciagi\interfaces\CampoTextoR.class
-=======
-org\itson\diseñosoftware\farmaciagi\interfaces\DlgTicket.class
-org\itson\diseñosoftware\farmaciagi\interfaces\PantallaVenta$1.class
-org\itson\diseñosoftware\farmaciagi\interfaces\DlgPagoEfectivo$3.class
-<<<<<<< Updated upstream
->>>>>>> Stashed changes
-=======
->>>>>>> Stashed changes
 org\itson\diseñosoftware\farmaciagi\interfaces\DlgRegistroProductos$6.class
 org\itson\diseñosoftware\farmaciagi\interfaces\PantallaVenta$8.class
 org\itson\diseñosoftware\farmaciagi\interfaces\DlgBuscarProducto$6.class
@@ -44,12 +35,6 @@ org\itson\diseñosoftware\farmaciagi\interfaces\PantallaVenta$9.class
 org\itson\diseñosoftware\farmaciagi\interfaces\DlgRegistroProductos$7.class
 org\itson\diseñosoftware\farmaciagi\interfaces\DlgInicioSesion.class
 org\itson\diseñosoftware\farmaciagi\interfaces\ConstantesGUI.class
-<<<<<<< Updated upstream
-=======
-org\itson\diseñosoftware\farmaciagi\interfaces\PantallaVenta$6.class
-org\itson\diseñosoftware\farmaciagi\interfaces\PantallaVenta$10.class
-org\itson\diseñosoftware\farmaciagi\interfaces\DlgProductosPrincipal$9.class
->>>>>>> Stashed changes
 org\itson\diseñosoftware\farmaciagi\interfaces\DlgInventarioProductos$2.class
 org\itson\diseñosoftware\farmaciagi\interfaces\DlgRegistroProductos$1.class
 org\itson\diseñosoftware\farmaciagi\interfaces\PantallaVenta$3.class
@@ -67,6 +52,7 @@ org\itson\diseñosoftware\farmaciagi\interfaces\PantallaVenta.class
 org\itson\diseñosoftware\farmaciagi\interfaces\DlgGestionEmpleados$2.class
 org\itson\diseñosoftware\farmaciagi\interfaces\DlgTicket.class
 org\itson\diseñosoftware\farmaciagi\interfaces\PantallaVenta$1.class
+org\itson\diseñosoftware\farmaciagi\interfaces\DlgPagoEfectivo$3.class
 org\itson\diseñosoftware\farmaciagi\interfaces\DlgRegistroAsistencia$3.class
 org\itson\diseñosoftware\farmaciagi\interfaces\DlgTransferenciaExitosa$1.class
 org\itson\diseñosoftware\farmaciagi\interfaces\DlgPagoTarjeta.class
@@ -92,5 +78,6 @@ org\itson\diseñosoftware\farmaciagi\interfaces\DlgProductosPrincipal$2.class
 org\itson\diseñosoftware\farmaciagi\interfaces\DlgGestionEmpleados$1.class
 org\itson\diseñosoftware\farmaciagi\interfaces\DlgGestionEmpleados.class
 org\itson\diseñosoftware\farmaciagi\interfaces\PantallaVenta$6.class
+org\itson\diseñosoftware\farmaciagi\interfaces\PantallaVenta$10.class
 org\itson\diseñosoftware\farmaciagi\interfaces\DlgRegistroAsistencia$1.class
 org\itson\diseñosoftware\farmaciagi\interfaces\DlgProductosPrincipal$9.class
