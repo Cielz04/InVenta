@@ -18,4 +18,5 @@ public interface IDetalleDAO {
     public void save(DetalleVenta detalle);
     public void update(DetalleVenta detalle);
     public void delete(Integer id);
+    public List<DetalleVenta> findByVenta(Integer ventaId);
 }
