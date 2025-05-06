@@ -25,6 +25,15 @@ public class DetalleVentaDTO {
     public DetalleVentaDTO() {
     }
 
+    public DetalleVentaDTO(Float precioUnitario, Float importe, Integer cantidad, ProductoDTO producto) {
+        this.precioUnitario = precioUnitario;
+        this.importe = importe;
+        this.cantidad = cantidad;
+        this.producto = producto;
+    }
+    
+    
+
     public DetalleVentaDTO(Integer id) {
         this.id = id;
     }

@@ -8,6 +8,7 @@ import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Point;
 import java.awt.event.ActionEvent;
+import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
@@ -33,7 +34,7 @@ public class DlgBuscarProducto extends javax.swing.JDialog {
         initComponents();
         this.gestorInventario = new GestorInvetario();
         this.gestorVenta = new GestorVenta();
-        
+
         btnCerrar.setBackground(Color.WHITE);
         btnBuscarProducto.setBackground(Color.WHITE);
         centraCuadroDialogo(parent);
@@ -124,6 +125,11 @@ public class DlgBuscarProducto extends javax.swing.JDialog {
         txtBuscar.setFont(new java.awt.Font("Arial Rounded MT Bold", 0, 20)); // NOI18N
         txtBuscar.setCursor(new java.awt.Cursor(java.awt.Cursor.TEXT_CURSOR));
         txtBuscar.setPreferredSize(new java.awt.Dimension(36, 37));
+        txtBuscar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtBuscarActionPerformed(evt);
+            }
+        });
 
         btnBuscarProducto.setBackground(new java.awt.Color(93, 82, 193));
         btnBuscarProducto.setFont(new java.awt.Font("Arial Rounded MT Bold", 0, 20)); // NOI18N
@@ -204,16 +210,27 @@ public class DlgBuscarProducto extends javax.swing.JDialog {
 
     private void btnBuscarProductoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarProductoActionPerformed
         Map<ProductoDTO, List<LoteDTO>> productosYLotes = null;
+
         try {
-            productosYLotes = gestorInventario.buscar_Productos_Y_Lotes();
+            if (this.txtBuscar.getText().isBlank()) {
+                productosYLotes = gestorInventario.buscar_Productos_Y_Lotes();
+            } else if (this.txtBuscar.getText().matches("\\d+")) {
+                ProductoDTO productoDTO = new ProductoDTO(this.txtBuscar.getText());
+                productosYLotes = gestorInventario.buscar_Un_Producto_Y_Lotes(productoDTO);
+            } else {
+                // aqui busca por nombre
+            }
+
         } catch (Exception ex) {
             Logger.getLogger(DlgBuscarProducto.class.getName()).log(Level.SEVERE, null, ex);
         }
 
-        List<ProductoDTO> productosBuscados = productosYLotes.keySet().stream()
-                .filter(p -> p.getNombre().toLowerCase().contains(txtBuscar.getText().toLowerCase())
-                || p.getCodigo().toLowerCase().contains(txtBuscar.getText().toLowerCase()))
-                .toList();
+//        List<ProductoDTO> productosBuscados = productosYLotes.keySet().stream()
+//                .filter(p -> p.getNombre().toLowerCase().contains(txtBuscar.getText().toLowerCase())
+//                || p.getCodigo().toLowerCase().contains(txtBuscar.getText().toLowerCase()))
+//                .toList();
+
+        this.llenarTablaProductos(productosYLotes);
 
     }//GEN-LAST:event_btnBuscarProductoActionPerformed
 
@@ -221,55 +238,112 @@ public class DlgBuscarProducto extends javax.swing.JDialog {
         dispose();
     }//GEN-LAST:event_btnCerrarActionPerformed
 
+    private void txtBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtBuscarActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtBuscarActionPerformed
+
     //Métodos 
-    private void llenarTablaProductos(List<ProductoDTO> productos) {
-        DefaultTableModel modelo = new DefaultTableModel(new Object[]{"Nombre", "Marca", "Precio", "Agregar"}, 0) {
+//    private void llenarTablaProductos(List<ProductoDTO> productos) {
+//        DefaultTableModel modelo = new DefaultTableModel(new Object[]{"Nombre", "Marca", "Precio", "Agregar"}, 0) {
+//            @Override
+//            public boolean isCellEditable(int row, int column) {
+//                return column == 3; // Solo la columna de "Agregar" es editable
+//            }
+//        };
+//
+//        for (ProductoDTO p : productos) {
+//            modelo.addRow(new Object[]{
+//                p.getNombre(),
+//                p.getMarca(),
+//                p.getPrecio(),
+//                "Agregar"
+//            });
+//        }
+//
+//        tblBusqueda.setModel(modelo);
+//
+//        // Acción del botón
+//        Action agregarAction = new AbstractAction("Agregar") {
+//            @Override
+//            public void actionPerformed(ActionEvent e) {
+//                int fila = Integer.parseInt(e.getActionCommand());
+//                ProductoDTO producto = productos.get(fila);
+//                agregarProductoALaVenta(producto);
+//            }
+//        };
+//
+//        new ButtonColumn(tblBusqueda, agregarAction, 3);
+//    }
+    
+    private void llenarTablaProductos(Map<ProductoDTO, List<LoteDTO>> productos) {
+        DefaultTableModel modelo = new DefaultTableModel(new Object[]{"Nombre", "Marca", "Precio", "Cantidad", "Agregar"}, 0) {
             @Override
             public boolean isCellEditable(int row, int column) {
-                return column == 3; // Solo la columna de "Agregar" es editable
+                return column == 4; // Solo la columna de "Agregar" es editable
             }
         };
-
-        for (ProductoDTO p : productos) {
+        
+        List<ProductoDTO> productosOrdenados = new ArrayList<>();
+        List<Integer> cantidadesDisponibles = new ArrayList<>();
+        
+        for (Map.Entry<ProductoDTO, List<LoteDTO>> entry : productos.entrySet()) {
+            ProductoDTO key = entry.getKey();
+            List<LoteDTO> value = entry.getValue();
+            Integer cantidadProducto = 0;
+            
+            productosOrdenados.add(key);
+            
+            for (LoteDTO loteDTO : value) {
+                cantidadProducto += loteDTO.getCantidad();
+            }
+            cantidadesDisponibles.add(cantidadProducto);
+            
             modelo.addRow(new Object[]{
-                p.getNombre(),
-                p.getMarca(),
-                p.getPrecio(),
+                key.getNombre(),
+                key.getMarca(),
+                key.getPrecio(),
+                cantidadProducto,
                 "Agregar"
             });
+            
         }
 
         tblBusqueda.setModel(modelo);
 
-        // Establece el botón en la columna 3
+        // Acción del botón
         Action agregarAction = new AbstractAction("Agregar") {
             @Override
             public void actionPerformed(ActionEvent e) {
-                int fila = Integer.valueOf(e.getActionCommand());
-                ProductoDTO producto = productos.get(fila);
-                agregarProductoALaVenta(producto);
+                int fila = Integer.parseInt(e.getActionCommand());
+                ProductoDTO producto = productosOrdenados.get(fila);
+                Integer cantidadDispo = cantidadesDisponibles.get(fila);
+                agregarProductoALaVenta(producto, cantidadDispo);
             }
         };
 
-        new ButtonColumn(tblBusqueda, agregarAction, 3);
+        new ButtonColumn(tblBusqueda, agregarAction, 4);
     }
 
-    private void agregarProductoALaVenta(ProductoDTO producto) {
+    private void agregarProductoALaVenta(ProductoDTO producto, Integer cantidadDisponible) {
         try {
             String input = JOptionPane.showInputDialog(this, "¿Cantidad a vender de " + producto.getNombre() + "?");
-            int cantidad = Integer.parseInt(input);
+            Integer cantidad = Integer.valueOf(input);
+            
+            if(cantidadDisponible < cantidad){
+                throw new Exception();
+            }
 
-            DetalleVentaDTO detalle = new DetalleVentaDTO();
-            detalle.setId(producto.getId());
-            detalle.setPrecioUnitario(producto.getPrecio());
-            detalle.setCantidad(cantidad);
-            detalle.setImporte(producto.getPrecio() * cantidad);
+            DetalleVentaDTO dv = new DetalleVentaDTO(
+                    producto.getPrecio(),
+                    producto.getPrecio(),
+                    cantidad,
+                    producto);
 
-            PantallaVenta.getInstancia().agregarDetalle(detalle); // <-- método público
+            PantallaVenta.getInstancia().agregarDetalle(dv); // <-- método público
 
             JOptionPane.showMessageDialog(this, "Producto agregado a la venta.");
         } catch (Exception e) {
-            JOptionPane.showMessageDialog(this, "Cantidad inválida.");
+            JOptionPane.showMessageDialog(this, "Cantidad inválida.\nStock Disponible: "+ cantidadDisponible);
         }
     }
 

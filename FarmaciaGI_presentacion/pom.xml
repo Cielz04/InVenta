@@ -14,38 +14,8 @@
     </repositories>
     <dependencies>
         <dependency>
-            <groupId>${project.groupId}</groupId>
-            <artifactId>FarmaciaGIDominio</artifactId>
-            <version>${project.version}</version>
-        </dependency>
-        <dependency>
-            <groupId>org.itson.basesdedatosavanzadas_tramitesvehiculares_negocio</groupId>
-            <artifactId>FarmaciaGI_subsistema_productos</artifactId>
-            <version>1.0-SNAPSHOT</version>
-        </dependency>
-        <dependency>
-            <groupId>org.itson.basesdedatosavanzadas_tramitesvehiculares_negocio</groupId>
-            <artifactId>FarmaciaGI_subsistema_ventas</artifactId>
-            <version>1.0-SNAPSHOT</version>
-        </dependency>
-        <dependency>
             <groupId>org.itson.bdavanzadas</groupId>
             <artifactId>FarmaciaGI_dtos</artifactId>
-            <version>1.0-SNAPSHOT</version>
-        </dependency>
-        <dependency>
-            <groupId>${project.groupId}</groupId>
-            <artifactId>FarmaciaGI_subsistema_promociones</artifactId>
-            <version>${project.version}</version>
-        </dependency>
-        <dependency>
-            <groupId>com.itson.bdavanzadas</groupId>
-            <artifactId>FarmaciaGI_subsistema_proveedores</artifactId>
-            <version>1.0-SNAPSHOT</version>
-        </dependency>
-        <dependency>
-            <groupId>com.mycompany</groupId>
-            <artifactId>FarmaciaGI_subsistema_compra</artifactId>
             <version>1.0-SNAPSHOT</version>
         </dependency>
         <dependency>

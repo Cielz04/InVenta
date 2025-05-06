@@ -1,6 +1,8 @@
 package org.itson.diseñosoftware.farmaciagi.interfaces;
 
 import BO.GestorInvetario;
+import BO.GestorVenta;
+import BO.IGestorVenta;
 import interfaces.IGestorInventario;
 import java.awt.Color;
 import java.awt.Frame;
@@ -12,16 +14,13 @@ import org.itson.disenosoftware.farmaciagi_dtos.DetalleVentaDTO;
 import org.itson.disenosoftware.farmaciagi_dtos.ProductoDTO;
 import org.itson.disenosoftware.farmaciagi_dtos.PromocionDTO;
 import org.itson.disenosoftware.farmaciagi_dtos.VentaDTO;
-import org.itson.disenosoftware.farmaciagi_subsistema_ventas.GestorVentas;
-import org.itson.disenosoftware.farmaciagi_subsistema_ventas.IGestorVentas;
-import org.itson.disenosoftware.farmaciagi_subsistema_ventas.excepciones.GestorVentasException;
 
 public class DlgResumenVenta extends javax.swing.JDialog {
 
     private VentaDTO venta;
     private Float pago;
     private Float cambio;
-    private IGestorVentas gestorVentas;
+    private IGestorVenta gestorVentas;
     private int cantidad = 0;
     private Frame parent;
     IGestorInventario gestorInventario = new GestorInvetario();
@@ -40,7 +39,7 @@ public class DlgResumenVenta extends javax.swing.JDialog {
         this.cambio = cambio;
         this.pago = pago;
         this.venta = venta;
-        this.gestorVentas = new GestorVentas();
+        this.gestorVentas = new GestorVenta();
         this.parent = parent;
         initComponents();
         llenarTablaProductos();
@@ -93,12 +92,12 @@ public class DlgResumenVenta extends javax.swing.JDialog {
      * administrada por su respectivo gestor.
      */
     private void registrarVenta() {
-        try {
-            gestorVentas.registrarVenta(venta);
-        } catch (GestorVentasException ex) {
-            JOptionPane.showMessageDialog(parent, "No se pudo registrar la venta.",
-                    "Error", JOptionPane.ERROR_MESSAGE);
-        }
+//        try {
+//            gestorVentas.registrarVenta(venta);
+//        } catch (GestorVentasException ex) {
+//            JOptionPane.showMessageDialog(parent, "No se pudo registrar la venta.",
+//                    "Error", JOptionPane.ERROR_MESSAGE);
+//        }
     }
 
     /**
@@ -343,19 +342,19 @@ public class DlgResumenVenta extends javax.swing.JDialog {
 
     private void btnCerrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCerrarActionPerformed
 
-        try {
-            gestorVentas.registrarVenta(venta);
-            JOptionPane.showMessageDialog(this, "✅ Venta registrada con éxito.");
-
-            // Limpia datos en la pantalla principal
-            if (parent instanceof PantallaVenta) {
-                ((PantallaVenta) parent).limpiarVenta();
-            }
-
-            this.dispose();
-        } catch (GestorVentasException ex) {
-            JOptionPane.showMessageDialog(this, "❌ No se pudo registrar la venta: " + ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
-        }
+//        try {
+//            gestorVentas.registrarVenta(venta);
+//            JOptionPane.showMessageDialog(this, "✅ Venta registrada con éxito.");
+//
+//            // Limpia datos en la pantalla principal
+//            if (parent instanceof PantallaVenta) {
+//                ((PantallaVenta) parent).limpiarVenta();
+//            }
+//
+//            this.dispose();
+//        } catch (GestorVentasException ex) {
+//            JOptionPane.showMessageDialog(this, "❌ No se pudo registrar la venta: " + ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+//        }
 
 
     }//GEN-LAST:event_btnCerrarActionPerformed

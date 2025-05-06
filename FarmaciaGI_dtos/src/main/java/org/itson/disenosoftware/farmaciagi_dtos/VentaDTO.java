@@ -17,15 +17,22 @@ public class VentaDTO {
     private Float subtotal;
 
     private Instant fecha;
-    
+
     private UsuarioDTO usuarioEnTurno;
-    
+
     private List<DetalleVentaDTO> detallesVenta = new ArrayList<>();
-    
+
     private List<PromocionDTO> promociones; // Inicializado
 
     public VentaDTO() {
     }
+
+    public VentaDTO(Instant fecha, UsuarioDTO usuarioEnTurno) {
+        this.fecha = fecha;
+        this.usuarioEnTurno = usuarioEnTurno;
+    }
+    
+    
 
     public VentaDTO(Integer id, Float total, Float subtotal, Instant fecha, UsuarioDTO usuarioEnTurno, List<DetalleVentaDTO> detallesVenta) {
         this.id = id;
@@ -43,7 +50,7 @@ public class VentaDTO {
     public void setDetallesVenta(List<DetalleVentaDTO> detallesVenta) {
         this.detallesVenta = detallesVenta;
     }
-    
+
     public Integer getId() {
         return id;
     }
@@ -91,6 +98,5 @@ public class VentaDTO {
     public void setPromociones(List<PromocionDTO> promociones) {
         this.promociones = promociones;
     }
-    
-    
+
 }

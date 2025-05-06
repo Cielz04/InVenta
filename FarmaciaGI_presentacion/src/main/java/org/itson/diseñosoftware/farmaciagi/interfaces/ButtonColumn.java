@@ -12,11 +12,12 @@ import javax.swing.table.TableCellRenderer;
 import javax.swing.table.TableColumnModel;
 
 public class ButtonColumn extends AbstractCellEditor implements TableCellRenderer, TableCellEditor, ActionListener {
-    private JTable table;
-    private Action action;
-    private JButton renderButton;
-    private JButton editButton;
+    private final JTable table;
+    private final Action action;
+    private final JButton renderButton;
+    private final JButton editButton;
     private String text;
+    private int row; // ← Aquí guardamos la fila actual
 
     public ButtonColumn(JTable table, Action action, int column) {
         this.table = table;
@@ -41,6 +42,7 @@ public class ButtonColumn extends AbstractCellEditor implements TableCellRendere
     @Override
     public Component getTableCellEditorComponent(JTable table, Object value,
             boolean isSelected, int row, int column) {
+        this.row = row; // ← Guarda la fila seleccionada
         text = value == null ? "" : value.toString();
         editButton.setText(text);
         return editButton;
@@ -54,8 +56,7 @@ public class ButtonColumn extends AbstractCellEditor implements TableCellRendere
     @Override
     public void actionPerformed(ActionEvent e) {
         fireEditingStopped();
-        int row = table.convertRowIndexToModel(table.getEditingRow());
-        ActionEvent event = new ActionEvent(table, ActionEvent.ACTION_PERFORMED, "" + row);
+        ActionEvent event = new ActionEvent(table, ActionEvent.ACTION_PERFORMED, String.valueOf(row));
         action.actionPerformed(event);
     }
 }

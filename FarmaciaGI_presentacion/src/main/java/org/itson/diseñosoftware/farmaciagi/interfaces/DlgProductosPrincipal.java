@@ -17,13 +17,14 @@ public class DlgProductosPrincipal extends javax.swing.JDialog {
 
     /**
      * Creates new form DlgProductosPrincipal
+     *
      * @param parent
      * @param modal
      */
     public DlgProductosPrincipal(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
-        
+
         this.parent = parent;
     }
 
@@ -325,15 +326,19 @@ public class DlgProductosPrincipal extends javax.swing.JDialog {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnVentaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVentaActionPerformed
-        dispose();
-        PantallaVenta venta = new PantallaVenta();
-        venta.setVisible(true);
+        try {
+            dispose();
+            PantallaVenta venta = new PantallaVenta();
+            venta.setVisible(true);
+        } catch (Exception e) {
+        }
+
     }//GEN-LAST:event_btnVentaActionPerformed
 
     private void btnProveedoresActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnProveedoresActionPerformed
-        dispose();
-        DlgProveedores proveedores = new DlgProveedores(parent, true);
-        proveedores.setVisible(true);
+//        dispose();
+//        DlgProveedores proveedores = new DlgProveedores(parent, true);
+//        proveedores.setVisible(true);
     }//GEN-LAST:event_btnProveedoresActionPerformed
 
     private void btnProductosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnProductosActionPerformed
@@ -359,21 +364,21 @@ public class DlgProductosPrincipal extends javax.swing.JDialog {
     }//GEN-LAST:event_btnAsignarActionPerformed
 
     private void btnComprarProductos2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnComprarProductos2ActionPerformed
-        dispose();
-        DlgComprarProductos productosPrincipal = new DlgComprarProductos();
-        productosPrincipal.setVisible(true);
+//        dispose();
+//        DlgComprarProductos productosPrincipal = new DlgComprarProductos();
+//        productosPrincipal.setVisible(true);
     }//GEN-LAST:event_btnComprarProductos2ActionPerformed
 
     private void btnPromocionesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPromocionesActionPerformed
-        dispose();
-        DlgPromociones dlgPromociones = new DlgPromociones(parent, true);
-        dlgPromociones.setVisible(true);
+//        dispose();
+//        DlgPromociones dlgPromociones = new DlgPromociones(parent, true);
+//        dlgPromociones.setVisible(true);
     }//GEN-LAST:event_btnPromocionesActionPerformed
 
     private void btnComprarProductosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnComprarProductosActionPerformed
-        dispose();
-        DlgComprarProductos productosPrincipal = new DlgComprarProductos();
-        productosPrincipal.setVisible(true);
+//        dispose();
+//        DlgComprarProductos productosPrincipal = new DlgComprarProductos();
+//        productosPrincipal.setVisible(true);
     }//GEN-LAST:event_btnComprarProductosActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

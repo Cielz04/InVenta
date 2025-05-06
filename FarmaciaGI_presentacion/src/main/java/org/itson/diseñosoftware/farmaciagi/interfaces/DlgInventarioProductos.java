@@ -4,14 +4,14 @@
  */
 package org.itson.diseñosoftware.farmaciagi.interfaces;
 
+import BO.GestorInvetario;
+import interfaces.IGestorInventario;
 import java.awt.Color;
 import java.awt.Frame;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableColumnModel;
 import org.itson.disenosoftware.farmaciagi_dtos.ProductoDTO;
-import org.itson.disenosoftware.farmaciagi_subsistema_productos.GestorProductos;
-import org.itson.disenosoftware.farmaciagi_subsistema_productos.IGestorProductos;
 
 /**
  *
@@ -19,7 +19,7 @@ import org.itson.disenosoftware.farmaciagi_subsistema_productos.IGestorProductos
  */
 public class DlgInventarioProductos extends javax.swing.JDialog {
 
-    private IGestorProductos gestorProductos;
+    private IGestorInventario gestorProductos;
     private Frame parent;
     private int constante;
 
@@ -28,14 +28,14 @@ public class DlgInventarioProductos extends javax.swing.JDialog {
      */
     public DlgInventarioProductos(java.awt.Frame parent, boolean modal, int decision) {
         super(parent, modal);
-        gestorProductos = new GestorProductos();
+        gestorProductos = new GestorInvetario();
         this.constante = decision;
         this.parent = parent;
         initComponents();
-        
+
         btnActualizar.setBackground(Color.WHITE);
         btnVolver.setBackground(Color.WHITE);
-        
+
         llenarTablaProductos();
     }
 
@@ -298,15 +298,19 @@ public class DlgInventarioProductos extends javax.swing.JDialog {
     }//GEN-LAST:event_btnProductosActionPerformed
 
     private void btnProveedoresActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnProveedoresActionPerformed
-        dispose();
-        DlgProveedores proveedores = new DlgProveedores(parent, true);
-        proveedores.setVisible(true);
+//        dispose();
+//        DlgProveedores proveedores = new DlgProveedores(parent, true);
+//        proveedores.setVisible(true);
     }//GEN-LAST:event_btnProveedoresActionPerformed
 
     private void btnVentaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVentaActionPerformed
-        dispose();
-        PantallaVenta venta = new PantallaVenta();
-        venta.setVisible(true);
+        try {
+            dispose();
+            PantallaVenta venta = new PantallaVenta();
+            venta.setVisible(true);
+        } catch (Exception e) {
+        }
+
     }//GEN-LAST:event_btnVentaActionPerformed
 
     private void btnVolverActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVolverActionPerformed
@@ -317,29 +321,29 @@ public class DlgInventarioProductos extends javax.swing.JDialog {
 
     private void btnActualizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnActualizarActionPerformed
 
-        ProductoDTO producto = obtenerProductoSeleccionado();
-
-        if (producto != null) {
-
-            if (constante == ConstantesGUI.ASIGNAR_PROVEEDOR) {
-                dispose();
-                DlgInventarioProveedores proveedores = new DlgInventarioProveedores(parent, true, producto);
-                proveedores.setVisible(true);
-            } else if (constante == ConstantesGUI.ACTUALIZAR){
-                dispose();
-                DlgRegistroProductos actualizar = new DlgRegistroProductos(parent, true, producto);
-                actualizar.setVisible(true);
-            }
-
-        } else {
-            JOptionPane.showMessageDialog(rootPane, "Haga click en algún producto y seleccione continuar", "No se seleccino ningún producto", JOptionPane.WARNING_MESSAGE);
-        }
+//        ProductoDTO producto = obtenerProductoSeleccionado();
+//
+//        if (producto != null) {
+//
+//            if (constante == ConstantesGUI.ASIGNAR_PROVEEDOR) {
+//                dispose();
+//                DlgInventarioProveedores proveedores = new DlgInventarioProveedores(parent, true, producto);
+//                proveedores.setVisible(true);
+//            } else if (constante == ConstantesGUI.ACTUALIZAR){
+//                dispose();
+//                DlgRegistroProductos actualizar = new DlgRegistroProductos(parent, true, producto);
+//                actualizar.setVisible(true);
+//            }
+//
+//        } else {
+//            JOptionPane.showMessageDialog(rootPane, "Haga click en algún producto y seleccione continuar", "No se seleccino ningún producto", JOptionPane.WARNING_MESSAGE);
+//        }
     }//GEN-LAST:event_btnActualizarActionPerformed
 
     private void btnComprasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnComprasActionPerformed
-        dispose();
-        DlgComprarProductos productosPrincipal = new DlgComprarProductos();
-        productosPrincipal.setVisible(true);
+//        dispose();
+//        DlgComprarProductos productosPrincipal = new DlgComprarProductos();
+//        productosPrincipal.setVisible(true);
     }//GEN-LAST:event_btnComprasActionPerformed
 
     private void llenarTablaProductos() {
@@ -350,16 +354,15 @@ public class DlgInventarioProductos extends javax.swing.JDialog {
         modelo.addColumn("MARCA");
         modelo.addColumn("COSTO");
 
-        for (ProductoDTO p : gestorProductos.obtnerInventario()) {
-            Object[] fila = {
-                p.getCodigo(),
-                p.getNombre(),
-                p.getMarca(),
-                //p.getCosto(),
-            };
-            modelo.addRow(fila);
-        }
-
+//        for (ProductoDTO p : gestorProductos.obtnerInventario()) {
+//            Object[] fila = {
+//                p.getCodigo(),
+//                p.getNombre(),
+//                p.getMarca(),
+//                //p.getCosto(),
+//            };
+//            modelo.addRow(fila);
+//        }
         tblProductosInventario.setModel(modelo);
         TableColumnModel columnModel = tblProductosInventario.getColumnModel();
 

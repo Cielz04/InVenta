@@ -9,12 +9,14 @@ import java.time.Instant;
 import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Map;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableColumnModel;
 import org.itson.disenosoftware.farmaciagi_dtos.DetalleVentaDTO;
+import org.itson.disenosoftware.farmaciagi_dtos.LoteDTO;
 import org.itson.disenosoftware.farmaciagi_dtos.ProductoDTO;
 import org.itson.disenosoftware.farmaciagi_dtos.PromocionDTO;
 import org.itson.disenosoftware.farmaciagi_dtos.UsuarioDTO;
@@ -28,7 +30,7 @@ public class PantallaVenta extends javax.swing.JFrame {
     private IGestorInventario gestorInventario = new GestorInvetario();
     private UsuarioDTO usuarioenTurnoDTO = new UsuarioDTO(1);
 
-    public PantallaVenta() {
+    public PantallaVenta() throws Exception {
         initComponents();
         instancia = this; // ← Aquí se guarda la instancia
 
@@ -46,7 +48,7 @@ public class PantallaVenta extends javax.swing.JFrame {
                 new Color(93, 82, 193));
     }
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws Exception {
         // Crear una instancia de PantallaVenta y pasarle el inventario
         PantallaVenta pantallaVenta = new PantallaVenta();
         // Hacer visible la pantalla de venta
@@ -399,9 +401,13 @@ public class PantallaVenta extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnBuscarProductoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarProductoActionPerformed
-        DlgBuscarProducto busquedaProducto = new DlgBuscarProducto(this, true);
-        busquedaProducto.setVisible(true);
-        llenarTablaDetallesVenta();
+        try {
+            DlgBuscarProducto busquedaProducto = new DlgBuscarProducto(this, true);
+            busquedaProducto.setVisible(true);
+            llenarTablaDetallesVenta();
+        } catch (Exception e) {
+        }
+
     }//GEN-LAST:event_btnBuscarProductoActionPerformed
 
     private void btnContinuarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnContinuarActionPerformed
@@ -411,6 +417,13 @@ public class PantallaVenta extends javax.swing.JFrame {
         }
 
         try {
+
+            VentaDTO ven = new VentaDTO(Instant.now(), usuarioenTurnoDTO);
+
+            gestorVenta.agregarVenta(ven);
+
+            List<ProductoDTO> listaProductos = new ArrayList<>();
+
             VentaDTO venta = new VentaDTO();
             venta.setFecha(Instant.now());
             venta.setUsuarioEnTurno(usuarioenTurnoDTO); // Usuario logueado en el futuro
@@ -439,9 +452,9 @@ public class PantallaVenta extends javax.swing.JFrame {
     }//GEN-LAST:event_btnContinuarActionPerformed
 
     private void btnProveedoresActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnProveedoresActionPerformed
-        dispose();
-        DlgProveedores proveedores = new DlgProveedores(this, true);
-        proveedores.setVisible(true);
+//        dispose();
+//        DlgProveedores proveedores = new DlgProveedores(this, true);
+//        proveedores.setVisible(true);
     }//GEN-LAST:event_btnProveedoresActionPerformed
 
     private void btnVentaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVentaActionPerformed
@@ -459,36 +472,41 @@ public class PantallaVenta extends javax.swing.JFrame {
     }//GEN-LAST:event_btnPromocionesActionPerformed
 
     private void btnComprarProductosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnComprarProductosActionPerformed
-        dispose();
-        DlgComprarProductos productosPrincipal = new DlgComprarProductos();
-        productosPrincipal.setVisible(true);
+//        dispose();
+//        DlgComprarProductos productosPrincipal = new DlgComprarProductos();
+//        productosPrincipal.setVisible(true);
     }//GEN-LAST:event_btnComprarProductosActionPerformed
 
     //Métodos 
-    private void llenarTablaDetallesVenta() {
+    private void llenarTablaDetallesVenta() throws Exception {
         DefaultTableModel modelo = (DefaultTableModel) tblProductosVenta.getModel();
         modelo.setRowCount(0);
 
         for (DetalleVentaDTO d : detallesVenta) {
             // Buscar el producto desde gestor
-            ProductoDTO producto = gestorInventario.buscarProductoPorId(d.getId());
+            Map<ProductoDTO, List<LoteDTO>> producto = gestorInventario.buscar_Un_Producto_Y_Lotes(d.getProducto());
 
-            modelo.addRow(new Object[]{
-                producto.getNombre(),
-                producto.getMarca(),
-                d.getCantidad(),
-                d.getPrecioUnitario(),
-                d.getImporte()
-            });
+            for (Map.Entry<ProductoDTO, List<LoteDTO>> entry : producto.entrySet()) {
+                ProductoDTO key = entry.getKey();
+                List<LoteDTO> value = entry.getValue();
+
+                modelo.addRow(new Object[]{
+                    key.getNombre(),
+                    key.getMarca(),
+                    d.getCantidad(),
+                    d.getPrecioUnitario(),
+                    d.getImporte()
+                });
+            }
         }
     }
 
-    public void agregarDetalle(DetalleVentaDTO detalle) {
+    public void agregarDetalle(DetalleVentaDTO detalle) throws Exception {
         this.detallesVenta.add(detalle);
         llenarTablaDetallesVenta();
     }
 
-    public void limpiarVenta() {
+    public void limpiarVenta() throws Exception {
         detallesVenta.clear();
         llenarTablaDetallesVenta();
     }

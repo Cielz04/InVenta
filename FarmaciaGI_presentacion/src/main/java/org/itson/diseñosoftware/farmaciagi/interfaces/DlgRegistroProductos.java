@@ -4,8 +4,6 @@ import java.awt.Color;
 import java.awt.Frame;
 import javax.swing.JOptionPane;
 import org.itson.disenosoftware.farmaciagi_dtos.ProductoDTO;
-import org.itson.disenosoftware.farmaciagi_subsistema_productos.GestorProductos;
-import org.itson.disenosoftware.farmaciagi_subsistema_productos.excepciones.GestorProductosException;
 
 /**
  *
@@ -370,58 +368,58 @@ public class DlgRegistroProductos extends javax.swing.JDialog {
     }//GEN-LAST:event_btnVolverActionPerformed
 
     private void btnRegistrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegistrarActionPerformed
-        if (validarCampos()) {
-            GestorProductos gestor = new GestorProductos();
-
-            if (producto.getCodigo() != null) {
-
-                try {
-
-                    try {
-                        if (validacionCosto()) {
-                            producto.setMarca(txtMarca.getText());
-                            //producto.setCosto(Float.parseFloat(txtCosto.getText()));
-                            producto.setNombre(txtNombre.getText());
-                            gestor.actualizarProducto(producto);
-                            JOptionPane.showMessageDialog(rootPane, "Producto actualizado correctamente", "Tarea realizada", JOptionPane.INFORMATION_MESSAGE);
-                            volver();
-
-                        }
-                    } catch (NumberFormatException ex) {
-                        JOptionPane.showMessageDialog(parent, "Inserte un formato válido", "Error en campo costo", JOptionPane.ERROR_MESSAGE);
-                    }
-
-                } catch (GestorProductosException ex) {
-                    JOptionPane.showMessageDialog(rootPane, "No fue posible realizar la actualización", "Error", JOptionPane.ERROR_MESSAGE);
-                }
-
-            } else {
-                try {
-                   if (validacionCosto()) {
-                    producto.setCodigo(txtCodigo.getText());
-                    producto.setMarca(txtMarca.getText());
-                    //producto.setCosto(Float.parseFloat(txtCosto.getText()));
-                    producto.setNombre(txtNombre.getText());
-                    //producto.setCantidad(0);
-
-                    try {
-                        producto = gestor.registrarProducto(producto);
-                        JOptionPane.showMessageDialog(rootPane, "Producto registrado correctamente", "Tarea realizada", JOptionPane.INFORMATION_MESSAGE);
-                        volver();
-                    } catch (GestorProductosException ex) {
-                        JOptionPane.showMessageDialog(rootPane, ex.getMessage(), "Error en registro", JOptionPane.ERROR_MESSAGE);
-                    }
-
-                }  
-                }catch (NumberFormatException ex){
-                    JOptionPane.showMessageDialog(parent, "Inserte un formato válido", "Error en campo costo", JOptionPane.ERROR_MESSAGE);
-                }
-                
-
-            }
-        } else {
-            JOptionPane.showMessageDialog(rootPane, "Asegurese de llenar todos los campos", "Error en registro", JOptionPane.WARNING_MESSAGE);
-        }
+//        if (validarCampos()) {
+//            GestorProductos gestor = new GestorProductos();
+//
+//            if (producto.getCodigo() != null) {
+//
+//                try {
+//
+//                    try {
+//                        if (validacionCosto()) {
+//                            producto.setMarca(txtMarca.getText());
+//                            //producto.setCosto(Float.parseFloat(txtCosto.getText()));
+//                            producto.setNombre(txtNombre.getText());
+//                            gestor.actualizarProducto(producto);
+//                            JOptionPane.showMessageDialog(rootPane, "Producto actualizado correctamente", "Tarea realizada", JOptionPane.INFORMATION_MESSAGE);
+//                            volver();
+//
+//                        }
+//                    } catch (NumberFormatException ex) {
+//                        JOptionPane.showMessageDialog(parent, "Inserte un formato válido", "Error en campo costo", JOptionPane.ERROR_MESSAGE);
+//                    }
+//
+//                } catch (GestorProductosException ex) {
+//                    JOptionPane.showMessageDialog(rootPane, "No fue posible realizar la actualización", "Error", JOptionPane.ERROR_MESSAGE);
+//                }
+//
+//            } else {
+//                try {
+//                   if (validacionCosto()) {
+//                    producto.setCodigo(txtCodigo.getText());
+//                    producto.setMarca(txtMarca.getText());
+//                    //producto.setCosto(Float.parseFloat(txtCosto.getText()));
+//                    producto.setNombre(txtNombre.getText());
+//                    //producto.setCantidad(0);
+//
+//                    try {
+//                        producto = gestor.registrarProducto(producto);
+//                        JOptionPane.showMessageDialog(rootPane, "Producto registrado correctamente", "Tarea realizada", JOptionPane.INFORMATION_MESSAGE);
+//                        volver();
+//                    } catch (GestorProductosException ex) {
+//                        JOptionPane.showMessageDialog(rootPane, ex.getMessage(), "Error en registro", JOptionPane.ERROR_MESSAGE);
+//                    }
+//
+//                }  
+//                }catch (NumberFormatException ex){
+//                    JOptionPane.showMessageDialog(parent, "Inserte un formato válido", "Error en campo costo", JOptionPane.ERROR_MESSAGE);
+//                }
+//                
+//
+//            }
+//        } else {
+//            JOptionPane.showMessageDialog(rootPane, "Asegurese de llenar todos los campos", "Error en registro", JOptionPane.WARNING_MESSAGE);
+//        }
     }//GEN-LAST:event_btnRegistrarActionPerformed
 
     private void btnVentaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVentaActionPerformed
@@ -429,9 +427,9 @@ public class DlgRegistroProductos extends javax.swing.JDialog {
     }//GEN-LAST:event_btnVentaActionPerformed
 
     private void btnProveedoresActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnProveedoresActionPerformed
-        dispose();
-        DlgProveedores proveedores = new DlgProveedores(parent, true);
-        proveedores.setVisible(true);
+//        dispose();
+//        DlgProveedores proveedores = new DlgProveedores(parent, true);
+//        proveedores.setVisible(true);
     }//GEN-LAST:event_btnProveedoresActionPerformed
 
     private void btnProductosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnProductosActionPerformed
@@ -443,15 +441,15 @@ public class DlgRegistroProductos extends javax.swing.JDialog {
     }//GEN-LAST:event_btnRestaurarActionPerformed
 
     private void btnComprarProductosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnComprarProductosActionPerformed
-        dispose();
-        DlgComprarProductos productosPrincipal = new DlgComprarProductos();
-        productosPrincipal.setVisible(true);
+//        dispose();
+//        DlgComprarProductos productosPrincipal = new DlgComprarProductos();
+//        productosPrincipal.setVisible(true);
     }//GEN-LAST:event_btnComprarProductosActionPerformed
 
     private void btnPromocionesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPromocionesActionPerformed
-        dispose();
-        DlgPromociones dlgPromociones = new DlgPromociones(parent, true);
-        dlgPromociones.setVisible(true);
+//        dispose();
+//        DlgPromociones dlgPromociones = new DlgPromociones(parent, true);
+//        dlgPromociones.setVisible(true);
     }//GEN-LAST:event_btnPromocionesActionPerformed
 
     private void restaurar(){
