@@ -30,7 +30,7 @@ public class DetalleDAO implements IDetalleDAO{
     
     @Override
     public List<DetalleVenta> findByVenta(Integer ventaId) {
-        TypedQuery<DetalleVenta> query = em.createQuery("SELECT d FROM DetalleVenta d WHEREd.venta.id = :ventaId", DetalleVenta.class);
+        TypedQuery<DetalleVenta> query = em.createQuery("SELECT d FROM DetalleVenta d WHERE d.venta.id = :ventaId", DetalleVenta.class);
         query.setParameter("ventaId", ventaId);
         return query.getResultList();
     }

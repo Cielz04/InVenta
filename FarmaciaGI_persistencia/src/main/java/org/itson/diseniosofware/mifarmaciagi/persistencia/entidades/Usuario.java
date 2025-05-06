@@ -122,5 +122,12 @@ public class Usuario implements Serializable {
     public void setVentas(List<Venta> ventas) {
         this.ventas = ventas;
     }
+
+    @Override
+    public String toString() {
+        return "Usuario{" + "id=" + id + ", nombre=" + nombre + ", codigo=" + codigo + ", tipo=" + tipo + ", direccion=" + direccion + ", telefono=" + telefono + ", ventas=" + ventas + '}';
+    }
+    
+    
     
 }

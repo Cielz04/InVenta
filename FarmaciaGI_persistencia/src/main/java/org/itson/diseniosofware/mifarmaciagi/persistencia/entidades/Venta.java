@@ -152,4 +152,10 @@ public class Venta implements Serializable {
         this.promociones = promociones;
     }
 
+    @Override
+    public String toString() {
+        return "Venta{" + "id=" + id + ", total=" + total + ", subtotal=" + subtotal + ", fecha=" + fecha + ", usuarioEnTurno=" + usuarioEnTurno + ", detallesVenta=" + detallesVenta + ", promociones=" + promociones + '}';
+    }
+    
+
 }

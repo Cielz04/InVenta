@@ -146,4 +146,10 @@ public class DetalleVenta implements Serializable {
         return Objects.hash(id);
     }
 
+    @Override
+    public String toString() {
+        return "DetalleVenta{" + "id=" + id + ", precioUnitario=" + precioUnitario + ", importe=" + importe + ", cantidad=" + cantidad + ", venta=" + venta + ", producto=" + producto + '}';
+    }
+
+    
 }

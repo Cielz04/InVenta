@@ -51,8 +51,15 @@ public class pruebas {
         ProveedoresDAO proveedorDAO = new ProveedoresDAO(conexion);
         VentasDAO ventaDAO = new VentasDAO(conexion);
         
-        Lote l= loteDAO.findByProductoId_Last(1);
-        System.out.println(l);
+        Venta venta = ventaDAO.findById(1);
+        Producto pro = productosDAO.findByCodigo("12345");
+        
+        System.out.println(detalleDAO.findByVenta(venta.getId()).toString());
+//        DetalleVenta dv = new DetalleVenta(pro.getPrecio(), pro.getPrecio()*5, 5, venta, pro);
+//        detalleDAO.save(dv);
+        
+        
+        
 //        
 //Producto producto = new Producto("Producto A", 100.0f, "P001");
 //// --- 1. Crear y probar Promoción ---
