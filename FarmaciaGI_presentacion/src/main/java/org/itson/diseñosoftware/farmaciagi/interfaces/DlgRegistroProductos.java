@@ -15,6 +15,7 @@ import javax.swing.DefaultListCellRenderer;
 import javax.swing.JComboBox;
 import javax.swing.JList;
 import javax.swing.JOptionPane;
+import javax.swing.JTextField;
 import org.itson.disenosoftware.farmaciagi_dtos.LoteDTO;
 import org.itson.disenosoftware.farmaciagi_dtos.ProductoDTO;
 import org.itson.disenosoftware.farmaciagi_dtos.UsuarioDTO;
@@ -47,7 +48,7 @@ public class DlgRegistroProductos extends javax.swing.JDialog {
         btnRestaurar.setBackground(Color.WHITE);
         btnRegistrar.setBackground(Color.WHITE);
 
-        comboTipos.setModel(new javax.swing.DefaultComboBoxModel<>(new TipoProductoDTO[] { }));
+        comboTipos.setModel(new javax.swing.DefaultComboBoxModel<>(new TipoProductoDTO[]{}));
         comboTipos.removeAllItems();
         comboTipos.addItem(null);
         for (TipoProductoDTO tipo : TipoProductoDTO.values()) {
@@ -88,8 +89,7 @@ public class DlgRegistroProductos extends javax.swing.JDialog {
         btnVolver.setBackground(Color.WHITE);
         btnRestaurar.setBackground(Color.WHITE);
         btnRegistrar.setBackground(Color.WHITE);
-        
-        
+
     }
 
     /**
@@ -277,6 +277,11 @@ public class DlgRegistroProductos extends javax.swing.JDialog {
         txtMarca.setFont(new java.awt.Font("Arial Rounded MT Bold", 0, 22)); // NOI18N
 
         txtCosto.setFont(new java.awt.Font("Arial Rounded MT Bold", 0, 22)); // NOI18N
+        txtCosto.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtCostoKeyTyped(evt);
+            }
+        });
 
         txtNombre.setFont(new java.awt.Font("Arial Rounded MT Bold", 0, 22)); // NOI18N
 
@@ -326,6 +331,14 @@ public class DlgRegistroProductos extends javax.swing.JDialog {
         jLabel5.setText("Cantidad:");
 
         txtCantidad.setFont(new java.awt.Font("Arial Rounded MT Bold", 0, 22)); // NOI18N
+        txtCantidad.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                txtCantidadKeyPressed(evt);
+            }
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtCantidadKeyTyped(evt);
+            }
+        });
 
         comboTipos.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
@@ -463,18 +476,18 @@ public class DlgRegistroProductos extends javax.swing.JDialog {
         if (validarCampos()) {
             try {
                 IGestorInventario gestorInventario = new GestorInvetario();
-                TipoProductoDTO tipo = (TipoProductoDTO)comboTipos.getSelectedItem();
+                TipoProductoDTO tipo = (TipoProductoDTO) comboTipos.getSelectedItem();
                 Instant caducidad = caducidadChooser.getDate().toInstant();
-                
+
                 ProductoDTO productoNuevo = new ProductoDTO(
                         txtNombre.getText(),
                         txtMarca.getText(),
                         Float.valueOf(txtCosto.getText()),
                         txtCodigo.getText(),
                         tipo);
-                
+
                 LoteDTO loteNuevo = new LoteDTO(caducidad, Integer.valueOf(txtCantidad.getText()), productoNuevo);
-                
+
                 gestorInventario.agregar_Producto_Y_Lote(productoNuevo, loteNuevo);
                 JOptionPane.showMessageDialog(rootPane, "Registro Exitoso", "Registro", JOptionPane.INFORMATION_MESSAGE);
                 restaurar();
@@ -488,7 +501,7 @@ public class DlgRegistroProductos extends javax.swing.JDialog {
 
     private void btnVentaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVentaActionPerformed
 
-        
+
     }//GEN-LAST:event_btnVentaActionPerformed
 
     private void btnProveedoresActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnProveedoresActionPerformed
@@ -517,6 +530,35 @@ public class DlgRegistroProductos extends javax.swing.JDialog {
 //        dlgPromociones.setVisible(true);
     }//GEN-LAST:event_btnPromocionesActionPerformed
 
+    private void txtCantidadKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtCantidadKeyPressed
+        // TODO add your handling code here:
+
+    }//GEN-LAST:event_txtCantidadKeyPressed
+
+    private void txtCantidadKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtCantidadKeyTyped
+        // TODO add your handling code here:
+        char c = evt.getKeyChar();
+
+        if (!Character.isDigit(c) && c != '\b') {
+            evt.consume();
+            return;
+        }
+    }//GEN-LAST:event_txtCantidadKeyTyped
+
+    private void txtCostoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtCostoKeyTyped
+        // TODO add your handling code here:
+        char c = evt.getKeyChar();
+
+        if (!Character.isDigit(c) && c != '.' && c != '\b') {
+            evt.consume();
+            return;
+        }
+
+        if (c == '.' && ((JTextField) evt.getSource()).getText().contains(".")) {
+            evt.consume();
+        }
+    }//GEN-LAST:event_txtCostoKeyTyped
+
     private void restaurar() {
         if (producto.getCodigo() != null) {
             txtNombre.setText(producto.getNombre());
@@ -527,15 +569,21 @@ public class DlgRegistroProductos extends javax.swing.JDialog {
             txtNombre.setText("");
             txtMarca.setText("");
             txtCosto.setText("");
+            comboTipos.setSelectedIndex(0);
+            txtCantidad.setText("");
+            caducidadChooser.setDate(null);
         }
     }
 
     private boolean validarCampos() {
+        Date date = new Date();
         if (txtCodigo.getText().isBlank()
                 || txtNombre.getText().isBlank()
                 || txtMarca.getText().isBlank()
                 || txtCosto.getText().isBlank()
-                || comboTipos.getSelectedItem() == null) {
+                || comboTipos.getSelectedItem() == null
+                || caducidadChooser.getDate() == null
+                || caducidadChooser.getDate().before(date)) {
             return false;
         }
         return true;

@@ -203,12 +203,13 @@ public class DlgRegistroAsistencia extends javax.swing.JDialog {
         }
         else{
             try {
+                JOptionPane.showMessageDialog(this, "Entrada registrada exitosamente", "Registro entrada", 
+                JOptionPane.INFORMATION_MESSAGE);
                 PantallaVenta pv = new PantallaVenta(usuarioBuscado);
                 pv.setVisible(true);
                 this.dispose();
                 
-                JOptionPane.showMessageDialog(this, "Entrada registrada exitosamente", "Registro entrada", 
-                JOptionPane.INFORMATION_MESSAGE);
+                
             } catch (Exception ex) {
                 Logger.getLogger(DlgRegistroAsistencia.class.getName()).log(Level.SEVERE, null, ex);
             }
