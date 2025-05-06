@@ -66,6 +66,11 @@ public class Producto implements Serializable {
         this.id = id;
     }
 
+    public Producto(String codigo) {
+        this.codigo = codigo;
+    }
+    
+
     public Producto(String nombre, Float precio, String codigo) {
         this.nombre = nombre;
         this.precio = precio;
@@ -155,6 +160,11 @@ public class Producto implements Serializable {
         }
         Producto other = (Producto) obj;
         return Objects.equals(id, other.id);
+    }
+
+    @Override
+    public String toString() {
+        return "Producto{" + "id=" + id + ", nombre=" + nombre + ", marca=" + marca + ", precio=" + precio + ", codigo=" + codigo + ", tipo=" + tipo + ", detalleVenta=" + detalleVenta + ", id_proveedores=" + id_proveedores + '}';
     }
 
     public Producto(String nombre, String marca, Float precio, String codigo, TipoProducto tipo, LinkedList<Integer> id_proveedores) {

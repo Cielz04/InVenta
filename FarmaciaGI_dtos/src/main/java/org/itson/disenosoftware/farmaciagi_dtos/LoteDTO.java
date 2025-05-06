@@ -59,6 +59,12 @@ public class LoteDTO {
     public void setProducto(ProductoDTO producto) {
         this.producto = producto;
     }
+
+    @Override
+    public String toString() {
+        return "LoteDTO{" + "id=" + id + ", caducidad=" + caducidad + ", cantidad=" + cantidad + ", producto=" + producto + '}';
+    }
+    
     
     
 }

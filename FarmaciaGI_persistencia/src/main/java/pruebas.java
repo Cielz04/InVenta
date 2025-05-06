@@ -1,4 +1,5 @@
 
+import Enums.TipoProducto;
 import java.time.Instant;
 import java.util.ArrayList;
 import java.util.List;
@@ -49,6 +50,9 @@ public class pruebas {
         UsuarioDAO usuarioDAO = new UsuarioDAO(conexion);
         ProveedoresDAO proveedorDAO = new ProveedoresDAO(conexion);
         VentasDAO ventaDAO = new VentasDAO(conexion);
+        
+        Lote l= loteDAO.findByProductoId_Last(1);
+        System.out.println(l);
 //        
 //Producto producto = new Producto("Producto A", 100.0f, "P001");
 //// --- 1. Crear y probar Promoción ---
@@ -317,8 +321,11 @@ public class pruebas {
 //        System.out.println("Venta eliminada.");
 //        Usuario usuario = new Usuario("Pedro", 1234, "Vendedor", "Calle Estrella", "5555555555");
 //
-        Usuario u = usuarioDAO.findByCodigo(1234);
-        System.out.println(u.getCodigo());
+//        Producto p = new Producto("coca", "cola", 15.22F, "12345", TipoProducto.Variado);
+//        
+//        Producto busca =productosDAO.findByCodigo(p.getCodigo());
+//        Lote l = new Lote(0, Instant.now(), 100, busca);
+//        loteDAO.save(l);
    }
 
 }

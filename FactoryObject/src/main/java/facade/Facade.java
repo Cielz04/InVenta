@@ -10,6 +10,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import javax.swing.JOptionPane;
 import org.itson.diseniosofware.mifarmaciagi.persistencia.Conexion.Conexion;
 import org.itson.diseniosofware.mifarmaciagi.persistencia.Conexion.IConexion;
 import org.itson.diseniosofware.mifarmaciagi.persistencia.daos.ProductosDAO;
@@ -47,6 +48,7 @@ public class Facade implements IFacade {
         }
     }
 
+    @Override
     public Producto buscarProducto_Codigo(Producto producto) throws Exception {
 
         try {
@@ -78,12 +80,15 @@ public class Facade implements IFacade {
     }
 
     @Override
-    public List<Lote> agregarLote(Lote lote) {
-        List<Lote> lote1 = new ArrayList<>();
-        fabrica.getLoteAO().save(lote);
-        lote1 = fabrica.getLoteAO().findByProductoId(lote.getProductos().getId());
+    public Lote agregarLote(Lote lote) {
+        Lote loteCopia = lote;
+        Producto productoBuscado = fabrica.getProductosDAO().findByCodigo(lote.getProducto().getCodigo());
+        loteCopia.setProducto(productoBuscado);
 
-        return lote1;
+        fabrica.getLoteAO().save(loteCopia);
+        Lote loteBuscado = fabrica.getLoteAO().findByProductoId_Last(loteCopia.getProducto().getId());
+
+        return loteBuscado;
     }
 
     @Override
@@ -92,6 +97,20 @@ public class Facade implements IFacade {
         Producto productoBuscado = fabrica.getProductosDAO().findByCodigo(producto.getCodigo());
 
         return productoBuscado;
+    }
+
+    public Producto editarProducto(Producto productoViejo, Producto productoNuevo) {
+        Producto productoBuscado = fabrica.getProductosDAO().findByCodigo(productoViejo.getCodigo());
+        productoBuscado.setCodigo(productoNuevo.getCodigo());
+        productoBuscado.setMarca(productoNuevo.getMarca());
+        productoBuscado.setNombre(productoNuevo.getNombre());
+        productoBuscado.setPrecio(productoNuevo.getPrecio());
+        productoBuscado.setTipo(productoNuevo.getTipo());
+
+        fabrica.getProductosDAO().update(productoBuscado);
+        Producto productoActualizado = fabrica.getProductosDAO().findByCodigo(productoBuscado.getCodigo());
+
+        return productoActualizado;
     }
 
     @Override
@@ -120,10 +139,65 @@ public class Facade implements IFacade {
         List<Lote> lotesDelProducto = this.buscar_Lotes_NoVacios_de_Producto(productoBuscado);
 
         if (lotesDelProducto != null || !lotesDelProducto.isEmpty()) {
-            resultado.put(producto, lotesDelProducto);
+            resultado.put(productoBuscado, lotesDelProducto);
         }
 
         return resultado;
+    }
+
+    @Override
+    public Lote buscar_Ultimo_Lote_De_Producto(Producto producto) throws Exception {
+        Producto productoBuscado = this.buscarProducto_Codigo(producto);
+
+        Lote loteUltimo = fabrica.getLoteAO().findByProductoId_Last(productoBuscado.getId());
+
+        return loteUltimo;
+    }
+
+    @Override
+    public Lote editarLote_Para_Venta(Integer cantidad, Producto producto) throws Exception {
+        Integer cantidadVenta = cantidad;
+        Integer cantidadTotalDeProducto = 0; 
+        
+        Map<Producto, List<Lote>> lotes = this.buscar_Un_Producto_Y_Lotes(producto);
+        Producto p = this.buscarProducto_Codigo(producto);
+        
+        List<Lote> todos = lotes.get(p);
+        
+        for (Lote todo : todos) {
+            cantidadTotalDeProducto += todo.getCantidad();
+        }
+        
+
+        do {
+            Lote lote = this.buscar_Ultimo_Lote_De_Producto(producto);
+            Integer cantidadDeLote = 0;
+            if(lote != null){
+                cantidadDeLote = lote.getCantidad();
+            }
+            
+            if(cantidadVenta > cantidadTotalDeProducto || todos.isEmpty() || cantidadDeLote == 0){
+                System.out.println("No hay suficiente Stock. Disponible: " + cantidadTotalDeProducto);
+                JOptionPane.showMessageDialog(null, "No hay suficiente Stock.\nSolo disponible: " + cantidadTotalDeProducto);
+                return null;
+            }
+            else if (cantidadVenta > cantidadDeLote) {
+                cantidadVenta -= cantidadDeLote;
+                System.out.println("Canridad de venta" +cantidadVenta);
+                cantidadDeLote = 0;
+                lote.setCantidad(cantidadDeLote);
+                fabrica.getLoteAO().update(lote);
+            }
+            else{
+                cantidadDeLote -= cantidadVenta;
+                System.out.println("Cantidad de lote" +cantidadDeLote);
+                cantidadVenta = 0;
+                lote.setCantidad(cantidadDeLote);
+                fabrica.getLoteAO().update(lote);
+            }
+
+        } while (cantidadVenta !=0);
+        return this.buscar_Ultimo_Lote_De_Producto(producto);
     }
 
     // Métodos para Subsistema Gestor Venta

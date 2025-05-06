@@ -35,6 +35,26 @@ public class ConversorProducto {
         
     }
     
+    public Producto conversor_DTO_A_Entidad_Solo_Codigo(ProductoDTO productoDTO){
+        if(productoDTO == null){
+            System.out.println("El productoDTO esta vacio En ConversorProducto");
+            return null;
+        }
+        
+        TipoProducto tipo = this.identificador_TipoProducto(productoDTO.getTipo());
+        
+        Producto producto = new Producto(
+                productoDTO.getNombre(), 
+                productoDTO.getMarca(), 
+                productoDTO.getPrecio(), 
+                productoDTO.getCodigo(),
+                tipo, 
+                productoDTO.getId_proveedores());
+        
+        return producto;
+        
+    }
+    
     public ProductoDTO conversor_Entidad_A_DTO(Producto producto){
         if(producto == null){
             System.out.println("El producto esta vacio En ConversorProducto");
@@ -43,7 +63,8 @@ public class ConversorProducto {
         
         TipoProductoDTO tipo = this.identificador_TipoProductoDTO(producto.getTipo());
         
-        ProductoDTO productoDTO = new ProductoDTO(producto.getNombre(), 
+        ProductoDTO productoDTO = new ProductoDTO(
+                producto.getNombre(), 
                 producto.getMarca(), 
                 producto.getPrecio(), 
                 producto.getCodigo(), 

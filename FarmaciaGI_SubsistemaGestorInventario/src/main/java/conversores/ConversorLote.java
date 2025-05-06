@@ -4,6 +4,7 @@
  */
 package conversores;
 
+import Enums.TipoProductoDTO;
 import java.time.Instant;
 import java.util.ArrayList;
 import java.util.List;
@@ -17,21 +18,26 @@ import org.itson.disenosoftware.farmaciagi_dtos.ProductoDTO;
  * @author Dell
  */
 public class ConversorLote {
+    private ConversorProducto cp = new ConversorProducto();
     
     public LoteDTO convertir_Entidad_A_DTO(Lote lote){
+        ProductoDTO p = cp.conversor_Entidad_A_DTO(lote.getProducto());
+        
         LoteDTO loteDTO = new LoteDTO(
                 lote.getCaducidad(), 
                 lote.getCantidad(), 
-                new ProductoDTO(lote.getProductos().getId()));
+                p);
         
         return loteDTO;
     }
     
     public Lote convertir_DTO_A_Entidad(LoteDTO loteDTO){
+        Producto p = cp.conversor_DTO_A_Entidad(loteDTO.getProducto());
+        
         Lote lote = new Lote(
                 loteDTO.getCaducidad(), 
                 loteDTO.getCantidad(), 
-                new Producto(loteDTO.getProducto().getId()));
+                p);
         
         return lote;
     }
@@ -46,13 +52,13 @@ public class ConversorLote {
         }
         return listaLoteDTO;
     }
-    public List<LoteDTO> convertir_DTO_A_Entidad(List<LoteDTO> listaLoteDTO){
+    public List<Lote> convertir_DTO_A_Entidad(List<LoteDTO> listaLoteDTO){
         
         List<Lote> listaLote = new ArrayList<>();
         
         for (LoteDTO loteDTO : listaLoteDTO) {
             listaLote.add(this.convertir_DTO_A_Entidad(loteDTO));
         }
-        return listaLoteDTO;
+        return listaLote;
     }
 }

@@ -15,7 +15,7 @@ import jakarta.persistence.TypedQuery;
 import java.util.List;
 import org.itson.diseniosofware.mifarmaciagi.persistencia.entidades.Lote;
 
-public class LoteDAO implements ILoteDAO{
+public class LoteDAO implements ILoteDAO {
 
     private final EntityManager em;
 
@@ -59,27 +59,37 @@ public class LoteDAO implements ILoteDAO{
     }
 
     // Opcional: Buscar lotes por producto o entrada si te interesa
-
     @Override
     public List<Lote> findByProductoId(Integer productoId) {
         TypedQuery<Lote> query = em.createQuery(
-            "SELECT l FROM Lote l WHERE l.producto.id = :productoId", Lote.class);
+                "SELECT l FROM Lote l WHERE l.producto.id = :productoId", Lote.class);
         query.setParameter("productoId", productoId);
         return query.getResultList();
     }
-    
+
     @Override
     public List<Lote> findByProductoId_Plus_0(Integer productoId) {
         TypedQuery<Lote> query = em.createQuery(
-            "SELECT l FROM Lote l WHERE l.producto.id = :productoId AND l.cantidad > 0", Lote.class);
+                "SELECT l FROM Lote l WHERE l.producto.id = :productoId AND l.cantidad > 0", Lote.class);
         query.setParameter("productoId", productoId);
         return query.getResultList();
+    }
+
+    @Override
+    public Lote findByProductoId_Last(Integer productoId) {
+        TypedQuery<Lote> query = em.createQuery(
+                "SELECT l FROM Lote l WHERE l.producto.id = :productoId AND l.cantidad > 0 ORDER BY l.id DESC",
+                Lote.class);
+        query.setParameter("productoId", productoId);
+        query.setMaxResults(1); // Solo el último lote
+        List<Lote> resultados = query.getResultList();
+        return resultados.isEmpty() ? null : resultados.get(0);
     }
 
     @Override
     public List<Lote> findByEntradaId(Integer entradaId) {
         TypedQuery<Lote> query = em.createQuery(
-            "SELECT l FROM Lote l WHERE l.entrada.id = :entradaId", Lote.class);
+                "SELECT l FROM Lote l WHERE l.entrada.id = :entradaId", Lote.class);
         query.setParameter("entradaId", entradaId);
         return query.getResultList();
     }

@@ -106,14 +106,6 @@ public class Lote implements Serializable {
         this.cantidad = cantidad;
     }
 
-    public Producto getProductos() {
-        return producto;
-    }
-
-    public void setProductos(Producto producto) {
-        this.producto = producto;
-    }
-
     public List<Entrada> getEntradas() {
         return entradas;
     }
@@ -145,5 +137,12 @@ public class Lote implements Serializable {
     public int hashCode() {
         return Objects.hash(id);
     }
+
+    @Override
+    public String toString() {
+        return "Lote{" + "id=" + id + ", caducidad=" + caducidad + ", cantidad=" + cantidad + ", producto=" + producto + ", entradas=" + entradas + '}';
+    }
+    
+    
 
 }

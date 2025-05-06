@@ -25,6 +25,12 @@ public class ProductoDTO {
         this.id = id;
     }
 
+    public ProductoDTO(String codigo) {
+        this.codigo = codigo;
+    }
+    
+    
+
     /**
      * Constructor que recibe el código, nombre y precio del producto.
      *
@@ -60,6 +66,14 @@ public class ProductoDTO {
         this.codigo = codigo;
         this.tipo = tipo;
         this.id_proveedores = id_proveedores;
+    }
+    
+    public ProductoDTO(String nombre, String marca, Float precio, String codigo, TipoProductoDTO tipo) {
+        this.nombre = nombre;
+        this.marca = marca;
+        this.precio = precio;
+        this.codigo = codigo;
+        this.tipo = tipo;
     }
 
     public Integer getId() {
@@ -206,7 +220,9 @@ public class ProductoDTO {
 
     @Override
     public String toString() {
-        return nombre + ", " + marca + ", " + NumberFormat.getCurrencyInstance().format(precio);
+        return "ProductoDTO{" + "id=" + id + ", nombre=" + nombre + ", marca=" + marca + ", precio=" + precio + ", codigo=" + codigo + ", tipo=" + tipo + ", id_proveedores=" + id_proveedores + '}';
     }
+
+    
 
 }

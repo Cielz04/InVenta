@@ -20,5 +20,6 @@ public interface ILoteDAO {
      public void delete(Integer id);
      public List<Lote> findByProductoId(Integer productoId);
      public List<Lote> findByProductoId_Plus_0(Integer productoId);
+     public Lote findByProductoId_Last(Integer productoId);
      public List<Lote> findByEntradaId(Integer entradaId);
 }
