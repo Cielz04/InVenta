@@ -14,6 +14,7 @@ import javax.swing.JOptionPane;
 import org.itson.diseniosofware.mifarmaciagi.persistencia.Conexion.Conexion;
 import org.itson.diseniosofware.mifarmaciagi.persistencia.Conexion.IConexion;
 import org.itson.diseniosofware.mifarmaciagi.persistencia.daos.ProductosDAO;
+import org.itson.diseniosofware.mifarmaciagi.persistencia.entidades.DetalleVenta;
 import org.itson.diseniosofware.mifarmaciagi.persistencia.entidades.Lote;
 import org.itson.diseniosofware.mifarmaciagi.persistencia.entidades.Producto;
 import org.itson.diseniosofware.mifarmaciagi.persistencia.entidades.Usuario;
@@ -263,5 +264,4 @@ public class Facade implements IFacade {
             throw new RuntimeException("Error al eliminar venta: " + e.getMessage());
         }
     }
-
 }

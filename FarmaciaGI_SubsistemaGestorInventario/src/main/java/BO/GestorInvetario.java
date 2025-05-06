@@ -128,6 +128,7 @@ public class GestorInvetario implements IGestorInventario {
         return UpdateDTO;
     }
     
+    @Override
     public LoteDTO editarLote_Para_Venta(Integer cantidad, ProductoDTO productoDTO) throws Exception{
         Producto produ = new Producto(productoDTO.getCodigo());
         Producto productoBuscado = facade.buscarProducto_Codigo(produ);
