@@ -17,6 +17,9 @@ org\itson\diseñosoftware\farmaciagi\interfaces\CampoTextoR.class
 org\itson\diseñosoftware\farmaciagi\interfaces\DlgTicket.class
 org\itson\diseñosoftware\farmaciagi\interfaces\PantallaVenta$1.class
 org\itson\diseñosoftware\farmaciagi\interfaces\DlgPagoEfectivo$3.class
+<<<<<<< Updated upstream
+>>>>>>> Stashed changes
+=======
 >>>>>>> Stashed changes
 org\itson\diseñosoftware\farmaciagi\interfaces\DlgRegistroProductos$6.class
 org\itson\diseñosoftware\farmaciagi\interfaces\PantallaVenta$8.class
