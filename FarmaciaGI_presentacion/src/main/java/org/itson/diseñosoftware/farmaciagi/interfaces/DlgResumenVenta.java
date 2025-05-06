@@ -352,7 +352,7 @@ public class DlgResumenVenta extends javax.swing.JDialog {
     private void btnCerrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCerrarActionPerformed
 
         try {
-            PantallaVenta pv = new PantallaVenta();
+            PantallaVenta pv = new PantallaVenta(venta.getUsuarioEnTurno());
             pv.setVisible(true);
             this.dispose();
 //        try {

@@ -23,6 +23,9 @@ public class UsuarioDTO {
         this.id = id;
     }
 
+    public UsuarioDTO(Integer id,Integer codigo) {
+        this.codigo = codigo;
+    }
     
     public UsuarioDTO(String nombre, Integer codigo, String tipo, String direccion, String telefono) {
         this.nombre = nombre;

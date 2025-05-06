@@ -6,6 +6,7 @@ package org.itson.diseñosoftware.farmaciagi.interfaces;
 
 import java.awt.Frame;
 import javax.swing.JOptionPane;
+import org.itson.disenosoftware.farmaciagi_dtos.UsuarioDTO;
 
 /**
  *
@@ -14,6 +15,7 @@ import javax.swing.JOptionPane;
 public class DlgProductosPrincipal extends javax.swing.JDialog {
 
     private Frame parent;
+    private UsuarioDTO usuarioEnTurno;
 
     /**
      * Creates new form DlgProductosPrincipal
@@ -21,11 +23,11 @@ public class DlgProductosPrincipal extends javax.swing.JDialog {
      * @param parent
      * @param modal
      */
-    public DlgProductosPrincipal(java.awt.Frame parent, boolean modal) {
+    public DlgProductosPrincipal(java.awt.Frame parent, boolean modal, UsuarioDTO usuarioEnTurno) {
         super(parent, modal);
         initComponents();
-
         this.parent = parent;
+        this.usuarioEnTurno = usuarioEnTurno;
     }
 
     /**
@@ -328,7 +330,7 @@ public class DlgProductosPrincipal extends javax.swing.JDialog {
     private void btnVentaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVentaActionPerformed
         try {
             dispose();
-            PantallaVenta venta = new PantallaVenta();
+            PantallaVenta venta = new PantallaVenta(usuarioEnTurno);
             venta.setVisible(true);
         } catch (Exception e) {
         }
@@ -347,19 +349,19 @@ public class DlgProductosPrincipal extends javax.swing.JDialog {
 
     private void btnRegistrarProductoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegistrarProductoActionPerformed
         dispose();
-        DlgRegistroProductos registroProductos = new DlgRegistroProductos(parent, true);
+        DlgRegistroProductos registroProductos = new DlgRegistroProductos(parent, true, usuarioEnTurno);
         registroProductos.setVisible(true);
     }//GEN-LAST:event_btnRegistrarProductoActionPerformed
 
     private void btnEditarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditarActionPerformed
         dispose();
-        DlgInventarioProductos inventario = new DlgInventarioProductos(parent, true, ConstantesGUI.ACTUALIZAR);
+        DlgInventarioProductos inventario = new DlgInventarioProductos(parent, true, ConstantesGUI.ACTUALIZAR, usuarioEnTurno);
         inventario.setVisible(true);
     }//GEN-LAST:event_btnEditarActionPerformed
 
     private void btnAsignarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAsignarActionPerformed
         dispose();
-        DlgInventarioProductos inventario = new DlgInventarioProductos(parent, true, ConstantesGUI.ASIGNAR_PROVEEDOR);
+        DlgInventarioProductos inventario = new DlgInventarioProductos(parent, true, ConstantesGUI.ASIGNAR_PROVEEDOR, usuarioEnTurno);
         inventario.setVisible(true);
     }//GEN-LAST:event_btnAsignarActionPerformed
 

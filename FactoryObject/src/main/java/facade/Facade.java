@@ -280,8 +280,15 @@ public class Facade implements IFacade {
     }
     
     //Usuarios
+    @Override
     public Usuario buscarUsuario_ID(Usuario usuario){
         Usuario usuarioBuscado = fabrica.getUsuarioDAO().findById(usuario.getId());
+        return usuarioBuscado;
+    }
+    
+    @Override
+    public Usuario buscarUsuario_Codigo(Usuario usuario){
+        Usuario usuarioBuscado = fabrica.getUsuarioDAO().findByCodigo(usuario.getCodigo());
         return usuarioBuscado;
     }
 }

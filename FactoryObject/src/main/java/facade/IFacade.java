@@ -40,4 +40,5 @@ public interface IFacade {
     
     //Usuario
     public Usuario buscarUsuario_ID(Usuario usuario);
+    public Usuario buscarUsuario_Codigo(Usuario usuario);
 }

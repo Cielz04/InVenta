@@ -25,11 +25,20 @@ public class GestorUsuario implements IGestorUsuario{
     
     
     
+    @Override
     public UsuarioDTO buscarUsuario_id(UsuarioDTO usuarioDTO){
         Usuario usuario = new Usuario(usuarioDTO.getId());
         Usuario usuarioBuscado = facade.buscarUsuario_ID(usuario);
         UsuarioDTO usuarioBuscadoDTO = cu.conversor_Entidad_A_DTO(usuarioBuscado);
         return usuarioBuscadoDTO;
+    }
+    
+    public UsuarioDTO buscarUsuario_Codigo(UsuarioDTO usuarioDTO){
+        Usuario usuario = new Usuario(0, usuarioDTO.getCodigo());
+        Usuario usuarioBuscado = facade.buscarUsuario_Codigo(usuario);
+        UsuarioDTO usuarioConvert = cu.conversor_Entidad_A_DTO(usuarioBuscado);
+        return usuarioConvert;
+        
     }
     
 }

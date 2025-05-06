@@ -12,4 +12,5 @@ import org.itson.disenosoftware.farmaciagi_dtos.UsuarioDTO;
  */
 public interface IGestorUsuario {
     public UsuarioDTO buscarUsuario_id(UsuarioDTO usuarioDTO);
+    public UsuarioDTO buscarUsuario_Codigo(UsuarioDTO usuarioDTO);
 }

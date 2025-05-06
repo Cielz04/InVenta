@@ -39,6 +39,11 @@ public class DlgBuscarProducto extends javax.swing.JDialog {
         btnBuscarProducto.setBackground(Color.WHITE);
         centraCuadroDialogo(parent);
         btnBuscarProducto.setBackground(new Color(93, 82, 193));
+        
+        DefaultTableModel modelo = new DefaultTableModel(new Object[]{"Nombre", "Marca", "Precio", "Cantidad", "Agregar"}, 0) {
+        };
+        
+        tblBusqueda.setModel(modelo);
     }
 
     /**

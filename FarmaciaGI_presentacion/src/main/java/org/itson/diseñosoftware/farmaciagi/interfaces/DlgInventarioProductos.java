@@ -12,6 +12,7 @@ import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableColumnModel;
 import org.itson.disenosoftware.farmaciagi_dtos.ProductoDTO;
+import org.itson.disenosoftware.farmaciagi_dtos.UsuarioDTO;
 
 /**
  *
@@ -22,17 +23,18 @@ public class DlgInventarioProductos extends javax.swing.JDialog {
     private IGestorInventario gestorProductos;
     private Frame parent;
     private int constante;
+    private UsuarioDTO usuarioEnTurno;
 
     /**
      * Creates new form DlgInventarioProductos
      */
-    public DlgInventarioProductos(java.awt.Frame parent, boolean modal, int decision) {
+    public DlgInventarioProductos(java.awt.Frame parent, boolean modal, int decision, UsuarioDTO usuario) {
         super(parent, modal);
         gestorProductos = new GestorInvetario();
         this.constante = decision;
         this.parent = parent;
         initComponents();
-
+        this.usuarioEnTurno = usuario;
         btnActualizar.setBackground(Color.WHITE);
         btnVolver.setBackground(Color.WHITE);
 
@@ -293,7 +295,7 @@ public class DlgInventarioProductos extends javax.swing.JDialog {
 
     private void btnProductosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnProductosActionPerformed
         dispose();
-        DlgProductosPrincipal menuProductos = new DlgProductosPrincipal(parent, true);
+        DlgProductosPrincipal menuProductos = new DlgProductosPrincipal(parent, true, usuarioEnTurno);
         menuProductos.setVisible(true);
     }//GEN-LAST:event_btnProductosActionPerformed
 
@@ -306,7 +308,7 @@ public class DlgInventarioProductos extends javax.swing.JDialog {
     private void btnVentaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVentaActionPerformed
         try {
             dispose();
-            PantallaVenta venta = new PantallaVenta();
+            PantallaVenta venta = new PantallaVenta(usuarioEnTurno);
             venta.setVisible(true);
         } catch (Exception e) {
         }
@@ -315,7 +317,7 @@ public class DlgInventarioProductos extends javax.swing.JDialog {
 
     private void btnVolverActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVolverActionPerformed
         dispose();
-        DlgProductosPrincipal productosPrincipal = new DlgProductosPrincipal(parent, true);
+        DlgProductosPrincipal productosPrincipal = new DlgProductosPrincipal(parent, true, usuarioEnTurno);
         productosPrincipal.setVisible(true);
     }//GEN-LAST:event_btnVolverActionPerformed
 

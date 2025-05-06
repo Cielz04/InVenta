@@ -31,13 +31,14 @@ public class PantallaVenta extends javax.swing.JFrame {
     private List<DetalleVentaDTO> detallesVenta = new ArrayList<>();
     private IGestorVenta gestorVenta = new GestorVenta();
     private IGestorInventario gestorInventario = new GestorInvetario();
-    private UsuarioDTO usuarioenTurnoDTO = new UsuarioDTO(1);
+    private UsuarioDTO usuarioenTurnoDTO;
 
-    public PantallaVenta() throws Exception {
+    public PantallaVenta(UsuarioDTO usuario) throws Exception {
         initComponents();
         instancia = this; // ← Aquí se guarda la instancia
 
         this.gestorInventario = new GestorInvetario();
+        this.usuarioenTurnoDTO = usuario;
 
         this.gestorVenta = new GestorVenta();
 
@@ -49,14 +50,19 @@ public class PantallaVenta extends javax.swing.JFrame {
 
         btnBuscarProducto.setBackground(
                 new Color(93, 82, 193));
+        
+        DefaultTableModel modelo = new DefaultTableModel(new Object[]{"Articulo", "Marca", "Cantidad", "Total"}, 0) {
+        };
+        
+        tblProductosVenta.setModel(modelo);
     }
 
-    public static void main(String[] args) throws Exception {
-        // Crear una instancia de PantallaVenta y pasarle el inventario
-        PantallaVenta pantallaVenta = new PantallaVenta();
-        // Hacer visible la pantalla de venta
-        pantallaVenta.setVisible(true);
-    }
+//    public static void main(String[] args) throws Exception {
+//        // Crear una instancia de PantallaVenta y pasarle el inventario
+//        PantallaVenta pantallaVenta = new PantallaVenta();
+//        // Hacer visible la pantalla de venta
+//        pantallaVenta.setVisible(true);
+//    }
 
     public static PantallaVenta getInstancia() {
         return instancia;
@@ -464,7 +470,7 @@ public class PantallaVenta extends javax.swing.JFrame {
 
     private void btnProductosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnProductosActionPerformed
         dispose();
-        DlgProductosPrincipal menuProductos = new DlgProductosPrincipal(this, true);
+        DlgProductosPrincipal menuProductos = new DlgProductosPrincipal(this, true, usuarioenTurnoDTO);
         menuProductos.setVisible(true);
     }//GEN-LAST:event_btnProductosActionPerformed
 
