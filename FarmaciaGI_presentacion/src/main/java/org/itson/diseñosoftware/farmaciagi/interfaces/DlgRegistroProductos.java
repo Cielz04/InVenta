@@ -273,6 +273,11 @@ public class DlgRegistroProductos extends javax.swing.JDialog {
         jLabel7.setText("Costo del producto:");
 
         txtCodigo.setFont(new java.awt.Font("Arial Rounded MT Bold", 0, 22)); // NOI18N
+        txtCodigo.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtCodigoKeyTyped(evt);
+            }
+        });
 
         txtMarca.setFont(new java.awt.Font("Arial Rounded MT Bold", 0, 22)); // NOI18N
 
@@ -558,6 +563,16 @@ public class DlgRegistroProductos extends javax.swing.JDialog {
             evt.consume();
         }
     }//GEN-LAST:event_txtCostoKeyTyped
+
+    private void txtCodigoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtCodigoKeyTyped
+        // TODO add your handling code here:
+        char c = evt.getKeyChar();
+
+        if (!Character.isDigit(c) && c != '\b') {
+            evt.consume();
+            return;
+        }
+    }//GEN-LAST:event_txtCodigoKeyTyped
 
     private void restaurar() {
         if (producto.getCodigo() != null) {

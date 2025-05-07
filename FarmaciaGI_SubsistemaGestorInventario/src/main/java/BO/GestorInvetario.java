@@ -138,4 +138,16 @@ public class GestorInvetario implements IGestorInventario {
         return loteConvert;
     }
     
+    public ProductoDTO buscarProducto_Por_Codigo(ProductoDTO productoDTO) throws Exception{
+        
+        Producto producto = new Producto(productoDTO.getCodigo());
+        
+        
+        Producto productoBuscado = facade.buscarProducto_Codigo(producto);
+        
+        ProductoDTO productoBuscadoDTO = conversorProducto.conversor_Entidad_A_DTO(productoBuscado);
+        
+        return productoBuscadoDTO;
+    }
+    
 }

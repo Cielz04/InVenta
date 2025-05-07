@@ -21,6 +21,7 @@ public interface IGestorInventario {
     public Map<ProductoDTO, List<LoteDTO>> agregar_Producto_Y_Lote(ProductoDTO productoDTO, LoteDTO loteDTO) throws Exception;
     public ProductoDTO editar_Producto(ProductoDTO productoViejoDTO, ProductoDTO productoNuevoDTO);
     public LoteDTO editarLote_Para_Venta(Integer cantidad, ProductoDTO productoDTO) throws Exception;
+    public ProductoDTO buscarProducto_Por_Codigo(ProductoDTO productoDTO) throws Exception;
 
     public ProductoDTO buscarProductoPorId(Integer id);
     

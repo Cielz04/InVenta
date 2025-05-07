@@ -10,6 +10,8 @@ import java.awt.Color;
 import java.awt.Frame;
 import java.util.List;
 import java.util.Map;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableColumnModel;
@@ -331,6 +333,25 @@ public class DlgInventarioProductos extends javax.swing.JDialog {
 
     private void btnActualizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnActualizarActionPerformed
 
+        int filaSeleccionada = tblProductosInventario.getSelectedRow();
+
+        if (filaSeleccionada != -1) { 
+            try {
+                String codigoProducto = (String) tblProductosInventario.getValueAt(filaSeleccionada, 0);
+                
+                ProductoDTO productoABuscar = new ProductoDTO(codigoProducto);
+                ProductoDTO productoAEditar = gestorInventario.buscarProducto_Por_Codigo(productoABuscar);
+                DlgEditorDeProducto edp = new DlgEditorDeProducto(usuarioEnTurno, productoAEditar);
+                dispose();
+                edp.setVisible(true);
+                
+            } catch (Exception ex) {
+                Logger.getLogger(DlgInventarioProductos.class.getName()).log(Level.SEVERE, null, ex);
+            }
+            
+        } else {
+            JOptionPane.showMessageDialog(null, "Debes de seleccionar un producto", "Aviso", JOptionPane.INFORMATION_MESSAGE);
+        }
 //        ProductoDTO producto = obtenerProductoSeleccionado();
 //
 //        if (producto != null) {
@@ -366,7 +387,7 @@ public class DlgInventarioProductos extends javax.swing.JDialog {
             ProductoDTO key = entry.getKey();
             List<LoteDTO> value = entry.getValue();
             Integer cantidadTotal = 0;
-            
+
             for (LoteDTO loteDTO : value) {
                 cantidadTotal += loteDTO.getCantidad();
             }
