@@ -314,6 +314,7 @@ public class Facade implements IFacade {
 
     /**
      * Registra la hora de salida del usuario si ya existe asistencia de hoy.
+     *
      * @param usuario
      */
     @Override
@@ -334,8 +335,9 @@ public class Facade implements IFacade {
 
     /**
      * Busca la asistencia de hoy para un usuario.
+     *
      * @param usuario
-     * @return 
+     * @return
      */
     @Override
     public Asistencia buscarAsistenciaHoy(Usuario usuario) {
@@ -349,8 +351,9 @@ public class Facade implements IFacade {
 
     /**
      * Busca todas las asistencias registradas en una fecha específica.
+     *
      * @param fecha
-     * @return 
+     * @return
      */
     @Override
     public List<Asistencia> buscarAsistenciasPorFecha(LocalDate fecha) {
@@ -360,6 +363,11 @@ public class Facade implements IFacade {
             System.out.println(e);
             throw new RuntimeException("Error al buscar asistencias por fecha: " + e.getMessage());
         }
+    }
+
+    @Override
+    public List<Usuario> obtenerTodosLosUsuarios() {
+        return fabrica.getUsuarioDAO().findAll();
     }
 
 }

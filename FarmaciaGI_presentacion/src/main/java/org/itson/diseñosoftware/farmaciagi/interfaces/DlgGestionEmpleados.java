@@ -4,11 +4,16 @@
  */
 package org.itson.diseñosoftware.farmaciagi.interfaces;
 
+import BO.GestorUsuario;
 import java.awt.Color;
 import java.awt.Font;
+import java.util.List;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
+import org.itson.disenosoftware.farmaciagi_dtos.AsistenciaDTO;
+import org.itson.disenosoftware.farmaciagi_dtos.UsuarioDTO;
 
 /**
  *
@@ -19,6 +24,8 @@ public class DlgGestionEmpleados extends javax.swing.JDialog {
     /**
      * Creates new form DlgGestionEmpleados
      */
+    private final GestorUsuario gestorUsuario = new GestorUsuario();
+
     public DlgGestionEmpleados(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
@@ -146,17 +153,58 @@ public class DlgGestionEmpleados extends javax.swing.JDialog {
 
     private void llenarTabla() {
         DefaultTableModel modelo = new DefaultTableModel(
-                new Object[][]{}, 
-                new String[]{"ID", "NOMBRE", "ROL", "ENTRADA HOY", "SALIDA HOY", "ACCIONES"}
+                new Object[][]{},
+                new String[]{"ID", "NOMBRE", "ROL", "ENTRADA HOY", "SALIDA HOY"}
         ) {
             @Override
             public boolean isCellEditable(int row, int column) {
-                return column == 4;// Solo la columna de acciones es editable
+                return false; // No editable directamente
             }
         };
 
-        tblEmpleados.setModel(modelo);
+        try {
+            // 1. Obtener todos los usuarios
+            List<UsuarioDTO> usuarios = gestorUsuario.obtenerTodosLosUsuarios();
+
+            // 2. Para cada usuario, buscar su asistencia de hoy
+            for (UsuarioDTO u : usuarios) {
+                AsistenciaDTO asistencia = gestorUsuario.obtenerAsistenciaHoy(u);
+                String entrada = (asistencia != null && asistencia.getHoraEntrada() != null)
+                        ? asistencia.getHoraEntrada().toString() : "-";
+                String salida = (asistencia != null && asistencia.getHoraSalida() != null)
+                        ? asistencia.getHoraSalida().toString() : "-";
+
+                modelo.addRow(new Object[]{
+                    u.getId(),
+                    u.getNombre(),
+                    u.getTipo(),
+                    entrada,
+                    salida
+                });
+            }
+
+            tblEmpleados.setModel(modelo);
+            personalizarTabla();
+
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(this, "Error al cargar empleados: " + e.getMessage(),
+                    "Error", JOptionPane.ERROR_MESSAGE);
+        }
     }
+
+    private void personalizarTabla() {
+    tblEmpleados.setRowHeight(28);
+    tblEmpleados.getTableHeader().setFont(new Font("Arial", Font.BOLD, 14));
+
+    DefaultTableCellRenderer center = new DefaultTableCellRenderer();
+    center.setHorizontalAlignment(JLabel.CENTER);
+
+    for (int i = 0; i < tblEmpleados.getColumnCount(); i++) {
+        tblEmpleados.getColumnModel().getColumn(i).setCellRenderer(center);
+    }
+}
+
+    
     /**
      * @param args the command line arguments
      */

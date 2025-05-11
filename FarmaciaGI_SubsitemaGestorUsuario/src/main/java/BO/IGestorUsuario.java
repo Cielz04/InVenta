@@ -4,6 +4,9 @@
  */
 package BO;
 
+import java.time.LocalDate;
+import java.util.List;
+import org.itson.disenosoftware.farmaciagi_dtos.AsistenciaDTO;
 import org.itson.disenosoftware.farmaciagi_dtos.UsuarioDTO;
 
 /**
@@ -13,4 +16,9 @@ import org.itson.disenosoftware.farmaciagi_dtos.UsuarioDTO;
 public interface IGestorUsuario {
     public UsuarioDTO buscarUsuario_id(UsuarioDTO usuarioDTO);
     public UsuarioDTO buscarUsuario_Codigo(UsuarioDTO usuarioDTO);
+    public List<UsuarioDTO> obtenerTodosLosUsuarios();
+    public List<AsistenciaDTO> obtenerAsistenciasPorFecha(LocalDate fecha);
+    public AsistenciaDTO obtenerAsistenciaHoy(UsuarioDTO usuarioDTO);
+    public void registrarSalida(UsuarioDTO usuarioDTO);
+    public void registrarEntrada(UsuarioDTO usuarioDTO);
 }

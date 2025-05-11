@@ -14,25 +14,26 @@ import org.itson.diseniosofware.mifarmaciagi.persistencia.entidades.Usuario;
  *
  * @author jl4ma
  */
-public class UsuarioDAO implements IUsuarioDAO{
-     private final EntityManager em;
+public class UsuarioDAO implements IUsuarioDAO {
+
+    private final EntityManager em;
 
     public UsuarioDAO(IConexion conexion) {
         this.em = conexion.crearConexion();
     }
 
-     @Override
+    @Override
     public List<Usuario> findAll() {
         TypedQuery<Usuario> query = em.createQuery("SELECT u FROM Usuario u", Usuario.class);
         return query.getResultList();
     }
 
-     @Override
+    @Override
     public Usuario findById(Integer id) {
         return em.find(Usuario.class, id);
     }
 
-     @Override
+    @Override
     public Usuario findByCodigo(Integer codigo) {
         TypedQuery<Usuario> query = em.createQuery("SELECT u FROM Usuario u WHERE u.codigo = :codigo", Usuario.class);
         query.setParameter("codigo", codigo);
@@ -40,14 +41,14 @@ public class UsuarioDAO implements IUsuarioDAO{
         return resultados.isEmpty() ? null : resultados.get(0);
     }
 
-     @Override
+    @Override
     public void save(Usuario usuario) {
         em.getTransaction().begin();
         em.persist(usuario);
         em.getTransaction().commit();
     }
 
-     @Override
+    @Override
     public void update(Usuario usuario) {
         em.getTransaction().begin();
         em.merge(usuario);
@@ -63,4 +64,11 @@ public class UsuarioDAO implements IUsuarioDAO{
             em.getTransaction().commit();
         }
     }
+
+    @Override
+    public List<Usuario> buscarTodos() {
+        TypedQuery<Usuario> query = em.createQuery("SELECT u FROM Usuario u", Usuario.class);
+        return query.getResultList();
+    }
+
 }

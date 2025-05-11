@@ -41,6 +41,7 @@ public class GestorUsuario implements IGestorUsuario {
      * Registra la hora de entrada del usuario (si aún no ha sido registrada hoy).
      * @param usuarioDTO
      */
+    @Override
     public void registrarEntrada(UsuarioDTO usuarioDTO) {
         Usuario usuario = cu.conversor_DTO_A_Entidad(usuarioDTO);
         facade.registrarEntrada(usuario);
@@ -50,6 +51,7 @@ public class GestorUsuario implements IGestorUsuario {
      * Registra la hora de salida del usuario (si ya se registró entrada hoy).
      * @param usuarioDTO
      */
+    @Override
     public void registrarSalida(UsuarioDTO usuarioDTO) {
         Usuario usuario = cu.conversor_DTO_A_Entidad(usuarioDTO);
         facade.registrarSalida(usuario);
@@ -60,6 +62,7 @@ public class GestorUsuario implements IGestorUsuario {
      * @param usuarioDTO
      * @return 
      */
+    @Override
     public AsistenciaDTO obtenerAsistenciaHoy(UsuarioDTO usuarioDTO) {
         Usuario usuario = cu.conversor_DTO_A_Entidad(usuarioDTO);
         Asistencia asistencia = facade.buscarAsistenciaHoy(usuario);
@@ -71,10 +74,20 @@ public class GestorUsuario implements IGestorUsuario {
      * @param fecha
      * @return 
      */
+    @Override
     public List<AsistenciaDTO> obtenerAsistenciasPorFecha(LocalDate fecha) {
         List<Asistencia> asistencias = facade.buscarAsistenciasPorFecha(fecha);
         return asistencias.stream()
                 .map(ca::convertirEntidadADTO)
                 .collect(Collectors.toList());
     }
+    
+    @Override
+    public List<UsuarioDTO> obtenerTodosLosUsuarios() {
+    List<Usuario> usuarios = facade.obtenerTodosLosUsuarios();
+    return usuarios.stream()
+            .map(cu::conversor_Entidad_A_DTO)
+            .collect(Collectors.toList());
+}
+
 }
