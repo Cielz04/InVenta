@@ -4,24 +4,22 @@
  */
 package org.itson.diseniosofware.mifarmaciagi.persistencia.daos;
 
+import java.time.LocalDate;
 import java.util.List;
+import org.itson.diseniosofware.mifarmaciagi.persistencia.entidades.Asistencia;
 import org.itson.diseniosofware.mifarmaciagi.persistencia.entidades.Usuario;
 
 /**
  *
- * @author jl4ma
+ * @author Enrique Rodriguez
  */
-public interface IUsuarioDAO {
+public interface IAsistenciaDAO {
 
-    public List<Usuario> findAll();
+    void registrarEntrada(Usuario usuario);
 
-    public Usuario findById(Integer id);
+    void registrarSalida(Usuario usuario);
 
-    public Usuario findByCodigo(Integer codigo);
+    Asistencia buscarAsistenciaHoy(Usuario usuario);
 
-    public void save(Usuario usuario);
-
-    public void update(Usuario usuario);
-
-    public void delete(Integer id);
+    List<Asistencia> listarAsistenciasPorFecha(LocalDate fecha);
 }

@@ -33,7 +33,6 @@ org\itson\diseñosoftware\farmaciagi\interfaces\DlgEditorDeProducto$2.class
 org\itson\diseñosoftware\farmaciagi\interfaces\DlgInventarioProductos.class
 org\itson\diseñosoftware\farmaciagi\interfaces\DlgProductosPrincipal$5.class
 org\itson\diseñosoftware\farmaciagi\interfaces\DlgBuscarProducto$7.class
-org\itson\diseñosoftware\farmaciagi\interfaces\DlgInicioSesion$1$1.class
 org\itson\diseñosoftware\farmaciagi\interfaces\DlgProductosPrincipal.class
 org\itson\diseñosoftware\farmaciagi\interfaces\DlgRegistroProductos$10.class
 org\itson\diseñosoftware\farmaciagi\interfaces\DlgRegistroAsistencia$5.class
@@ -55,6 +54,7 @@ org\itson\diseñosoftware\farmaciagi\interfaces\DlgInventarioProductos$4.class
 org\itson\diseñosoftware\farmaciagi\interfaces\DlgInventarioProductos$1.class
 org\itson\diseñosoftware\farmaciagi\interfaces\DlgProductosPrincipal$3.class
 org\itson\diseñosoftware\farmaciagi\interfaces\DlgBuscarProducto$2.class
+org\itson\diseñosoftware\farmaciagi\interfaces\DlgInicioSesion$2.class
 org\itson\diseñosoftware\farmaciagi\interfaces\PantallaVenta$4.class
 org\itson\diseñosoftware\farmaciagi\interfaces\DlgRegistroProductos$2.class
 org\itson\diseñosoftware\farmaciagi\interfaces\PantallaVenta.class

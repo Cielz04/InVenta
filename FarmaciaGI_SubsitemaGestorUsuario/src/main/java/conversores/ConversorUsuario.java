@@ -4,7 +4,9 @@
  */
 package conversores;
 
+import org.itson.diseniosofware.mifarmaciagi.persistencia.entidades.Asistencia;
 import org.itson.diseniosofware.mifarmaciagi.persistencia.entidades.Usuario;
+import org.itson.disenosoftware.farmaciagi_dtos.AsistenciaDTO;
 import org.itson.disenosoftware.farmaciagi_dtos.UsuarioDTO;
 
 /**
@@ -45,6 +47,10 @@ public class ConversorUsuario {
                 usuario.getTelefono());
         
         return usuarioDTO;
+    }
+
+    public AsistenciaDTO convertirEntidadADTO(Asistencia asistencia) {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
     
     

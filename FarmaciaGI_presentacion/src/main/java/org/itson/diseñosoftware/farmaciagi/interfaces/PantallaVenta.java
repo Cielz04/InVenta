@@ -462,6 +462,10 @@ public class PantallaVenta extends javax.swing.JFrame {
 //        dispose();
 //        DlgProveedores proveedores = new DlgProveedores(this, true);
 //        proveedores.setVisible(true);
+
+          dispose();
+          DlgGestionEmpleados pantallaEmpleados = new DlgGestionEmpleados(this, true);
+          pantallaEmpleados.setVisible(true);
     }//GEN-LAST:event_btnProveedoresActionPerformed
 
     private void btnVentaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVentaActionPerformed

@@ -6,6 +6,8 @@ package facade;
 
 import factory.AbstractDAOFactory;
 import factory.DAOFactory;
+import java.time.LocalDate;
+import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -13,7 +15,9 @@ import java.util.Map;
 import javax.swing.JOptionPane;
 import org.itson.diseniosofware.mifarmaciagi.persistencia.Conexion.Conexion;
 import org.itson.diseniosofware.mifarmaciagi.persistencia.Conexion.IConexion;
+import org.itson.diseniosofware.mifarmaciagi.persistencia.daos.AsistenciaDAO;
 import org.itson.diseniosofware.mifarmaciagi.persistencia.daos.ProductosDAO;
+import org.itson.diseniosofware.mifarmaciagi.persistencia.entidades.Asistencia;
 import org.itson.diseniosofware.mifarmaciagi.persistencia.entidades.DetalleVenta;
 import org.itson.diseniosofware.mifarmaciagi.persistencia.entidades.Lote;
 import org.itson.diseniosofware.mifarmaciagi.persistencia.entidades.Producto;
@@ -158,46 +162,43 @@ public class Facade implements IFacade {
     @Override
     public Lote editarLote_Para_Venta(Integer cantidad, Producto producto) throws Exception {
         Integer cantidadVenta = cantidad;
-        Integer cantidadTotalDeProducto = 0; 
-        
+        Integer cantidadTotalDeProducto = 0;
+
         Map<Producto, List<Lote>> lotes = this.buscar_Un_Producto_Y_Lotes(producto);
         Producto p = this.buscarProducto_Codigo(producto);
-        
+
         List<Lote> todos = lotes.get(p);
-        
+
         for (Lote todo : todos) {
             cantidadTotalDeProducto += todo.getCantidad();
         }
-        
 
         do {
             Lote lote = this.buscar_Ultimo_Lote_De_Producto(producto);
             Integer cantidadDeLote = 0;
-            if(lote != null){
+            if (lote != null) {
                 cantidadDeLote = lote.getCantidad();
             }
-            
-            if(cantidadVenta > cantidadTotalDeProducto || todos.isEmpty() || cantidadDeLote == 0){
+
+            if (cantidadVenta > cantidadTotalDeProducto || todos.isEmpty() || cantidadDeLote == 0) {
                 System.out.println("No hay suficiente Stock. Disponible: " + cantidadTotalDeProducto);
                 JOptionPane.showMessageDialog(null, "No hay suficiente Stock.\nSolo disponible: " + cantidadTotalDeProducto);
                 return null;
-            }
-            else if (cantidadVenta > cantidadDeLote) {
+            } else if (cantidadVenta > cantidadDeLote) {
                 cantidadVenta -= cantidadDeLote;
-                System.out.println("Canridad de venta" +cantidadVenta);
+                System.out.println("Canridad de venta" + cantidadVenta);
                 cantidadDeLote = 0;
                 lote.setCantidad(cantidadDeLote);
                 fabrica.getLoteAO().update(lote);
-            }
-            else{
+            } else {
                 cantidadDeLote -= cantidadVenta;
-                System.out.println("Cantidad de lote" +cantidadDeLote);
+                System.out.println("Cantidad de lote" + cantidadDeLote);
                 cantidadVenta = 0;
                 lote.setCantidad(cantidadDeLote);
                 fabrica.getLoteAO().update(lote);
             }
 
-        } while (cantidadVenta !=0);
+        } while (cantidadVenta != 0);
         return this.buscar_Ultimo_Lote_De_Producto(producto);
     }
 
@@ -264,10 +265,10 @@ public class Facade implements IFacade {
             throw new RuntimeException("Error al eliminar venta: " + e.getMessage());
         }
     }
-    
+
     @Override
-    public List<DetalleVenta> agregarDetlleVenta(DetalleVenta detalleVenta){
-        Venta venta =fabrica.getVentasDAO().findById(detalleVenta.getVenta().getId());
+    public List<DetalleVenta> agregarDetlleVenta(DetalleVenta detalleVenta) {
+        Venta venta = fabrica.getVentasDAO().findById(detalleVenta.getVenta().getId());
         Producto producto = fabrica.getProductosDAO().findByCodigo(detalleVenta.getProductos().getCodigo());
         Usuario usuario = fabrica.getUsuarioDAO().findById(venta.getUsuarioEnTurno().getId());
         venta.setUsuarioEnTurno(usuario);
@@ -278,17 +279,87 @@ public class Facade implements IFacade {
         List<DetalleVenta> dv = fabrica.getDetalleDAO().findByVenta(detalleVenta.getVenta().getId());
         return dv;
     }
-    
+
     //Usuarios
     @Override
-    public Usuario buscarUsuario_ID(Usuario usuario){
+    public Usuario buscarUsuario_ID(Usuario usuario) {
         Usuario usuarioBuscado = fabrica.getUsuarioDAO().findById(usuario.getId());
         return usuarioBuscado;
     }
-    
+
     @Override
-    public Usuario buscarUsuario_Codigo(Usuario usuario){
+    public Usuario buscarUsuario_Codigo(Usuario usuario) {
         Usuario usuarioBuscado = fabrica.getUsuarioDAO().findByCodigo(usuario.getCodigo());
         return usuarioBuscado;
     }
+
+    @Override
+    public void registrarEntrada(Usuario usuario) {
+        try {
+            AsistenciaDAO asistenciaDAO = fabrica.getAsistenciaDAO();
+            Asistencia asistenciaHoy = asistenciaDAO.buscarAsistenciaHoy(usuario);
+
+            if (asistenciaHoy == null) {
+                Asistencia nueva = new Asistencia();
+                nueva.setUsuario(usuario);
+                nueva.setFecha(LocalDate.now());
+                nueva.setHoraEntrada(LocalTime.now());
+                asistenciaDAO.save(nueva);
+            }
+        } catch (Exception e) {
+            System.out.println(e);
+            throw new RuntimeException("Error al registrar entrada: " + e.getMessage());
+        }
+    }
+
+    /**
+     * Registra la hora de salida del usuario si ya existe asistencia de hoy.
+     * @param usuario
+     */
+    @Override
+    public void registrarSalida(Usuario usuario) {
+        try {
+            AsistenciaDAO asistenciaDAO = fabrica.getAsistenciaDAO();
+            Asistencia asistenciaHoy = asistenciaDAO.buscarAsistenciaHoy(usuario);
+
+            if (asistenciaHoy != null && asistenciaHoy.getHoraSalida() == null) {
+                asistenciaHoy.setHoraSalida(LocalTime.now());
+                asistenciaDAO.update(asistenciaHoy);
+            }
+        } catch (Exception e) {
+            System.out.println(e);
+            throw new RuntimeException("Error al registrar salida: " + e.getMessage());
+        }
+    }
+
+    /**
+     * Busca la asistencia de hoy para un usuario.
+     * @param usuario
+     * @return 
+     */
+    @Override
+    public Asistencia buscarAsistenciaHoy(Usuario usuario) {
+        try {
+            return fabrica.getAsistenciaDAO().buscarAsistenciaHoy(usuario);
+        } catch (Exception e) {
+            System.out.println(e);
+            throw new RuntimeException("Error al buscar asistencia de hoy: " + e.getMessage());
+        }
+    }
+
+    /**
+     * Busca todas las asistencias registradas en una fecha específica.
+     * @param fecha
+     * @return 
+     */
+    @Override
+    public List<Asistencia> buscarAsistenciasPorFecha(LocalDate fecha) {
+        try {
+            return fabrica.getAsistenciaDAO().buscarPorFecha(fecha);
+        } catch (Exception e) {
+            System.out.println(e);
+            throw new RuntimeException("Error al buscar asistencias por fecha: " + e.getMessage());
+        }
+    }
+
 }
