@@ -36,7 +36,8 @@ public class PantallaVenta extends javax.swing.JFrame {
     public PantallaVenta(UsuarioDTO usuario) throws Exception {
         initComponents();
         instancia = this; // ← Aquí se guarda la instancia
-
+        
+        
         this.gestorInventario = new GestorInvetario();
         this.usuarioenTurnoDTO = usuario;
 
@@ -55,6 +56,8 @@ public class PantallaVenta extends javax.swing.JFrame {
         };
         
         tblProductosVenta.setModel(modelo);
+        
+        txtUsuarioEnTurno.setText("Vendedor: " + usuario.getNombre());
     }
 
 //    public static void main(String[] args) throws Exception {
@@ -99,6 +102,7 @@ public class PantallaVenta extends javax.swing.JFrame {
         btnBuscarProducto = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
         lblLogo = new javax.swing.JLabel();
+        txtUsuarioEnTurno = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setName("Pantalla Venta"); // NOI18N
@@ -308,6 +312,10 @@ public class PantallaVenta extends javax.swing.JFrame {
 
         lblLogo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/logoMI.jpg"))); // NOI18N
 
+        txtUsuarioEnTurno.setFont(new java.awt.Font("Arial Rounded MT Bold", 1, 24)); // NOI18N
+        txtUsuarioEnTurno.setForeground(new java.awt.Color(255, 255, 255));
+        txtUsuarioEnTurno.setText("jLabel3");
+
         javax.swing.GroupLayout jPanel6Layout = new javax.swing.GroupLayout(jPanel6);
         jPanel6.setLayout(jPanel6Layout);
         jPanel6Layout.setHorizontalGroup(
@@ -317,6 +325,8 @@ public class PantallaVenta extends javax.swing.JFrame {
                 .addComponent(lblLogo)
                 .addGap(67, 67, 67)
                 .addComponent(jLabel1)
+                .addGap(93, 93, 93)
+                .addComponent(txtUsuarioEnTurno)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(btnBuscarProducto)
                 .addGap(23, 23, 23))
@@ -329,7 +339,9 @@ public class PantallaVenta extends javax.swing.JFrame {
             .addGroup(jPanel6Layout.createSequentialGroup()
                 .addGap(16, 16, 16)
                 .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(txtUsuarioEnTurno))
                     .addComponent(btnBuscarProducto, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
@@ -572,6 +584,7 @@ public class PantallaVenta extends javax.swing.JFrame {
     private javax.swing.JTable tblProductosVenta;
     private javax.swing.JTable tblPromocionesVenta;
     private javax.swing.JTextField txtTotal;
+    private javax.swing.JLabel txtUsuarioEnTurno;
     // End of variables declaration//GEN-END:variables
 
 }

@@ -8,6 +8,8 @@ import BO.GestorUsuario;
 import java.awt.Color;
 import java.awt.Font;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableCellRenderer;
@@ -25,6 +27,7 @@ public class DlgGestionEmpleados extends javax.swing.JDialog {
      * Creates new form DlgGestionEmpleados
      */
     private final GestorUsuario gestorUsuario = new GestorUsuario();
+    private UsuarioDTO usuarioenTurnoDTO;
 
     public DlgGestionEmpleados(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
@@ -88,6 +91,11 @@ public class DlgGestionEmpleados extends javax.swing.JDialog {
         btnVolver.setForeground(new java.awt.Color(255, 255, 255));
         btnVolver.setText("VOLVER");
         btnVolver.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnVolver.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnVolverActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -151,35 +159,38 @@ public class DlgGestionEmpleados extends javax.swing.JDialog {
         // TODO add your handling code here:
     }//GEN-LAST:event_txtBuscarEmpleadoActionPerformed
 
+    private void btnVolverActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVolverActionPerformed
+        dispose();
+        try {
+            PantallaVenta venta = new PantallaVenta(usuarioenTurnoDTO);
+            venta.setVisible(true);
+        } catch (Exception ex) {
+            Logger.getLogger(DlgGestionEmpleados.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_btnVolverActionPerformed
+
     private void llenarTabla() {
         DefaultTableModel modelo = new DefaultTableModel(
                 new Object[][]{},
-                new String[]{"ID", "NOMBRE", "ROL", "ENTRADA HOY", "SALIDA HOY"}
+                new String[]{"ID", "CÓDIGO", "DIRECCIÓN", "NOMBRE", "TELÉFONO", "TIPO"}
         ) {
             @Override
             public boolean isCellEditable(int row, int column) {
-                return false; // No editable directamente
+                return false;
             }
         };
 
         try {
-            // 1. Obtener todos los usuarios
             List<UsuarioDTO> usuarios = gestorUsuario.obtenerTodosLosUsuarios();
 
-            // 2. Para cada usuario, buscar su asistencia de hoy
             for (UsuarioDTO u : usuarios) {
-                AsistenciaDTO asistencia = gestorUsuario.obtenerAsistenciaHoy(u);
-                String entrada = (asistencia != null && asistencia.getHoraEntrada() != null)
-                        ? asistencia.getHoraEntrada().toString() : "-";
-                String salida = (asistencia != null && asistencia.getHoraSalida() != null)
-                        ? asistencia.getHoraSalida().toString() : "-";
-
                 modelo.addRow(new Object[]{
                     u.getId(),
+                    u.getCodigo(),
+                    u.getDireccion(),
                     u.getNombre(),
-                    u.getTipo(),
-                    entrada,
-                    salida
+                    u.getTelefono(),
+                    u.getTipo()
                 });
             }
 
@@ -187,24 +198,24 @@ public class DlgGestionEmpleados extends javax.swing.JDialog {
             personalizarTabla();
 
         } catch (Exception e) {
+            e.printStackTrace();
             JOptionPane.showMessageDialog(this, "Error al cargar empleados: " + e.getMessage(),
                     "Error", JOptionPane.ERROR_MESSAGE);
         }
     }
 
     private void personalizarTabla() {
-    tblEmpleados.setRowHeight(28);
-    tblEmpleados.getTableHeader().setFont(new Font("Arial", Font.BOLD, 14));
+        tblEmpleados.setRowHeight(28);
+        tblEmpleados.getTableHeader().setFont(new Font("Arial", Font.BOLD, 14));
 
-    DefaultTableCellRenderer center = new DefaultTableCellRenderer();
-    center.setHorizontalAlignment(JLabel.CENTER);
+        DefaultTableCellRenderer center = new DefaultTableCellRenderer();
+        center.setHorizontalAlignment(JLabel.CENTER);
 
-    for (int i = 0; i < tblEmpleados.getColumnCount(); i++) {
-        tblEmpleados.getColumnModel().getColumn(i).setCellRenderer(center);
+        for (int i = 0; i < tblEmpleados.getColumnCount(); i++) {
+            tblEmpleados.getColumnModel().getColumn(i).setCellRenderer(center);
+        }
     }
-}
 
-    
     /**
      * @param args the command line arguments
      */
