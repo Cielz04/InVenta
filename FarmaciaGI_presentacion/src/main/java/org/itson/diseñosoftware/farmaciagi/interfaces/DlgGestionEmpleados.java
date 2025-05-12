@@ -5,6 +5,7 @@
 package org.itson.diseñosoftware.farmaciagi.interfaces;
 
 import BO.GestorUsuario;
+import facade.Facade;
 import java.awt.Color;
 import java.awt.Font;
 import java.util.List;
@@ -14,6 +15,7 @@ import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
+import org.itson.diseniosofware.mifarmaciagi.persistencia.entidades.Usuario;
 import org.itson.disenosoftware.farmaciagi_dtos.AsistenciaDTO;
 import org.itson.disenosoftware.farmaciagi_dtos.UsuarioDTO;
 
@@ -233,7 +235,32 @@ public class DlgGestionEmpleados extends javax.swing.JDialog {
     }//GEN-LAST:event_btnModificarActionPerformed
 
     private void btnEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarActionPerformed
-        
+        if (tblEmpleados.getSelectedRow() == -1) {
+            JOptionPane.showMessageDialog(null, "Seleccione un empleado", "Advertencia",
+                    JOptionPane.WARNING_MESSAGE);
+        } else {
+            int filaSeleccionada = tblEmpleados.getSelectedRow();
+
+            String nombre = (String) tblEmpleados.getValueAt(filaSeleccionada, 3);
+            int id = (Integer) tblEmpleados.getValueAt(filaSeleccionada, 0);
+
+            String[] botones = {"Sí", "No"};
+            int opcion = JOptionPane.showOptionDialog(null, "¿Está seguro de que desea eliminar al empleado "
+                    + "seleccionado? (" + nombre + ")",
+                    "Eliminar empleado", JOptionPane.DEFAULT_OPTION, JOptionPane.QUESTION_MESSAGE,
+                    null, botones, botones[0]);
+            if (opcion == 0) {
+                Usuario usuario = new Usuario();
+                usuario.setId(id);
+                Facade facade = new Facade();
+                facade.getUsuarioDAO().delete(id);
+                llenarTabla();
+                JOptionPane.showMessageDialog(this, "Empleado eliminado correctamente", "Usuario eliminado", 
+                        JOptionPane.INFORMATION_MESSAGE);
+            } else {
+                return;
+            }
+        }
     }//GEN-LAST:event_btnEliminarActionPerformed
 
     private void llenarTabla() {
