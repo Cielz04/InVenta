@@ -277,16 +277,39 @@ public class DlgActualizarEmpleado extends javax.swing.JDialog {
             usuario.setDireccion(txtDireccion.getText());
             usuario.setTelefono(txtTelefono.getText());
             usuario.setTipo(txtTipo.getText());
-            
+
             facade.getUsuarioDAO().update(usuario);
             JOptionPane.showMessageDialog(this, "Usuario modificado correctamente", "Actualización", JOptionPane.INFORMATION_MESSAGE);
+
+            boolean esMismoUsuario = usuario.getId().equals(usuarioEnTurno.getId());
+            boolean cambioATipoVendedor = !usuarioEnTurno.getTipo().equalsIgnoreCase("vendedor")
+                    && usuario.getTipo().equalsIgnoreCase("vendedor");
+
+            // Si se modifica a sí mismo y se cambia el tipo a vendedor
+            if (esMismoUsuario && cambioATipoVendedor) {
+                usuarioEnTurno.setTipo("vendedor");
+                usuarioEnTurno.setNombre(usuario.getNombre());
+                PantallaVenta venta = new PantallaVenta(usuarioEnTurno);
+                venta.setVisible(true);
+                dispose();
+                return;
+            } 
             
-            dispose();
-            DlgGestionEmpleados gestionEmpleados = new DlgGestionEmpleados(usuarioEnTurno);
-            gestionEmpleados.setVisible(true);
+            // Si se modifica a sí mismo y cambia su nombre u otros campos sin cambiar el tipo
+            if(esMismoUsuario){
+                usuarioEnTurno.setNombre(usuario.getNombre());
+                DlgGestionEmpleados gestionEmpleados = new DlgGestionEmpleados(usuarioEnTurno);
+                gestionEmpleados.setVisible(true);
+                dispose();
+            }
             
+            else {
+                DlgGestionEmpleados gestionEmpleados = new DlgGestionEmpleados(usuarioEnTurno);
+                gestionEmpleados.setVisible(true);
+                dispose();
+            }
         } catch (Exception e) {
-            JOptionPane.showMessageDialog(this, "Error al guardar usuario","Error", JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(this, "Error al guardar usuario", "Error", JOptionPane.ERROR_MESSAGE);
             e.printStackTrace();
         }
     }//GEN-LAST:event_btnGuardarActionPerformed

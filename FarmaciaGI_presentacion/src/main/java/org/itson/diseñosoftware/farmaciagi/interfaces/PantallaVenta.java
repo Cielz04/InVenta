@@ -56,7 +56,7 @@ public class PantallaVenta extends javax.swing.JFrame {
         
         tblProductosVenta.setModel(modelo);
         
-        txtUsuarioEnTurno.setText("Vendedor: " + usuario.getNombre());
+        txtUsuarioEnTurno.setText("Usuario: " + usuario.getNombre());
     }
 
 //    public static void main(String[] args) throws Exception {
