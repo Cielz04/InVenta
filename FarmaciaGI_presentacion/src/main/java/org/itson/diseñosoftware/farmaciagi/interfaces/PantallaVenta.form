@@ -129,17 +129,17 @@
           <Layout>
             <DimensionLayout dim="0">
               <Group type="103" groupAlignment="0" attributes="0">
-                  <Component id="btnProveedores" alignment="1" max="32767" attributes="0"/>
+                  <Component id="btnGestionEmpleados" alignment="1" max="32767" attributes="0"/>
               </Group>
             </DimensionLayout>
             <DimensionLayout dim="1">
               <Group type="103" groupAlignment="0" attributes="0">
-                  <Component id="btnProveedores" alignment="0" pref="115" max="32767" attributes="0"/>
+                  <Component id="btnGestionEmpleados" alignment="0" pref="115" max="32767" attributes="0"/>
               </Group>
             </DimensionLayout>
           </Layout>
           <SubComponents>
-            <Component class="javax.swing.JButton" name="btnProveedores">
+            <Component class="javax.swing.JButton" name="btnGestionEmpleados">
               <Properties>
                 <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                   <Color blue="8e" green="37" red="3a" type="rgb"/>
@@ -157,7 +157,7 @@
                 <Property name="focusPainted" type="boolean" value="false"/>
               </Properties>
               <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnProveedoresActionPerformed"/>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnGestionEmpleadosActionPerformed"/>
               </Events>
             </Component>
           </SubComponents>

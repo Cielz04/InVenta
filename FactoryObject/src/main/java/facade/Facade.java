@@ -16,6 +16,7 @@ import javax.swing.JOptionPane;
 import org.itson.diseniosofware.mifarmaciagi.persistencia.Conexion.Conexion;
 import org.itson.diseniosofware.mifarmaciagi.persistencia.Conexion.IConexion;
 import org.itson.diseniosofware.mifarmaciagi.persistencia.daos.AsistenciaDAO;
+import org.itson.diseniosofware.mifarmaciagi.persistencia.daos.IUsuarioDAO;
 import org.itson.diseniosofware.mifarmaciagi.persistencia.daos.ProductosDAO;
 import org.itson.diseniosofware.mifarmaciagi.persistencia.entidades.Asistencia;
 import org.itson.diseniosofware.mifarmaciagi.persistencia.entidades.DetalleVenta;
@@ -36,6 +37,10 @@ public class Facade implements IFacade {
     public Facade() {
         conexion = new Conexion();
         fabrica = new DAOFactory(conexion);
+    }
+
+    public IUsuarioDAO getUsuarioDAO() {
+        return fabrica.getUsuarioDAO();
     }
 
     //Métodos para subsistema Gestor Inventario

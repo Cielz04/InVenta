@@ -336,6 +336,11 @@ public class DlgRegistroProductos extends javax.swing.JDialog {
         jLabel5.setText("Cantidad:");
 
         txtCantidad.setFont(new java.awt.Font("Arial Rounded MT Bold", 0, 22)); // NOI18N
+        txtCantidad.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtCantidadActionPerformed(evt);
+            }
+        });
         txtCantidad.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
                 txtCantidadKeyPressed(evt);
@@ -573,6 +578,10 @@ public class DlgRegistroProductos extends javax.swing.JDialog {
             return;
         }
     }//GEN-LAST:event_txtCodigoKeyTyped
+
+    private void txtCantidadActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtCantidadActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtCantidadActionPerformed
 
     private void restaurar() {
         if (producto.getCodigo() != null) {

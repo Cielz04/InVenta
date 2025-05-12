@@ -14,6 +14,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import javax.swing.Timer;
+import javax.swing.UIManager;
 import org.itson.disenosoftware.farmaciagi_dtos.UsuarioDTO;
 
 /**
@@ -117,6 +118,10 @@ public class DlgRegistroAsistencia extends javax.swing.JDialog {
         lblFecha.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lblFecha.setText("01/01/2025");
 
+        txtCodigoUsuario.setFont(new java.awt.Font("Arial Rounded MT Bold", 0, 16)); // NOI18N
+
+        jLabel1.setFont(new java.awt.Font("Arial Rounded MT Bold", 0, 18)); // NOI18N
+        jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel1.setText("Escribe tu codigo:");
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
@@ -124,7 +129,12 @@ public class DlgRegistroAsistencia extends javax.swing.JDialog {
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(lblHora, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(lblFecha, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(217, 217, 217)
+                .addComponent(txtCodigoUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, 376, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                 .addContainerGap(207, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                     .addComponent(btnSalida1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -133,15 +143,10 @@ public class DlgRegistroAsistencia extends javax.swing.JDialog {
                         .addGap(38, 38, 38)
                         .addComponent(btnSalida, javax.swing.GroupLayout.PREFERRED_SIZE, 174, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(207, 207, 207))
-            .addComponent(lblFecha, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(217, 217, 217)
-                .addComponent(txtCodigoUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, 376, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 102, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(346, 346, 346))
+                .addGap(312, 312, 312)
+                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 177, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -160,7 +165,7 @@ public class DlgRegistroAsistencia extends javax.swing.JDialog {
                     .addComponent(btnSalida, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addComponent(btnSalida1, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(132, Short.MAX_VALUE))
+                .addContainerGap(127, Short.MAX_VALUE))
         );
 
         getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 800, 550));
@@ -172,7 +177,6 @@ public class DlgRegistroAsistencia extends javax.swing.JDialog {
     private void btnSalidaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalidaActionPerformed
         JOptionPane.showMessageDialog(this, "Salida registrada exitosamente", "Registro salida", 
                 JOptionPane.INFORMATION_MESSAGE);
-        
     }//GEN-LAST:event_btnSalidaActionPerformed
 
     private void btnSalida1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalida1ActionPerformed
@@ -180,13 +184,30 @@ public class DlgRegistroAsistencia extends javax.swing.JDialog {
     }//GEN-LAST:event_btnSalida1ActionPerformed
 
     private void btnEntradaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEntradaActionPerformed
-        Integer codigo = Integer.valueOf(txtCodigoUsuario.getText());
+        String codigoTexto = txtCodigoUsuario.getText().trim();
+        
+        if(codigoTexto.isBlank()){
+            JOptionPane.showMessageDialog(this, "Favor de ingresar tu código", "Campo vacío", 
+                    JOptionPane.WARNING_MESSAGE);
+            return;
+        }
+        
+        Integer codigo;
+        try {
+            codigo = Integer.valueOf(codigoTexto);
+        } catch (NumberFormatException e) {
+            JOptionPane.showMessageDialog(this, "El código debe ser numérico", "Error de formato", 
+                    JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+        
         IGestorUsuario gestorUsuario = new GestorUsuario();
         UsuarioDTO usuario = new UsuarioDTO(0,codigo);
         UsuarioDTO usuarioBuscado = gestorUsuario.buscarUsuario_Codigo(usuario);
         
         if(usuarioBuscado == null){
-            JOptionPane.showMessageDialog(null, "El codigo que ingresaste no es valido", "ERROR", JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(null, "El codigo que ingresaste no es valido", "ERROR",
+                    JOptionPane.ERROR_MESSAGE);
         }
         else{
             try {
@@ -194,9 +215,7 @@ public class DlgRegistroAsistencia extends javax.swing.JDialog {
                 JOptionPane.INFORMATION_MESSAGE);
                 PantallaVenta pv = new PantallaVenta(usuarioBuscado);
                 pv.setVisible(true);
-                this.dispose();
-                
-                
+                this.dispose();    
             } catch (Exception ex) {
                 Logger.getLogger(DlgRegistroAsistencia.class.getName()).log(Level.SEVERE, null, ex);
             }
@@ -230,6 +249,11 @@ public class DlgRegistroAsistencia extends javax.swing.JDialog {
         }
         //</editor-fold>
 
+//        try {
+//            UIManager.setLookAndFeel(UIManager.getCrossPlatformLookAndFeelClassName());
+//        } catch (Exception ex) {
+//            ex.printStackTrace();
+//        }
         /* Create and display the dialog */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {

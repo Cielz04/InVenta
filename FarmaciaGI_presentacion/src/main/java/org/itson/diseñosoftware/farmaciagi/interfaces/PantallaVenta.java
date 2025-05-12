@@ -37,7 +37,6 @@ public class PantallaVenta extends javax.swing.JFrame {
         initComponents();
         instancia = this; // ← Aquí se guarda la instancia
         
-        
         this.gestorInventario = new GestorInvetario();
         this.usuarioenTurnoDTO = usuario;
 
@@ -46,11 +45,11 @@ public class PantallaVenta extends javax.swing.JFrame {
         llenarTablaDetallesVenta();
 
         btnBuscarProducto.setBackground(Color.WHITE);
-
         btnContinuar.setBackground(Color.WHITE);
-
-        btnBuscarProducto.setBackground(
-                new Color(93, 82, 193));
+        btnBuscarProducto.setBackground(new Color(93, 82, 193));
+        btnVenta.setOpaque(true);
+        btnVenta.setContentAreaFilled(true);
+        btnVenta.setBackground(new Color(226,228,241));
         
         DefaultTableModel modelo = new DefaultTableModel(new Object[]{"Articulo", "Marca", "Cantidad", "Total"}, 0) {
         };
@@ -82,7 +81,7 @@ public class PantallaVenta extends javax.swing.JFrame {
 
         jPanel1 = new javax.swing.JPanel();
         jPanel2 = new javax.swing.JPanel();
-        btnProveedores = new javax.swing.JButton();
+        btnGestionEmpleados = new javax.swing.JButton();
         jPanel3 = new javax.swing.JPanel();
         btnProductos = new javax.swing.JButton();
         jPanel5 = new javax.swing.JPanel();
@@ -114,15 +113,15 @@ public class PantallaVenta extends javax.swing.JFrame {
         jPanel2.setPreferredSize(new java.awt.Dimension(145, 145));
         jPanel2.setRequestFocusEnabled(false);
 
-        btnProveedores.setBackground(new java.awt.Color(58, 55, 142));
-        btnProveedores.setIcon(new javax.swing.ImageIcon(getClass().getResource("/proveedor.png"))); // NOI18N
-        btnProveedores.setBorder(null);
-        btnProveedores.setBorderPainted(false);
-        btnProveedores.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        btnProveedores.setFocusPainted(false);
-        btnProveedores.addActionListener(new java.awt.event.ActionListener() {
+        btnGestionEmpleados.setBackground(new java.awt.Color(58, 55, 142));
+        btnGestionEmpleados.setIcon(new javax.swing.ImageIcon(getClass().getResource("/proveedor.png"))); // NOI18N
+        btnGestionEmpleados.setBorder(null);
+        btnGestionEmpleados.setBorderPainted(false);
+        btnGestionEmpleados.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnGestionEmpleados.setFocusPainted(false);
+        btnGestionEmpleados.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnProveedoresActionPerformed(evt);
+                btnGestionEmpleadosActionPerformed(evt);
             }
         });
 
@@ -130,11 +129,11 @@ public class PantallaVenta extends javax.swing.JFrame {
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(btnProveedores, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(btnGestionEmpleados, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(btnProveedores, javax.swing.GroupLayout.DEFAULT_SIZE, 115, Short.MAX_VALUE)
+            .addComponent(btnGestionEmpleados, javax.swing.GroupLayout.DEFAULT_SIZE, 115, Short.MAX_VALUE)
         );
 
         jPanel3.setBackground(new java.awt.Color(166, 164, 255));
@@ -470,15 +469,20 @@ public class PantallaVenta extends javax.swing.JFrame {
 
     }//GEN-LAST:event_btnContinuarActionPerformed
 
-    private void btnProveedoresActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnProveedoresActionPerformed
+    private void btnGestionEmpleadosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGestionEmpleadosActionPerformed
 //        dispose();
 //        DlgProveedores proveedores = new DlgProveedores(this, true);
 //        proveedores.setVisible(true);
-
-          dispose();
-          DlgGestionEmpleados pantallaEmpleados = new DlgGestionEmpleados(this, true);
-          pantallaEmpleados.setVisible(true);
-    }//GEN-LAST:event_btnProveedoresActionPerformed
+          if(usuarioenTurnoDTO.getTipo().equalsIgnoreCase("administrador")) {
+              dispose();
+              DlgGestionEmpleados pantallaEmpleados = new DlgGestionEmpleados(usuarioenTurnoDTO);
+              pantallaEmpleados.setVisible(true);
+          }else{
+//              btnGestionEmpleados.enable(false);
+              JOptionPane.showMessageDialog(this, "No tienes acceso a la Gestión de Empleados", "Acceso denegado", 
+                      JOptionPane.ERROR_MESSAGE);
+          }
+    }//GEN-LAST:event_btnGestionEmpleadosActionPerformed
 
     private void btnVentaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVentaActionPerformed
         JOptionPane.showMessageDialog(rootPane, "Ya te encuentras en esta ventana");
@@ -565,9 +569,9 @@ public class PantallaVenta extends javax.swing.JFrame {
     private javax.swing.JButton btnBuscarProducto;
     private javax.swing.JButton btnComprarProductos;
     private javax.swing.JButton btnContinuar;
+    private javax.swing.JButton btnGestionEmpleados;
     private javax.swing.JButton btnProductos;
     private javax.swing.JButton btnPromociones;
-    private javax.swing.JButton btnProveedores;
     private javax.swing.JButton btnVenta;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
