@@ -40,6 +40,22 @@ public class UsuarioDAO implements IUsuarioDAO {
         List<Usuario> resultados = query.getResultList();
         return resultados.isEmpty() ? null : resultados.get(0);
     }
+  
+    @Override
+    public List<Usuario> findByNombreOCodigo(String textoBusqueda) {
+        try {
+            int codigo = Integer.parseInt(textoBusqueda);
+            TypedQuery<Usuario> query = em.createQuery(
+                    "SELECT u FROM Usuario u WHERE u.codigo = :codigo", Usuario.class);
+            query.setParameter("codigo", codigo);
+            return query.getResultList();
+        } catch (NumberFormatException e) {
+            TypedQuery<Usuario> query = em.createQuery(
+                    "SELECT u FROM Usuario u WHERE LOWER(u.nombre) LIKE :nombre", Usuario.class);
+            query.setParameter("nombre", "%" + textoBusqueda.toLowerCase() + "%");
+            return query.getResultList();
+        }
+    }
 
     @Override
     public void save(Usuario usuario) {

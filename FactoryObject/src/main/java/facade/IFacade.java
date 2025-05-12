@@ -54,7 +54,7 @@ public interface IFacade {
     public Usuario buscarUsuario_ID(Usuario usuario);
 
     public Usuario buscarUsuario_Codigo(Usuario usuario);
-
+    
     public void registrarEntrada(Usuario usuario);
 
     public void registrarSalida(Usuario usuario);

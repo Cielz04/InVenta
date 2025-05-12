@@ -8,6 +8,8 @@ import BO.GestorUsuario;
 import facade.Facade;
 import java.awt.Color;
 import java.awt.Font;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -30,11 +32,26 @@ public class DlgGestionEmpleados extends javax.swing.JDialog {
      */
     private final GestorUsuario gestorUsuario = new GestorUsuario();
     private UsuarioDTO usuarioenTurnoDTO;
+    Facade facade;
 
     public DlgGestionEmpleados(UsuarioDTO usuario) {
         initComponents();
         llenarTabla();
         this.usuarioenTurnoDTO = usuario;
+
+        txtBuscarEmpleado.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                String textoBusqueda = txtBuscarEmpleado.getText().trim();
+                buscarEmpleados(textoBusqueda);
+            }
+        });
+    }
+  
+    public void buscarEmpleados(String texto) {
+        facade = new Facade();
+        List<Usuario> empleadosFiltrados = facade.getUsuarioDAO().findByNombreOCodigo(texto);
+        actualizarTabla(empleadosFiltrados);
     }
 
     /**
@@ -64,7 +81,6 @@ public class DlgGestionEmpleados extends javax.swing.JDialog {
         jPanel1.setBackground(new java.awt.Color(226, 228, 241));
 
         txtBuscarEmpleado.setFont(new java.awt.Font("Bahnschrift", 0, 18)); // NOI18N
-        txtBuscarEmpleado.setForeground(new java.awt.Color(102, 102, 102));
         txtBuscarEmpleado.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtBuscarEmpleadoActionPerformed(evt);
@@ -82,6 +98,7 @@ public class DlgGestionEmpleados extends javax.swing.JDialog {
             }
         });
 
+        tblEmpleados.setForeground(new java.awt.Color(51, 51, 51));
         tblEmpleados.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
@@ -198,6 +215,7 @@ public class DlgGestionEmpleados extends javax.swing.JDialog {
         // TODO add your handling code here:
     }//GEN-LAST:event_txtBuscarEmpleadoActionPerformed
 
+
     private void btnVolverActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVolverActionPerformed
         try {
             dispose();
@@ -209,7 +227,9 @@ public class DlgGestionEmpleados extends javax.swing.JDialog {
     }//GEN-LAST:event_btnVolverActionPerformed
 
     private void btnNuevoEmpleadoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNuevoEmpleadoActionPerformed
-        // TODO add your handling code here:
+        DlgAgregarEmpleado nuevo = new DlgAgregarEmpleado(usuarioenTurnoDTO);
+        nuevo.setVisible(true);
+        dispose();
     }//GEN-LAST:event_btnNuevoEmpleadoActionPerformed
 
     private void btnModificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnModificarActionPerformed
@@ -298,6 +318,24 @@ public class DlgGestionEmpleados extends javax.swing.JDialog {
         }
     }
 
+    public void actualizarTabla(List<Usuario> lista) {
+        DefaultTableModel modelo = (DefaultTableModel) tblEmpleados.getModel();
+        modelo.setRowCount(0);
+
+        for (Usuario usuario : lista) {
+            modelo.addRow(new Object[]{
+                usuario.getId(),
+                usuario.getCodigo(),
+                usuario.getNombre(),
+                usuario.getDireccion(),
+                usuario.getTelefono(),
+                usuario.getTipo()
+            });
+        }
+        tblEmpleados.setModel(modelo);
+        personalizarTabla();
+    }
+    
     private void personalizarTabla() {
         tblEmpleados.setRowHeight(28);
         tblEmpleados.getTableHeader().setFont(new Font("Arial", Font.BOLD, 14));

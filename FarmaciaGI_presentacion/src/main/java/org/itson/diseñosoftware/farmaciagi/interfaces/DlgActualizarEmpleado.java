@@ -76,19 +76,19 @@ public class DlgActualizarEmpleado extends javax.swing.JDialog {
 
         jLabel3.setFont(new java.awt.Font("Arial Rounded MT Bold", 0, 22)); // NOI18N
         jLabel3.setForeground(new java.awt.Color(58, 55, 142));
-        jLabel3.setText("Nombre");
+        jLabel3.setText("Nombre:");
 
         jLabel4.setFont(new java.awt.Font("Arial Rounded MT Bold", 0, 22)); // NOI18N
         jLabel4.setForeground(new java.awt.Color(58, 55, 142));
-        jLabel4.setText("Dirección");
+        jLabel4.setText("Dirección:");
 
         jLabel5.setFont(new java.awt.Font("Arial Rounded MT Bold", 0, 22)); // NOI18N
         jLabel5.setForeground(new java.awt.Color(58, 55, 142));
-        jLabel5.setText("Teléfono");
+        jLabel5.setText("Teléfono:");
 
         jLabel6.setFont(new java.awt.Font("Arial Rounded MT Bold", 0, 22)); // NOI18N
         jLabel6.setForeground(new java.awt.Color(58, 55, 142));
-        jLabel6.setText("Tipo");
+        jLabel6.setText("Tipo:");
 
         txtCodigo.setFont(new java.awt.Font("Arial Rounded MT Bold", 0, 22)); // NOI18N
         txtCodigo.setForeground(new java.awt.Color(51, 51, 51));
@@ -139,7 +139,7 @@ public class DlgActualizarEmpleado extends javax.swing.JDialog {
 
         jLabel7.setFont(new java.awt.Font("Arial Rounded MT Bold", 0, 22)); // NOI18N
         jLabel7.setForeground(new java.awt.Color(58, 55, 142));
-        jLabel7.setText("Código");
+        jLabel7.setText("Código:");
 
         txtID.setEditable(false);
         txtID.setFont(new java.awt.Font("Arial Rounded MT Bold", 0, 22)); // NOI18N
@@ -255,7 +255,7 @@ public class DlgActualizarEmpleado extends javax.swing.JDialog {
 
     private void btnGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGuardarActionPerformed
         if (txtCodigo.getText().isBlank() || txtNombre.getText().isBlank() || txtDireccion.getText().isBlank()
-                || txtTelefono.getText().isBlank() || txtTelefono.getText().isBlank()) {
+                || txtTelefono.getText().isBlank() || txtTipo.getText().isBlank()) {
             JOptionPane.showMessageDialog(this, "Asegúrese de llenar todos los campos", "Campos vacíos", 
                     JOptionPane.ERROR_MESSAGE);
             return;

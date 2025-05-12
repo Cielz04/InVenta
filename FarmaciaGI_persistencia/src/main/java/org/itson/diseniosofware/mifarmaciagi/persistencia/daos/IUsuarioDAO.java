@@ -19,6 +19,8 @@ public interface IUsuarioDAO {
 
     public Usuario findByCodigo(Integer codigo);
 
+    List<Usuario> findByNombreOCodigo(String textoBusqueda);
+
     public void save(Usuario usuario);
 
     public void update(Usuario usuario);
