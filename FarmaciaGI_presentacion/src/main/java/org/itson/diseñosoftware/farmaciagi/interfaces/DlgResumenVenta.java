@@ -143,10 +143,9 @@ public class DlgResumenVenta extends javax.swing.JDialog {
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setResizable(false);
 
-        fondo.setBackground(new java.awt.Color(216, 215, 255));
+        fondo.setBackground(new java.awt.Color(226, 228, 241));
 
-        jLabel1.setFont(new java.awt.Font("Arial", 1, 36)); // NOI18N
-        jLabel1.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel1.setFont(new java.awt.Font("Arial Rounded MT Bold", 1, 36)); // NOI18N
         jLabel1.setText("RESUMEN DE VENTA");
 
         tablaVenta.setModel(new javax.swing.table.DefaultTableModel(
@@ -274,8 +273,9 @@ public class DlgResumenVenta extends javax.swing.JDialog {
                 .addContainerGap(23, Short.MAX_VALUE))
         );
 
-        btnCerrar.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
+        btnCerrar.setFont(new java.awt.Font("Arial Rounded MT Bold", 1, 18)); // NOI18N
         btnCerrar.setText("CERRAR");
+        btnCerrar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnCerrar.setFocusPainted(false);
         btnCerrar.setMaximumSize(new java.awt.Dimension(100, 30));
         btnCerrar.setPreferredSize(new java.awt.Dimension(173, 48));
@@ -285,8 +285,9 @@ public class DlgResumenVenta extends javax.swing.JDialog {
             }
         });
 
-        btnImprimirTicket.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
+        btnImprimirTicket.setFont(new java.awt.Font("Arial Rounded MT Bold", 1, 18)); // NOI18N
         btnImprimirTicket.setText("IMPRIMIR TICKET");
+        btnImprimirTicket.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnImprimirTicket.setFocusPainted(false);
         btnImprimirTicket.setPreferredSize(new java.awt.Dimension(173, 48));
         btnImprimirTicket.addActionListener(new java.awt.event.ActionListener() {
@@ -304,7 +305,7 @@ public class DlgResumenVenta extends javax.swing.JDialog {
                 .addGroup(fondoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(fondoLayout.createSequentialGroup()
-                        .addComponent(btnImprimirTicket, javax.swing.GroupLayout.PREFERRED_SIZE, 190, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(btnImprimirTicket, javax.swing.GroupLayout.PREFERRED_SIZE, 198, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
                         .addComponent(btnCerrar, javax.swing.GroupLayout.PREFERRED_SIZE, 142, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(35, 35, 35))

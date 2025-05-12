@@ -63,7 +63,7 @@ public class DlgPagoTarjeta extends javax.swing.JDialog {
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setResizable(false);
 
-        fondo.setBackground(new java.awt.Color(216, 215, 255));
+        fondo.setBackground(new java.awt.Color(226, 228, 241));
 
         txtMontoTotal.setEditable(false);
         txtMontoTotal.setBackground(new java.awt.Color(255, 255, 255));
@@ -71,16 +71,17 @@ public class DlgPagoTarjeta extends javax.swing.JDialog {
         txtMontoTotal.setDisabledTextColor(new java.awt.Color(255, 255, 255));
         txtMontoTotal.setPreferredSize(new java.awt.Dimension(36, 37));
 
-        jLabel3.setFont(new java.awt.Font("Arial", 1, 24)); // NOI18N
-        jLabel3.setForeground(new java.awt.Color(77, 77, 77));
+        jLabel3.setFont(new java.awt.Font("Arial Rounded MT Bold", 1, 24)); // NOI18N
+        jLabel3.setForeground(new java.awt.Color(58, 55, 142));
         jLabel3.setText("MONTO ");
 
-        jLabel1.setFont(new java.awt.Font("Arial", 1, 36)); // NOI18N
-        jLabel1.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel1.setFont(new java.awt.Font("Arial Rounded MT Bold", 1, 36)); // NOI18N
+        jLabel1.setForeground(new java.awt.Color(58, 55, 142));
         jLabel1.setText("PAGO CON TARJETA");
 
-        btnCancelar.setFont(new java.awt.Font("Arial", 1, 22)); // NOI18N
+        btnCancelar.setFont(new java.awt.Font("Arial Rounded MT Bold", 1, 22)); // NOI18N
         btnCancelar.setText("CANCELAR");
+        btnCancelar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnCancelar.setFocusPainted(false);
         btnCancelar.setPreferredSize(new java.awt.Dimension(173, 48));
         btnCancelar.addActionListener(new java.awt.event.ActionListener() {
@@ -89,8 +90,9 @@ public class DlgPagoTarjeta extends javax.swing.JDialog {
             }
         });
 
-        btnAceptar.setFont(new java.awt.Font("Arial", 1, 22)); // NOI18N
+        btnAceptar.setFont(new java.awt.Font("Arial Rounded MT Bold", 1, 22)); // NOI18N
         btnAceptar.setText("ACEPTAR");
+        btnAceptar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnAceptar.setFocusPainted(false);
         btnAceptar.setMaximumSize(new java.awt.Dimension(100, 30));
         btnAceptar.setPreferredSize(new java.awt.Dimension(173, 48));
@@ -106,16 +108,16 @@ public class DlgPagoTarjeta extends javax.swing.JDialog {
             fondoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(fondoLayout.createSequentialGroup()
                 .addGap(30, 30, 30)
-                .addGroup(fondoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, fondoLayout.createSequentialGroup()
+                .addGroup(fondoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(fondoLayout.createSequentialGroup()
                         .addComponent(btnCancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGap(18, 18, 18)
                         .addComponent(btnAceptar, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(fondoLayout.createSequentialGroup()
                         .addComponent(jLabel3)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(txtMontoTotal, javax.swing.GroupLayout.PREFERRED_SIZE, 638, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(30, Short.MAX_VALUE))
+                .addContainerGap(24, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, fondoLayout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jLabel1)
@@ -130,7 +132,7 @@ public class DlgPagoTarjeta extends javax.swing.JDialog {
                 .addGroup(fondoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(txtMontoTotal, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel3))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 49, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 48, Short.MAX_VALUE)
                 .addGroup(fondoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnCancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnAceptar, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE))

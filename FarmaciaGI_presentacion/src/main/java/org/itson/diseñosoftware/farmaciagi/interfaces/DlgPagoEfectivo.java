@@ -83,10 +83,11 @@ public class DlgPagoEfectivo extends javax.swing.JDialog {
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setResizable(false);
 
-        fondo.setBackground(new java.awt.Color(216, 215, 255));
+        fondo.setBackground(new java.awt.Color(226, 228, 241));
 
-        jLabel1.setFont(new java.awt.Font("Arial", 1, 36)); // NOI18N
-        jLabel1.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel1.setFont(new java.awt.Font("Arial Rounded MT Bold", 1, 36)); // NOI18N
+        jLabel1.setForeground(new java.awt.Color(58, 55, 142));
+        jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel1.setText("PAGO EN EFECTIVO");
 
         txtMontoTotal.setEditable(false);
@@ -103,8 +104,9 @@ public class DlgPagoEfectivo extends javax.swing.JDialog {
             }
         });
 
-        btnCancelar.setFont(new java.awt.Font("Arial", 1, 22)); // NOI18N
+        btnCancelar.setFont(new java.awt.Font("Arial Rounded MT Bold", 1, 22)); // NOI18N
         btnCancelar.setText("CANCELAR");
+        btnCancelar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnCancelar.setFocusPainted(false);
         btnCancelar.setPreferredSize(new java.awt.Dimension(173, 48));
         btnCancelar.addActionListener(new java.awt.event.ActionListener() {
@@ -113,8 +115,9 @@ public class DlgPagoEfectivo extends javax.swing.JDialog {
             }
         });
 
-        btnAceptar.setFont(new java.awt.Font("Arial", 1, 22)); // NOI18N
+        btnAceptar.setFont(new java.awt.Font("Arial Rounded MT Bold", 1, 22)); // NOI18N
         btnAceptar.setText("ACEPTAR");
+        btnAceptar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnAceptar.setFocusPainted(false);
         btnAceptar.setMaximumSize(new java.awt.Dimension(100, 30));
         btnAceptar.setPreferredSize(new java.awt.Dimension(173, 48));
@@ -124,10 +127,12 @@ public class DlgPagoEfectivo extends javax.swing.JDialog {
             }
         });
 
-        jLabel2.setFont(new java.awt.Font("Arial", 1, 24)); // NOI18N
+        jLabel2.setFont(new java.awt.Font("Arial Rounded MT Bold", 1, 24)); // NOI18N
+        jLabel2.setForeground(new java.awt.Color(58, 55, 142));
         jLabel2.setText("PAGO");
 
-        jLabel3.setFont(new java.awt.Font("Arial", 1, 24)); // NOI18N
+        jLabel3.setFont(new java.awt.Font("Arial Rounded MT Bold", 1, 24)); // NOI18N
+        jLabel3.setForeground(new java.awt.Color(58, 55, 142));
         jLabel3.setText("MONTO");
 
         javax.swing.GroupLayout fondoLayout = new javax.swing.GroupLayout(fondo);
@@ -143,10 +148,10 @@ public class DlgPagoEfectivo extends javax.swing.JDialog {
                         .addComponent(txtMontoTotal, javax.swing.GroupLayout.PREFERRED_SIZE, 635, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(fondoLayout.createSequentialGroup()
                         .addGap(24, 24, 24)
-                        .addGroup(fondoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addGroup(fondoLayout.createSequentialGroup()
+                        .addGroup(fondoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, fondoLayout.createSequentialGroup()
                                 .addComponent(btnCancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addGap(18, 18, 18)
                                 .addComponent(btnAceptar, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(fondoLayout.createSequentialGroup()
                                 .addGap(27, 27, 27)
@@ -154,11 +159,8 @@ public class DlgPagoEfectivo extends javax.swing.JDialog {
                                 .addGap(18, 18, 18)
                                 .addComponent(txtPago, javax.swing.GroupLayout.PREFERRED_SIZE, 635, javax.swing.GroupLayout.PREFERRED_SIZE)))
                         .addGap(0, 0, Short.MAX_VALUE)))
-                .addContainerGap(28, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, fondoLayout.createSequentialGroup()
-                .addGap(0, 0, Short.MAX_VALUE)
-                .addComponent(jLabel1)
-                .addGap(223, 223, 223))
+                .addContainerGap(23, Short.MAX_VALUE))
+            .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         fondoLayout.setVerticalGroup(
             fondoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -177,7 +179,7 @@ public class DlgPagoEfectivo extends javax.swing.JDialog {
                 .addGroup(fondoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnCancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnAceptar, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(43, Short.MAX_VALUE))
+                .addContainerGap(30, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -188,7 +190,7 @@ public class DlgPagoEfectivo extends javax.swing.JDialog {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(fondo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addComponent(fondo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
         pack();

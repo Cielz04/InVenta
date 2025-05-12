@@ -260,15 +260,22 @@ public class DlgGestionEmpleados extends javax.swing.JDialog {
                     JOptionPane.WARNING_MESSAGE);
         } else {
             int filaSeleccionada = tblEmpleados.getSelectedRow();
-
             String nombre = (String) tblEmpleados.getValueAt(filaSeleccionada, 3);
             int id = (Integer) tblEmpleados.getValueAt(filaSeleccionada, 0);
+            
+            //Si se selecciona a sí mismo
+            if(id == usuarioenTurnoDTO.getId()){
+                JOptionPane.showMessageDialog(this, "No se puede eliminar a sí mismo", "Error", 
+                        JOptionPane.ERROR_MESSAGE);
+                return;
+            }
 
             String[] botones = {"Sí", "No"};
             int opcion = JOptionPane.showOptionDialog(null, "¿Está seguro de que desea eliminar al empleado "
                     + "seleccionado? (" + nombre + ")",
                     "Eliminar empleado", JOptionPane.DEFAULT_OPTION, JOptionPane.QUESTION_MESSAGE,
                     null, botones, botones[0]);
+           
             if (opcion == 0) {
                 Usuario usuario = new Usuario();
                 usuario.setId(id);

@@ -52,9 +52,11 @@ public class DlgTipoPago extends javax.swing.JDialog {
         jLabel1.setBackground(new java.awt.Color(255, 255, 255));
         jLabel1.setFont(new java.awt.Font("Arial Rounded MT Bold", 1, 36)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(58, 55, 142));
+        jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel1.setText("TIPO DE PAGO");
 
         btnTarjeta.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
+        btnTarjeta.setForeground(new java.awt.Color(58, 55, 142));
         btnTarjeta.setText("TARJETA");
         btnTarjeta.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnTarjeta.setFocusPainted(false);
@@ -67,6 +69,7 @@ public class DlgTipoPago extends javax.swing.JDialog {
         });
 
         btnEfectivo.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
+        btnEfectivo.setForeground(new java.awt.Color(58, 55, 142));
         btnEfectivo.setText("EFECTIVO");
         btnEfectivo.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnEfectivo.setFocusPainted(false);
@@ -82,16 +85,13 @@ public class DlgTipoPago extends javax.swing.JDialog {
         fondo.setLayout(fondoLayout);
         fondoLayout.setHorizontalGroup(
             fondoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(fondoLayout.createSequentialGroup()
-                .addGap(21, 21, 21)
-                .addComponent(jLabel1)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, fondoLayout.createSequentialGroup()
-                .addGap(0, 0, Short.MAX_VALUE)
+                .addGap(0, 65, Short.MAX_VALUE)
                 .addGroup(fondoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(btnEfectivo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnTarjeta, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(64, 64, 64))
+            .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         fondoLayout.setVerticalGroup(
             fondoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
