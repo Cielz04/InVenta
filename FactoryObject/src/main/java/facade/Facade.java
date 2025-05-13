@@ -301,16 +301,14 @@ public class Facade implements IFacade {
     @Override
     public void registrarEntrada(Usuario usuario) {
         try {
-            AsistenciaDAO asistenciaDAO = fabrica.getAsistenciaDAO();
-            Asistencia asistenciaHoy = asistenciaDAO.buscarAsistenciaHoy(usuario);
-
-            if (asistenciaHoy == null) {
+            
                 Asistencia nueva = new Asistencia();
+                System.out.println(usuario);
                 nueva.setUsuario(usuario);
                 nueva.setFecha(LocalDate.now());
                 nueva.setHoraEntrada(LocalTime.now());
-                asistenciaDAO.save(nueva);
-            }
+                fabrica.getAsistenciaDAO().save(nueva);
+            
         } catch (Exception e) {
             System.out.println(e);
             throw new RuntimeException("Error al registrar entrada: " + e.getMessage());
@@ -325,13 +323,11 @@ public class Facade implements IFacade {
     @Override
     public void registrarSalida(Usuario usuario) {
         try {
-            AsistenciaDAO asistenciaDAO = fabrica.getAsistenciaDAO();
-            Asistencia asistenciaHoy = asistenciaDAO.buscarAsistenciaHoy(usuario);
-
-            if (asistenciaHoy != null && asistenciaHoy.getHoraSalida() == null) {
+            Asistencia asistenciaHoy = fabrica.getAsistenciaDAO().ultimaAsistencia();
+            System.out.println(asistenciaHoy);
                 asistenciaHoy.setHoraSalida(LocalTime.now());
-                asistenciaDAO.update(asistenciaHoy);
-            }
+                fabrica.getAsistenciaDAO().update(asistenciaHoy);
+            
         } catch (Exception e) {
             System.out.println(e);
             throw new RuntimeException("Error al registrar salida: " + e.getMessage());
@@ -373,6 +369,20 @@ public class Facade implements IFacade {
     @Override
     public List<Usuario> obtenerTodosLosUsuarios() {
         return fabrica.getUsuarioDAO().findAll();
+    }
+    @Override
+    public void insercionUsuarios(){
+        List<Usuario> usuarios = new ArrayList<>();
+        usuarios.add(new Usuario("Adriana", 235633, "Vendedor", "Su casa", "00000000"));
+        usuarios.add(new Usuario("Astorga", 245791, "Vendedor", "Leandro", "00000000"));
+        usuarios.add(new Usuario("Madero", 244903, "Vendedor", "Las lomas", "00000000"));
+        usuarios.add(new Usuario("Kike", 246966, "Vendedor", "Su depa", "00000000"));
+        usuarios.add(new Usuario("Reyna", 4321, "Administrador", "FarmaciaGI", "00000000"));
+        usuarios.add(new Usuario("Elva", 1234, "Vendedor", "Su cubiculo", "00000000"));
+        
+        for(Usuario user: usuarios){
+            fabrica.getUsuarioDAO().save(user);
+        }
     }
 
 }

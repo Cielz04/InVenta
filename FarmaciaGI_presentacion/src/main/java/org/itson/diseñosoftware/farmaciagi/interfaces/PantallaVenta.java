@@ -475,10 +475,10 @@ public class PantallaVenta extends javax.swing.JFrame {
             DlgGestionEmpleados pantallaEmpleados = new DlgGestionEmpleados(usuarioenTurnoDTO);
             pantallaEmpleados.setVisible(true);
         } else {
+            dispose();
             DlgRegistroAsistencia ra = new DlgRegistroAsistencia(this, rootPaneCheckingEnabled, usuarioenTurnoDTO);
             ra.setVisible(true);
-            this.dispose();
-//              btnGestionEmpleados.enable(false);
+            
         }
     }//GEN-LAST:event_btnGestionEmpleadosActionPerformed
 

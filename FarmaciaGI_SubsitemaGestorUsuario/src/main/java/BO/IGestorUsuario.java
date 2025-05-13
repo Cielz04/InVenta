@@ -21,4 +21,5 @@ public interface IGestorUsuario {
     public AsistenciaDTO obtenerAsistenciaHoy(UsuarioDTO usuarioDTO);
     public void registrarSalida(UsuarioDTO usuarioDTO);
     public void registrarEntrada(UsuarioDTO usuarioDTO);
+    public void InsercionMasivaUsuarios();
 }

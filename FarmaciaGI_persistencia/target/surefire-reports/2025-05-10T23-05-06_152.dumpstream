@@ -1,5 +1,0 @@
-# Created at 2025-05-10T23:05:06.334
-Boot Manifest-JAR contains absolute paths in classpath 'E:\Github\InVenta\FarmaciaGI_persistencia\target\test-classes'
-Hint: <argLine>-Djdk.net.URLClassPath.disableClassPathURLCheck=true</argLine>
-'other' has different root
-

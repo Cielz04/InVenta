@@ -5,6 +5,7 @@
 package factory;
 
 import org.itson.diseniosofware.mifarmaciagi.persistencia.daos.AsistenciaDAO;
+import org.itson.diseniosofware.mifarmaciagi.persistencia.daos.IAsistenciaDAO;
 import org.itson.diseniosofware.mifarmaciagi.persistencia.daos.IComprasDAO;
 import org.itson.diseniosofware.mifarmaciagi.persistencia.daos.IDetalleDAO;
 import org.itson.diseniosofware.mifarmaciagi.persistencia.daos.IEntradaDAO;
@@ -30,8 +31,7 @@ public abstract class AbstractDAOFactory {
     public abstract IProveedoresDAO getProovedoresDAO();
     public abstract IUsuarioDAO getUsuarioDAO();
     public abstract IVentasDAO getVentasDAO();
+    public abstract IAsistenciaDAO getAsistenciaDAO();
 
-    public AsistenciaDAO getAsistenciaDAO() {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
-    }
+    
 }

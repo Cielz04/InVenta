@@ -24,6 +24,7 @@ import org.itson.disenosoftware.farmaciagi_dtos.UsuarioDTO;
 public class DlgRegistroAsistencia extends javax.swing.JDialog {
 
     UsuarioDTO usuarioEnTurno;
+    IGestorUsuario subsistema;
 
     /**
      * Creates new form DlgRegistroAsistencia
@@ -31,6 +32,7 @@ public class DlgRegistroAsistencia extends javax.swing.JDialog {
     public DlgRegistroAsistencia(java.awt.Frame parent, boolean modal, UsuarioDTO usuario) {
         super(parent, modal);
         initComponents();
+        subsistema = new GestorUsuario();
         mostrarFechaYHora();
         if (usuario != null) {
             this.usuarioEnTurno = usuario;
@@ -179,14 +181,21 @@ public class DlgRegistroAsistencia extends javax.swing.JDialog {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnSalidaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalidaActionPerformed
+        if (usuarioEnTurno != null) {
+            subsistema.registrarSalida(usuarioEnTurno);
         usuarioEnTurno = null;
         JOptionPane.showMessageDialog(this, "Salida registrada exitosamente", "Registro salida",
                 JOptionPane.INFORMATION_MESSAGE);
+        }else{
+            JOptionPane.showMessageDialog(this, "No hay nadie en turno", "ERROR",
+                JOptionPane.ERROR_MESSAGE);
+        }
+        
 
     }//GEN-LAST:event_btnSalidaActionPerformed
 
     private void btnSalida1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalida1ActionPerformed
-        // TODO add your handling code here:
+        this.dispose();
     }//GEN-LAST:event_btnSalida1ActionPerformed
 
     private void btnEntradaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEntradaActionPerformed
@@ -207,20 +216,18 @@ public class DlgRegistroAsistencia extends javax.swing.JDialog {
             return;
         }
 
-        IGestorUsuario gestorUsuario = new GestorUsuario();
+        
         UsuarioDTO usuario = new UsuarioDTO(0, codigo);
-        UsuarioDTO usuarioBuscado = gestorUsuario.buscarUsuario_Codigo(usuario);
+        UsuarioDTO usuarioBuscado = subsistema.buscarUsuario_Codigo(usuario);
+        System.out.println(usuarioBuscado);
 
         if (usuarioBuscado == null) {
             JOptionPane.showMessageDialog(null, "El codigo que ingresaste no es valido", "ERROR",
                     JOptionPane.ERROR_MESSAGE);
         } else {
-            if (usuarioEnTurno != null) {
-                if (usuarioEnTurno.getCodigo().equals(usuarioBuscado.getCodigo())) {
-                    JOptionPane.showMessageDialog(null, "El Usuario ya esta en turno", "ERROR",
-                            JOptionPane.ERROR_MESSAGE);
-                } else {
+            if (usuarioEnTurno == null) {
                     try {
+                        subsistema.registrarEntrada(usuarioBuscado);
                         JOptionPane.showMessageDialog(this, "Entrada registrada exitosamente", "Registro entrada",
                                 JOptionPane.INFORMATION_MESSAGE);
                         PantallaVenta pv = new PantallaVenta(usuarioBuscado);
@@ -229,14 +236,11 @@ public class DlgRegistroAsistencia extends javax.swing.JDialog {
                     } catch (Exception ex) {
                         Logger.getLogger(DlgRegistroAsistencia.class.getName()).log(Level.SEVERE, null, ex);
                     }
-                }
+                
             } else {
                 try {
-                    JOptionPane.showMessageDialog(this, "Entrada registrada exitosamente", "Registro entrada",
-                            JOptionPane.INFORMATION_MESSAGE);
-                    PantallaVenta pv = new PantallaVenta(usuarioBuscado);
-                    pv.setVisible(true);
-                    this.dispose();
+                    JOptionPane.showMessageDialog(this, "Usuario ya en turno", "ERROR",
+                            JOptionPane.ERROR_MESSAGE);
                 } catch (Exception ex) {
                     Logger.getLogger(DlgRegistroAsistencia.class.getName()).log(Level.SEVERE, null, ex);
                 }

@@ -4,6 +4,9 @@
  */
 package org.itson.diseñosoftware.farmaciagi.interfaces;
 
+import BO.GestorUsuario;
+import BO.IGestorUsuario;
+
 /**
  *
  * @author adria
@@ -17,6 +20,8 @@ public class DlgInicioSesion extends javax.swing.JDialog {
         super(parent, modal);
         initComponents();
         this.setVisible(false);
+        IGestorUsuario subsistema = new GestorUsuario();
+        subsistema.InsercionMasivaUsuarios();
         DlgRegistroAsistencia ra = new DlgRegistroAsistencia(parent, modal, null);
         ra.setVisible(true);
         this.dispose();

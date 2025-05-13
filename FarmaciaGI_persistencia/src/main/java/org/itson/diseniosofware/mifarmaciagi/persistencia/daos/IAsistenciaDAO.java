@@ -15,11 +15,10 @@ import org.itson.diseniosofware.mifarmaciagi.persistencia.entidades.Usuario;
  */
 public interface IAsistenciaDAO {
 
-    void registrarEntrada(Usuario usuario);
+    public void save(Asistencia asistencia);
 
-    void registrarSalida(Usuario usuario);
-
-    Asistencia buscarAsistenciaHoy(Usuario usuario);
-
-    List<Asistencia> listarAsistenciasPorFecha(LocalDate fecha);
+    public void update(Asistencia asistencia);
+    public Asistencia buscarAsistenciaHoy(Usuario usuario);
+    public List<Asistencia> buscarPorFecha(LocalDate fecha);
+    public Asistencia ultimaAsistencia();
 }

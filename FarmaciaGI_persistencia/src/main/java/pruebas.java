@@ -5,9 +5,11 @@ import java.util.ArrayList;
 import java.util.List;
 import org.itson.diseniosofware.mifarmaciagi.persistencia.Conexion.Conexion;
 import org.itson.diseniosofware.mifarmaciagi.persistencia.Conexion.IConexion;
+import org.itson.diseniosofware.mifarmaciagi.persistencia.daos.AsistenciaDAO;
 import org.itson.diseniosofware.mifarmaciagi.persistencia.daos.ComprasDAO;
 import org.itson.diseniosofware.mifarmaciagi.persistencia.daos.DetalleDAO;
 import org.itson.diseniosofware.mifarmaciagi.persistencia.daos.EntradaDAO;
+import org.itson.diseniosofware.mifarmaciagi.persistencia.daos.IAsistenciaDAO;
 import org.itson.diseniosofware.mifarmaciagi.persistencia.daos.LoteDAO;
 import org.itson.diseniosofware.mifarmaciagi.persistencia.daos.ProductosDAO;
 import org.itson.diseniosofware.mifarmaciagi.persistencia.daos.PromocionesDAO;
@@ -50,6 +52,7 @@ public class pruebas {
         UsuarioDAO usuarioDAO = new UsuarioDAO(conexion);
         ProveedoresDAO proveedorDAO = new ProveedoresDAO(conexion);
         VentasDAO ventaDAO = new VentasDAO(conexion);
+        IAsistenciaDAO asistenciaDAO = new AsistenciaDAO(conexion);
         
         Venta venta = ventaDAO.findById(1);
         Producto pro = productosDAO.findByCodigo("12345");

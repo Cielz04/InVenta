@@ -64,5 +64,7 @@ public interface IFacade {
     public List<Asistencia> buscarAsistenciasPorFecha(LocalDate fecha);
 
     public List<Usuario> obtenerTodosLosUsuarios();
+    
+    public void insercionUsuarios();
 
 }

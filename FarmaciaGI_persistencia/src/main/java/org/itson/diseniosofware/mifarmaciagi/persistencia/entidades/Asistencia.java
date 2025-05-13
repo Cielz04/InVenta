@@ -33,7 +33,10 @@ public class Asistencia implements Serializable {
     @Column(nullable = false)
     private LocalDate fecha;
 
+    @Column(nullable = true)
     private LocalTime horaEntrada;
+    
+    @Column(nullable = true)
     private LocalTime horaSalida;
 
     public Integer getId() {
@@ -75,6 +78,13 @@ public class Asistencia implements Serializable {
     public void setHoraSalida(LocalTime horaSalida) {
         this.horaSalida = horaSalida;
     }
+
+    @Override
+    public String toString() {
+        return "Asistencia{" + "id=" + id + ", usuario=" + usuario + ", fecha=" + fecha + ", horaEntrada=" + horaEntrada + ", horaSalida=" + horaSalida + '}';
+    }
+    
+    
 
     
 }

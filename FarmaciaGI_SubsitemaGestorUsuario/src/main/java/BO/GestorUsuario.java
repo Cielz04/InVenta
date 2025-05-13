@@ -22,6 +22,15 @@ public class GestorUsuario implements IGestorUsuario {
         this.cu = new ConversorUsuario();
         this.ca = new ConversorUsuario();
     }
+    
+    @Override
+    public void InsercionMasivaUsuarios(){
+        if(facade.buscarUsuario_Codigo(new Usuario(0, 235633)) == null){
+            facade.insercionUsuarios();
+        }else{
+            //no hace nada
+        }
+    }
 
     @Override
     public UsuarioDTO buscarUsuario_id(UsuarioDTO usuarioDTO) {
@@ -44,6 +53,7 @@ public class GestorUsuario implements IGestorUsuario {
     @Override
     public void registrarEntrada(UsuarioDTO usuarioDTO) {
         Usuario usuario = cu.conversor_DTO_A_Entidad(usuarioDTO);
+        System.out.println(usuario);
         facade.registrarEntrada(usuario);
     }
 

@@ -5,9 +5,11 @@
 package factory;
 
 import org.itson.diseniosofware.mifarmaciagi.persistencia.Conexion.IConexion;
+import org.itson.diseniosofware.mifarmaciagi.persistencia.daos.AsistenciaDAO;
 import org.itson.diseniosofware.mifarmaciagi.persistencia.daos.ComprasDAO;
 import org.itson.diseniosofware.mifarmaciagi.persistencia.daos.DetalleDAO;
 import org.itson.diseniosofware.mifarmaciagi.persistencia.daos.EntradaDAO;
+import org.itson.diseniosofware.mifarmaciagi.persistencia.daos.IAsistenciaDAO;
 import org.itson.diseniosofware.mifarmaciagi.persistencia.daos.IComprasDAO;
 import org.itson.diseniosofware.mifarmaciagi.persistencia.daos.IDetalleDAO;
 import org.itson.diseniosofware.mifarmaciagi.persistencia.daos.IEntradaDAO;
@@ -77,6 +79,11 @@ public class DAOFactory extends AbstractDAOFactory{
     @Override
     public IVentasDAO getVentasDAO() {
         return new VentasDAO(conexion);
+    }
+
+    @Override
+    public IAsistenciaDAO getAsistenciaDAO() {
+        return new AsistenciaDAO(conexion);
     }
     
 }
