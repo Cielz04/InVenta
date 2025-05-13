@@ -1,3 +1,4 @@
+org\itson\diseñosoftware\farmaciagi\interfaces\DlgRegistroProductos$14.class
 org\itson\diseñosoftware\farmaciagi\interfaces\DlgBuscarProducto$1.class
 org\itson\diseñosoftware\farmaciagi\interfaces\DlgEditorDeProducto$4.class
 org\itson\diseñosoftware\farmaciagi\interfaces\DlgInsertaTarjeta.class
@@ -40,7 +41,6 @@ org\itson\diseñosoftware\farmaciagi\interfaces\DlgGestionEmpleados$4.class
 org\itson\diseñosoftware\farmaciagi\interfaces\DlgProductosPrincipal.class
 org\itson\diseñosoftware\farmaciagi\interfaces\DlgActualizarEmpleado$4.class
 org\itson\diseñosoftware\farmaciagi\interfaces\DlgRegistroProductos$10.class
-org\itson\diseñosoftware\farmaciagi\interfaces\DlgRegistroAsistencia$5.class
 org\itson\diseñosoftware\farmaciagi\interfaces\CampoPasswordR.class
 org\itson\diseñosoftware\farmaciagi\interfaces\PantallaVenta$9.class
 org\itson\diseñosoftware\farmaciagi\interfaces\DlgRegistroProductos$7.class
@@ -97,7 +97,6 @@ org\itson\diseñosoftware\farmaciagi\interfaces\DlgEditorDeProducto$5.class
 org\itson\diseñosoftware\farmaciagi\interfaces\DlgInsertaTarjeta$1.class
 org\itson\diseñosoftware\farmaciagi\interfaces\DlgBuscarProducto$4.class
 org\itson\diseñosoftware\farmaciagi\interfaces\DlgInventarioProductos$5.class
-org\itson\diseñosoftware\farmaciagi\interfaces\DlgRegistroAsistencia$5$1.class
 org\itson\diseñosoftware\farmaciagi\interfaces\ButtonColumn.class
 org\itson\diseñosoftware\farmaciagi\interfaces\DlgRegistroProductos$4.class
 org\itson\diseñosoftware\farmaciagi\interfaces\DlgBuscarProducto.class

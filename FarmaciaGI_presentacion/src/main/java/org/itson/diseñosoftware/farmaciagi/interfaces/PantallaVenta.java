@@ -36,7 +36,7 @@ public class PantallaVenta extends javax.swing.JFrame {
     public PantallaVenta(UsuarioDTO usuario) throws Exception {
         initComponents();
         instancia = this; // ← Aquí se guarda la instancia
-        
+
         this.gestorInventario = new GestorInvetario();
         this.usuarioenTurnoDTO = usuario;
 
@@ -49,13 +49,13 @@ public class PantallaVenta extends javax.swing.JFrame {
         btnBuscarProducto.setBackground(new Color(93, 82, 193));
         btnVenta.setOpaque(true);
         btnVenta.setContentAreaFilled(true);
-        btnVenta.setBackground(new Color(226,228,241));
-        
+        btnVenta.setBackground(new Color(226, 228, 241));
+
         DefaultTableModel modelo = new DefaultTableModel(new Object[]{"Articulo", "Marca", "Cantidad", "Total"}, 0) {
         };
-        
+
         tblProductosVenta.setModel(modelo);
-        
+
         txtUsuarioEnTurno.setText("Usuario: " + usuario.getNombre());
     }
 
@@ -65,7 +65,6 @@ public class PantallaVenta extends javax.swing.JFrame {
 //        // Hacer visible la pantalla de venta
 //        pantallaVenta.setVisible(true);
 //    }
-
     public static PantallaVenta getInstancia() {
         return instancia;
     }
@@ -447,21 +446,19 @@ public class PantallaVenta extends javax.swing.JFrame {
                     total,
                     Instant.now(),
                     usuario);
-            
+
 //            String input = JOptionPane.showInputDialog(this, "Cantidad con la que pago el cliente: ");
 //            
 //            Float pago = Float.valueOf(input);
 //            Float cambio = pago-total;     // Lo mismo
-            
             DlgTipoPago tipoPago = new DlgTipoPago(this, true, venta, detallesVenta);
-            
+
             tipoPago.setVisible(true);
             this.dispose();
 
 //            DlgResumenVenta resumen = new DlgResumenVenta(this, true, venta, detallesVenta, pago, cambio);
 //            resumen.setLocationRelativeTo(this);
 //            resumen.setVisible(true);
-
             // ⚠️ Ya no limpies aquí, se limpia desde DlgResumenVenta si la venta fue exitosa
         } catch (Exception e) {
             JOptionPane.showMessageDialog(this, "Error al continuar: " + e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
@@ -473,15 +470,16 @@ public class PantallaVenta extends javax.swing.JFrame {
 //        dispose();
 //        DlgProveedores proveedores = new DlgProveedores(this, true);
 //        proveedores.setVisible(true);
-          if(usuarioenTurnoDTO.getTipo().equalsIgnoreCase("administrador")) {
-              dispose();
-              DlgGestionEmpleados pantallaEmpleados = new DlgGestionEmpleados(usuarioenTurnoDTO);
-              pantallaEmpleados.setVisible(true);
-          }else{
+        if (usuarioenTurnoDTO.getTipo().equalsIgnoreCase("administrador")) {
+            dispose();
+            DlgGestionEmpleados pantallaEmpleados = new DlgGestionEmpleados(usuarioenTurnoDTO);
+            pantallaEmpleados.setVisible(true);
+        } else {
+            DlgRegistroAsistencia ra = new DlgRegistroAsistencia(this, rootPaneCheckingEnabled, usuarioenTurnoDTO);
+            ra.setVisible(true);
+            this.dispose();
 //              btnGestionEmpleados.enable(false);
-              JOptionPane.showMessageDialog(this, "No tienes acceso a la Gestión de Empleados", "Acceso denegado", 
-                      JOptionPane.ERROR_MESSAGE);
-          }
+        }
     }//GEN-LAST:event_btnGestionEmpleadosActionPerformed
 
     private void btnVentaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVentaActionPerformed

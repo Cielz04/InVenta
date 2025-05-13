@@ -23,14 +23,19 @@ import org.itson.disenosoftware.farmaciagi_dtos.UsuarioDTO;
  */
 public class DlgRegistroAsistencia extends javax.swing.JDialog {
 
+    UsuarioDTO usuarioEnTurno;
+
     /**
      * Creates new form DlgRegistroAsistencia
      */
-    public DlgRegistroAsistencia(java.awt.Frame parent, boolean modal) {
+    public DlgRegistroAsistencia(java.awt.Frame parent, boolean modal, UsuarioDTO usuario) {
         super(parent, modal);
         initComponents();
         mostrarFechaYHora();
-        
+        if (usuario != null) {
+            this.usuarioEnTurno = usuario;
+        }
+
         //Muestra la hora en tiempo real
         Timer timer = new Timer(1000, new ActionListener() {
             @Override
@@ -40,7 +45,7 @@ public class DlgRegistroAsistencia extends javax.swing.JDialog {
         });
         timer.start();
     }
-    
+
     private void mostrarFechaYHora() {
         SimpleDateFormat formatoFecha = new SimpleDateFormat("dd/MM/yyyy");
         SimpleDateFormat formatoHora = new SimpleDateFormat("HH:mm:ss");
@@ -50,7 +55,6 @@ public class DlgRegistroAsistencia extends javax.swing.JDialog {
         lblFecha.setText(formatoFecha.format(ahora));
         lblHora.setText(formatoHora.format(ahora));
     }
-
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -175,8 +179,10 @@ public class DlgRegistroAsistencia extends javax.swing.JDialog {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnSalidaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalidaActionPerformed
-        JOptionPane.showMessageDialog(this, "Salida registrada exitosamente", "Registro salida", 
+        usuarioEnTurno = null;
+        JOptionPane.showMessageDialog(this, "Salida registrada exitosamente", "Registro salida",
                 JOptionPane.INFORMATION_MESSAGE);
+
     }//GEN-LAST:event_btnSalidaActionPerformed
 
     private void btnSalida1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalida1ActionPerformed
@@ -185,39 +191,55 @@ public class DlgRegistroAsistencia extends javax.swing.JDialog {
 
     private void btnEntradaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEntradaActionPerformed
         String codigoTexto = txtCodigoUsuario.getText().trim();
-        
-        if(codigoTexto.isBlank()){
-            JOptionPane.showMessageDialog(this, "Favor de ingresar tu código", "Campo vacío", 
+
+        if (codigoTexto.isBlank()) {
+            JOptionPane.showMessageDialog(this, "Favor de ingresar tu código", "Campo vacío",
                     JOptionPane.WARNING_MESSAGE);
             return;
         }
-        
+
         Integer codigo;
         try {
             codigo = Integer.valueOf(codigoTexto);
         } catch (NumberFormatException e) {
-            JOptionPane.showMessageDialog(this, "El código debe ser numérico", "Error de formato", 
+            JOptionPane.showMessageDialog(this, "El código debe ser numérico", "Error de formato",
                     JOptionPane.ERROR_MESSAGE);
             return;
         }
-        
+
         IGestorUsuario gestorUsuario = new GestorUsuario();
-        UsuarioDTO usuario = new UsuarioDTO(0,codigo);
+        UsuarioDTO usuario = new UsuarioDTO(0, codigo);
         UsuarioDTO usuarioBuscado = gestorUsuario.buscarUsuario_Codigo(usuario);
-        
-        if(usuarioBuscado == null){
+
+        if (usuarioBuscado == null) {
             JOptionPane.showMessageDialog(null, "El codigo que ingresaste no es valido", "ERROR",
                     JOptionPane.ERROR_MESSAGE);
-        }
-        else{
-            try {
-                JOptionPane.showMessageDialog(this, "Entrada registrada exitosamente", "Registro entrada", 
-                JOptionPane.INFORMATION_MESSAGE);
-                PantallaVenta pv = new PantallaVenta(usuarioBuscado);
-                pv.setVisible(true);
-                this.dispose();    
-            } catch (Exception ex) {
-                Logger.getLogger(DlgRegistroAsistencia.class.getName()).log(Level.SEVERE, null, ex);
+        } else {
+            if (usuarioEnTurno != null) {
+                if (usuarioEnTurno.getCodigo().equals(usuarioBuscado.getCodigo())) {
+                    JOptionPane.showMessageDialog(null, "El codigo que ingresaste no es valido", "ERROR",
+                            JOptionPane.ERROR_MESSAGE);
+                } else {
+                    try {
+                        JOptionPane.showMessageDialog(this, "Entrada registrada exitosamente", "Registro entrada",
+                                JOptionPane.INFORMATION_MESSAGE);
+                        PantallaVenta pv = new PantallaVenta(usuarioBuscado);
+                        pv.setVisible(true);
+                        this.dispose();
+                    } catch (Exception ex) {
+                        Logger.getLogger(DlgRegistroAsistencia.class.getName()).log(Level.SEVERE, null, ex);
+                    }
+                }
+            } else {
+                try {
+                    JOptionPane.showMessageDialog(this, "Entrada registrada exitosamente", "Registro entrada",
+                            JOptionPane.INFORMATION_MESSAGE);
+                    PantallaVenta pv = new PantallaVenta(usuarioBuscado);
+                    pv.setVisible(true);
+                    this.dispose();
+                } catch (Exception ex) {
+                    Logger.getLogger(DlgRegistroAsistencia.class.getName()).log(Level.SEVERE, null, ex);
+                }
             }
         }
     }//GEN-LAST:event_btnEntradaActionPerformed
@@ -225,49 +247,49 @@ public class DlgRegistroAsistencia extends javax.swing.JDialog {
     /**
      * @param args the command line arguments
      */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(DlgRegistroAsistencia.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(DlgRegistroAsistencia.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(DlgRegistroAsistencia.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(DlgRegistroAsistencia.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
-
+//    public static void main(String args[]) {
+//        /* Set the Nimbus look and feel */
+//        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
+//        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
+//         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
+//         */
 //        try {
-//            UIManager.setLookAndFeel(UIManager.getCrossPlatformLookAndFeelClassName());
-//        } catch (Exception ex) {
-//            ex.printStackTrace();
+//            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
+//                if ("Nimbus".equals(info.getName())) {
+//                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
+//                    break;
+//                }
+//            }
+//        } catch (ClassNotFoundException ex) {
+//            java.util.logging.Logger.getLogger(DlgRegistroAsistencia.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+//        } catch (InstantiationException ex) {
+//            java.util.logging.Logger.getLogger(DlgRegistroAsistencia.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+//        } catch (IllegalAccessException ex) {
+//            java.util.logging.Logger.getLogger(DlgRegistroAsistencia.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+//        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
+//            java.util.logging.Logger.getLogger(DlgRegistroAsistencia.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
 //        }
-        /* Create and display the dialog */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                DlgRegistroAsistencia dialog = new DlgRegistroAsistencia(new javax.swing.JFrame(), true);
-                dialog.addWindowListener(new java.awt.event.WindowAdapter() {
-                    @Override
-                    public void windowClosing(java.awt.event.WindowEvent e) {
-                        System.exit(0);
-                    }
-                });
-                dialog.setVisible(true);
-            }
-        });
-    }
+//        //</editor-fold>
+//
+////        try {
+////            UIManager.setLookAndFeel(UIManager.getCrossPlatformLookAndFeelClassName());
+////        } catch (Exception ex) {
+////            ex.printStackTrace();
+////        }
+//        /* Create and display the dialog */
+//        java.awt.EventQueue.invokeLater(new Runnable() {
+//            public void run() {
+//                DlgRegistroAsistencia dialog = new DlgRegistroAsistencia(new javax.swing.JFrame(), true);
+//                dialog.addWindowListener(new java.awt.event.WindowAdapter() {
+//                    @Override
+//                    public void windowClosing(java.awt.event.WindowEvent e) {
+//                        System.exit(0);
+//                    }
+//                });
+//                dialog.setVisible(true);
+//            }
+//        });
+//    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnEntrada;

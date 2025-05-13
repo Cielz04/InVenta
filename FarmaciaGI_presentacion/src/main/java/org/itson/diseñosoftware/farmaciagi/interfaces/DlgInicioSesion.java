@@ -16,6 +16,10 @@ public class DlgInicioSesion extends javax.swing.JDialog {
     public DlgInicioSesion(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
+        this.setVisible(false);
+        DlgRegistroAsistencia ra = new DlgRegistroAsistencia(parent, modal, null);
+        ra.setVisible(true);
+        this.dispose();
     }
 
     /**
@@ -141,7 +145,8 @@ public class DlgInicioSesion extends javax.swing.JDialog {
                     System.exit(0);
                 }
             });
-            dialog.setVisible(true);
+            dialog.setVisible(false);
+            dialog.dispose();
         });
     }
 
