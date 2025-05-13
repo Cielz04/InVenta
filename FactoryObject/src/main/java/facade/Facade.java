@@ -303,7 +303,6 @@ public class Facade implements IFacade {
         try {
             
                 Asistencia nueva = new Asistencia();
-                System.out.println(usuario);
                 nueva.setUsuario(usuario);
                 nueva.setFecha(LocalDate.now());
                 nueva.setHoraEntrada(LocalTime.now());
@@ -324,7 +323,6 @@ public class Facade implements IFacade {
     public void registrarSalida(Usuario usuario) {
         try {
             Asistencia asistenciaHoy = fabrica.getAsistenciaDAO().ultimaAsistencia();
-            System.out.println(asistenciaHoy);
                 asistenciaHoy.setHoraSalida(LocalTime.now());
                 fabrica.getAsistenciaDAO().update(asistenciaHoy);
             

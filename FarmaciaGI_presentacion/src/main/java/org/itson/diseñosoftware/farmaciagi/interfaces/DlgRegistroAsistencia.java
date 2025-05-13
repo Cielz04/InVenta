@@ -219,7 +219,6 @@ public class DlgRegistroAsistencia extends javax.swing.JDialog {
         
         UsuarioDTO usuario = new UsuarioDTO(0, codigo);
         UsuarioDTO usuarioBuscado = subsistema.buscarUsuario_Codigo(usuario);
-        System.out.println(usuarioBuscado);
 
         if (usuarioBuscado == null) {
             JOptionPane.showMessageDialog(null, "El codigo que ingresaste no es valido", "ERROR",
