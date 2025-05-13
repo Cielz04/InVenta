@@ -217,7 +217,7 @@ public class DlgRegistroAsistencia extends javax.swing.JDialog {
         } else {
             if (usuarioEnTurno != null) {
                 if (usuarioEnTurno.getCodigo().equals(usuarioBuscado.getCodigo())) {
-                    JOptionPane.showMessageDialog(null, "El codigo que ingresaste no es valido", "ERROR",
+                    JOptionPane.showMessageDialog(null, "El Usuario ya esta en turno", "ERROR",
                             JOptionPane.ERROR_MESSAGE);
                 } else {
                     try {
