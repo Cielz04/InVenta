@@ -21,6 +21,7 @@ org\itson\diseñosoftware\farmaciagi\interfaces\CampoTextoR.class
 org\itson\diseñosoftware\farmaciagi\interfaces\DlgRegistroProductos$6.class
 org\itson\diseñosoftware\farmaciagi\interfaces\PantallaVenta$8.class
 org\itson\diseñosoftware\farmaciagi\interfaces\DlgGestionEmpleados$6.class
+org\itson\diseñosoftware\farmaciagi\interfaces\DlgActualizarEmpleado$6.class
 org\itson\diseñosoftware\farmaciagi\interfaces\DlgBuscarProducto$6.class
 org\itson\diseñosoftware\farmaciagi\interfaces\DlgRegistroAsistencia.class
 org\itson\diseñosoftware\farmaciagi\interfaces\DlgResumenVenta$1.class
