@@ -39,7 +39,7 @@ public class PantallaVenta extends javax.swing.JFrame {
 
         this.gestorInventario = new GestorInvetario();
         this.usuarioenTurnoDTO = usuario;
-
+        
         this.gestorVenta = new GestorVenta();
 
         llenarTablaDetallesVenta();
@@ -474,16 +474,17 @@ public class PantallaVenta extends javax.swing.JFrame {
 //        dispose();
 //        DlgProveedores proveedores = new DlgProveedores(this, true);
 //        proveedores.setVisible(true);
+
         if (usuarioenTurnoDTO.getTipo().equalsIgnoreCase("administrador")) {
             dispose();
             DlgGestionEmpleados pantallaEmpleados = new DlgGestionEmpleados(usuarioenTurnoDTO);
             pantallaEmpleados.setVisible(true);
-        } else {
+        } else{
             dispose();
             DlgRegistroAsistencia ra = new DlgRegistroAsistencia(this, rootPaneCheckingEnabled, usuarioenTurnoDTO);
             ra.setVisible(true);
-            
         }
+
     }//GEN-LAST:event_btnGestionEmpleadosActionPerformed
 
     private void btnVentaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVentaActionPerformed

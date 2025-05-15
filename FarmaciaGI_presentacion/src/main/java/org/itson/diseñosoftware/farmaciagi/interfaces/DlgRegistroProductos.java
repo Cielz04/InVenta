@@ -516,9 +516,15 @@ public class DlgRegistroProductos extends javax.swing.JDialog {
     }//GEN-LAST:event_btnVentaActionPerformed
 
     private void btnProveedoresActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnProveedoresActionPerformed
-//        dispose();
-//        DlgProveedores proveedores = new DlgProveedores(parent, true);
-//        proveedores.setVisible(true);
+        if (usuarioEnTurno.getTipo().equalsIgnoreCase("administrador")) {
+            dispose();
+            DlgGestionEmpleados pantallaEmpleados = new DlgGestionEmpleados(usuarioEnTurno);
+            pantallaEmpleados.setVisible(true);
+        } else {
+            dispose();
+            DlgRegistroAsistencia ra = new DlgRegistroAsistencia(parent, true, usuarioEnTurno);
+            ra.setVisible(true);
+        }
     }//GEN-LAST:event_btnProveedoresActionPerformed
 
     private void btnProductosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnProductosActionPerformed
