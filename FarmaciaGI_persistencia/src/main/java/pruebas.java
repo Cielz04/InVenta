@@ -10,6 +10,8 @@ import org.itson.diseniosofware.mifarmaciagi.persistencia.daos.ComprasDAO;
 import org.itson.diseniosofware.mifarmaciagi.persistencia.daos.DetalleDAO;
 import org.itson.diseniosofware.mifarmaciagi.persistencia.daos.EntradaDAO;
 import org.itson.diseniosofware.mifarmaciagi.persistencia.daos.IAsistenciaDAO;
+import org.itson.diseniosofware.mifarmaciagi.persistencia.daos.ILoteDAO;
+import org.itson.diseniosofware.mifarmaciagi.persistencia.daos.IProductosDAO;
 import org.itson.diseniosofware.mifarmaciagi.persistencia.daos.LoteDAO;
 import org.itson.diseniosofware.mifarmaciagi.persistencia.daos.ProductosDAO;
 import org.itson.diseniosofware.mifarmaciagi.persistencia.daos.PromocionesDAO;
@@ -44,8 +46,8 @@ public class pruebas {
 
 // Crear los DAOs
         PromocionesDAO promocionesDAO = new PromocionesDAO(conexion);
-        ProductosDAO productosDAO = new ProductosDAO(conexion);
-        LoteDAO loteDAO = new LoteDAO(conexion);
+        IProductosDAO productosDAO = new ProductosDAO(conexion);
+        ILoteDAO loteDAO = new LoteDAO(conexion);
         EntradaDAO entradaDAO = new EntradaDAO(conexion);
         DetalleDAO detalleDAO = new DetalleDAO(conexion);
         ComprasDAO comprasDAO = new ComprasDAO(conexion);
@@ -54,10 +56,10 @@ public class pruebas {
         VentasDAO ventaDAO = new VentasDAO(conexion);
         IAsistenciaDAO asistenciaDAO = new AsistenciaDAO(conexion);
         
-        Venta venta = ventaDAO.findById(1);
-        Producto pro = productosDAO.findByCodigo("12345");
-        
-        System.out.println(detalleDAO.findByVenta(venta.getId()).toString());
+//        Venta venta = ventaDAO.findById(1);
+//        Producto pro = productosDAO.findByCodigo("12345");
+//        
+//        System.out.println(detalleDAO.findByVenta(venta.getId()).toString());
 //        DetalleVenta dv = new DetalleVenta(pro.getPrecio(), pro.getPrecio()*5, 5, venta, pro);
 //        detalleDAO.save(dv);
         
@@ -336,6 +338,10 @@ public class pruebas {
 //        Producto busca =productosDAO.findByCodigo(p.getCodigo());
 //        Lote l = new Lote(0, Instant.now(), 100, busca);
 //        loteDAO.save(l);
-   }
+
+//        productosDAO.inserciones();
+
+        loteDAO.inserciones();
+    }
 
 }

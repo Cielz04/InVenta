@@ -370,16 +370,21 @@ public class Facade implements IFacade {
     }
     @Override
     public void insercionUsuarios(){
-        List<Usuario> usuarios = new ArrayList<>();
-        usuarios.add(new Usuario("Adriana", 235633, "Vendedor", "Su casa", "00000000"));
-        usuarios.add(new Usuario("Astorga", 245791, "Vendedor", "Leandro", "00000000"));
-        usuarios.add(new Usuario("Madero", 244903, "Vendedor", "Las lomas", "00000000"));
-        usuarios.add(new Usuario("Kike", 246966, "Vendedor", "Su depa", "00000000"));
-        usuarios.add(new Usuario("Reyna", 4321, "Administrador", "FarmaciaGI", "00000000"));
-        usuarios.add(new Usuario("Elva", 1234, "Vendedor", "Su cubiculo", "00000000"));
-        
-        for(Usuario user: usuarios){
-            fabrica.getUsuarioDAO().save(user);
+        if(fabrica.getUsuarioDAO().findById(1)==null){
+            fabrica.getUsuarioDAO().inserciones();
+        }
+    }
+    
+    @Override
+    public void insercionesProductos(){
+        if(fabrica.getProductosDAO().findById(1)==null){
+            fabrica.getProductosDAO().inserciones();
+        }
+    }
+    @Override
+    public void insercionesLotes(){
+        if(fabrica.getLoteAO().findById(1)==null){
+            fabrica.getLoteAO().inserciones();
         }
     }
 

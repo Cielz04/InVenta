@@ -150,4 +150,10 @@ public class GestorInvetario implements IGestorInventario {
         return productoBuscadoDTO;
     }
     
+    @Override
+    public void inserciones(){
+        facade.insercionesProductos();
+        facade.insercionesLotes();
+    }
+    
 }

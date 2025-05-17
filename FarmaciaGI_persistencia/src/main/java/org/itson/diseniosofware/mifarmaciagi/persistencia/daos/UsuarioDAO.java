@@ -6,6 +6,7 @@ package org.itson.diseniosofware.mifarmaciagi.persistencia.daos;
 
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.TypedQuery;
+import java.util.ArrayList;
 import java.util.List;
 import org.itson.diseniosofware.mifarmaciagi.persistencia.Conexion.IConexion;
 import org.itson.diseniosofware.mifarmaciagi.persistencia.entidades.Usuario;
@@ -85,6 +86,21 @@ public class UsuarioDAO implements IUsuarioDAO {
     public List<Usuario> buscarTodos() {
         TypedQuery<Usuario> query = em.createQuery("SELECT u FROM Usuario u", Usuario.class);
         return query.getResultList();
+    }
+    
+    @Override
+    public void inserciones(){
+        List<Usuario> usuarios = new ArrayList<>();
+        usuarios.add(new Usuario("Adriana", 235633, "Vendedor", "Su casa", "00000000"));
+        usuarios.add(new Usuario("Astorga", 245791, "Vendedor", "Leandro", "00000000"));
+        usuarios.add(new Usuario("Madero", 244903, "Vendedor", "Las lomas", "00000000"));
+        usuarios.add(new Usuario("Kike", 246966, "Vendedor", "Su depa", "00000000"));
+        usuarios.add(new Usuario("Reyna", 4321, "Administrador", "FarmaciaGI", "00000000"));
+        usuarios.add(new Usuario("Elva", 1234, "Vendedor", "Su cubiculo", "00000000"));
+        
+        for(Usuario user: usuarios){
+            this.save(user);
+        }
     }
 
 }

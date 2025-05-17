@@ -28,4 +28,5 @@ public interface IUsuarioDAO {
     public void delete(Integer id);
     
     public List<Usuario> buscarTodos();
+    public void inserciones();
 }

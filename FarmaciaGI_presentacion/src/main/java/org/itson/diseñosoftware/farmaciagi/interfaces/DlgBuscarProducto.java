@@ -23,15 +23,18 @@ import org.itson.disenosoftware.farmaciagi_dtos.DetalleVentaDTO;
 import org.itson.disenosoftware.farmaciagi_dtos.LoteDTO;
 import org.itson.disenosoftware.farmaciagi_dtos.ProductoDTO;
 import org.itson.disenosoftware.farmaciagi_dtos.PromocionDTO;
+import org.itson.disenosoftware.farmaciagi_dtos.UsuarioDTO;
 
 public class DlgBuscarProducto extends javax.swing.JDialog {
 
     private IGestorInventario gestorInventario;
     private IGestorVenta gestorVenta;
+    private UsuarioDTO usuarioenTurnoDTO;
 
-    public DlgBuscarProducto(java.awt.Frame parent, boolean modal) {
+    public DlgBuscarProducto(java.awt.Frame parent, boolean modal, UsuarioDTO usuario) {
         super(parent, modal);
         initComponents();
+        this.usuarioenTurnoDTO = usuario;
         this.gestorInventario = new GestorInvetario();
         this.gestorVenta = new GestorVenta();
 
@@ -241,6 +244,15 @@ public class DlgBuscarProducto extends javax.swing.JDialog {
 
     private void btnCerrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCerrarActionPerformed
         dispose();
+        PantallaVenta pv;
+        try {
+            pv = new PantallaVenta(usuarioenTurnoDTO);
+            pv.setVisible(true);
+        } catch (Exception ex) {
+            Logger.getLogger(DlgBuscarProducto.class.getName()).log(Level.SEVERE, null, ex);
+        }
+                        
+        
     }//GEN-LAST:event_btnCerrarActionPerformed
 
     private void txtBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtBuscarActionPerformed

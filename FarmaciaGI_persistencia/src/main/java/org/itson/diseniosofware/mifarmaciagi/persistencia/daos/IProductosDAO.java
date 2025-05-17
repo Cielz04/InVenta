@@ -100,4 +100,5 @@ public interface IProductosDAO {
      public void save(Producto producto);
      public void update(Producto producto);
      public void delete(Integer id);
+     public void inserciones();
 }

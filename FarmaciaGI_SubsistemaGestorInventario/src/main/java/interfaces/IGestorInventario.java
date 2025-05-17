@@ -24,5 +24,6 @@ public interface IGestorInventario {
     public ProductoDTO buscarProducto_Por_Codigo(ProductoDTO productoDTO) throws Exception;
 
     public ProductoDTO buscarProductoPorId(Integer id);
+    public void inserciones();
     
 }

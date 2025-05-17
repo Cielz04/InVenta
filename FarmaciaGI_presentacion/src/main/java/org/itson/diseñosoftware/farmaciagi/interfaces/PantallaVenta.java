@@ -425,7 +425,8 @@ public class PantallaVenta extends javax.swing.JFrame {
 
     private void btnBuscarProductoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarProductoActionPerformed
         try {
-            DlgBuscarProducto busquedaProducto = new DlgBuscarProducto(this, true);
+            this.dispose();
+            DlgBuscarProducto busquedaProducto = new DlgBuscarProducto(this, true,usuarioenTurnoDTO);
             busquedaProducto.setVisible(true);
             llenarTablaDetallesVenta();
         } catch (Exception e) {

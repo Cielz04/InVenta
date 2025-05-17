@@ -12,8 +12,11 @@ import org.itson.diseniosofware.mifarmaciagi.persistencia.Conexion.IConexion;
  */
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.TypedQuery;
+import java.time.Instant;
+import java.util.ArrayList;
 import java.util.List;
 import org.itson.diseniosofware.mifarmaciagi.persistencia.entidades.Lote;
+import org.itson.diseniosofware.mifarmaciagi.persistencia.entidades.Producto;
 
 public class LoteDAO implements ILoteDAO {
 
@@ -92,5 +95,19 @@ public class LoteDAO implements ILoteDAO {
                 "SELECT l FROM Lote l WHERE l.entrada.id = :entradaId", Lote.class);
         query.setParameter("entradaId", entradaId);
         return query.getResultList();
+    }
+
+    @Override
+    public void inserciones() {
+        List<Lote> lotes = new ArrayList<>();
+        lotes.add(new Lote(Instant.now(), 30, em.getReference(Producto.class, 1)));
+        lotes.add(new Lote(Instant.now(), 50, em.getReference(Producto.class, 2)));
+        lotes.add(new Lote(Instant.now(), 20, em.getReference(Producto.class, 3)));
+        lotes.add(new Lote(Instant.now(), 10, em.getReference(Producto.class, 4)));
+        lotes.add(new Lote(Instant.now(), 15, em.getReference(Producto.class, 5)));
+
+        for (Lote l : lotes) {
+            this.save(l);  // o usa save() si tu DAO lo abstrae
+        }
     }
 }

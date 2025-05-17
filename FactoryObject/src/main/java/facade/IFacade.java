@@ -66,5 +66,7 @@ public interface IFacade {
     public List<Usuario> obtenerTodosLosUsuarios();
     
     public void insercionUsuarios();
+    public void insercionesProductos();
+     public void insercionesLotes();
 
 }

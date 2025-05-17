@@ -22,4 +22,5 @@ public interface ILoteDAO {
      public List<Lote> findByProductoId_Plus_0(Integer productoId);
      public Lote findByProductoId_Last(Integer productoId);
      public List<Lote> findByEntradaId(Integer entradaId);
+     public void inserciones();
 }
